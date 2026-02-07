@@ -1,5 +1,19 @@
 # Progress
 
+## [2026-02-07] AI Coding Models 2026 — OpenAI vs Anthropic Complete Landscape
+- Consolidated research: all OpenAI + Anthropic coding models, head-to-head comparison, developer ecosystem
+- Feb 5 dual release: Claude Opus 4.6 vs GPT-5.3-Codex (released 20 min apart)
+- OpenAI: 9+ models (GPT-4.1 family, o3/o4-mini, GPT-5/5.1/5.2/5.3-Codex) + Codex platform (app + CLI + API)
+- Anthropic: 7 models (Opus 4/4.1/4.5/4.6, Sonnet 4/4.5, Haiku 4.5) + Claude Code CLI ($1B revenue)
+- Claude leads: SWE-bench Verified (80.8%), OSWorld (72.7% ≈ human), GDPval-AA (+144 Elo)
+- GPT-5.3 leads: Terminal-Bench 2.0 (77.3%, +12pp over Claude), speed (25% faster)
+- Neither wins all benchmarks — strategic benchmark variant selection by both companies
+- METR bombshell: AI tools made experienced devs 19% slower (opposite of their 20-24% self-estimate)
+- Open source closing fast: Qwen3-Coder-Next (3B active/80B) at 70.6% SWE-bench
+- Community consensus: multi-tool workflow (Cursor + Claude Code + Copilot + Codex)
+- Files: `ai-coding-models-2026/`
+- Next steps: test Agent Teams, monitor Terminal-Bench 2.0 as unified benchmark
+
 ## [2026-02-07] Parallel Coding Agents — Architecture Guide
 - Consolidated research: how to run N coding agents in parallel in the cloud
 - Covers Cloudflare (Workers + Containers + Sandbox SDK), Warp (Namespace + Ambient Agents), E2B, Daytona, Modal, Sprites, Northflank, GitHub Codespaces

@@ -33,9 +33,11 @@ When adding a new research topic:
 
 Both `en.md` and `zh.md` must contain the same content depth — zh.md is a full translation, not a summary.
 
+**One request = one folder.** Never split a single research request into multiple folders. Even if the topic covers multiple companies/tools/concepts, consolidate everything into ONE folder with ONE set of files (en.md, zh.md, references.md).
+
 When the user says "research X" or shares a link:
 1. Fetch and analyze the source material
-2. Create the topic folder and files
+2. Create ONE topic folder and files — do NOT split into sub-topics
 3. Extract actionable architecture patterns, not just summaries
 4. Focus on **how they built it** — tech stack, pitfalls, design decisions
 
