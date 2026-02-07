@@ -1,5 +1,18 @@
 # Progress
 
+## [2026-02-07] Parallel Coding Agents — Architecture Guide
+- Consolidated research: how to run N coding agents in parallel in the cloud
+- Covers Cloudflare (Workers + Containers + Sandbox SDK), Warp (Namespace + Ambient Agents), E2B, Daytona, Modal, Sprites, Northflank, GitHub Codespaces
+- Universal pattern: Trigger → Orchestrate → Execute (N sandboxes) → Observe
+- Key insight: sandbox layer is commoditizing (Rivet SDK), value moves to orchestration and intent specification
+- Warp's "Workers" = generic concept (Namespace containers), NOT Cloudflare Workers
+- Cloudflare CAN run parallel agents via Containers + Sandbox SDK (official Claude Code tutorial exists)
+- 5 architecture patterns: ephemeral-per-task, fork-and-explore, persistent workstation, Cloudflare stack, Warp ambient
+- 8 stealable patterns: orchestrator≠executor, sidecar volumes, fork-snapshot, shared cache, scoped credentials, progressive autonomy, friction-point activation, TOEO
+- Decision framework with cost analysis (4 agents × 8hr/day × 20 days: $11-$115/mo depending on platform)
+- Files: `parallel-coding-agents/`
+- Next steps: prototype parallel agent system with Cloudflare Sandbox SDK or Daytona
+
 ## [2026-02-07] Three.js Visual Design
 - Deep analysis of how to make Three.js scenes look cinematic — from lightsaber glow to photorealistic rendering
 - Key insight: 80% of visual quality from 5 things — tone mapping, HDRI environment, bloom, color space, shadows
