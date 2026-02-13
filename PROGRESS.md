@@ -1,5 +1,21 @@
 # Progress
 
+## [2026-02-13] Claude Code Memory System — Complete Architecture Deep Dive
+- Comprehensive research: all memory mechanisms, persistence, context window interaction, best practices
+- 6 memory layers: Managed Policy > Project Memory > Project Rules > User Memory > Local Memory > Auto Memory
+- Auto Memory: `~/.claude/projects/<project>/memory/MEMORY.md` — first 200 lines loaded per session, topic files on-demand
+- Agent Memory (v2.1.33, Feb 2026): subagent-specific persistent memory with user/project/local scopes
+- CLAUDE.md imports: `@path` syntax, recursive up to 5 hops, approval dialog for external imports
+- Project Rules: `.claude/rules/*.md` with YAML frontmatter `paths` field for conditional loading (glob patterns)
+- Skills: three-level progressive disclosure (frontmatter always -> SKILL.md on-invoke -> supporting files on-navigate)
+- Context budget: ~167K usable of 200K (33K reserved for auto-compact buffer), memory files consume ~7.4K tokens
+- Auto-compaction at ~83.5% usage, manual `/compact` with preservation instructions, `/clear` between tasks
+- Known issue: MEMORY.md double-loading bug (#24044) wastes ~3KB/call
+- Key insight: **context freshness > context accumulation** — keep CLAUDE.md under 150 lines, use progressive disclosure
+- Best practice: WHAT/WHY/HOW structure, don't use LLMs as linters, explicit remember commands
+- Files: `claude-code-memory-system/`
+- Next steps: optimize own CLAUDE.md with progressive disclosure pattern, set up path-specific rules
+
 ## [2026-02-07] AI Coding Models 2026 — OpenAI vs Anthropic Complete Landscape
 - Consolidated research: all OpenAI + Anthropic coding models, head-to-head comparison, developer ecosystem
 - Feb 5 dual release: Claude Opus 4.6 vs GPT-5.3-Codex (released 20 min apart)
@@ -62,3 +78,44 @@
 - Compared with LangGraph, CrewAI, OpenAI Swarm, claude-flow
 - Files: `claude-code-agent-team/`
 - Next steps: try Agent Team on a real multi-file refactoring task
+
+## [2026-02-13] OpenClaw AI Agent — Full Architecture Deep Dive
+- Source: OpenClaw official docs + GitHub releases + IBM/DigitalOcean/Sapt analysis + CyberSecurity News
+- Latest v2026.2.6 (Feb 7, 2026): Opus 4.6, GPT-5.3-Codex, xAI Grok, Baidu Qianfan, safety scanner, token dashboard
+- Architecture: Brain (LLM) → Memory (flat-file Markdown) → Arms (fs_tool, bash_tool, browser_tool CDP)
+- Agentic loop: Think → Plan → Act → Observe → Iterate
+- Skills system: SKILL.md declarative format, YAML frontmatter + natural language, ClawHub marketplace
+- QMD memory plugin: BM25 + Vector + LLM Rerank, 60-97% token savings, fully local
+- 145K+ GitHub stars, 50+ integrations, 100+ AgentSkills, Web3/Base onchain integration
+- Security: full system access = critical risk without containerization; IBM says enterprise-hostile
+- Key insight: Gateway-as-control-plane is the converging pattern for personal AI agents
+- Files: `openclaw-ai-agent/`
+- Next steps: compare OpenClaw skill system with Claude Code hooks/MCP for extensibility patterns
+
+## [2026-02-13] Claude Code Best Practices — Production Workflows & Advanced Techniques
+- Comprehensive research: configuration patterns, terminal integration, context optimization, multi-agent workflows
+- CLAUDE.md best practices: What/Why/How structure, ~150-200 instruction limit, start simple and iterate
+- Terminal-first approach: Ghostty (GPU rendering, <500MB/instance) beats IDE extensions (8GB+)
+- Context management: `/clear` aggressively, `/compact` before major work, write handoff documents
+- Key insight: **Context freshness > context accumulation** — LLM output quality degrades with length
+- tmux integration: session persistence, parallel Claude instances, notification→pane jumping
+- Three-layer sandboxing (Trail of Bits): /sandbox + permission deny-rules + devcontainers
+- Hooks architecture: PreToolUse/PostToolUse interceptors, blocking hooks for dangerous commands
+- Stealable patterns: git worktrees parallel dev, Gemini CLI fallback, write-test autonomous cycle
+- MCP essentials: Context7 (library docs), Exa (web/code search)
+- Model strategy: Opus (complex), Sonnet (default), Haiku (simple) — auto-switch at 50% usage
+- Files: `claude-code-best-practices/`
+- Next steps: implement tmux + Ghostty workflow, set up Trail of Bits sandboxing
+
+## [2026-02-08] Discord AI Agent Swarms — Full Architecture Deep Dive
+- Source: @jumperz X article "I Built an AI Agent Swarm in Discord" + Zach Wills' 20-agent swarm case study + broader multi-agent architecture research
+- Core thesis: Discord's primitives (channels, threads, reactions, webhooks) map perfectly onto multi-agent coordination — eliminating custom orchestration infra
+- Architecture patterns: Channel-as-Queue, Thread-as-Work-Item, Webhook-based, MCP + Discord, Consensus-based swarms
+- Zach Wills' 8 rules: plan alignment, restart ruthlessly, checkpoint to files not agent history, sub-agents per phase, trust autonomous loops, self-updating CLAUDE.md, frequent commits
+- Key metrics: ~800 commits, 100+ PRs, $6K/week, ~$75/PR, 3-hour human orchestration ceiling
+- Broader context: Hybrid architectures dominate production (hierarchy is load-bearing for scale), MoA achieves 65.1% AlpacaEval, optimal team 3-7 agents
+- Framework comparison: LangGraph (fastest), CrewAI (easiest), OpenAI Swarm (educational), Claude Code Teams (task-based)
+- Discord advantages: zero infra, human-in-the-loop by default, debugging = reading conversations
+- Discord limits: 50 req/sec rate limit, 100-500ms latency, not for production scale
+- Files: `discord-ai-agent-swarms/`
+- Next steps: prototype Discord-based agent swarm, test with code review workflow
