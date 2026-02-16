@@ -1,5 +1,33 @@
 # Progress
 
+## [2026-02-16] OpenAI Codex CLI — Complete Usage Guide & Community Insights
+- Comprehensive research: full installation flow, all CLI commands/flags, 24 slash commands, AGENTS.md system, advanced config.toml
+- Approval modes: read-only (default) → auto (--full-auto) → full-access → YOLO (--yolo)
+- Sandbox: OS-level (seatbelt/landlock), network blocked by default, configurable writable_roots
+- Models: gpt-5.3-codex (default), spark (Pro only), 5.2-codex medium/high/xhigh (cost vs reasoning tradeoff)
+- AGENTS.md = CLAUDE.md equivalent: 3-tier hierarchy (global → project → nested), 32KB limit, immediate effect
+- Key differentiator vs Claude Code: Codex Cloud (async cloud tasks + local apply), `codex exec` for CI automation
+- Prompting guide: bias to action, batch parallel reads, preserve codebase patterns, no "AI slop" for frontend
+- Community consensus: Codex 2-3x more token-efficient, Claude Code better for deep codebase understanding
+- Optimal workflow: Claude Code (understand/plan) → Codex (execute/iterate) → Claude Code (review)
+- 8 stealable patterns: test-driven agent loop, instruction layering, profile workflows, exec CI, cloud+local hybrid, multi-tool, image-driven UI, incremental patching
+- Files: `openai-codex-cli/`
+- Next steps: set up Codex CLI alongside Claude Code for multi-tool workflow
+
+## [2026-02-13] GEO: Generative Engine Optimization — How to Get Cited by AI Search
+- Comprehensive research: how to optimize content for ChatGPT, Perplexity, Claude, Google AI Overviews
+- GEO = new SEO for AI search. Goal: get **cited**, not just ranked. Google/AI overlap dropped from 70% → <20%
+- GEO paper results: +40% visibility overall, +115% for lower-ranked sites with citation strategy
+- Technical requirements: robots.txt (allow GPTBot, OAI-SearchBot, PerplexityBot, ClaudeBot), SSR, no paywalls
+- Content patterns: answer-first ("answer capsule"), structured content (lists 3x citation rate), FAQ schema, statistics with sources
+- Platform differences: ChatGPT (Wikipedia-heavy, Bing index), Perplexity (Reddit-heavy, real-time indexing), Google AI (52% from top-10)
+- Schema priority: Article + FAQ + Organization + Person (author), JSON-LD format
+- Monitoring tools: Otterly.ai, Geoptie, Relixir — track citation frequency, AI share of voice, sentiment
+- GPTBot dilemma: training (GPTBot) vs search (OAI-SearchBot) — many publishers allow search but block training
+- Key insight: **被引用比被排名更重要** — AI 时代的流量是品牌提及，不是点击
+- Files: `geo-generative-engine-optimization/`
+- Next steps: audit own sites' robots.txt, add FAQ schema, implement answer-first writing
+
 ## [2026-02-13] Claude Code Memory System — Complete Architecture Deep Dive
 - Comprehensive research: all memory mechanisms, persistence, context window interaction, best practices
 - 6 memory layers: Managed Policy > Project Memory > Project Rules > User Memory > Local Memory > Auto Memory
