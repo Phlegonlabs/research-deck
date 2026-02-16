@@ -1,5 +1,23 @@
 # Progress
 
+## [2026-02-16] OpenAI Codex CLI — Sandbox & Isolation Architecture Deep Dive
+- Deep analysis of Codex CLI's OS-level sandbox implementation across macOS, Linux, Windows
+- macOS Seatbelt: sandbox-exec with SBPL profiles, deny-by-default, dynamic profile generation in Rust
+- Linux Landlock + seccomp-BPF: filesystem ACL via Landlock LSM (kernel >= 5.13), syscall filtering blocks SYS_connect/bind/listen/sendto + io_uring, AF_UNIX exempted for IPC
+- Windows: experimental AppContainer + restricted tokens via CreateRestrictedToken(), proactive denial of ADS/UNC/device handles, PATH injection defense with stub executables
+- arg0 dispatch pattern: single binary re-executes itself as codex-linux-sandbox via argv[0] matching, eliminates separate helper binaries
+- 3 sandbox modes (read-only / workspace-write / danger-full-access) + 4 approval policies (untrusted / on-failure / on-request / never)
+- writable_roots config: expand write boundary via config.toml or --add-dir CLI flag, .git/ and .codex/ always read-only
+- Network isolation: disabled by default, binary all-or-nothing on all platforms, no per-domain filtering possible
+- Execpolicy: Starlark-based semantic command control with allow/prompt/forbidden three-tier decisions
+- Enterprise enforcement: /etc/codex/requirements.toml non-overridable, MDM support, cloud policy fetch
+- CVE-2025-59532 (CVSS 8.6): model-generated cwd treated as writable root, fixed in v0.39.0
+- Key weakness: full filesystem read in all modes (security concern #4410), macOS network_access config bug (#10390)
+- Comparison with Claude Code: Codex has kernel-level sandbox + default network blocking; Claude Code uses permission deny-rules + devcontainers
+- 10 stealable patterns: arg0 dispatch, deny-by-default allowlists, dual kernel primitives, AF_UNIX exemption, env sanitization, serialized policy handoff, .git protection, enterprise ceiling, output capping, graduated escalation
+- Files: `codex-sandbox-architecture/`
+- Next steps: evaluate Trail of Bits sandboxing for Claude Code vs Codex approach
+
 ## [2026-02-16] OpenAI Codex CLI — Complete Usage Guide & Community Insights
 - Comprehensive research: full installation flow, all CLI commands/flags, 24 slash commands, AGENTS.md system, advanced config.toml
 - Approval modes: read-only (default) → auto (--full-auto) → full-access → YOLO (--yolo)
