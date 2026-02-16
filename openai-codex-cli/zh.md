@@ -69,6 +69,32 @@ codex --version
 codex -c 'sandbox_workspace_write.network_access=true'
 ```
 
+### 权限模式对比：Codex vs Claude Code 的 "Dangerous Mode"
+
+Claude Code 的 `--dangerously-skip-permissions` 跳过所有确认弹窗，但底层**没有真正的沙箱** —— 本质是"信任制"。Codex 采用 **OS 级沙箱**（macOS 用 seatbelt，Linux 用 landlock），即使 `--full-auto` 也物理隔离，是"隔离制"。
+
+| Codex CLI | 命令 | 等同 Claude Code |
+|-----------|------|-----------------|
+| 只读（默认） | `codex` | 默认模式（每步要确认） |
+| Auto | `codex --full-auto` | 温和版 skip-permissions — 自动批准编辑和命令，限制在工作目录内，**无网络** |
+| Full Access | `codex --full-auto --sandbox danger-full-access` | 最接近 `--dangerously-skip-permissions` — 完整系统访问 + 网络 |
+| YOLO | `codex --dangerously-bypass-approvals-and-sandbox` | 比 Claude Code 更极端 — 跳过所有安全检查，**仅限隔离 VM** |
+
+**日常开发实际用法：**
+
+```bash
+# 大多数人日常够用 — 自动读写执行，网络阻断是安全设计
+codex --full-auto
+
+# 需要网络（npm install、API 调用等）时升级
+codex --full-auto --sandbox danger-full-access
+
+# 只开网络不开完全访问的折中方案
+codex -c 'sandbox_workspace_write.network_access=true'
+```
+
+**架构差异的本质**：Claude Code 的权限是软件层面的确认弹窗，跳过后 agent 拥有和你一样的系统权限。Codex 的沙箱是操作系统内核级的隔离，`--full-auto` 下 agent 物理上无法写工作目录外的文件或访问网络 —— 要突破这个边界必须显式用 `danger-full-access`。这意味着即使 agent 被恶意提示注入，Codex 的沙箱仍能限制损害范围。
+
 ### 模型选择
 
 | 模型 | 用途 | 备注 |
