@@ -1,5 +1,17 @@
 # Progress
 
+## [2026-02-19] Web 4.0: The Agentic Web — Deep Analysis
+- Three competing definitions: crypto-native (Sigil Wen/Dragonfly), enterprise (EU/Gartner), pragmatic (Will Hackett)
+- Core thesis: AI agents become independent economic actors — bottleneck is permission, not intelligence
+- Key infrastructure: x402 protocol (50M+ txns, Coinbase + Cloudflare), MCP tool access, crypto wallets for agents
+- Conway/Automaton: MCP-compatible infra giving agents wallets, servers, deployment — no human logins
+- 7-level agent maturity framework: we're at Level 3-4, Web 4.0 assumes Level 5+
+- Six-layer academic framework: Environmental → Infrastructure → Data → Agent → Behavioral → Governance
+- Honest assessment: underlying needs (payments, identity, tools, coordination) are real; "Web 4.0" branding is crypto-aligned marketing
+- Skeptic points: Web3 déjà vu, semantic web's 20yr failure, 90% blockchain failure rate, regulatory vacuum
+- Files: `web4-agentic-web/`
+- Next steps: monitor x402 protocol adoption, evaluate MCP + wallet patterns for agent autonomy
+
 ## [2026-02-16] OpenAI Codex CLI — Sandbox & Isolation Architecture Deep Dive
 - Deep analysis of Codex CLI's OS-level sandbox implementation across macOS, Linux, Windows
 - macOS Seatbelt: sandbox-exec with SBPL profiles, deny-by-default, dynamic profile generation in Rust
