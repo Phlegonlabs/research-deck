@@ -1,5 +1,37 @@
 # Progress
 
+## [2026-02-19] Shenzhen Robotics Ecosystem — The World's Densest Humanoid Robot Cluster
+- 74,000+ robotics enterprises, 34 listed companies, 9 unicorns, 18+ humanoid body manufacturers — all concentrated in Nanshan district
+- Nanshan "Robot Valley" (Liuxian Avenue, 10km): same-day prototype-to-production, 90% local supply chain, 70% manufacturing within corridor
+- UBTECH (9880.HK): 1,000 Walker S2 produced, 500+ delivered, 1.3B yuan orders, market cap HK$71B, 2026 target 5,000 units/year
+- UBTECH acquiring Zhejiang Fenglong (43% for $237M) — supply chain vertical integration play
+- LimX Dynamics: $200M+ funded (Alibaba, JD.com), Oli ($22.7K) + TRON 2 ($7K modular), 3-year Middle East expansion plan
+- EngineAI: $210M funded (JD.com, CATL), 5 products in <2 years ($5.4K-$50K), ex-Xpeng founder, T800 heavy industrial at CES 2026
+- Dobot Atom: $27.5K, ±0.05mm precision, third batch mass production (Feb 2026), cobot DNA → humanoid transition
+- Leju Robot: $210M pre-IPO (Tencent-backed), KUAVO humanoid, targeting Shanghai STAR Market IPO
+- Lumos ($28M angel), Cyborg R01 (62 DOF heavy-duty), DexForce W1 Pro (wheeled, 8hr battery), Daimon (tactile sensing, China Mobile backed)
+- Government: 100B yuan fund for AI/robotics, 100B yuan industry target by 2027, 60% model training subsidies, FAIR expo, "Eight King Kongs"
+- Supply chain advantage: PCB/batteries 90%+ local, manufacturing 2.2x cheaper than US, rare earths 90% global supply
+- Key patterns: ship imperfect at volume, product price laddering, vertical integration as moat, government as patient capital GP
+- Shenzhen vs Shanghai vs Hangzhou: Shenzhen = hardware density, Shanghai = international, Hangzhou = software/AI talent
+- Files: `shenzhen-robotics-ecosystem/`
+- Next steps: monitor UBTECH 2026 production ramp, Leju IPO filing, LimX Middle East deployments, ecosystem consolidation
+
+## [2026-02-19] Unitree Robotics — The $16K Humanoid That Outshipped Everyone
+- Founded 2016 by Wang Xingxing (ex-DJI), 4 people, $275K angel. Now $7B IPO-bound on Shanghai Star Market Q2 2026
+- 5,500+ humanoids shipped in 2025 (30% of global market) — more than Tesla, Figure AI, Agility combined. Target: 20,000 in 2026
+- Product line: R1 ($4,900), G1 ($13,500), H2 ($29,900), H1 ($90K+). Plus Go2/B2 quadrupeds, L1/L2 LiDAR, M107 actuators
+- M107 joint motor: 189 N·m/kg torque density (claimed world record), self-developed, key cost advantage via vertical integration
+- UnifoLM AI framework: WMA-0 (world model + action), VLA-0 (vision-language-action), X1-0 (industrial). Open-sourced on Hugging Face
+- Data engine strategy: G1 humanoids assemble motor parts in Unitree factory → production = training data generation (flywheel)
+- Spring Festival Gala 2026: fully autonomous swarm kung fu with G1/H2. World-first aerial flips (3m+), 7.5-rotation airflare, 4 m/s cluster speed
+- China ecosystem: $8.2B national AI fund, 150+ humanoid companies, 90% of global humanoid market by volume
+- Competition: vs AgiBot (5,100 shipped), Tesla Optimus (not for sale), Figure 03 (not for sale), Boston Dynamics Atlas (research only)
+- Revenue: ~¥1B (~$140M), already profitable. 50% overseas quadruped sales. IPO with CITIC Securities
+- Key bet: ship imperfect at volume → collect real-world data → close capability gap. Counter-strategy to Tesla/Figure's "perfect then ship"
+- Files: `unitree-robotics/`
+- Next steps: monitor Q2 2026 IPO filing, H2/R1 delivery quality, factory deployment ROI data
+
 ## [2026-02-19] ACP: Agentic Commerce Protocol — Stripe & OpenAI Implementation Deep Dive
 - ACP: open standard by OpenAI + Stripe for AI agent commerce. 5 REST endpoints (Create/Retrieve/Update/Complete/Cancel Checkout)
 - Shared Payment Token (SPT): Stripe's new payment primitive — single-use, time-limited, merchant+amount-scoped, credential-isolated
