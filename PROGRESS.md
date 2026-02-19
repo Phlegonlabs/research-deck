@@ -1,5 +1,20 @@
 # Progress
 
+## [2026-02-19] A2A, AP2, ACP: The Agentic Commerce Protocol Stack
+- Full protocol stack mapped: MCP (tools) → A2A (agent coordination) → AP2/ACP/x402 (payments) → ERC-8004 (identity)
+- A2A: Google's agent-to-agent protocol. JSON-RPC 2.0 over HTTPS, Agent Card discovery (/.well-known/agent-card.json), task state machine, SSE streaming, 150+ partners
+- A2A vs MCP: MCP = vertical (agent→tool), A2A = horizontal (agent→agent). Complementary, not competing
+- AP2: Google's payment authorization protocol. Three mandate types: Cart (human present), Intent (human absent), Payment (network signals)
+- AP2 security: 6-role separation — shopping agent NEVER sees raw payment credentials. Cryptographic mandates = non-repudiable authorization proof
+- AP2 + x402: AP2 provides trust/authorization layer, x402 provides settlement. AP2 mandates can route to Visa OR x402 stablecoins
+- ACP: OpenAI/Stripe's chat commerce protocol. Shared Payment Token = scoped, time-limited credential delegation. Powers ChatGPT Instant Checkout today
+- ACP vs AP2: ACP = shipping, simple (4 actors), Stripe-first. AP2 = rigorous, complex (6 roles + mandates), V0.1 only
+- "Mullet Economy": fiat front (B2C via ACP/AP2), crypto back (M2M via x402)
+- Meta-problem: 6 protocols for one commerce transaction = real integration complexity
+- McKinsey projects $3-5T agentic transaction volume by 2030
+- Files: `a2a-ap2-agentic-commerce/`
+- Next steps: prototype A2A Agent Card for a service, watch AP2 V1.x for autonomous mandates
+
 ## [2026-02-19] MCP + x402 Integration — How AI Agents Pay for Services
 - x402 revives HTTP 402 status code: 3-phase payment handshake (Quote → Pay → Settle) embedded in HTTP headers
 - EIP-3009 (Transfer With Authorization) underneath — currently USDC-only due to Circle's standard
