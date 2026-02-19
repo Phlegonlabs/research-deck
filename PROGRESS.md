@@ -1,5 +1,24 @@
 # Progress
 
+## [2026-02-19] Jupiter — Solana's DeFi Super-App Deep Analysis
+- Product suite: DEX aggregator (95% market share) + Perps (250x leverage, 66% Solana perps share) + DCA + Limit Orders + JLP Pool + Lock + Terminal + Mobile + Ape (meme trading) + LFG Launchpad
+- Routing evolution: Metis (Bellman-Ford) → Iris (Golden-section + Brent's method, 100x faster) → Juno (meta-aggregator: Iris + JupiterZ RFQ + 3rd party). JupiterZ RFQ: $100M/day zero-slippage market maker execution
+- MEV protection: Ultra V3 achieves 34x better sandwich protection via Iris routing splits + JupiterZ off-AMM execution + Jito validator direct submission + dynamic slippage
+- JLP pool: 5-asset ($2.5B TVL), counterparty to perps traders, 75% of fees to LPs, 14-20% APY typical, max -18% drawdown. 80% held by 10 whales (concentration risk)
+- Oracle stack: Edge (Chaos Labs, primary) → Chainlink → Pyth, multi-oracle failover with threshold checks
+- JUP token: 7B supply (3B burned Jan 2025), $2.04 ATH → $0.17 current (-91.7%). 50% revenue buyback program. Litterbox burn: 130M JUP ($44.5M) burned Nov 2025
+- Jupuary airdrops: 3 rounds (2024-2026), final reduced from 700M → 200M to limit dilution. Token unlock pressure overwhelms buybacks
+- Governance: paused June 2025 due to "trust breakdown" between team and community, resumed 2026 with revised tools
+- LFG Launchpad: 78 projects launched, DLMM fair-launch mechanism, DAO-curated. Notable: WEN, JUP, Zeus, Sanctum, deBridge
+- Team: Meow (pseudonymous, OG DeFi) + Ben Chow (IDEO designer, resigned Feb 2025 amid LIBRA meme coin scandal). Bootstrapped 4+ years, first outside funding $35M ParaFi Capital (Feb 2026)
+- Revenue: $509M gross (2025), ~$122M net protocol. Perps = 80% of revenue. Aggregator is free user acquisition → perps monetization funnel
+- 2026: CatLumpurr conference — Jupiter Lend ($1B TVL in 8 days), Polymarket integration, Jupiter Global (fiat payments), Offerbook (P2P lending), Jupnet omnichain testnet
+- Key paradox: every business metric trending up, token down 91.7%. Structural unlock pressure unsolved
+- Centralization concern: 95% aggregator monopoly, Moonshot/SonarWatch acquisitions, team governance influence
+- Stealable patterns: meta-aggregation (aggregate aggregators), RFQ+AMM hybrid, free core → paid perps, bootstrapped → strategic investment, conference-driven roadmap, named community (Catdets)
+- Files: `jupiter-solana/`
+- Next steps: monitor Jupnet mainnet timeline, JUP token unlock schedule impact, Jupiter Lend growth trajectory, governance reform results
+
 ## [2026-02-19] Solana Blockchain — Complete Technical & Ecosystem Deep Analysis
 - 8 core innovations architecture: PoH (SHA-256 hash chain clock), Tower BFT (O(n) message PBFT), Turbine (BitTorrent-like shred propagation), Gulf Stream (mempool-less forwarding), Sealevel (parallel execution via explicit account declarations), TPU pipelining (GPU sig verify + CPU banking + kernel IO), Cloudbreak (RAID 0 accounts DB), Archivers (distributed storage)
 - Performance reality: theoretical 65K TPS, actual 400-800 user TPS (60-70% are validator votes). 8 major outages 2021-2024, zero since Feb 2024
