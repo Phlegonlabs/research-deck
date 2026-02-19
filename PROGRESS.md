@@ -1,5 +1,34 @@
 # Progress
 
+## [2026-02-19] Sherwin Wu — OpenAI API Engineering Leader & "Sorcerer" Thesis Deep Analysis
+- Background: MIT BS & MEng CS (2010-2014), Palantir, Doximity, Quora (News Feed), Opendoor (5+ yrs Pricing ML), then OpenAI (~2022). Currently Head of Engineering, OpenAI API/Developer Platform. Also at Sancus Ventures
+- Content catalog: 15 pieces across 4 podcasts (Lenny's, a16z, BG2, Latent Space), 1 conference talk + panel (QCon NY 2023), 5+ notable tweets, 2 LinkedIn posts, multiple media articles
+- "Engineers are becoming sorcerers" thesis (Lenny's Podcast, Feb 2026): 95% of OpenAI engineers use Codex daily, 10-20 parallel agents per engineer, 100% PR review by AI, 70% more PRs, code review 10-15min → 2-3min
+- Model portfolio over "god model": "Even within OpenAI, the thinking was that there would be one model that rules them all. It's definitely completely changed." Reinforcement fine-tuning (RFT) as the big unlock
+- Forward Deployed Engineering (FDE): Palantir-style engineer embedding with enterprise customers (T-Mobile, Amgen, Los Alamos). Customer problems → model improvements feedback loop
+- "Developers as distribution layer of AGI": OpenAI can't reach every vertical through ChatGPT alone — developers carry AGI into niches. 6B tokens/minute, five nines uptime target
+- Startup thesis: bearish on one-person $1B startups, bullish on thousands of $10M niche businesses. "Golden age of B2B SaaS"
+- Skill evolution: prompt engineering (2023) → function calling (2024) → context design (2025) → agent orchestration (2026)
+- "Models will eat your scaffolding for breakfast" — don't over-invest in workarounds for current model limitations
+- QCon 2023: "A Bicycle for the (AI) Mind: GPT-4 + Tools" — function calling debut, the primitive that evolved into Agents SDK
+- Files: `sherwin-wu-openai/`
+- Next steps: track Wu's future content as OpenAI platform evolves, monitor agent orchestration patterns from OpenAI engineering practices
+
+## [2026-02-19] Jito — Solana's MEV Infrastructure & Liquid Staking Protocol Deep Analysis
+- Jito-Solana: modified Agave validator client with 3 additional pipeline stages (RelayerStage, BlockEngineStage, BundleStage). 95-97% of Solana stake weight runs Jito-Solana by 2026
+- Block Engine: off-chain partial-block bundle auction. Relayer holds txns 200ms for auction. Bundles = max 5 txns, atomic, sequential. $674M+ in tips paid to stakers/validators through 2024
+- MEV on Solana: latency-driven (not gas-bidding like Ethereum), continuous block building vs discrete slots, known leader schedule creates co-location pressure
+- Mempool controversy (March 2024): Jito shut down public mempool after sandwich attacks peaked at 10K SOL/day. Problem went underground to private mempools. $370-500M extracted by sandwich bots over 16 months post-shutdown
+- BAM (Block Assembly Marketplace): launched July 2025. TEE-based transaction scheduling with Plugin architecture. Engineering solution to sandwich attacks (privacy by design, not policy)
+- JitoSOL: largest Solana LST, ~40-76% market share, 15.1M SOL TVL. Yield = base staking (6-6.6%) + MEV tips (1.2-1.8%) = 7.2-8.4% APY. VanEck filed S-1 for JitoSOL ETF (Aug 2025)
+- Restaking: NCN/Vault/Operator model. $227M TVL across 9 VRTs. TipRouter = first live NCN (Jan 30, 2025), decentralizes Merkle root computation for tip distribution
+- JTO token: 1B supply, -94.7% from ATH ($5.32 → $0.30). JIP-24 (Aug 2025) redirects 100% of Block Engine + BAM fees to DAO treasury. a16z invested $50M (Oct 2025)
+- Team: Lucas Bruder (CEO, CMU, ex-Tesla/Built Robotics) + Zano Sherwani (CTO, GMU, ex-Amazon). Founded Sep 2021. $60M+ raised total
+- Key pattern: MEV + LST flywheel — MEV infrastructure → higher staking yield → more stake → more MEV coverage → repeat. Self-reinforcing network effect
+- Centralization tension: 95%+ stake on one client = systemic risk + economic lock-in (not running Jito = -13-15% rewards). Genuine progressive decentralization steps (TipRouter, JIP-24, StakeNet, BAM) but economic gravity makes alternatives hard
+- Files: `jito-solana/`
+- Next steps: monitor BAM adoption vs Harmonic competition, NCN ecosystem growth beyond TipRouter, VanEck JitoSOL ETF approval, Firedancer-BAM integration progress
+
 ## [2026-02-19] Jupiter — Solana's DeFi Super-App Deep Analysis
 - Product suite: DEX aggregator (95% market share) + Perps (250x leverage, 66% Solana perps share) + DCA + Limit Orders + JLP Pool + Lock + Terminal + Mobile + Ape (meme trading) + LFG Launchpad
 - Routing evolution: Metis (Bellman-Ford) → Iris (Golden-section + Brent's method, 100x faster) → Juno (meta-aggregator: Iris + JupiterZ RFQ + 3rd party). JupiterZ RFQ: $100M/day zero-slippage market maker execution
