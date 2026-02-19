@@ -1,5 +1,19 @@
 # Progress
 
+## [2026-02-19] MCP + x402 Integration — How AI Agents Pay for Services
+- x402 revives HTTP 402 status code: 3-phase payment handshake (Quote → Pay → Settle) embedded in HTTP headers
+- EIP-3009 (Transfer With Authorization) underneath — currently USDC-only due to Circle's standard
+- Facilitator pattern: servers don't need blockchain infra, Coinbase/Cloudflare handle verification + settlement
+- 4 integration patterns: Coinbase SDK (@x402/axios), Vercel x402-mcp (paidTool), Cloudflare Workers, MCPay proxy
+- V2 shipped: wallet-based sessions, auto-discovery, deferred settlement, modular @x402/* SDK, multi-chain
+- Coinbase Agentic Wallets: TEE-isolated private keys, session caps, per-tx limits, KYT screening — LLM never sees keys
+- Protocol stack: MCP (tools) + A2A (agent coordination) + x402 (crypto payments) + AP2 (fiat) + ERC-8004 (identity)
+- "Mullet Economy": fiat front (B2C via AP2/ACP), crypto back (M2M via x402)
+- Centralization irony: "open standard" but Coinbase dominates SDK, facilitator, wallet infra, and foundation
+- Bootstrap problem unsolved: wallet creation + USDC funding still requires human KYC
+- Files: `mcp-x402-integration/`
+- Next steps: prototype x402 paid MCP tool on Base Sepolia testnet
+
 ## [2026-02-19] Web 4.0: The Agentic Web — Deep Analysis
 - Three competing definitions: crypto-native (Sigil Wen/Dragonfly), enterprise (EU/Gartner), pragmatic (Will Hackett)
 - Core thesis: AI agents become independent economic actors — bottleneck is permission, not intelligence
