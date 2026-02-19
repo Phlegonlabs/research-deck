@@ -1,5 +1,19 @@
 # Progress
 
+## [2026-02-19] ERC-8004: Onchain Agent Identity, Reputation & Validation
+- ERC-8004 "Trustless Agents": three onchain registries — Identity (ERC-721 NFT), Reputation (structured feedback), Validation (independent verification)
+- Deployed on Ethereum mainnet (Jan 29 2026) + 20 L2s. Identity: 0x8004A169..., Reputation: 0x8004BAa1...
+- Authors: MetaMask (identity), Ethereum Foundation (protocol), Google (A2A), Coinbase (x402)
+- Identity Registry: NFT passport with off-chain registration file listing A2A/MCP endpoints, x402 support, trust models
+- Reputation: raw signals (not scores), client-filtered getSummary(), proofOfPayment to prove reviewer paid for service
+- Validation: 3 tiers — social (reputation only), crypto-economic (staked re-execution), cryptographic (zkML/TEE proofs)
+- Killer pattern: escrow-on-validation — smart contract releases payment only after ValidationRegistry confirms correct work
+- Hybrid on/off-chain: pointers + hashes onchain, full data offchain (95%+ cost savings)
+- Integration: registration file lists A2A/MCP endpoints, x402Support flag, agentId referenced in AP2 mandates
+- Problems: Sybil attacks (partial mitigation), identity ≠ capability, validator incentives unspecified, ecosystem adoption chicken-and-egg
+- Files: `erc-8004-agent-identity/`
+- Next steps: register a test agent in Identity Registry, watch V2 for deeper MCP/x402 integration
+
 ## [2026-02-19] A2A, AP2, ACP: The Agentic Commerce Protocol Stack
 - Full protocol stack mapped: MCP (tools) → A2A (agent coordination) → AP2/ACP/x402 (payments) → ERC-8004 (identity)
 - A2A: Google's agent-to-agent protocol. JSON-RPC 2.0 over HTTPS, Agent Card discovery (/.well-known/agent-card.json), task state machine, SSE streaming, 150+ partners
