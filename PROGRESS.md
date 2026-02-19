@@ -1,5 +1,20 @@
 # Progress
 
+## [2026-02-19] ACP: Agentic Commerce Protocol — Stripe & OpenAI Implementation Deep Dive
+- ACP: open standard by OpenAI + Stripe for AI agent commerce. 5 REST endpoints (Create/Retrieve/Update/Complete/Cancel Checkout)
+- Shared Payment Token (SPT): Stripe's new payment primitive — single-use, time-limited, merchant+amount-scoped, credential-isolated
+- Delegated Payment Flow: 3-phase credential delegation (OpenAI→Stripe→SPT→Merchant). Network tokens preferred over FPANs for PCI reduction
+- ChatGPT Instant Checkout: live Feb 16 2026 US users. 800M+ WAU, 50M daily shopping queries
+- Fee structure: 4% OpenAI + ~2.9% Stripe = ~9.2% combined (vs Amazon 25-30%, Google 0%)
+- 4 onboarding paths: Stripe Direct ("one line of code"), Shopify (1M+ merchants), PayPal ACP Server, Direct Application
+- Product feed: compressed JSONL/CSV, 15-min refresh, GTIN/UPC required, enable_search gates enable_checkout
+- Google UCP as competing response: /.well-known/ucp discovery, supports REST/A2A/MCP. Dual ACP+UCP = 40% more traffic
+- Spec evolution: 4 versions in 4 months (2025-09-29 → 2026-01-30). Date-based versioning, all versions preserved
+- Real issues: US only, Stripe lock-in (only SPT PSP), 4% fee, no recurring payments, Amazon excluded via robots.txt
+- Reference demo: locus-technologies/agentic-commerce-protocol-demo (TypeScript, Node.js, PostgreSQL, Docker)
+- Files: `acp-stripe-openai/`
+- Next steps: test ChatGPT Instant Checkout merchant onboarding, watch UCP for competitive convergence
+
 ## [2026-02-19] ERC-8004: Onchain Agent Identity, Reputation & Validation
 - ERC-8004 "Trustless Agents": three onchain registries — Identity (ERC-721 NFT), Reputation (structured feedback), Validation (independent verification)
 - Deployed on Ethereum mainnet (Jan 29 2026) + 20 L2s. Identity: 0x8004A169..., Reputation: 0x8004BAa1...
