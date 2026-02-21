@@ -434,6 +434,32 @@ Wu 关于"一个人的十亿美元公司"的逆向思维：
 
 ---
 
+## 最新動態 (2026)
+
+### OpenAI 平台规模与模型演进
+
+自 Wu 最近一次公开亮相以来，他领导的 OpenAI 平台经历了巨大变革：
+
+- **ChatGPT 周活用户突破 9 亿。** 截至 2026 年 1 月，ChatGPT 周活用户已达 9 亿，较 Wu 在 2025 年 11 月 a16z 访谈中提到的 8 亿进一步增长。平台有望在 2026 年初突破 10 亿周活，验证了 Wu 的论点：ChatGPT 是消费者分发层，而 API 将 AGI 带入各个垂直领域。
+
+- **GPT-5.1 和 GPT-5.2 上线 API。** GPT-5.1 引入了自适应推理（根据任务复杂度动态调整思考深度）、扩展提示缓存（24 小时保留）和改进的代码编写个性——在简单任务上比 GPT-5 快 2-3 倍。GPT-5.2 随后在长上下文理解、agentic 工具调用和视觉方面带来显著提升，定价 $1.75/百万输入 token。两个模型都通过 Wu 团队构建的 Responses API 提供。（[GPT-5.1 公告](https://openai.com/index/gpt-5-1-for-developers/) | [GPT-5.2 公告](https://openai.com/index/introducing-gpt-5-2/)）
+
+- **GPT-5.2-Codex 和 GPT-5.3-Codex 刷新 SWE-Bench 记录。** Wu 声称 95% 的 OpenAI 工程师每天使用 Codex，现在有了更强大的模型支撑。GPT-5.3-Codex 运行速度提升 25%，并从编码扩展到完整的软件生命周期——调试、部署、监控、撰写 PRD 等。Codex 桌面应用于 2026 年 2 月发布，作为"agentic 编码的指挥中心"，支持并行 agent 跨项目工作。（[GPT-5.2-Codex](https://openai.com/index/introducing-gpt-5-2-codex/) | [GPT-5.3-Codex](https://openai.com/index/introducing-gpt-5-3-codex/)）
+
+### 平台战略举措
+
+- **Assistants API 宣布日落（2026 年 8 月）。** OpenAI 于 2025 年 8 月正式弃用 Assistants API，计划于 2026 年 8 月完全移除。所有功能正在迁移到 Responses API——Wu 在 Dev Day 2025 上将其定位为"超越 MCP 的潜在行业标准"。这确认了 Wu 的团队正围绕单一的 agent 原生 API 原语进行整合。（[弃用通知](https://platform.openai.com/docs/deprecations)）
+
+- **Frontier 平台发布，面向企业 AI agent。** OpenAI 发布了 Frontier，一个帮助企业构建、部署和管理 AI agent 的平台，其能力被描述为类似于人类"同事"。早期客户包括 Uber、Intuit、State Farm 和 Oracle。这是 Wu 在 BG2 上描述的前置部署工程模式的产品化——从定制 FDE 嵌入式服务转向可规模化的企业 agent 平台。
+
+- **Peter Steinberger（OpenClaw 创建者）加入 OpenAI 构建个人 agent。** 2026 年 2 月，OpenAI 收编了 Peter Steinberger，他的病毒式传播 AI 助手 OpenClaw 承诺成为"真正能做事的 AI"。Steinberger 将"推动下一代个人 agent"的开发。OpenClaw 保持开源。这标志着 OpenAI 从开发者工具向消费者级 agent 体验的扩张。（[TechCrunch](https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/)）
+
+- **ChatGPT Health 发布（2026 年 1 月）。** OpenAI 推出 ChatGPT Health，允许用户连接医疗记录和健康应用（Apple Health、MyFitnessPal 等）进行个性化健康对话。这是 Wu "开发者将 AGI 带入垂直领域"论点的具体例证——医疗健康作为最有价值的垂直领域之一，OpenAI 直接进入，同时 API 支持第三方健康应用。（[OpenAI 公告](https://openai.com/index/introducing-chatgpt-health/)）
+
+- **Codex IDE 集成 Xcode 26.3。** Apple 于 2026 年 2 月将 OpenAI 的 Codex 直接集成到 Xcode 26.3，实现自主 agentic 编码，将 agent 的触达范围扩展到 OpenAI 自有工具之外的更广泛开发者生态。这与 Wu 的"开发者作为 AGI 分发层"理念一致——现在 Apple 成为分发合作伙伴。
+
+---
+
 ## 4. 可行动的要点
 
 ### 面向开发者
@@ -467,3 +493,97 @@ Wu 关于"一个人的十亿美元公司"的逆向思维：
 3. **准备好应对"太好了"问题。** 随着模型改进，挑战从"让模型做你想要的"变为"模型完全按照你说的做，字面意思上"。这需要更清晰、更精确的沟通——不是更有创意的提示。
 
 4. **先用 Codex 做代码审查。** Wu 的团队将审查时间从 10-15 分钟缩短到 2-3 分钟。代码审查是 AI 采用风险最低、投资回报率最高的起点。
+
+---
+
+## References
+
+### Profiles
+
+- LinkedIn: https://www.linkedin.com/in/sherwinwu1/
+- X/Twitter: https://x.com/sherwinwu
+- Sancus Ventures: https://www.sancus.vc/team/sherwin-wu
+- InfoQ Profile: https://www.infoq.com/profile/Sherwin-Wu/
+- QCon Speaker Page: https://qconnewyork.com/speakers/sherwinwu
+- Quora: https://www.quora.com/profile/Sherwin-Wu
+
+### Podcasts
+
+#### Lenny's Podcast — "Engineers are Becoming Sorcerers" (Feb 2026)
+- Lenny's Newsletter (transcript): https://www.lennysnewsletter.com/p/engineers-are-becoming-sorcerers
+- Spotify: https://open.spotify.com/episode/3EPDh5GqC9PEdyQBEpmdrQ
+- Apple Podcasts: https://podcasts.apple.com/us/podcast/engineers-are-becoming-sorcerers-the-future-of/id1627920305?i=1000749436380
+- Podwise Summary: https://podwise.ai/dashboard/episodes/7171472
+- 小宇宙: https://www.xiaoyuzhoufm.com/episode/698dd96e2aaefd8defac0fbf
+
+#### a16z Show — "How OpenAI Builds for 800 Million Weekly Users" (Nov 28, 2025)
+- Spotify: https://open.spotify.com/episode/36DXaD9KdlWh2Ksn7OVAdc
+- Apple Podcasts: https://podcasts.apple.com/hn/podcast/how-openai-builds-for-800-million-weekly-users-model/id842818711?i=1000738780411
+- Podwise Summary: https://podwise.ai/dashboard/episodes/6063995
+- Podscan (a16z): https://podscan.fm/podcasts/a16z-podcast/episodes/how-openai-builds-for-800-million-weekly-users-model-specialization-and-fine-tuning
+- Podscan (a16z Show): https://podscan.fm/podcasts/the-a16z-show/episodes/how-openai-builds-for-800-million-weekly-users-model-specialization-and-fine-tuning
+
+#### BG2 Pod — "Inside OpenAI Enterprise" (Sep 11, 2025)
+- Spotify: https://open.spotify.com/episode/0HnYWQc9retjyFVSEAmFmQ
+- Apple Podcasts: https://podcasts.apple.com/us/podcast/inside-openai-enterprise-forward-deployed-engineering/id1727278168?i=1000726402888
+- Everand: https://www.everand.com/podcast/915708725/Inside-OpenAI-Enterprise-Forward-Deployed-Engineering-GPT-5-and-More-BG2-Guest-Interview
+- Chain of Thought Summary: https://podcasts.chainofthought.xyz/podcast-summaries/inside-openai-enterprise-forward-deployed-engineering-gpt-5-and-more-bg2-guest-interview
+- InfoCaptor Summary/Transcript: https://my.infocaptor.com/hub/summaries/bg2-pod/inside-openai-enterprise-forward-deployed-engineering-gpt-5-and-more-%7C-bg2-guest-interview-yLTSqBzKG2s
+
+#### Latent Space — "Developers as the Distribution Layer of AGI" (Oct 6, 2025)
+- Latent Space: https://www.latent.space/p/devday-2025
+
+### Conference Talks
+
+#### QCon New York 2023 — "A Bicycle for the (AI) Mind: GPT-4 + Tools" (Jun 14, 2023)
+- InfoQ Recording: https://www.infoq.com/presentations/bicycle-ai-gpt-4-tools/
+- QCon Listing: https://qconnewyork.com/presentation/jun2023/bicycle-ai-mind-gpt-4-tools
+
+#### QCon New York 2023 — Panel: "Navigating the Future: LLM in Production" (Jun 2023)
+- InfoQ Panel Coverage: https://www.infoq.com/news/2023/06/qcon-ny-llm-panel/
+- QCon Listing: https://qconnewyork.com/presentation/jun2023/panel-navigating-future-llm-production
+- Day Two Recap: https://www.infoq.com/news/2023/06/day-two-qcon-ny-2023/
+
+### X/Twitter Notable Tweets
+
+- OpenAI o1 Paradigm Shift (Sep 12, 2024): https://x.com/sherwinwu/status/1834374228529086555
+- GPT-4 Turbo with Vision GA (Apr 9, 2024): https://x.com/sherwinwu/status/1777882109086159100
+- GPT-5 Instruction Following PSA (Aug 7, 2025): https://x.com/sherwinwu/status/1953520864592375933
+- Tiktoken Model-to-Encoding Mapping (~Feb 2023): https://x.com/sherwinwu/status/1621918059203072001
+- Lenny Rachitsky Promotion Tweet (Feb 2026): https://x.com/lennysan/status/2021971151862595672
+- Martin Casado Endorsement (Nov 2025): https://x.com/martin_casado/status/1995893428375478579
+
+### LinkedIn Posts
+
+- Forward Deployed Engineer (~Jan 2025): https://www.linkedin.com/posts/sherwinwu1_forward-deployed-engineer-openai-activity-7284751404848619522-xW8x
+- Engineering Manager, API Experience (~Jul 2023): https://www.linkedin.com/posts/sherwinwu1_engineering-manager-api-experience-activity-7082552188635402240-cUHA
+- Lenny's Podcast Promotion by Lenny Rachitsky (Feb 2026): https://www.linkedin.com/posts/lennyrachitsky_engineers-are-becoming-sorcerers-sherwin-activity-7427736676929753088-91oU
+
+### Articles & Analysis
+
+- 01Cloud Engineering Blog — "How OpenAI Scales to 800 Million Weekly Active Users" (Dec 22, 2025): https://engineering.01cloud.com/2025/12/22/how-openai-scales-to-800-million-weekly-active-users-insights-from-sherwin-wu-on-model-specialization-and-fine-tuning/
+- Benzinga — "OpenAI's Engineering Lead Says AI Era Will Create Thousands of Niche Startups" (Feb 2026): https://www.benzinga.com/markets/tech/26/02/50632038/openais-engineering-lead-says-ai-era-will-create-thousands-of-niche-startups-its-hard-for-me-to-imagine
+- OfficeChai — "AI Could Cause An SMB Startup Boom" (Feb 2026): https://officechai.com/ai/ai-could-cause-an-smb-startup-boom-openais-sherwin-wu/
+- StartupHub.ai — "How OpenAI Builds for 800 Million Weekly Users" (2025): https://www.startuphub.ai/ai-news/ai-video/2025/how-openai-builds-for-800-million-weekly-users-model-specialization-and-fine-tuning/
+- Scripod — Episode Transcript (2025): https://scripod.com/episode/lgf925trdpphwtv4nw8rt1hz
+
+### Video / Short-Form
+
+- BG2 Clips — "OpenAI's first product wasn't ChatGPT" (TikTok): https://www.tiktok.com/@bg2.clips/video/7563697343414078728
+
+### Related OpenAI Pages
+
+- OpenAI DevDay 2025: https://openai.com/devday/
+- OpenAI for Developers in 2025: https://developers.openai.com/blog/openai-for-developers-2025/
+
+### 2026 Updates Sources
+
+- GPT-5.1 for Developers: https://openai.com/index/gpt-5-1-for-developers/
+- GPT-5.2 Introduction: https://openai.com/index/introducing-gpt-5-2/
+- GPT-5.2-Codex: https://openai.com/index/introducing-gpt-5-2-codex/
+- GPT-5.3-Codex: https://openai.com/index/introducing-gpt-5-3-codex/
+- ChatGPT Health: https://openai.com/index/introducing-chatgpt-health/
+- OpenClaw / Peter Steinberger joins OpenAI: https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/
+- OpenAI API Deprecations: https://platform.openai.com/docs/deprecations
+- ChatGPT Statistics (DemandSage): https://www.demandsage.com/chatgpt-statistics/
+- OpenAI API Changelog: https://developers.openai.com/changelog/

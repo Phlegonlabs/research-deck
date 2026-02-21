@@ -381,6 +381,44 @@ MCP + A2A + AP2 + ACP + x402 + ERC-8004 = 6 个协议
 | AP2 | V0.1，60+ 合作伙伴 | 部分（仅人在场卡支付） |
 | ERC-8004 | 草案 | 否 |
 
+## 最新动态 (2026)
+
+### A2A v0.3：gRPC、签名 Agent Card 与企业采用
+
+Google 发布 A2A 协议 v0.3，新增三项重要功能：**gRPC 传输支持**、**签名 Agent Card** 和**扩展的 Python SDK**（集成 Google Agent Development Kit / ADK）。gRPC 支持意味着代理现在可以通过高性能 RPC 通信，不仅限于 JSON-RPC over HTTPS — 对延迟敏感的企业部署至关重要。签名 Agent Card 允许在建立通信前对代理身份进行加密验证，解决了早期版本的认证缺口。生态系统已扩展到**超过 150 个合作组织**，覆盖所有主要云服务商。
+
+### 微软全面接入 A2A
+
+微软承诺在 **Azure AI Foundry** 和 **Copilot Studio** 中全面支持 A2A。企业客户现在可以构建跨合作伙伴工具和生产基础设施的多代理工作流，Copilot Studio 代理能够调用托管在微软之外的外部代理。AWS 紧随其后，在 **Amazon Bedrock AgentCore Runtime** 中原生支持 A2A。这种跨云采用实际上使 A2A 成为代理间通信的事实标准 — 不再只是 Google 的项目。
+
+### Google 推出通用商务协议（UCP）
+
+2026 年 1 月，Google 和 Shopify 联合推出**通用商务协议（UCP）** — 一个位于现有协议栈之上的开源标准。UCP 通过单一抽象层标准化完整的商务旅程（发现、考虑、购买、订单管理）。它明确设计为**兼容 AP2、A2A 和 MCP**，通过 REST、MCP、AP2 或 A2A 传输提供灵活集成。超过 20 个合作伙伴支持了发布，包括 Shopify、Etsy、Wayfair、Target 和 Walmart。Google 界面上的原生结账（搜索 AI 模式、Gemini）正在推出，这意味着 Shopify 商家可以直接在 AI 对话中销售。
+
+### ACP 上线生产：ChatGPT Instant Checkout
+
+2026 年 2 月 16 日，OpenAI 推出 **"Buy it in ChatGPT"** — 由 ACP 驱动的即时结账。美国 ChatGPT Plus、Pro 和 Free 用户现在可以直接在聊天中从 Etsy 卖家购买，**超过 100 万 Shopify 商家**（Glossier、SKIMS、Spanx、Vuori）正在接入流程中。凭借每周 8-9 亿活跃用户和每天约 5000 万购物查询，ChatGPT 一夜之间成为最大的 AI 原生商务渠道。ACP 规范快速迭代了四个版本：初始发布（2025-09-29）、履行增强（2025-12-12）、能力协商（2026-01-16）、扩展/折扣/支付处理器（2026-01-30）。Shopify 商家为 ChatGPT Checkout 销售支付 4% 费用。
+
+### AP2 扩展到稳定币和实时银行转账
+
+AP2 现在明确支持**稳定币和实时银行转账**，不仅限于信用卡/借记卡。Google 与 Coinbase 合作创建了用于 web3 支付的 **A2A x402 扩展**。协议保持核心授权令系统（Cart、Intent、Payment），但支付轨道选项大幅扩展。60+ 合作伙伴生态现在包括 Adyen、American Express、Ant International、Coinbase、Etsy、Intuit、JCB、Mastercard、Mysten Labs、PayPal、Revolut、Salesforce、ServiceNow、UnionPay International 和 Worldpay。
+
+### UCP vs ACP：Google 和 OpenAI 的商务愿景之争
+
+协议格局现在有了更清晰的竞争分野。**Google 的协议栈**（UCP + AP2 + A2A）旨在成为跨所有 AI 界面的通用商务层 — Google 搜索 AI 模式、Gemini 和第三方代理。**OpenAI 的协议栈**（ACP + Stripe）专注于 ChatGPT 作为主要商务渠道，采用更简单的集成模型。关键区别：UCP 传输无关，跨多个代理协议工作；ACP 与 ChatGPT 结账 UX 紧密耦合。对商家来说，实际问题是整合 UCP（覆盖更广、更复杂）还是 ACP（更简单、目前仅限 ChatGPT）— 或者两者都做。
+
+### 更新后的成熟度评估
+
+| 协议 | 状态（2026 年 2 月） | 生产就绪？ |
+|------|---------------------|-----------|
+| MCP | 稳定，Azure GA 支持 | 是 |
+| A2A | V0.3，gRPC + 签名卡，AWS/Azure/GCP | 是 |
+| x402 | V2，1 亿+ 支付 | 是 |
+| ACP | V4（2026-01-30），ChatGPT Checkout 上线 | 是 |
+| AP2 | V0.1+，新增稳定币支持 | 部分（扩展中） |
+| UCP | V1，2026 年 1 月推出 | 是（Google 界面） |
+| ERC-8004 | 草案 | 否 |
+
 ## 结论
 
 **今天真实可用的**：MCP（工具）+ x402（微支付）+ ACP（消费者结账）在生产中运行。A2A 基本代理委托可用。
@@ -392,3 +430,82 @@ MCP + A2A + AP2 + ACP + x402 + ERC-8004 = 6 个协议
 **应该构建的**：如果你今天在构建代理，用 MCP + x402 处理工具访问和微支付。需要多代理委托就加 A2A。观望 AP2 但别在 V1.x 之前押注。做消费者商务就在 ChatGPT 上用 ACP。
 
 **$5T 问题**：McKinsey 预测 2030 年代理交易量 $3-5T。不管这些特定协议是赢还是被整合/替换，它们建立的*模式*（基于授权令的授权、支付轨道抽象、代理发现、角色分离）会持续下去。学模式，不只学 API。
+
+## References
+
+### A2A（代理间协议）
+
+- [A2A Official Spec](https://a2a-protocol.org/latest/specification/) — 完整协议规范：Agent Cards、任务、JSON-RPC、流式传输
+- [A2A and MCP Comparison — Official](https://a2a-protocol.org/latest/topics/a2a-and-mcp/) — A2A 如何补充 MCP
+- [Announcing A2A — Google Developers Blog](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/) — 原始公告
+- [A2A Protocol Upgrade — Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/agent2agent-protocol-is-getting-an-upgrade) — V0.2+ 变更
+- [a2aproject/A2A — GitHub](https://github.com/a2aproject/A2A) — 参考实现（Python、Go、JS、Java、.NET）
+- [What Is A2A? — IBM](https://www.ibm.com/think/topics/agent2agent-protocol) — 企业视角
+- [A2A Protocol Architecture — Cybage](https://www.cybage.com/blog/mastering-google-s-a2a-protocol-the-complete-guide-to-agent-to-agent-communication) — 实现指南
+- [Agent Discovery — A2A Docs](https://a2a-protocol.org/latest/topics/agent-discovery/) — Agent Card 发现模式
+- [A2A on AWS Bedrock](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-a2a-protocol-contract.html) — AWS 实现
+- [A2A v0.3 Spec](https://a2a-protocol.org/v0.3.0/specification/) — V0.3 规范，含 gRPC 支持
+- [A2A gRPC Native Transport — gRPConf India](https://tldrecap.tech/posts/2025/grpconf-india/grpc-agent-mesh/) — gRPC 作为 A2A 和 MCP 的原生传输
+- [Google Upgrades A2A with gRPC — InfoWorld](https://www.infoworld.com/article/4032776/google-upgrades-agent2agent-protocol-with-grpc-and-enterprise-grade-security.html) — V0.3 企业安全升级
+- [Microsoft Adopts A2A — Microsoft Cloud Blog](https://www.microsoft.com/en-us/microsoft-cloud/blog/2025/05/07/empowering-multi-agent-apps-with-the-open-agent2agent-a2a-protocol/) — Azure AI Foundry + Copilot Studio 集成
+- [AWS A2A in Bedrock AgentCore](https://aws.amazon.com/blogs/machine-learning/introducing-agent-to-agent-protocol-support-in-amazon-bedrock-agentcore-runtime/) — AWS 原生 A2A 支持
+
+### AP2（代理支付协议）
+
+- [AP2 Official Site](https://ap2-protocol.org/) — 协议文档
+- [AP2 Specification](https://ap2-protocol.org/specification/) — 完整规范：角色、授权令、支付流程
+- [AP2 and x402 — Official](https://ap2-protocol.org/topics/ap2-and-x402/) — AP2 和 x402 如何集成
+- [Announcing AP2 — Google Cloud Blog](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) — 原始公告
+- [google-agentic-commerce/AP2 — GitHub](https://github.com/google-agentic-commerce/AP2) — 规范源码
+- [google-agentic-commerce/a2a-x402 — GitHub](https://github.com/google-agentic-commerce/a2a-x402/) — A2A + x402 集成演示
+- [AP2 Illustrated Guide](https://arthurchiao.art/blog/ap2-illustrated-guide/) — 可视化指南
+- [AP2 Builder Guide — Colin McNamara](https://colinmcnamara.com/blog/understanding-a2a-ap2-protocols-builder-guide) — 实用实现指南含代码
+- [AP2 and Crypto Payments — Bitwage](https://bitwage.com/en-us/blog/agent-payments-protocol-ap2-and-crypto-payments) — 加密支付集成视角
+- [AP2 Lightspark Vision](https://www.lightspark.com/news/insights/agent-payments-protocol) — 闪电网络视角
+
+### ACP（代理商务协议）
+
+- [ACP Official — OpenAI](https://developers.openai.com/commerce/) — 开发者门户
+- [ACP Getting Started — OpenAI](https://developers.openai.com/commerce/guides/get-started/) — 实现指南
+- [ACP Specification — Stripe](https://docs.stripe.com/agentic-commerce/protocol/specification) — 结账端点规范
+- [Developing ACP — Stripe Blog](https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce) — Stripe 的视角
+- [ACP GitHub](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol) — 开源规范（Apache 2.0）
+- [agenticcommerce.dev](https://www.agenticcommerce.dev/) — 社区站点
+- [ChatGPT Instant Checkout Retailer Guide — Ekamoira](https://www.ekamoira.com/blog/chatgpt-instant-checkout-agentic-commerce-protocol-2026) — 商家实现指南
+- [Buy it in ChatGPT — OpenAI](https://openai.com/index/buy-it-in-chatgpt/) — Instant Checkout 发布公告
+- [Shopify x OpenAI Commerce](https://www.shopify.com/news/shopify-open-ai-commerce) — Shopify ChatGPT 集成
+- [OpenAI Expands Agentic Commerce — Digital Commerce 360](https://www.digitalcommerce360.com/2026/02/16/openai-expands-agentic-commerce-push/) — 2026 年 2 月扩展报道
+- [Shopify 4% Fee on ChatGPT Sales — PYMNTS](https://www.pymnts.com/news/ecommerce/2026/shopify-merchants-to-pay-4percent-fee-on-sales-made-through-chatgpt-checkout/) — 商家费用结构
+
+### UCP（通用商务协议）
+
+- [UCP Official Site](https://ucp.dev/) — 协议文档
+- [UCP Under the Hood — Google Developers Blog](https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/) — 技术深度解析
+- [Google UCP Developer Guide](https://developers.google.com/merchant/ucp) — 商家集成指南
+- [Building UCP — Shopify Engineering](https://shopify.engineering/ucp) — Shopify 工程视角
+- [Google Announces UCP — TechCrunch](https://techcrunch.com/2026/01/11/google-announces-a-new-protocol-to-facilitate-commerce-using-ai-agents/) — 发布报道
+- [Google UCP Powers Agentic Shopping — InfoQ](https://www.infoq.com/news/2026/01/google-ucp/) — 技术分析
+- [Shopify Agentic Commerce Platform](https://www.shopify.com/news/ai-commerce-at-scale) — Shopify 代理商务愿景
+- [Google Agentic Commerce Tools — Google Blog](https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/) — 零售商工具和协议
+
+### 协议比较
+
+- [MCP, A2A, AP2, ACP, x402 & ERC-8004 — PayRam](https://payram.com/blog/mcp-a2a-ap2-acp-x402-erc-8004) — 完整 6 协议栈比较
+- [Top 6 Agent-Native Rails — MarkTechPost](https://www.marktechpost.com/2025/11/14/comparing-the-top-6-agent-native-rails-for-the-agentic-internet-mcp-a2a-ap2-acp-x402-and-kite/) — MCP、A2A、AP2、ACP、x402、Kite 比较
+- [Agentic Payments: ACP, AP2, x402 — Orium](https://orium.com/blog/agentic-payments-acp-ap2-x402) — 支付协议比较
+- [AP2 vs ACP — Grid Dynamics](https://www.griddynamics.com/blog/agentic-payments) — 企业分析
+- [A2A, MCP, AP2 Stack — Medium](https://medium.com/@leomofthings/a2a-mcp-and-ap2-the-protocol-stack-powering-agentic-ai-commerce-ca2eed7ba079) — 协议栈架构
+- [x402 vs AP2 Comparative Study — Medium](https://medium.com/@gwrx2005/ai-agents-and-autonomous-payments-a-comparative-study-of-x402-and-ap2-protocols-e71b572d9838) — 正面比较分析
+- [MCP vs A2A — Composio](https://composio.dev/blog/mcp-vs-a2a-everything-you-need-to-know) — 详细比较
+- [MCP vs A2A — Auth0](https://auth0.com/blog/mcp-vs-a2a/) — 安全聚焦比较
+- [MCP, ACP, A2A — WorkOS](https://workos.com/guide/understanding-mcp-acp-a2a) — 企业指南
+- [OpenAI ACP vs Google UCP — Checkout.com](https://www.checkout.com/blog/openai-acp-google-ucp-difference) — ACP vs UCP 比较
+
+### 行业背景
+
+- [AP2 Analysis — Everest Group](https://www.everestgrp.com/googles-agent-payments-protocol-ap2-a-new-chapter-in-agentic-commerce-blog/) — 分析师视角
+- [AP2 Impact on Shopping — Loeb & Loeb](https://quicktakes.loeb.com/post/102lq21/the-rise-of-agentic-commerce-what-googles-ap2-protocol-means-for-shopping-and-m) — 法律/营销视角
+- [MultiversX Agentic Commerce Stack](https://multiversx.com/blog/the-multiversx-universal-agentic-commerce-stack) — 区块链平台实现
+- [A2A Purchasing Concierge — Google Codelabs](https://codelabs.developers.google.com/intro-a2a-purchasing-concierge) — 实操教程
+- [Sundar Pichai NRF 2026 Remarks — Google Blog](https://blog.google/company-news/inside-google/message-ceo/nrf-2026-remarks/) — Google CEO 代理商务愿景
+- [Agentic Frameworks 2026: What Works in Production — Zircon](https://zircon.tech/blog/agentic-frameworks-in-2026-what-actually-works-in-production/) — 生产就绪评估

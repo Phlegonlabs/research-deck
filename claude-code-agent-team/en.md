@@ -234,6 +234,42 @@ Two hooks enforce rules on teammates:
 
 **LangGraph** wins on control, compliance, and production state management. **CrewAI** wins on speed-to-prototype. **Claude Code Agent Team** wins on zero-friction integration with an existing Claude Code workflow.
 
+## Latest Updates (2026)
+
+### Official Launch with Opus 4.6 (February 2026)
+
+Agent Teams shipped as an experimental feature alongside Claude Opus 4.6 on February 5, 2026. Enable it with `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` in settings.json or environment variables. The feature was feature-flagged off in earlier Claude Code binaries (discovered by community researchers running `strings` on the binary in January 2026) before being officially launched. Anthropic recognized the community had already been building similar patterns independently using custom Docker orchestration scripts and tools like OpenClaw.
+
+### The C Compiler Stress Test: 16 Agents, $20K, 100K Lines
+
+Anthropic researcher Nicholas Carlini published a landmark case study: [16 parallel Opus 4.6 agents](https://www.anthropic.com/engineering/building-c-compiler) autonomously built a Rust-based C compiler capable of compiling Linux 6.9 on x86, ARM, and RISC-V. Key metrics: nearly 2,000 Claude Code sessions, 2 billion input tokens, 140 million output tokens, $20,000 in API cost, and 100,000 lines of Rust output over ~2 weeks. Each agent ran in its own Docker container, claiming tasks via lock files in `current_tasks/`, pushing to a shared git upstream. The compiler passes 99% of GCC torture tests and can build QEMU, FFmpeg, SQLite, PostgreSQL, and Redis. Notable limitation: scaling bottlenecked when all agents hit identical bugs simultaneously, causing redundant fixes and merge conflicts — the solution was to use GCC as a "known-good oracle" to partition work differently.
+
+### Claude Code SDK Renamed to Claude Agent SDK
+
+The Claude Code SDK was officially renamed to the **Claude Agent SDK** to reflect its broader scope beyond coding. Available in both Python (`pip install claude-agent-sdk`) and TypeScript (`npm install @anthropic-ai/claude-agent-sdk`), it provides the same tools, agent loop, and context management that power Claude Code as a programmable library. Key additions in early 2026 include `ThinkingConfig` for fine-grained control over extended thinking (effort levels: low/medium/high/max), MCP tool annotations via the `@tool` decorator, and fixes for large agent definitions that previously failed silently due to CLI argument size limits. The SDK supports subagent spawning via the `Task` tool, custom hooks (`PreToolUse`, `PostToolUse`, `Stop`, etc.), and session resumption for multi-turn workflows.
+
+### VS Code Becomes Multi-Agent Command Center
+
+With [VS Code v1.109](https://code.visualstudio.com/blogs/2026/02/05/multi-agent-development) (January 2026), Microsoft made VS Code "the home for multi-agent development." Claude agents now run natively inside VS Code via the official Claude Agent harness — same prompts, tools, and architecture as standalone Claude Code. Developers can run Claude, Codex, and GitHub Copilot agents simultaneously from one interface, choosing between local (interactive), background (async), or cloud (remote autonomous) deployment. February updates added subagent rendering — when Claude spawns subagents during streaming, you can see their tool calls and progress inline. Agent Skills (Anthropic's open standard) are now generally available in VS Code.
+
+### Community Tooling Explosion
+
+The agent team pattern spawned an ecosystem of open-source coordination tools:
+- **[claude-swarm](https://blog.nikosbaxevanis.com/2026/02/08/agent-teams-and-claude-swarm/)**: Reusable harness for running multiple Claude Code sessions in Docker containers coordinating through git, using bare repos mounted as read-only volumes.
+- **[ccswarm](https://github.com/nwiizo/ccswarm)**: Workflow automation framework with task delegation infrastructure, template scaffolding, and git worktree isolation.
+- **[worktree-cli](https://github.com/agenttools/worktree)**: CLI for managing git worktrees with GitHub Issues integration and Claude Code hooks.
+- **[Clash](https://github.com/clash-sh/clash)**: Merge conflict manager across git worktrees for parallel AI agent workflows.
+
+The unsolved gap: no tool yet cleanly combines worktree code isolation with full environment isolation (Dev Containers). Multiple GitHub issues show that worktrees and devcontainers don't work well together — the `.git` file format breaks container git operations.
+
+### Enterprise Adoption Surge
+
+Business subscriptions to Claude Code have quadrupled since the start of 2026, with enterprise use now representing over half of all Claude Code revenue. The agent teams feature is cited as a primary driver — teams report 5-10x throughput gains on parallelizable refactoring, migration, and review tasks.
+
+### Microsoft Agent Framework Integration
+
+Microsoft's Semantic Kernel team announced [integration between Microsoft Agent Framework and Claude Agent SDK](https://devblogs.microsoft.com/semantic-kernel/build-ai-agents-with-claude-agent-sdk-and-microsoft-agent-framework/), combining the Agent Framework's consistent agent abstraction with Claude's file editing, code execution, function calling, streaming, multi-turn conversations, and MCP server integration. This opens Claude-powered agents to enterprise .NET and Java ecosystems.
+
 ## Patterns to Steal
 
 ### 1. File-Based Coordination Over Databases
@@ -267,3 +303,64 @@ Assign different files to each teammate. No shared-file editing. This eliminates
 ### 8. Context Inheritance via CLAUDE.md
 
 All teammates auto-load CLAUDE.md. Put team-wide conventions, constraints, and quality standards there. One file controls the behavior of N agents.
+
+## References
+
+### Original Source
+- [@YukerX Twitter Thread — Claude Code Agent Team 入門教程](https://x.com/YukerX/status/2019977867061522525)
+
+### Official Documentation
+- [Orchestrate teams of Claude Code sessions — Claude Code Docs](https://code.claude.com/docs/en/agent-teams)
+- [Introducing Claude Opus 4.6 — Anthropic](https://www.anthropic.com/news/claude-opus-4-6)
+- [Common workflows — Claude Code Docs](https://code.claude.com/docs/en/common-workflows)
+- [Create custom subagents — Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
+- [Agent SDK overview — Claude API Docs](https://platform.claude.com/docs/en/agent-sdk/overview)
+- [Claude Agent SDK Python — GitHub](https://github.com/anthropics/claude-agent-sdk-python)
+- [Claude Agent SDK Demos — GitHub](https://github.com/anthropics/claude-agent-sdk-demos)
+
+### Deep Technical Analysis
+- [Claude Code's Hidden Multi-Agent System — paddo.dev](https://paddo.dev/blog/claude-code-hidden-swarm/)
+- [Claude Code Swarm Orchestration Skill — Complete guide (GitHub Gist)](https://gist.github.com/kieranklaassen/4f2aba89594a4aea4ad64d753984b2ea)
+- [Claude Code Swarms — Addy Osmani](https://addyosmani.com/blog/claude-code-agent-teams/)
+- [Building a C compiler with a team of parallel Claudes — Anthropic Engineering](https://www.anthropic.com/engineering/building-c-compiler)
+- [Claude Code Agent Teams: How They Work Under the Hood — Claude Code Camp](https://www.claudecodecamp.com/p/claude-code-agent-teams-how-they-work-under-the-hood)
+
+### Guides & Tutorials
+- [Claude Code Agent Teams: Parallel AI Agents Setup Guide — Marco Patzelt](https://www.marc0.dev/en/blog/claude-code-agent-teams-multiple-ai-agents-working-in-parallel-setup-guide-1770317684454)
+- [Claude Code Swarms Guide: How to Build Native Multi-Agent Teams — Tech On Play](https://techonplay.com/claude-code-swarms/)
+- [Claude Swarm Mode Complete Guide — Apiyi.com](https://help.apiyi.com/en/claude-code-swarm-mode-multi-agent-guide-en.html)
+- [Claude Code Agent Teams: Multi-Claude Orchestration — claudefa.st](https://claudefa.st/blog/guide/agents/agent-teams)
+- [What Is the Claude Code Swarm Feature? — Cyrus](https://www.atcyrus.com/stories/what-is-claude-code-swarm-feature)
+- [Claude Code Agent Teams: Run Parallel AI Agents on Your Codebase — SitePoint](https://www.sitepoint.com/anthropic-claude-code-agent-teams/)
+- [How to Set Up and Use Claude Code Agent Teams — Dára Sobaloju (Medium)](https://darasoba.medium.com/how-to-set-up-and-use-claude-code-agent-teams-and-actually-get-great-results-9a34f8648f6d)
+
+### Discovery & Exploration
+- [I Discovered This Claude Code Agent Swarm Mode — Joe Njenga (Medium)](https://medium.com/@joe.njenga/i-discovered-this-claude-code-agent-swarm-mode-you-dont-know-exists-bf36e3898ad1)
+- [I Tried (New) Claude Code Agent Teams (And Discovered New Way to Swarm) — Joe Njenga (Medium)](https://medium.com/@joe.njenga/i-tried-new-claude-code-agent-teams-and-discovered-new-way-to-swarm-28a6cd72adb8)
+- [Anthropic releases Opus 4.6 with new 'agent teams' — TechCrunch](https://techcrunch.com/2026/02/05/anthropic-releases-opus-4-6-with-new-agent-teams/)
+- [Claude Code's new hidden feature: Swarms — Hacker News](https://news.ycombinator.com/item?id=46743908)
+
+### Git Worktree & Parallel Development
+- [Parallel Development with Claude Code and Git Worktrees — Yee Fei (Medium)](https://medium.com/@ooi_yee_fei/parallel-ai-development-with-git-worktrees-f2524afc3e33)
+- [Mastering Git Worktrees with Claude Code — Dogukan Uraz Tuna (Medium)](https://medium.com/@dtunai/mastering-git-worktrees-with-claude-code-for-parallel-development-workflow-41dc91e645fe)
+- [Clash — Manage merge conflicts across git worktrees for parallel AI agents](https://github.com/clash-sh/clash)
+- [ccpm — Project management for Claude Code using GitHub Issues and Git worktrees](https://github.com/automazeio/ccpm)
+- [ccswarm — Multi-agent orchestration with Git worktree isolation](https://github.com/nwiizo/ccswarm)
+- [worktree — CLI tool for managing Git worktrees with Claude Code integration](https://github.com/agenttools/worktree)
+- [Agent Teams and claude-swarm — Nikos Baxevanis](https://blog.nikosbaxevanis.com/2026/02/08/agent-teams-and-claude-swarm/)
+
+### Alternative Frameworks (Comparison)
+- [LangGraph vs CrewAI vs AutoGen: Top 10 AI Agent Frameworks](https://o-mega.ai/articles/langgraph-vs-crewai-vs-autogen-top-10-agent-frameworks-2026)
+- [claude-flow — Agent orchestration platform for Claude](https://github.com/ruvnet/claude-flow)
+- [Support for Claude Code Agent Teams (TeammateTool, SendMessage, TaskList) — superpowers Issue #429](https://github.com/obra/superpowers/issues/429)
+
+### IDE & Platform Integration
+- [Your Home for Multi-Agent Development — VS Code Blog](https://code.visualstudio.com/blogs/2026/02/05/multi-agent-development)
+- [VS Code becomes multi-agent command center for developers — The New Stack](https://thenewstack.io/vs-code-becomes-multi-agent-command-center-for-developers/)
+- [Build AI Agents with Claude Agent SDK and Microsoft Agent Framework — Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/build-ai-agents-with-claude-agent-sdk-and-microsoft-agent-framework/)
+- [Agent Teams with Claude Code and Claude Agent SDK — Isaac Kargar (Medium)](https://kargarisaac.medium.com/agent-teams-with-claude-code-and-claude-agent-sdk-e7de4e0cb03e)
+
+### Best Practices
+- [A Guide to Claude Code 2.0 and getting better at using coding agents — sankalp](https://sankalp.bearblog.dev/my-experience-with-claude-code-20-and-how-to-get-better-at-using-coding-agents/)
+- [Best practices for Claude Code subagents — PubNub](https://www.pubnub.com/blog/best-practices-for-claude-code-sub-agents/)
+- [How Claude Code Agents and MCPs Work Better Together — Yee Fei (Medium)](https://medium.com/@ooi_yee_fei/how-claude-code-agents-and-mcps-work-better-together-5c8d515fcbbd)

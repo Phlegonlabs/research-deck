@@ -197,6 +197,36 @@ Web 4.0 是真实的 — AI 代理正在成为经济主体。但具体*实现方
 | DHT 节点发现 | O(log n) 代理间发现 | 无需中央注册表即可扩展 |
 | CRDT 代理状态 | 无冲突分布式状态 | 无共识开销的多代理协调 |
 
+## 最新動態 (2026)
+
+### 协议治理走向机构化
+
+2025 年 12 月，Linux 基金会宣布成立 **代理 AI 基金会（AAIF）** — 一个代理网络标准的中立治理机构。创始项目包括 Anthropic 的 MCP、Block 的 goose 和 OpenAI 的 AGENTS.md。白金会员：AWS、Anthropic、Block、Bloomberg、Cloudflare、Google、Microsoft 和 OpenAI。这意义重大，因为 MCP 仅用 13 个月就从单一公司项目转变为厂商中立的治理结构，每月 SDK 下载量达 9700 万次，拥有 10,000+ 活跃服务器。协议之战正在通过共享治理进行整合，而非走向分裂。
+
+### MCP + A2A："代理的 HTTP" 协议栈成型
+
+双协议模型已成为共识架构：**MCP 用于纵向（代理到工具）**，**A2A 用于横向（代理到代理）** 通信。Google 于 2025 年 4 月推出 A2A，携 50+ 合作伙伴（Salesforce、PayPal、Atlassian），提供通过 Agent Card（`/.well-known/agent-card.json`）的能力发现、JSON-RPC 2.0 任务委托和 SSE 流式传输。Cisco、Dynatrace 和 Solo.io 正在构建"代理网关" — 具有策略控制的 MCP 和 A2A 流量路由基础设施。Gartner 报告称，从 2024 年 Q1 到 2025 年 Q2，多代理系统查询量**激增 1,445%**。MCP 和 A2A 均于 2025 年 12 月捐赠给 Linux 基金会下的 AAIF。
+
+### x402 V2：从实验到支付层
+
+x402 已显著成熟。上线前六个月内，该协议处理了 **1 亿+ 笔支付**，涵盖 API、应用和 AI 代理。V2 升级（2026 年初）使 x402 默认支持多链，并兼容传统支付通道（ACH、卡网络）。Cloudflare 提出了一种专为代理支付设计的**延迟支付方案** — 适用于不需要即时结算的场景，支持预协商许可协议、批量结算和订阅。x402 基金会（Coinbase + Cloudflare）正式成立以推动采纳。这将 x402 从一个加密圈的好奇项目推向了真正的互联网支付标准。
+
+### 代理浏览器：新的平台战争
+
+2025-2026 年见证了 AI 原生浏览器作为新计算平台的崛起。**Perplexity Comet**（2025 年 7 月发布，10 月全球免费开放）重新想象了浏览器，内嵌 AI 代理能够自主导航页面、填写表单、执行多步骤任务。**Browser Company 从 Arc 转向 Dia**，一个从零开始构建的 AI 原生浏览器。**OpenAI 推出了 ChatGPT Atlas** 并带有代理模式。Opera Neon、ASI X 的 Fellou 和 Genspark 也进入了市场。代理浏览器市场预计将从 2024 年的 45 亿美元增长到 **2034 年的 768 亿美元**。这代表着根本性转变：浏览器从人类的展示界面变成了代理的执行环境。
+
+### 代理浏览器基础设施爆发
+
+在消费级浏览器背后，基础设施提供商正在快速扩展。**Browserbase** 完成 4000 万美元 B 轮融资（2025 年 6 月，$3 亿估值，Notable Capital 领投），2025 年在 1,000+ 客户中处理了 5000 万个浏览器会话。**Hyperbrowser**（Y Combinator 支持）提供低于 500ms 的冷启动时间，内置 Claude 和 OpenAI 集成。模式很清晰：无头浏览器正在成为"代理访问网络的 AWS Lambda" — 通过 API 启动隔离的浏览器容器，无需 Selenium/Playwright 基础设施。
+
+### 企业采纳加速
+
+Gartner 现在预测，**到 2026 年底，40% 的企业应用将嵌入 AI 代理**（2025 年不到 5%）。代理 AI 市场预计将从 78 亿美元增长到 2030 年的 520 亿美元以上。企业叙事已从"聊天机器人升级"转向"自主工作流执行" — 代理以最少的人类监督处理采购、合规、客户服务和供应链协调。
+
+### 代理成熟度达到 Level 4-5 过渡期
+
+原文将我们定位在 Level 3-4。截至 2026 年初，向 Level 4-5 的过渡正在进行中。生产系统现在已经具备多个协调代理（Gartner 1,445% 的查询激增反映了这一点）。关键推动因素：MCP 提供工具访问、A2A 提供代理协调、x402/ACP 提供支付、ERC-8004 提供身份。完全的 Level 5+（真正自主的多任务代理）仍需 1-3 年，但基础设施层现已基本就位。
+
 ## 结论
 
 **真实的**：AI 代理作为经济主体、x402 支付、MCP 工具访问、多代理协调。这些今天已经在部署。
@@ -206,3 +236,65 @@ Web 4.0 是真实的 — AI 代理正在成为经济主体。但具体*实现方
 **应该构建的**：代理友好 API、结构化内容、x402 支付集成、MCP 工具服务器。不用等 "Web 4.0" — 有用的部分现在就可以用。
 
 **诚实时间线**：Level 5+ 代理（真正的多任务自主）还需 2-4 年。当前基础设施（MCP、x402、钱包）是正在铺设的地基。叫它 "Web 4.0" 的人希望你相信革命迫在眉睫。基础设施的人在安静地建设管道工程 — 这些不管叫什么名字都会重要。
+
+## References
+
+### Core Sources
+
+- [Web 4.0: The Agentic Web — Gate.com](https://www.gate.com/learn/articles/web-4-0-the-agentic-web/4768) — Web 4.0 架构、Neuron 协议、Actor 模型综述
+- [Towards Web 4.0: Frameworks for Autonomous AI Agents — Frontiers](https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2025.1591907/full) — 学术六层框架
+- [Morning Minute: Web 4.0 - Autonomous AI Agents Powered by Crypto — Decrypt](https://decrypt.co/358385/morning-minute-web-4-0-autonomous-ai-agents-powered-by-crypto) — Sigil Wen 宣言、Conway、Automaton
+- [Web 4.0: The Rise of the Agentic Web — The Blueprint](https://www.the-blueprint.ai/p/web-40-the-rise-of-the-agentic-web) — 7 级代理成熟度框架、营销影响
+- [Web 4.0: The Pragmatic Internet — Will Hackett](https://willhackett.uk/web-4-0-pragmatic-internet) — 怀疑派视角、七个原语、Schema.org 方法
+
+### Enterprise & Industry
+
+- [The 2026 Tech Tsunami: AI, Quantum, and Web 4.0 Collide — Check Point Blog](https://blog.checkpoint.com/executive-insights/the-2026-tech-tsunami-ai-quantum-and-web-4-0-collide/) — 企业安全视角
+- [The Agentic Web Arrives: What Web 4.0 Means for Enterprise Software — Medium](https://medium.com/@cauri/the-agentic-web-arrives-what-web-4-0-means-for-enterprise-software-406d198df86e) — 企业软件影响
+- [Web4 Is on the Horizon — Onchain Magazine](https://onchain.org/magazine/web4-is-on-the-horizon-what-does-this-mean/) — 链上视角
+- [5 Key Trends Shaping Agentic Development in 2026 — The New Stack](https://thenewstack.io/5-key-trends-shaping-agentic-development-in-2026/) — 开发者趋势
+- [7 Agentic AI Trends to Watch in 2026 — MachineLearningMastery](https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/) — 代理 AI 趋势分析
+
+### Crypto & Agent Infrastructure
+
+- [Web 4.0 & Autonomous AI Agents: Dragonfly Fund — IndexBox](https://www.indexbox.io/blog/web-40-defined-as-autonomous-ai-agents-by-sigil-wen/) — Sigil Wen 定义、Dragonfly 投资论点
+- [Web 4.0 Manifesto Introduces Autonomous AI Agents in Crypto — Binance](https://www.binance.com/en/square/post/292999855247202) — 币安 Web 4.0 宣言报道
+- [Web 4.0: The AI's Internet — StartupHub.ai](https://www.startuphub.ai/ai-news/artificial-intelligence/2026/web-4-0-the-ai-s-internet) — AI 原生互联网愿景
+- [Coinbase Debuts Crypto Wallet Infrastructure for AI Agents — PYMNTS](https://www.pymnts.com/cryptocurrency/2026/coinbase-debuts-crypto-wallet-infrastructure-for-ai-agents/) — Coinbase 代理钱包基础设施
+- [x402 - Payment Required](https://www.x402.org/ecosystem) — x402 协议生态
+- [Launching the x402 Foundation with Coinbase — Cloudflare](https://blog.cloudflare.com/x402/) — Cloudflare x402 支持
+- [From DeFi Summer to x402 Summer — Medium](https://medium.com/@a6b8/from-defi-summer-to-x402-summer-mcp-x402-and-the-fragmented-web-94faa1c5ffb7) — MCP + x402 融合
+- [x402 V2 Rolls Out — The Block](https://www.theblock.co/post/382284/coinbase-incubated-x402-payments-protocol-built-for-ais-rolls-out-v2) — x402 V2 多链升级
+- [Coinbase and Cloudflare Launch x402 Foundation — The Block](https://www.theblock.co/post/372064/cloudflare-coinbase-launch-x402-foundation) — x402 基金会成立
+
+### Protocols & Standards (2025-2026)
+
+- [Linux Foundation Announces AAIF](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation) — 代理 AI 基金会成立：MCP、goose、AGENTS.md
+- [OpenAI Co-founds AAIF — OpenAI](https://openai.com/index/agentic-ai-foundation/) — OpenAI 在 AAIF 中的角色
+- [MCP Joins the Agentic AI Foundation — MCP Blog](http://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/) — MCP 治理过渡
+- [Announcing the Agent2Agent Protocol (A2A) — Google](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/) — A2A 协议发布
+- [MCP and A2A: Network Engineer's Mental Model — Cisco](https://blogs.cisco.com/ai/mcp-and-a2a-a-network-engineers-mental-model-for-agentic-ai) — MCP + A2A 架构分析
+- [AI Agent Protocols 2026: Complete Guide — ruh.ai](https://www.ruh.ai/blogs/ai-agent-protocols-2026-complete-guide) — 协议全景概览
+- [Deciphering the Alphabet Soup of Agentic AI Protocols — The Register](https://www.theregister.com/2026/01/30/agnetic_ai_protocols_mcp_utcp_a2a_etc) — 协议对比分析
+
+### Agentic Browsers & Infrastructure
+
+- [Perplexity Launches Comet — TechCrunch](https://techcrunch.com/2025/07/09/perplexity-launches-comet-an-ai-powered-web-browser/) — Comet 代理浏览器发布
+- [AI Browsers: Comet, Dia, and the Coming Battle for the Web — beam.ai](https://beam.ai/agentic-insights/ai-browsers-are-here-comet-dia-and-the-coming-battle-for-the-web) — 代理浏览器竞争
+- [Browserbase Series B and Beyond](https://www.browserbase.com/blog/series-b-and-beyond) — 4000 万美元融资、代理浏览器基础设施
+- [Best Agentic AI Browsers 2026 — KDnuggets](https://www.kdnuggets.com/the-best-agentic-ai-browsers-to-look-for-in-2026) — 浏览器全景
+- [AI Agents Arrived in 2025 — The Conversation](https://theconversation.com/ai-agents-arrived-in-2025-heres-what-happened-and-the-challenges-ahead-in-2026-272325) — 2025 代理年度回顾
+
+### Background & Evolution
+
+- [2026, Web3, and the Quiet Emergence of Web4 — Medium](https://medium.com/@devbigsam/2026-web3-and-the-quiet-emergence-of-web4-78a129726089) — Web3 到 Web4 过渡
+- [Web 1.0, 2.0, 3.0, & 4.0: A Detailed Guide — Simplilearn](https://www.simplilearn.com/what-is-web-1-0-web-2-0-and-web-3-0-with-their-difference-article) — Web 演进概述
+- [AI and Web 4.0: Symbiotic Intelligent Future — Deepfa.ir](https://deepfa.ir/en/blog/ai-and-web-4-0-symbiotic-intelligent-future) — 共生网络概念
+- [Understanding Web 4.0 — Netguru](https://www.netguru.com/blog/web-4-0) — 通用概述
+- [A Review of Gaps between Web 4.0 and Web 3.0 — arXiv](https://arxiv.org/pdf/2308.02996) — 学术差距分析
+
+### Skepticism & Criticism
+
+- [Amid the Hype over Web3, Informed Skepticism Is Critical — CIGI](https://www.cigionline.org/articles/amid-the-hype-over-web3-informed-skepticism-is-critical/) — Web3 炒作批评（适用于 Web4）
+- [The EU's Ready For Web 4.0? Let's Figure Out Web 3.0 First! — Forrester](https://www.forrester.com/blogs/web-4-0-lets-figure-out-web-3-0-first/) — Forrester 分析师怀疑论
+- [Web 4.0? It's Time To Talk About It — BairesDev](https://www.bairesdev.com/blog/web-4-0-its-time-to-talk-about-it/) — 平衡的行业评估

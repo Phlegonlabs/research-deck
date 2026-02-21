@@ -421,6 +421,40 @@ allowed_approval_policies = ["untrusted", "on-failure", "on-request"]
 | YOLO 模式 | `--yolo` 标志 | `--dangerously-skip-permissions` |
 | Windows | 推荐 WSL + 实验性原生 | 原生（无沙箱） |
 
+## 最新動態 (2026)
+
+### Codex 桌面應用：多代理工作樹隔離 (2026年2月2日)
+
+OpenAI 為 macOS（Apple Silicon，macOS 14+）推出了 Codex 桌面應用，作為"代理命令中心"的專用桌面應用程序。該應用支持三種線程模式 — **Local**（在當前項目目錄工作）、**Worktree**（Git 工作樹隔離）和 **Cloud**（在 OpenAI 管理的容器中遠程執行）。Worktree 模式在架構上意義重大：每個代理獲得一個隔離的 Git 工作樹，因此多個代理可以在同一倉庫上並行工作而不產生衝突。Cloud 模式在完全隔離的容器中運行，默認禁用網絡，與 CLI 的安全態勢一致。代理可以自主運行最長 30 分鐘，然後返回完成的代碼。
+
+### GPT-5.3-Codex：首個"高"網絡安全能力評級 (2026年2月5日)
+
+GPT-5.3-Codex 成為 OpenAI 在其準備框架下被分類為**網絡安全領域高能力**的首個模型。這意味著該模型可能"自動化對合理加固目標的端到端網絡攻擊操作"或"自動化發現和利用具有操作相關性的漏洞"。為緩解風險，OpenAI 部署了多重保障：被檢測為具有較高網絡風險的請求會自動從 GPT-5.3-Codex 路由到 GPT-5.2，API 訪問受限（高風險應用無法獲得無限制 API），以及新的"Trusted Access for Cyber"門控計劃要求安全專業人員審核。OpenAI 還為網絡安全防禦應用撥出 1000 萬美元的 API 額度。此評級直接驗證了沙箱架構的重要性 — 模型能力越強，OS 級沙箱就越關鍵。
+
+### ReadOnlyAccess 策略與可配置讀取權限 (CLI 0.100.0，2026年2月12日)
+
+引入了新的 **ReadOnlyAccess** 策略形態，使沙箱讀取訪問從之前隱式的"讀取一切"默認值變為顯式可配置。`sandboxPolicy` 現在通過 `readOnly` 和 `workspaceWrite` 配置支持顯式讀取訪問控制，並帶有可選的 `readOnlyAccess` 選項。這部分解決了長期存在的安全隱患（GitHub Issue #4410）——完整文件系統讀取權限可能導致密鑰洩露。
+
+### 統一權限流程與結構化網絡審批 (CLI 0.102.0，2026年2月17日)
+
+審批系統進行了重大改革，引入了**統一權限流程**，包括 TUI 中更清晰的權限歷史記錄、在目錄被阻止時授予沙箱讀取訪問的斜杠命令，以及**結構化網絡審批處理**，在審批提示中直接顯示更豐富的主機/協議上下文。這朝著解決"二元網絡控制"限制邁進了一步 — 審批提示現在顯示代理想要訪問的特定主機和協議，讓用戶做出更知情的決策，即使 OS 級強制仍然是全有或全無。
+
+### SOCKS5 代理與策略強制 (CLI 0.93.0，2026年1月29日)
+
+添加了可選的 **SOCKS5 代理監聽器，帶策略強制和配置門控**。結合 WS_PROXY/WSS_PROXY 環境變量對 websocket 代理的支持，這實現了應用層的細粒度網絡控制。企業和管理員用戶現在可以通過 `requirements.toml` 定義網絡約束，Plus/Pro/Business 用戶可以為特定環境啟用互聯網訪問，並控制 Codex 可以訪問哪些域和 HTTP 方法。這是從之前全有或全無網絡模型的重大架構轉變。
+
+### Linux Bubblewrap 提升為實驗性 (CLI 0.100.0，2026年2月12日)
+
+Linux 上的 Bubblewrap (bwrap) 沙箱管道從默認關閉提升為**實驗性狀態**。構建現在始終在 Linux 上編譯內置的 bubblewrap，移除了 `CODEX_BWRAP_ENABLE_FFI` 標誌。Bubblewrap 創建新的 mount namespace 並可通過在敏感文件上掛載空 tmpfs 來隱藏它們 — 解決了 Landlock 單獨無法解決的完整文件系統讀取弱點。Windows 沙箱能力在同一版本中也得到提升。
+
+### 受保護路徑擴展：.agents/ 目錄 (2025-2026)
+
+沙箱現在將 `.agents/` 目錄與 `.git/` 和 `.codex/` 一起保護為只讀。這防止模型修改自己的指令文件（`AGENTS.md` 及相關配置），堵塞了代理可能改寫自身行為準則的潛在提示注入向量。
+
+### 企業控制擴展至 Web 搜索和網絡 (CLI 0.99.0，2026年2月11日)
+
+企業管理員獲得了新的強制能力：`requirements.toml` 現在可以限制 Web 搜索模式（如 `allowed_web_search_modes = ["cached"]`）並定義網絡約束。Git 加固也得到加強 — 破壞性或具有寫入能力的 Git 調用不再能繞過審批機制（CLI 0.95.0）。會話級別的"允許並記住"自動審批重複工具調用（CLI 0.97.0）在安全性與開發者生產力之間取得平衡。
+
 ## 可偷取的模式
 
 1. **多工具二进制的 arg0 调度** — 单一二进制，通过 argv[0] 实现多重人格。完全消除了"缺少哪个辅助二进制"这类 Bug。
@@ -442,3 +476,102 @@ allowed_approval_policies = ["untrusted", "on-failure", "on-request"]
 9. **输出上限**（10 KiB / 256 行） — 沙箱进程不应能淹没上下文窗口。积极截断。
 
 10. **渐进式提权** — 沙箱失败触发审批提示进行非沙箱重试，而非自动提权。人类在每个权限边界保持在回路中。
+
+## References
+
+### 官方文档
+
+- [Codex Security](https://developers.openai.com/codex/security/) — 官方安全模型概述：沙箱模式、审批策略、网络控制、企业强制执行
+- [Codex CLI Reference](https://developers.openai.com/codex/cli/reference/) — 命令行选项包括 --sandbox、--yolo、--add-dir
+- [Codex Advanced Configuration](https://developers.openai.com/codex/config-advanced/) — writable_roots、network_access、tmpdir 排除
+- [Codex Configuration Reference](https://developers.openai.com/codex/config-reference/) — 所有配置键：sandbox_mode、approval_policy、sandbox_workspace_write 表
+- [Codex Sample Configuration](https://developers.openai.com/codex/config-sample/) — 完整 config.toml 示例包含所有沙箱设置
+- [Codex Config Basics](https://developers.openai.com/codex/config-basic/) — 基于 VCS 检测的默认沙箱选择逻辑
+- [Codex Windows](https://developers.openai.com/codex/windows/) — WSL 推荐、原生 Windows 沙箱、AppContainer 详情
+- [Codex CLI Features](https://developers.openai.com/codex/cli/features/) — 功能概述包括沙箱子命令
+- [Codex Changelog](https://developers.openai.com/codex/changelog/) — 版本历史包含沙箱修复和改进
+
+### 源代码
+
+- [codex-rs/ README](https://github.com/openai/codex/blob/main/codex-rs/README.md) — Cargo 工作空间结构：core/、linux-sandbox/、windows-sandbox-rs/、execpolicy/、process-hardening/
+- [codex-rs/ directory](https://github.com/openai/codex/tree/main/codex-rs) — Rust 实现根目录
+- [sandbox.md](https://github.com/openai/codex/blob/main/docs/sandbox.md) — 指向官方安全文档
+- [windows_sandbox_security.md](https://github.com/openai/codex/blob/main/docs/windows_sandbox_security.md) — Windows 沙箱技术细节：受限令牌、逃逸向量、PATH 注入防御
+
+### 深度分析文章
+
+- [A deep dive on agent sandboxes — Pierce Freeman](https://pierce.dev/notes/a-deep-dive-on-agent-sandboxes) — Codex 沙箱详细分析：Seatbelt 配置生成、Landlock 规则、seccomp 系统调用列表、命令安全评估、安全限制
+- [Breaking Out of the Codex Sandbox — Vincent Schmalbach](https://www.vincentschmalbach.com/breaking-out-of-the-codex-sandbox-while-keeping-approval-controls/) — danger-full-access + untrusted 组合实现 Claude Code 风格工作流
+- [How Codex CLI Flags Actually Work — Vincent Schmalbach](https://www.vincentschmalbach.com/how-codex-cli-flags-actually-work-full-auto-sandbox-and-bypass/) — Full-auto、sandbox 和 bypass 标志交互
+- [How to Effectively Bypass the Codex Sandbox — APIdog](https://apidog.com/blog/bypass-codex-sandbox/) — 各种绕过沙箱进行开发的方法
+
+### DeepWiki 分析
+
+- [Sandboxing and Security Policies](https://deepwiki.com/openai/codex/6.3-configuration-management) — 配置管理和沙箱集成
+- [Sandboxing and Security Policies (6.4)](https://deepwiki.com/openai/codex/6.4-sandboxing-and-security-policies) — 安全策略评估流程
+- [Sandbox Implementations](https://deepwiki.com/yulin0629/codex/4.4-sandbox-implementations) — arg0 调度、平台实现、Starlark 集成
+- [Sandbox Implementation (zkbkb fork)](https://deepwiki.com/zkbkb/codex/4.2-sandbox-implementation) — Seatbelt 命令构造、Landlock 规则、seccomp 过滤器细节、输出上限
+- [CLI Entry Points and Dispatch](https://deepwiki.com/openai/codex/4.3-cli-entry-points-and-dispatch) — MultitoolCli 结构、arg0 调度、进程流
+
+### Zread 分析
+
+- [Apple Seatbelt Implementation](https://zread.ai/openai/codex/13-apple-seatbelt-implementation) — macOS 沙箱能力、策略模式、配置
+- [Linux Landlock and seccomp](https://zread.ai/openai/codex/14-linux-landlock-and-seccomp) — Linux 沙箱架构概述
+- [Execpolicy System](https://zread.ai/openai/codex/16-execpolicy-system) — 基于 Starlark 的命令策略引擎、模式匹配、三级决策
+
+### 安全公告
+
+- [GHSA-w5fx-fh39-j5rw / CVE-2025-59532](https://github.com/openai/codex/security/advisories/GHSA-w5fx-fh39-j5rw) — 通过路径配置 Bug 绕过沙箱，CVSS 8.6，模型生成的 cwd 被当作可写根目录
+- [GitLab Advisory for CVE-2025-59532](https://advisories.gitlab.com/pkg/npm/@openai/codex/CVE-2025-59532/) — GitLab 公告数据库中的同一漏洞
+
+### GitHub Issues
+
+- [#4410 — Do not allow Codex to read whole filesystem by default](https://github.com/openai/codex/issues/4410) — 安全隐患：read-only 模式授予完整文件系统读取，数据泄露风险
+- [#10390 — network_access = true silently ignored by seatbelt](https://github.com/openai/codex/issues/10390) — macOS Bug：Seatbelt 无条件设置 CODEX_SANDBOX_NETWORK_DISABLED=1
+- [#7071 — Cannot commit because .git is read-only](https://github.com/openai/codex/issues/7071) — .git 目录保护阻止沙箱内 git commit
+- [#1039 — WSL seccomp/landlock not supported](https://github.com/openai/codex/issues/1039) — 某些 WSL 环境中沙箱失败
+- [#5041 — VS Code blocks network even with danger-full-access](https://github.com/openai/codex/issues/5041) — 尽管配置了 full-access 但网络限制仍存在
+- [#7837 — Persistent sandbox bypassing](https://github.com/openai/codex/issues/7837) — 报告的沙箱绕过尝试
+- [#6807 — Expand Seatbelt to restrict to localhost](https://github.com/openai/codex/issues/6807) — 请求 localhost-only 网络策略
+- [#11210 — Seatbelt blocks os.cpus()](https://github.com/openai/codex/issues/11210) — 缺少 mach-host 权限破坏 yarn/npm
+- [#1124 — CODEX_UNSAFE_ALLOW_NO_SANDBOX should move up](https://github.com/openai/codex/issues/1124) — 环境变量可用性
+- [#4725 — Codex fails on AWS Lambda](https://github.com/openai/codex/issues/4725) — Lambda 环境不支持沙箱
+- [#6828 — Document Landlock requirement](https://github.com/openai/codex/issues/6828) — Linux 沙箱需要内核 >= 5.13
+
+### GitHub PRs 和讨论
+
+- [PR #4905 — Windows Sandbox Alpha](https://github.com/openai/codex/pull/4905) — 受限令牌实现、AppContainer、ACL 管理、网络锁定
+- [PR #3987 — Seatbelt policy for Java on macOS](https://github.com/openai/codex/pull/3987) — JVM 的 Seatbelt 配置调整
+- [PR #5536 — Model summary and risk assessment for commands](https://github.com/openai/codex/pull/5536) — 实验性 sandbox_command_assessment 功能
+- [Discussion #1174 — Codex CLI Going Native](https://github.com/openai/codex/discussions/1174) — 从 TypeScript 到 Rust 的过渡，原生沙箱优势
+- [Discussion #1260 — Auto-approved commands via execpolicy](https://github.com/openai/codex/issues/1260) — 可配置的受信任命令列表
+
+### 系统卡
+
+- [GPT-5-Codex System Card (2025年9月)](https://cdn.openai.com/pdf/97cc5669-7a25-4e63-b15f-5fd5bdc4d149/gpt-5-codex-system-card.pdf) — 初始安全评估
+- [GPT-5.1-Codex-Max System Card (2025年11月)](https://cdn.openai.com/pdf/2a7d98b1-57e5-4147-8d0e-683894d782ae/5p1_codex_max_card_03.pdf) — 扩展能力评估
+- [GPT-5.2-Codex System Card (2025年12月)](https://cdn.openai.com/pdf/ac7c37ae-7f4c-4442-b741-2eabdeaf77e0/oai_5_2_Codex.pdf) — 79% 网络攻击成功率
+- [GPT-5.3-Codex System Card (2026年2月)](https://cdn.openai.com/pdf/23eca107-a9b1-4d2c-b156-7deb4fbc697c/GPT-5-3-Codex-System-Card-02.pdf) — 首个高网络安全能力评级
+
+### 社区和其他
+
+- [Hacker News — sandbox-exec deprecation](https://news.ycombinator.com/item?id=44283454) — 关于 Seatbelt 弃用状态和影响的讨论
+- [SmartScope — Codex CLI Guide](https://smartscope.blog/en/generative-ai/chatgpt/openai-codex-cli-comprehensive-guide/) — 包括沙箱配置的综合设置指南
+- [SmartScope — Codex Approval Modes](https://smartscope.blog/en/generative-ai/chatgpt/codex-cli-approval-modes-no-approval/) — 审批模式配置演练
+- [SmartScope — Fix Network Restrictions](https://smartscope.blog/en/generative-ai/chatgpt/codex-network-restrictions-solution/) — 网络访问故障排除
+- [Enterprise Governance — Developer Toolkit](https://developertoolkit.ai/en/codex/advanced-techniques/enterprise-governance/) — 企业管理员强制执行模式
+- [Bubblewrap (bwrap) — GitHub](https://github.com/containers/bubblewrap) — 低权限沙箱工具，内置于 Codex Linux 构建
+
+### 2026 更新来源
+
+- [Introducing the Codex app — OpenAI](https://openai.com/index/introducing-the-codex-app/) — Codex macOS 应用发布、多代理工作树隔离、云容器
+- [OpenAI launches new macOS app for agentic coding — TechCrunch](https://techcrunch.com/2026/02/02/openai-launches-new-macos-app-for-agentic-coding/) — Codex 应用报道及桌面架构详情
+- [GPT-5.3-Codex System Card — OpenAI](https://openai.com/index/gpt-5-3-codex-system-card/) — 首个高网络安全能力评级、保障措施
+- [Introducing GPT-5.3-Codex — OpenAI](https://openai.com/index/introducing-gpt-5-3-codex/) — 模型发布公告
+- [OpenAI's new model leaps ahead but raises cybersecurity risks — Fortune](https://fortune.com/2026/02/05/openai-gpt-5-3-codex-warns-unprecedented-cybersecurity-risks/) — 高网络安全评级分析、1000 万美元防御额度
+- [Introducing Trusted Access for Cyber — OpenAI](https://openai.com/index/trusted-access-for-cyber/) — 安全研究人员门控访问计划
+- [Codex Changelog — OpenAI Developers](https://developers.openai.com/codex/changelog/) — CLI 0.93–0.104 发布说明包含沙箱/权限更新
+- [Codex Release Notes — Releasebot](https://releasebot.io/updates/openai/codex) — 2026 年 2 月汇总发布说明
+- [Codex App Features — OpenAI Developers](https://developers.openai.com/codex/app/features/) — 线程模式（Local、Worktree、Cloud）、代理隔离
+- [AGENTS.md Guide — OpenAI Developers](https://developers.openai.com/codex/guides/agents-md/) — 自定义指令与受保护的 .agents/ 目录
+- [SOCKS5 proxy commit — openai/codex](https://github.com/openai/codex/actions/runs/21333938828) — SOCKS5 代理与策略强制实现

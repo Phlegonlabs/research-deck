@@ -1,6 +1,6 @@
 # Solana 区块链：完整技术与生态深度分析
 
-> 最后更新：2026-02-19 | SOL 价格：~$82 | 市值：~$470亿 | 验证者：~800 | TVL：~$115亿
+> 最后更新：2026-02-21 | SOL 价格：~$82 | 市值：~$480亿 | 验证者：~800 | TVL：~$115亿
 
 ---
 
@@ -16,7 +16,9 @@
 8. [治理与组织结构](#8-治理与组织结构)
 9. [2025-2026 重大进展](#9-2025-2026-重大进展)
 10. [诚实评估：多空论点](#10-诚实评估多空论点)
-11. [可复用模式](#11-可复用模式)
+11. [最新動態 (2026)](#最新動態-2026)
+12. [可复用模式](#11-可复用模式)
+13. [References](#references)
 
 ---
 
@@ -902,6 +904,42 @@ Anatoly Yakovenko 称"ETH 杀手"框架"很蹩脚"，倡导共存。数据支持
 
 ---
 
+## 最新動態 (2026)
+
+### Solana ETF 势头加速
+
+现货 Solana ETF 于 2025 年末在美国推出，稳步获得关注。截至 2026 年 2 月中旬，累计流入约 **$8.8 亿**，其中 Bitwise 的 BSOL 领先。2025 年 11 月是最强单月，净流入 $4.2 亿。重大里程碑：**摩根士丹利**于 2026 年 1 月 6 日申请了比特币信托和 **Solana 信托**——这是美国资产排名前十的银行首次申请加密货币 ETF。值得注意的是，摩根士丹利的 Solana 信托包含**质押组件**以产生收益，这是比特币 ETF 所没有的结构创新。尽管 2026 年 2 月整体加密 ETF 出现资金流出，Solana ETF 逆势而行，持续正流入。
+
+### Ondo Global Markets：代币化美股登陆 Solana
+
+2026 年 1 月，**Ondo Finance** 将其 Ondo Global Markets 平台扩展到 Solana，将 **200+ 只代币化美股和 ETF** 带到链上——包括 NVDA、AAPL、META、SPY 和 QQQ。代币由美国注册经纪商持有的证券 1:1 支持，可 24/5 铸造和赎回，并可与 DeFi 协议组合。这使 Ondo 成为 Solana 上**最大的真实世界资产 (RWA) 发行方**（按资产数量计），标志着该网络从 meme 币标签向机构金融的转型。此举使 Solana 有资格竞逐价值 16 万亿美元以上的可代币化证券市场。
+
+### 稳定币生态爆发
+
+Solana 的稳定币市值达到 **$130-160 亿**（2025 年 12 月峰值），占全球稳定币市场的约 4.5%。USDC 以约 $100 亿（55.7% 份额）占主导地位。PayPal 的 **PYUSD 增长 112%** 至 $4.45 亿，现在在 Solana 上的交易量已持续超过以太坊——尽管最初在以太坊上推出。Solana 上非 USDC/USDT 稳定币供应自 2025 年 1 月以来**激增约 10 倍**，其交易量份额从 4.4% 增长到 23.7%。这种多元化表明真正的商业采用超越了纯粹的投机。
+
+### Solana 上的 AI Agent 基础设施
+
+Solana 正在成为自主 AI Agent 的默认结算层。**DFlow** 推出了 MCP（模型上下文协议），这是一个通用交易工具，使基于 Claude、Cursor 和其他 AI 工作站构建的 AI Agent 能够在 Solana 上执行交易。**Phantom** 推出了自己的 AI 交互 MCP 服务器。**Solana Agent Kit**（由 SendAI 开发）现在提供 60+ 个预构建操作，涵盖代币操作、NFT 铸造和 DeFi 交互。2026 年初，AI Agent 开始管理 DAO、为自己的密钥充值，并自主部署代币——从原型走向生产。
+
+### Firedancer 突破 20% 权益门槛
+
+自 2025 年 12 月 15 日在主网上线以来，Firedancer 稳步获得采用。运行 100 天后，它在 Solana 主网上突破了 **20% 权益门槛**，验证者报告与 Agave 相比无性能下降。**Figment**，最大的质押提供商之一，于 2025 年 10 月将其主验证者迁移到 Firedancer，并报告 **+28 个基点**的总 SRR 改善。两个客户端保持共识一致性无分歧，证明多客户端互操作性在生产中可行。但 CryptoSlate 指出 Solana 仍然违反了以太坊视为不可协商的"超多数客户端多样性"安全门槛——这是一个值得关注的问题。
+
+### Alpenglow 时间线日趋明确
+
+Alpenglow 共识升级（SIMD-0326）正按计划推进，**2026 年 Q1 测试网，主网目标 Q2 2026**。该升级取消链上投票费用，预计将显著降低验证者的盈利门槛——目前需要大约 **$2000 万**的委托权益才能盈利运营。通过消除这些成本，网络预计将扩大参与范围并改善去中心化。100 倍的最终性改善（12.8 秒到 100-150ms）将使 Solana 与中心化交易所的确认时间具有竞争力。
+
+### SOL 价格与基本面背离
+
+尽管 DeFi TVL 创新高、稳定币活动激增、ETF 流入强劲，SOL 在 **2026 年初下跌约 31%**——从 1 月的 $146 降至 2 月的约 $82。这种网络基本面与代币价格表现之间的显著背离反映了更广泛的加密市场调整。链上现货交易量在 **2025 年达到 $1.6 万亿**，超过除 Binance 以外的所有链下交易所。OG 建设者们认为下一篇章"比 meme 币更大，比 FTX 更大"，指出机构采用是新的增长载体。
+
+### Solana 的机构化转型
+
+叙事正在转变。摩根士丹利的 ETF 申请、Ondo 的代币化股票、Blockdaemon 的机构 Solana 指南、ParaFi 对 Jupiter 的 $3500 万投资——Solana 正在积极从"meme 币链"重新定位为"去中心化纳斯达克"。亚秒级最终性（Alpenglow 后）+ 可组合 DeFi + 不断增长的 RWA 代币化，共同为机构链上金融构建了一个引人注目的技术栈——问题在于验证者中心化的担忧是否会限制这一雄心。
+
+---
+
 ## 11. 可复用模式
 
 ### 11.1 技术架构模式
@@ -955,3 +993,301 @@ Anatoly Yakovenko 称"ETH 杀手"框架"很蹩脚"，倡导共存。数据支持
 | 治理 | 三实体结构（基金会/Labs/Anza），VC 集中担忧 |
 | 2026展望 | Alpenglow 主网，ETF 流入，企业合作扩展 |
 | 诚实评价 | 加密货币中最好的用户体验，真正的可组合性优势，但中心化权衡是真实的 |
+
+---
+
+## References
+
+### Architecture Deep Dive
+
+**Proof of History**
+- [Proof of History: A Clock for Blockchain — Solana](https://solana.com/news/proof-of-history--a-clock-for-blockchain)
+- [Proof of History — Solana](https://solana.com/news/proof-of-history)
+- [A Deep Dive into Proof of History and Accounts on Solana — Medium](https://medium.com/@amansatyawani/a-deep-dive-into-proof-of-history-and-accounts-on-solana-fb47161f3ef1)
+- [Solana: How it works — A Technical Deep Dive — Medium](https://medium.com/@AlexAlekhinEth/solana-how-it-works-a-technical-deep-dive-b180468abc3d)
+- [How Solana Builds Blocks: A Technical Deep Dive — ruggero.io](https://www.ruggero.io/blog/how_solana_builds_blocks/)
+- [What is proof of history and why does Solana use it? — The Block](https://www.theblock.co/learn/302470/what-is-proof-of-history-and-why-does-solana-use-it)
+- [Proof of History — GridPlus](https://docs.gridplus.io/blockchain-basics/solana/proof-of-history)
+
+**Tower BFT**
+- [Tower BFT: Solana's High Performance Implementation of PBFT — Solana](https://solana.com/news/tower-bft--solana-s-high-performance-implementation-of-pbft)
+- [Tower BFT — Anatoly Yakovenko — Medium](https://medium.com/solana-labs/tower-bft-solanas-high-performance-implementation-of-pbft-464725911e79)
+- [Consensus on Solana — Helius](https://www.helius.dev/blog/consensus-on-solana)
+- [Tower BFT — Solana Handbook (Ackee)](https://ackee.xyz/solana/book/latest/chapter2/tower-bft/)
+- [Tower BFT — Solana Validator Docs](https://docs.solanalabs.com/implemented-proposals/tower-bft)
+- [EVM to SVM: Consensus — Solana](https://solana.com/developers/evm-to-svm/consensus)
+
+**Turbine & Gulf Stream**
+- [Turbine: Block Propagation on Solana — Helius](https://www.helius.dev/blog/turbine-block-propagation-on-solana)
+- [Solana's Gulf Stream — Helius](https://www.helius.dev/blog/solana-gulf-stream)
+- [Gulf Stream — Solana](https://solana.com/news/gulf-stream--solana-s-mempool-less-transaction-forwarding-protocol)
+- [Gulf Stream — Anatoly Yakovenko — Medium](https://medium.com/solana-labs/gulf-stream-solanas-mempool-less-transaction-forwarding-protocol-d342e72186ad)
+- [Gulf Stream — Solana Handbook (Ackee)](https://ackee.xyz/solana/book/latest/chapter2/gulf-stream/)
+
+**Sealevel**
+- [Sealevel — Parallel Processing Thousands of Smart Contracts — Solana](https://solana.com/news/sealevel---parallel-processing-thousands-of-smart-contracts)
+- [Sealevel — Anatoly Yakovenko — Medium](https://medium.com/solana-labs/sealevel-parallel-processing-thousands-of-smart-contracts-d814b378192)
+- [Solana: Architecture & Parallel Transactions — Chainstack](https://chainstack.com/solana-architecture-parallel-transactions/)
+- [Compare Solana's Transaction Lifecycle & Sui's Object Runtime — Helius](https://www.helius.dev/blog/solana-vs-sui-transaction-lifecycle)
+- [Sealevel — Solana Handbook (Ackee)](https://ackee.xyz/solana/book/latest/chapter2/sealevel/)
+
+**Pipelining & Cloudbreak**
+- [Pipelining in Solana: The Transaction Processing Unit — Solana](https://solana.com/news/pipelining-in-solana-the-transaction-processing-unit)
+- [8 Innovations That Make Solana the First Web-Scale Blockchain — Solana](https://solana.com/news/8-innovations-that-make-solana-the-first-web-scale-blockchain)
+- [How Solana Works: 8 Core Technologies Explained — BuildBear](https://www.buildbear.io/blog/solana-core-concepts)
+
+### Performance & Reality Check
+
+**TPS & Network Stats**
+- [Solana TPS, Max TPS, Block Time — Chainspect](https://chainspect.app/chain/solana)
+- [Solana Compass: Live Statistics — SolanaCompass](https://solanacompass.com/statistics)
+- [Solana Statistics 2025 — SQ Magazine](https://sqmagazine.co.uk/solana-statistics/)
+- [Solana Transaction Speed & TPS — OKX](https://www.okx.com/en-us/learn/solana-transaction-speed-tps)
+- [Solana smashes 107,000 TPS milestone — CryptoSlate](https://cryptoslate.com/solana-smashes-107000-tps-milestone-sparking-questions-about-real-world-use/)
+- [Enterprise Solana Infrastructure: What Matters in 2026 — Chainstack](https://chainstack.com/enterprise-solana-infrastructure-what-matters-in-2026/)
+
+**Outage History**
+- [A Complete History of Solana Outages — Helius](https://www.helius.dev/blog/solana-outages-complete-history)
+- [Solana Outages: A History — StatusGator](https://statusgator.com/blog/solana-outage-history/)
+- [Solana Outage Guide 2025 — OKX](https://www.okx.com/en-us/learn/solana-outage-guide)
+- [Solana Status — Official](https://status.solana.com/)
+
+**Firedancer**
+- [Jump Crypto's Firedancer Goes Live on Solana Mainnet — Unchained](https://unchainedcrypto.com/jump-cryptos-firedancer-goes-live-on-solana-mainnet/)
+- [Firedancer hits Solana mainnet — The Block](https://www.theblock.co/post/382411/jump-cryptos-firedancer-hits-solana-mainnet-as-the-network-aims-to-unlock-1-million-tps)
+- [Solana's Firedancer Validator Client Deep Dive — Blockdaemon](https://www.blockdaemon.com/blog/solanas-firedancer-validator-client-deep-dive)
+- [Firedancer — GitHub](https://github.com/firedancer-io/firedancer)
+- [What Is Firedancer and Why It Matters — Backpack](https://learn.backpack.exchange/articles/what-is-firedancer)
+- [Firedancer Hits 20% Stake — Coira](https://coira.io/blog/solana-firedancer-upgrade-performance-breakthrough-2026)
+- [Figment's Migration to Firedancer — Figment](https://www.figment.io/insights/figments-migration-to-firedancer-unlocking-next-generation-solana-validator-performance/)
+- [Firedancer is live, but Solana violates client diversity safety rule — CryptoSlate](https://cryptoslate.com/firedancer-is-live-but-solana-is-violating-the-one-safety-rule-ethereum-treats-as-non-negotiable/)
+
+**Comparisons**
+- [Solana vs Ethereum: Which is Better in 2026? — Backpack](https://learn.backpack.exchange/articles/solana-vs-ethereum)
+- [Sui vs Solana 2026 — Bitget](https://www.bitget.site/academy/sui-vs-solana-comparison-2026-comprehensive-guide-to-performance-ecosystem-and-investment)
+- [Sui vs. Aptos: Competitive Analysis — VanEck](https://www.vaneck.com/us/en/blogs/digital-assets/sui-vs-aptos-competitive-analysis-and-price-prediction/)
+
+### Developer Technical Stack
+
+**Programming Model**
+- [Solana Programs — Official Docs](https://solana.com/docs/core/programs)
+- [Solana Programming Model — Medium (Sidarth)](https://medium.com/@sidarths/solana-school-lesson-3-solana-programming-model-i-accounts-anchor-pda-cpi-explained-9bbc34a57b23)
+- [Introduction to the Solana Programming Model — Syndica](https://blog.syndica.io/an-introduction-to-the-solana-programming-model-accounts-data-and-transactions/)
+
+**Anchor Framework**
+- [Anchor Program Structure — Official](https://www.anchor-lang.com/docs/basics/program-structure)
+- [Beginner's Guide to Building Solana Programs with Anchor — Helius](https://www.helius.dev/blog/an-introduction-to-anchor-a-beginners-guide-to-building-solana-programs)
+- [Anchor Framework — GitHub](https://github.com/solana-foundation/anchor)
+
+**Token Extensions**
+- [Token Extensions — Solana](https://solana.com/solutions/token-extensions)
+- [Token-2022 Program — SPL Docs](https://spl.solana.com/token-2022)
+- [What are Token Extensions? — Helius](https://www.helius.dev/blog/what-is-token-2022)
+- [Solana Token Extensions Builders Are Quietly Adopting — Medium](https://medium.com/@jickpatel611/the-7-solana-token-extensions-builders-are-quietly-adopting-55d6f8fd9999)
+- [Token Extensions Guide — Phantom](https://phantom.com/learn/crypto-101/solana-token-extensions)
+
+**Compressed NFTs**
+- [How to use compressed NFTs on Solana — Solana](https://solana.com/news/how-to-use-compressed-nfts-on-solana)
+- [State Compression — Solana Docs](https://solana.com/docs/advanced/state-compression)
+- [All You Need to Know About Compression on Solana — Helius](https://www.helius.dev/blog/all-you-need-to-know-about-compression-on-solana)
+- [State compression brings down cost — Solana](https://solana.com/news/state-compression-compressed-nfts-solana)
+
+**Priority Fees & Compute**
+- [Transaction Fees — Solana Docs](https://solana.com/docs/core/fees)
+- [Priority Fees — Helius](https://www.helius.dev/blog/priority-fees-understanding-solanas-transaction-fee-mechanics)
+- [Why Solana Transaction Costs Matter — Anza](https://www.anza.xyz/blog/why-solana-transaction-costs-and-compute-units-matter-for-developers)
+- [How to use Priority Fees — Solana](https://solana.com/developers/guides/advanced/how-to-use-priority-fees)
+
+**Solana Actions & Blinks**
+- [Blockchain Links and Solana Actions — Solana](https://solana.com/solutions/actions)
+- [Actions and Blinks Developer Guide — Solana](https://solana.com/developers/guides/advanced/actions)
+- [Everything About Solana Blinks — Tatum](https://tatum.io/blog/about-solana-blinks)
+
+**Solana Mobile**
+- [Seeker — Solana Mobile](https://x.com/solanamobile)
+- [Solana Mobile begins shipping Seeker — The Block](https://www.theblock.co/post/365600/solana-mobile-seeker-crypto-smartphone)
+- [Solana Seeker surpassing 140,000 presales — The Block](https://www.theblock.co/post/317154/solana-seeker-saga-crypto-mobile-phone-successor-140000-presales)
+
+**Seahorse**
+- [How to Write Solana Programs in Python Using Seahorse — Alchemy](https://www.alchemy.com/overviews/solana-seahorse)
+- [Seahorse — GitHub](https://github.com/solana-developers/seahorse)
+- [Seahorse Lang — Official](https://seahorse-lang.org/)
+
+### DeFi Ecosystem
+
+**TVL & Major Protocols**
+- [Solana — DefiLlama](https://defillama.com/chain/solana)
+- [Top 10 DeFi Apps on Solana in 2026 — Eco](https://eco.com/support/en/articles/13225733-top-10-defi-apps-on-solana-in-2026-complete-guide)
+- [Solana's DeFi Surge: $17.5B TVL — BlockchainReporter](https://blockchainreporter.net/solanas-defi-surge-jito-kamino-and-cloud-drive-solana-to-17-5-billion-tvl/)
+- [State of Solana Q3 2025 — Messari](https://messari.io/report/state-of-solana-q3-2025)
+- [Solana Lending Markets Report 2025 — RedStone](https://blog.redstone.finance/2025/12/11/solana-lending-markets/)
+
+**Jupiter**
+- [What Is Jupiter (JUP)? — CoinGecko](https://www.coingecko.com/learn/what-is-jupiter-crypto-solana)
+- [Jupiter — DefiLlama](https://defillama.com/protocol/jupiter)
+- [Jupiter Ecosystem Dominance in 2026 — AInvest](https://www.ainvest.com/news/jupiter-ecosystem-dominance-solana-defi-flywheel-driven-play-2026-2512/)
+- [Jupiter's Acquisition Spree — CoinDesk](https://www.coindesk.com/business/2025/01/27/jupiter-s-acquisition-spree-buyback-plan-spark-solana-ecosystem-dominance-concerns)
+
+**MEV & Jito**
+- [Solana MEV Economics: Jito, Bundles, and Liquid Staking — QuickNode](https://blog.quicknode.com/solana-mev-economics-jito-bundles-liquid-staking-guide/)
+- [Solana MEV: Deep Dive into Jito — sanj.dev](https://sanj.dev/post/solana-mev-jito-deep-dive)
+- [Quantifying Sandwiching MEV on Jito — ACM/IMC 2025](https://dl.acm.org/doi/10.1145/3730567.3764493)
+- [Solana MEV Exposed — Solana Compass](https://solanacompass.com/learn/accelerate-25/scale-or-die-at-accelerate-2025-the-state-of-solana-mev)
+- [Solana users paying millions to stop bots — DL News](https://www.dlnews.com/articles/defi/solana-users-use-jito-to-stop-sandwich-attacks-and-mev/)
+
+**Liquid Staking**
+- [Solana Liquid Staking: Ultimate Guide 2026 — Phantom](https://phantom.com/learn/crypto-101/solana-liquid-staking)
+- [Best Solana Liquid Staking Tokens 2025 — Sanctum](https://sanctum.so/blog/best-solana-liquid-staking-tokens-2025)
+- [Solana Liquid Staking: Everything You Need to Know 2025 — Nansen](https://www.nansen.ai/post/solana-liquid-staking-everything-you-need-to-know-in-2025)
+- [Liquid Staking Yields Ranked 2026 — Sanctum](https://sanctum.so/blog/solana-liquid-staking-yields-ranked-highest-paying-lsts-2026)
+
+**Yield & Revenue**
+- [Solana DeFi Returns 2025 — Solana Compass](https://solanacompass.com/learn/breakpoint-25/the-state-of-returns-on-solana-solstice-ben-nadareski)
+- [Jito becomes largest protocol on Solana — The Block](https://www.theblock.co/post/292146/jito-network-largest-defi-protocol-solana-tvl)
+
+### NFT & Consumer
+
+**Metaplex & Marketplaces**
+- [2025 Guide to Metaplex — RiseIn](https://www.risein.com/blog/the-2025-guide-to-metaplex-your-solana-nft-studio)
+- [Tensor Embraces Metaplex Core — NFT Plazas](https://nftplazas.com/tensor-metaplex-core/)
+- [Solana NFT Market Landscape 2025 — Gate](https://www.gate.com/post/status/16149210)
+- [Best NFT Marketplaces on Solana 2026 — Backpack](https://learn.backpack.exchange/articles/best-nft-marketplaces-on-solana)
+
+**DePIN**
+- [Deep Dive: Solana DePIN December 2025 — Syndica](https://blog.syndica.io/deep-dive-solana-depin-december-2025/)
+- [Solana DePIN Revenue Milestones — Solana Report](https://solanareport.com/2025/10/01/solana-depin-revenue-milestones-how-helium-hivemapper-and-render-are-powering-record-growth/)
+- [DePINscan — Solana DePIN Projects](https://depinscan.io/chains/solana)
+- [Solana Emerges as Leader in DePIN — DePINscan](https://depinscan.io/news/2025-05-01/solana-emerges-as-leader-in-depin-projects-a-comprehensive-analysis)
+
+**Solana Pay**
+- [Solana Pay — Official](https://solanapay.com/)
+- [Solana Pay Announcement — Solana](https://solana.com/news/solana-pay-announcement)
+- [Payments Tooling — Solana](https://solana.com/solutions/payments-tooling)
+
+### Meme Coins & Pump.fun
+
+- [Pump.fun — Wikipedia](https://en.wikipedia.org/wiki/Pump.fun)
+- [Pump.fun Leads as Solana App Revenue Hits $2.4B — CryptoPotato](https://cryptopotato.com/pump-fun-leads-as-solana-app-revenue-hits-2-4b-in-2025/)
+- [Pump.fun 101 — 21Shares](https://www.21shares.com/en-us/research/pump-fun-101-the-meme-coin-platform-powering-solana)
+- [Pump.fun Surpasses $800M Revenue — CoinMarketCap](https://coinmarketcap.com/academy/article/pumpfun-surpasses-dollar800m-revenue-in-solana-meme-coin-battle)
+- [Solana Rug Pulls — Solidus Labs](https://www.soliduslabs.com/reports/solana-rug-pulls-pump-dumps-crypto-compliance)
+- [100% of Solana Memecoins Are Scams — CyberNews](https://cybernews.com/almost-examined-solana-memecoins-are-scam/)
+- [Tracing $TRUMP — TRM Labs](https://www.trmlabs.com/resources/blog/tracing-trump)
+
+### SOL Token Economics
+
+- [Solana Tokenomics: Circulating Supply, Inflation Schedule — SolanaCompass](https://solanacompass.com/tokenomics)
+- [Solana Tokenomics: Everything to Know — Crypto.com](https://crypto.com/us/crypto/learn/solana-tokenomics)
+- [Solana Tokenomics — OKX](https://www.okx.com/en-us/learn/solana-tokenomics-supply-inflation)
+- [Solana Circulating Supply — Gemini](https://www.gemini.com/cryptopedia/solana-circulating-supply-how-many-sol-tokens-are-there)
+- [SOL Price — CoinGecko](https://www.coingecko.com/en/coins/solana)
+- [SOL Price History — CoinMarketCap](https://coinmarketcap.com/currencies/solana/historical-data/)
+
+### Governance & Organization
+
+**Solana Foundation / Labs / Anza**
+- [Drama at Solana: Creation of Anza — Fortune](https://fortune.com/crypto/2024/01/30/solana-anza-new-legal-entity-third-of-employees-decentralization-theater/)
+- [Solana Labs to Agave Fork — Solana](https://solana.com/news/solana-labs-anza-fork)
+- [Anza — Official](https://www.anza.xyz/)
+- [Anza's 2025 roadmap — Blockworks](https://blockworks.co/news/anza-optimizing-solana-efficiency)
+
+**Key Figures**
+- [Solana Founder: Visionary Behind Solana's Rise — CoinPaper](https://coinpaper.com/11839/solana-founder-the-visionary-behind-solana-s-rise)
+- [Who is Anatoly Yakovenko — Finst](https://finst.com/en/learn/articles/who-is-anatoly-yakovenko)
+- [Who is Raj Gokal — DailyCoin](https://dailycoin.com/raj-gokal-solanas-right-hand-man/)
+- [Who Founded Solana — Bitrue](https://www.bitrue.com/blog/who-founded-solana)
+
+**Decentralization**
+- [Measuring Solana's Decentralization — Helius](https://www.helius.dev/blog/solana-decentralization-facts-and-figures)
+- [Solana Decentralization Dashboard — SolanaCompass](https://solanacompass.com/statistics/decentralization)
+- [Solana's Validator Decline — AInvest](https://www.ainvest.com/news/solana-validator-decline-signal-network-health-centralization-risk-2512/)
+- [Solana Staking Insights Annual 2025 — Everstake](https://everstake.one/crypto-reports/solana-staking-insights-analysis-annual-2025)
+
+**VC Investment**
+- [a16z invests $50M in Jito — CoinDesk](https://www.coindesk.com/markets/2025/10/16/andreessen-horowitz-s-a16z-invests-usd50m-in-solana-staking-protocol-jito)
+- [Galaxy, Multicoin, Jump raise $1B for Solana — CryptoBriefing](https://cryptobriefing.com/solana-treasury-fund-initiative/)
+
+### 2025-2026 Developments
+
+**Alpenglow**
+- [SIMD-0326: Alpenglow Consensus Protocol — Solana Forum](https://forum.solana.com/t/simd-0326-proposal-for-the-new-alpenglow-consensus-protocol/4236)
+- [98% Votes to Approve Alpenglow — CoinDesk](https://www.coindesk.com/tech/2025/09/02/solana-set-for-major-overhaul-after-98-votes-to-approve-historic-alpenglow-upgrade)
+- [Inside Alpenglow — 1inch Blog](https://1inch.medium.com/https-blog-1inch-com-inside-alpenglow-d9bca04af089)
+- [Alpenglow Consensus: Biggest Protocol Upgrade — QuickNode](https://blog.quicknode.com/solana-alpenglow-upgrade/)
+- [Solana 2026 Protocol Upgrades — KuCoin](https://www.kucoin.com/news/flash/solana-to-launch-2026-protocol-upgrades-for-faster-transactions-and-lower-costs)
+- [Alpenglow Secures Approval, Faces Challenges — The Defiant](https://thedefiant.io/news/blockchains/solana-alpenglow-upgrade-secures-approval-but-faces-challenges)
+- [What is Alpenglow in Solana — Everstake](https://everstake.one/blog/what-is-alpenglow-in-solana)
+
+**ETF**
+- [11 Solana ETFs — NerdWallet](https://www.nerdwallet.com/investing/learn/solana-etfs)
+- [Solana ETPs Cleared to Trade — Charles Schwab](https://www.schwab.com/learn/story/crypto-etf-approval)
+- [16 U.S. Solana Spot ETFs — Helius](https://www.helius.dev/blog/solana-etfs)
+- [JPMorgan Sees Modest Inflows — CoinDesk](https://www.coindesk.com/markets/2025/10/09/jpmorgan-sees-modest-inflows-for-solana-etfs-despite-likely-sec-approval)
+- [Bitcoin, ether, xrp ETFs bleed while Solana bucks outflow trend — CoinDesk](https://www.coindesk.com/markets/2026/02/19/bitcoin-ether-xrp-etfs-bleed-while-solana-bucks-outflow-trend)
+- [Morgan Stanley files for Bitcoin and Solana ETFs — CoinDesk](https://www.coindesk.com/markets/2026/01/06/morgan-stanley-eyes-the-spot-bitcoin-etf-market)
+- [Morgan Stanley Solana Trust — SEC Filing](https://www.sec.gov/Archives/edgar/data/2103547/000110465926000988/tm2534148d1_s1.htm)
+- [Solana 2026 Predictions: ETF Flows — Solana Compass](https://solanacompass.com/learn/Lightspeed/whats-next-for-solana-in-2026)
+
+**Monolithic vs Modular**
+- [Modular vs Monolithic Blockchains: 2026 — CCN](https://www.ccn.com/education/crypto/modular-vs-monolithic-blockchains-crypto-scalability-war-2026/)
+- [Comparing Monolithic vs Modular Blockchains — Fidelity](https://www.fidelitydigitalassets.com/research-and-insights/comparing-monolithic-vsmodular-blockchains)
+- [Monolithic vs. modular blockchain — Visa](https://usa.visa.com/solutions/crypto/monolithic-vs-modular-blockchain.html)
+
+**Enterprise Adoption**
+- [Solana Rise in Payments — SolanaCompass](https://solanacompass.com/learn/Lightspeed/solanas-emergence-as-a-payments-hub-roundup)
+- [Solana H1 2025 Report — QuickNode](https://blog.quicknode.com/solana-ecosystem-report-h1-2025/)
+- [2025: Dawn of Solana's Institutional Era — Medium](https://medium.com/@scalingx/2025-the-dawn-of-solanas-institutional-era-cda664cf8482)
+
+### Validator Economics & Staking
+
+- [Is Running a Solana Validator Profitable? — Hivelocity](https://www.hivelocity.net/blog/solana-validator-economics/)
+- [Solana Staking and Validator Economics 2025 — Gate](https://www.gate.com/learn/articles/understanding-solanas-staking-and-validator-economics-in-2025/6062)
+- [Solana Staking Calculator — Helius](https://www.helius.dev/staking/calculator)
+- [How Much Do Solana Validators Make? — SolanaCompass](https://solanacompass.com/staking/how-much-do-solana-validators-make)
+- [Leveling the Stakes on Solana — Placeholder VC](https://www.placeholder.vc/blog/2025/9/15/leveling-the-stakes-on-solana)
+- [Solana Staking — Official](https://solana.com/staking)
+
+### Assessment & Analysis
+
+- [Solana: Ethereum Killer or Bot Playground? — CCN](https://www.ccn.com/analysis/crypto/solana-ccn-reports/)
+- [Solana Vs. Ethereum In 2025 — ChiangRaiTimes](https://www.chiangraitimes.com/finance/solana-vs-ethereum-in-2025/)
+- [Solana Founder Says It Is Not An Ethereum Killer — Bitcoinist](https://bitcoinist.com/solana-is-not-an-ethereum-killer/)
+- [Solana Blockchain Explained — StealthEX](https://stealthex.io/blog/solana-blockchain/)
+- [Solana 2025 Breakthrough — AInvest](https://www.ainvest.com/news/solana-2025-breakthrough-era-blockchain-scalability-ecosystem-growth-2601/)
+
+### Solana Treasury Companies
+
+- [Rise of Solana Digital Asset Treasury Companies — Helius](https://www.helius.dev/blog/solana-digital-asset-treasury-companies)
+- [Solana Treasuries: SOL Holdings — CoinGecko](https://www.coingecko.com/en/treasuries/solana)
+- [Solana Treasury Tracker — The Block](https://www.theblock.co/treasuries/solana-treasuries)
+
+### Latest Updates (2026) Sources
+
+**ETF & Institutional**
+- [Morgan Stanley files for Bitcoin and Solana ETFs — Bloomberg](https://www.bloomberg.com/news/articles/2026-01-06/crypto-latecomer-morgan-stanley-files-for-bitcoin-solana-etfs)
+- [Morgan Stanley Submits SEC Filing — 401kSpecialist](https://401kspecialistmag.com/morgan-stanley-submits-sec-filing-for-bitcoin-and-solana-etfs/)
+- [Morgan Stanley files crypto ETFs — Euronews](https://www.euronews.com/business/2026/01/06/morgan-stanley-files-to-launch-bitcoin-and-solana-etfs-as-wall-street-embraces-crypto)
+
+**Ondo & RWA**
+- [Ondo Finance Brings 200+ Tokenized U.S. Stocks to Solana — CoinDesk](https://www.coindesk.com/business/2026/01/21/ondo-finance-brings-200-tokenized-u-s-stocks-and-etfs-to-solana)
+- [Ondo Global Markets: Tokenized Stocks & ETFs on Solana — Solana](https://solana.com/news/ondo-global-markets-tokenized-stocks-etfs-solana)
+- [Ondo Finance Launches Tokenized Stocks on Solana — Ondo](https://ondo.finance/blog/global-markets-live-on-solana)
+
+**Stablecoins**
+- [Stablecoins on Solana in 2026 — Chainstack](https://chainstack.com/solana-stablecoins-2026/)
+- [Non-USDC/USDT stablecoin supply surges 10x — Cryptopolitan](https://www.cryptopolitan.com/non-usdc-usdt-stablecoin-supply-on-solana/)
+- [Solana's Stablecoin Landscape — Helius](https://www.helius.dev/blog/solanas-stablecoin-landscape)
+- [Why Solana stablecoin action boomed — DL News](https://www.dlnews.com/articles/markets/why-solana-stablecoin-action-boomed-over-2025/)
+
+**AI Agents**
+- [How to Build a Solana AI Agent in 2026 — Alchemy](https://www.alchemy.com/blog/how-to-build-solana-ai-agents-in-2026)
+- [Phantom debuts MCP server for AI — BitcoinEthereumNews](https://bitcoinethereumnews.com/tech/solana-bolsters-tooling-as-phantom-debuts-mcp-server-for-ai/)
+- [Solana Agent Kit — GitHub](https://github.com/sendaifun/solana-agent-kit)
+- [Intro to AI on Solana — Solana](https://solana.com/developers/guides/getstarted/intro-to-ai)
+
+**Market & Ecosystem**
+- [Solana OG builders say next chapter is bigger than memecoins — CoinDesk](https://www.coindesk.com/business/2026/02/12/solana-s-og-builders-say-the-next-chapter-is-bigger-than-memecoins-and-bigger-than-ftx)
+- [2 Game-Changing Updates Coming to Solana in 2026 — Motley Fool](https://www.fool.com/investing/2026/02/11/2-game-changing-updates-coming-to-solana-in-2026/)
+- [Solana's 2026 Upgrade Cycle: Path to Decentralized Nasdaq — AInvest](https://www.ainvest.com/news/solana-2026-upgrade-cycle-path-decentralized-nasdaq-2601/)
+- [Solana Crashes 31% in 2026 Even as DeFi Hits Record Highs — HokaNews](https://www.hokanews.com/2026/02/solana-crashes-31-in-2026-even-as-defi.html)
+- [Ethereum and Solana set the stage for 2026's DeFi reboot — CoinDesk](https://www.coindesk.com/tech/2026/01/03/ethereum-and-solana-set-the-stage-for-2026-s-defi-reboot)

@@ -1,5 +1,29 @@
 # Progress
 
+## [2026-02-21] Full Update & Reference Consolidation — All 25 Topics
+- **Structural change**: Merged `references.md` into `en.md` and `zh.md` as `## References` section at bottom of each file, then deleted all 25 `references.md` files
+- **Content update**: Added `## Latest Updates (2026)` / `## 最新動態 (2026)` section to all 25 topics with fresh web research on 2025-2026 developments
+- **Execution**: 5 batches × 5 parallel agents = 25 agents total, all completed successfully
+- **Verification**: Zero `references.md` remaining, all `en.md`/`zh.md` have References + Updates sections
+- Topics updated: a2a-ap2-agentic-commerce, acp-stripe-openai, ai-coding-models-2026, claude-code-agent-team, claude-code-best-practices, claude-code-memory-system, cloudflare-2026, codex-sandbox-architecture, discord-ai-agent-swarms, erc-8004-agent-identity, geo-generative-engine-optimization, jito-solana, jupiter-solana, mcp-x402-integration, openai-codex-cli, openclaw-ai-agent, parallel-coding-agents, shenzhen-robotics-ecosystem, sherwin-wu-openai, solana-blockchain, threejs-ecosystem, threejs-visual-design, unitree-robotics, voxyz-autonomous-agents, web4-agentic-web
+- Files modified: 50 (25× en.md + 25× zh.md), 25 deleted (references.md)
+- Next steps: none — consolidation complete
+
+## [2026-02-21] Cloudflare 2025-2026 — Full-Stack Edge Cloud Complete Deep Analysis
+- Evolution: CDN/security → vertically-integrated AI infrastructure platform. FY2025 $2.17B revenue (+30%), Q4 accelerated to 34%. 60+ products on 335+ global locations
+- Workers: native Node.js APIs (fs/net/tls/http/process), Pages deprecated. Containers (open beta Jun 2025): Docker on DO, scale-to-zero, 10ms billing, up to 400GiB/100vCPU. Sandbox SDK for untrusted code (official Claude Code template)
+- AI stack: Workers AI (50+ models, 190+ cities, $0.011/1K neurons), Infire Rust engine (82% CPU reduction vs vLLM), Agents SDK v0.5.0 (DO-based stateful agents, single-threaded = no race conditions), MCP on Workers (Code Mode: 99.9% token reduction), AutoRAG/AI Search (zero-config RAG + NLWeb), AI Gateway (24+ providers, free caching/rate limiting), Vectorize
+- x402 protocol (Coinbase co-founded): HTTP 402 micropayments. 75M txns, $24M by Dec 2025. Deferred payment extension. AI Crawl Control → 402 → payment → content (automated monetization)
+- Security: 31.4 Tbps DDoS record, post-quantum 43% traffic protected (CRYSTALS-KYBER), Gartner Visionary SASE, CASB for AI (ChatGPT/Claude/Gemini scanning), Firewall for AI
+- Acquisitions (3 in 3 months): Replicate (50K+ AI models, Nov 2025), Human Native (AI data marketplace, Jan 2026), Astro (web framework, Jan 2026). Pattern: own AI-era full dev stack
+- Storage: R2 zero egress (87-99% cheaper than S3), D1 global read replication, DO free tier + 10GB SQLite GA, Hyperdrive MySQL, Queues 5K msg/sec, Pipelines (Arroyo, 100K records/sec)
+- Financials: 332K paying customers (+40%), 269 $1M+ ARR (+55%), $42.5M largest ACV, 114% NRR. FY2026 guidance $2.79B (+28-29%). Stock ~$192, $67.4B cap, 31x P/S
+- Competitive: Workers 210% faster than Lambda@Edge, 9x faster cold starts. Only platform with isolates+containers+DB+vectors+AI+email+media+security. vs Vercel (framework vs network optimization)
+- Open source: Pingora (Rust proxy, 1T+ req/day, 70% less CPU than NGINX), workerd, 547 repos
+- Key patterns: DO as agent primitive, MCP Code Mode (1K tokens for full API), Worker-as-Gateway-to-Container, x402 monetization loop, Innovation Week cadence (5+/year), "anti-lock-in" as lock-in (zero egress)
+- Files: `cloudflare-2026/`
+- Next steps: prototype Agents SDK agent with MCP + x402, evaluate Sandbox SDK for parallel Claude Code agents, test AutoRAG with R2 data
+
 ## [2026-02-19] Sherwin Wu — OpenAI API Engineering Leader & "Sorcerer" Thesis Deep Analysis
 - Background: MIT BS & MEng CS (2010-2014), Palantir, Doximity, Quora (News Feed), Opendoor (5+ yrs Pricing ML), then OpenAI (~2022). Currently Head of Engineering, OpenAI API/Developer Platform. Also at Sancus Ventures
 - Content catalog: 15 pieces across 4 podcasts (Lenny's, a16z, BG2, Latent Space), 1 conference talk + panel (QCon NY 2023), 5+ notable tweets, 2 LinkedIn posts, multiple media articles

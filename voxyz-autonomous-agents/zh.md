@@ -199,15 +199,81 @@ Agent 行為規則（配額、閾值、限額）存在數據庫表裡，不在�
 ### 5. 砍掉第二個調度器
 兩個東西做同一件事時，其中一個就是 bug。永遠只選一個真相來源。
 
-## 來源
+## 最新動態 (2026)
 
+### VoxYZ 從 Demo 演變為產品平台
+
+VoxYZ 已從兩週實驗成熟為完整產品平台 [voxyz.space](https://www.voxyz.space/)。六個 Agent 現在可以自主**追蹤真實問題、驗證需求、交付解決方案** — 從單純的內容生成進化到實際的產品開發。系統運行在一台 VPS（$8/月）和一個 Supabase 數據庫上，證明自主多 Agent 公司可以在極低的基礎設施成本下運營。
+
+### 完整教程和生產架構發布
+
+VoxYZ 發布了[完整教程](https://x.com/Voxyz_ai/status/2020272022417289587)，詳細介紹生產架構。系統在一台伺服器上運行 **10 個進程和 18 個 cron 任務，跨 4 個 AI 模型**。具名工作進程包括：`roundtable-worker`（對話編排 + 記憶提取）、`x-autopost`（推文發布）、`analyze-worker`（分析任務執行）、`content-worker`（內容創作）和 `crawl-worker`（網頁爬取）。這揭示了比最初兩週原型更精密的生產設置。
+
+### 產品化：框架、Schema 和課程
+
+VoxYZ 現在將其多 Agent 架構作為可重用套件提供：**多 Agent 框架**、**生產數據庫 schema** 和**視頻課程**。早期採用者報告拉取模板後不到 2 小時就能跑起第一個 Agent 管道 — 節省至少一週的腳手架搭建時間。這標誌著從「看我建了什麼」到「教你怎麼建」的轉變。
+
+### OpenClaw 基金會化轉型
+
+VoxYZ 核心基礎設施的重大變化：[OpenClaw 創始人 Peter Steinberger 於 2026 年 2 月 14 日加入 OpenAI](https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/)。Sam Altman 稱他是「對未來智能 Agent 如何互相協作有驚人想法的天才」。OpenClaw 將轉型為一個 OpenAI 持續支持的**開源基金會**。對 VoxYZ 來說，這是一把雙刃劍 — 底層框架獲得巨大的機構背書，但發展方向可能轉向 OpenAI 的優先事項。近期 OpenClaw 更新包括 Opus/Sonnet 的 1M 上下文 beta、`/subagents spawn` 命令、iOS 分享擴展和 Telegram 語音備忘錄轉寫。
+
+### Base 鏈上的加密代幣
+
+VoxYZ 在 Base 區塊鏈上推出代幣（「VoxYZ Agent World」），在 [Uniswap 上交易](https://dexscreener.com/base/0xaf8d92a6b6f8bdb1dd8f07dd5d6fb986339e89334530fc4ca823983ebdd9158a)，市值約 $22K 的微型規模。這跟隨了 AI Agent 項目發行代幣的更廣泛趨勢 — 參見 Virtuals Protocol 和類似的 AI-Agent-代幣平台。這是否為核心產品增添價值還是分散注意力，有待觀察。
+
+### 行業背景：2026 是 Agent 規模化之年
+
+VoxYZ 的時機與行業爆發性增長完美契合。Gartner 預測 **2026 年底將有 40% 的企業應用嵌入 AI Agent**（2025 年不到 5%）。AI Agent 市場預計到 2030 年達到 520 億美元。然而 Gartner 也警告，**2027 年前超過 40% 的 AI Agent 項目將因遺留系統無法支撐現代 AI 執行需求而失敗**。VoxYZ 的輕量架構（1 VPS + 1 Supabase）完全繞開了這個遺留系統問題 — 它生來就是雲原生的，零遺留債務。
+
+### 病毒式傳播和社區
+
+VoxYZ 的 Medium 文章於 2026 年 2 月在 [Coding Nexus](https://medium.com/coding-nexus/) 刊物發布，[@Voxyz_ai](https://x.com/Voxyz_ai) 的 X 帳號已增長至 6,200+ 追隨者。該項目作為一個實際示範引發關注 — 多 Agent 自主系統不再是理論，它們今天就在運營真實公司，處於真實規模。
+
+## 參考資料
+
+### 主要來源
+- [@Voxyz_ai 推文串](https://x.com/Voxyz_ai/status/2019914775061270747) — 「我用 OpenClaw + Vercel + Supabase 建了一間 AI 公司 — 兩週後，它們自己運營了」
+- [VoxYZ 官網](https://www.voxyz.space/) — 6 AI Agents, One Company
+- [VoxYZ 關於頁面](https://www.voxyz.space/about)
+- [VoxYZ 完整教程推文](https://x.com/Voxyz_ai/status/2020272022417289587) — 「完整教程：6 個 AI Agent 運營一間公司 — 我如何從零開始建造」
+- [Medium 文章 — Coding Nexus](https://medium.com/coding-nexus/i-built-an-ai-company-with-openclaw-vercel-supabase-two-weeks-later-they-run-it-themselves-514cf3db07e6)
+
+### 多 Agent 編排模式
 - [事件驅動多 Agent 系統的四種設計模式 — Confluent](https://www.confluent.io/blog/event-driven-multi-agent-systems/)
 - [選擇正確的多 Agent 編排模式 — Kore.ai](https://www.kore.ai/blog/choosing-the-right-orchestration-pattern-for-multi-agent-systems)
+- [CrewAI vs LangGraph vs AutoGen — DataCamp](https://www.datacamp.com/tutorial/crewai-vs-langgraph-vs-autogen)
+
+### OpenClaw
+- [OpenClaw 架構指南 — Vertu](https://vertu.com/ai-tools/openclaw-clawdbot-architecture-engineering-reliable-and-controllable-ai-agents/)
+- [什麼是 OpenClaw — Contabo](https://contabo.com/blog/what-is-openclaw-self-hosted-ai-agent-guide/)
+- [OpenClaw 風險 — Cyber Strategy Institute](https://cyberstrategyinstitute.com/openclaw-risks-autonomous-ai-agents/)
+- [OpenClaw GitHub](https://github.com/openclaw/openclaw)
+- [OpenClaw 創始人加入 OpenAI — TechCrunch](https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/)
+- [Peter Steinberger 的公告](https://steipete.me/posts/2026/openclaw)
+- [2026 年的 OpenClaw — DigitalOcean](https://www.digitalocean.com/resources/articles/what-is-openclaw)
+
+### 狀態管理
 - [AI Agent 的狀態管理：Redis vs 外部數據庫 — DEV](https://dev.to/inboryn_99399f96579fcd705/state-management-patterns-for-long-running-ai-agents-redis-vs-statefulsets-vs-external-databases-39c5)
+- [Supabase vs Redis 比較 — Leanware](https://www.leanware.co/insights/supabase-vs-redis-comparison)
+
+### 故障與自我修復
 - [多 Agent 故障恢復 — Galileo](https://galileo.ai/blog/multi-agent-ai-system-failure-recovery)
 - [為什麼 40% 的 AI Agent 項目失敗 — Squirro](https://squirro.com/squirro-blog/avoiding-agentic-ai-failure)
 - [Agent Company：AI Agent 75% 任務失敗 — Reworked](https://www.reworked.co/digital-workplace/the-fake-startup-that-exposed-ais-real-limits-as-autonomous-workers/)
+- [AI Agent 失敗的 4 個常見原因 — Built In](https://builtin.com/articles/agentic-ai-implementation-failure-causes)
+
+### 隊列與分佈式系統模式
 - [避免不可逾越的隊列積壓 — AWS](https://aws.amazon.com/builders-library/avoiding-insurmountable-queue-backlogs/)
-- [OpenClaw 架構指南 — Vertu](https://vertu.com/ai-tools/openclaw-clawdbot-architecture-engineering-reliable-and-controllable-ai-agents/)
-- [OpenClaw 風險 — Cyber Strategy Institute](https://cyberstrategyinstitute.com/openclaw-risks-autonomous-ai-agents/)
-- [CrewAI vs LangGraph vs AutoGen — DataCamp](https://www.datacamp.com/tutorial/crewai-vs-langgraph-vs-autogen)
+- [分佈式系統中的背壓 — DEV](https://dev.to/devcorner/effective-backpressure-handling-in-distributed-systems-techniques-implementations-and-workflows-16lm)
+- [事務性發件箱模式 — microservices.io](https://microservices.io/patterns/data/transactional-outbox.html)
+
+### Vercel Cron
+- [Vercel Cron Jobs 設置指南](https://vercel.com/guides/how-to-setup-cron-jobs-on-vercel)
+- [在 Vercel 上免費運行 Cron Jobs — DEV](https://dev.to/hexshift/how-to-run-cron-jobs-in-a-vercel-serverless-environment-without-paying-extra-502h)
+
+### 行業背景 (2026)
+- [2026 年值得關注的 7 個 AI Agent 趨勢 — MachineLearningMastery](https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/)
+- [AI Agent 策略 — Deloitte](https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html)
+- [馴服 AI Agent：2026 年的自主勞動力 — CIO](https://www.cio.com/article/4064998/taming-ai-agents-the-autonomous-workforce-of-2026.html)
+- [2026 年 AI Agent 指南 — IBM](https://www.ibm.com/think/ai-agents)
+- [VoxYZ Agent World 代幣 — DEX Screener](https://dexscreener.com/base/0xaf8d92a6b6f8bdb1dd8f07dd5d6fb986339e89334530fc4ca823983ebdd9158a)

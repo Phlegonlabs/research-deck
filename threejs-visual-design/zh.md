@@ -288,6 +288,54 @@ Layer 5：WebGPU（前沿）
 | 動態拖尾 | 高（動作場景） | 低中 | TrailRendererJS |
 | 調色/LUT | 中 | 低 | 需要設計眼光 |
 
+## 最新動態 (2026)
+
+### WebGPU 全面進入生產環境
+
+自 2025 年以來，Three.js 視覺品質工具鏈最大的變化是 **WebGPU 瀏覽器全面支援**。2025 年 9 月，Apple 在 Safari 26（macOS、iOS、iPadOS、visionOS）中發布了 WebGPU 支援——最後一個主要阻礙消失了。加上 Chrome/Edge（自 v113，2023 年 5 月）和 Firefox（v139+，2025 年 6 月），你現在可以把 WebGPU 發布給所有用戶，並自動回退到 WebGL 2。自 Three.js r171 起，只需一行 import：
+
+```javascript
+import * as THREE from 'three/webgpu';
+// 在舊瀏覽器上自動回退到 WebGL 2
+```
+
+draw-call 密集場景通常有 **2-10 倍**的性能提升，某些資料視覺化場景甚至達到 100 倍。這直接影響視覺品質：更多 GPU 預算意味著更多後處理 pass、更高的 shadow map 解析度、更密集的粒子系統，而不會掉幀。
+
+### TSL（Three Shader Language）取代原始 GLSL
+
+Three.js 引入了 **TSL** ——一個基於 JavaScript 的、節點式的 shader 編寫系統，從同一份程式碼編譯到 WGSL（WebGPU）和 GLSL（WebGL）。不再寫 shader 字串，而是組合有型別的 JavaScript 函數：
+
+```javascript
+import { uniform, sin, positionLocal } from 'three/tsl';
+
+const time = uniform(0);
+const material = new THREE.MeshStandardNodeMaterial();
+material.colorNode = sin(time).mul(0.5).add(0.5);
+material.positionNode = positionLocal.add(sin(time).mul(0.1));
+```
+
+TSL 徹底消除了 GLSL/WGSL 的分裂。編譯器自動處理臨時變數優化、uniform 重用和死碼消除。對視覺效果工作來說，這意味著自定義 glow shader、溶解效果和程序化材質只需寫一次就能在兩個渲染器上運行。一個不斷增長的 [TSL 紋理庫](https://github.com/boytchev/tsl-textures) 提供了現成的程序化噪聲、圖案和效果作為可組合節點。
+
+### WebGPU 原生後處理（TSL 節點）
+
+對於 WebGPU 專案，Three.js 現在提供**基於 TSL 節點的內建後處理**——在 WebGPU 上下文中取代 pmndrs/postprocessing 的需要。原生方案支援 compute shader 實現環境光遮蔽、bloom、降噪和景深等效果，全都只需幾行 TSL 定義。pmndrs/postprocessing 庫仍然是純 WebGL 專案的最佳選擇，但新的 WebGPU 工作建議使用原生 TSL 管線。
+
+### 3D 高斯潑濺（Gaussian Splatting）整合
+
+**高斯潑濺**——從點雲捕獲渲染照片級真實場景——已從研究好奇心走向生產就緒的 Three.js 整合。[Spark](https://sparkjs.dev/) 是目前積極維護的渲染器，支援多種檔案格式、與標準 Three.js mesh 的整合，以及在所有設備上的快速渲染。它讓傳統 3D 幾何體和攝影測量捕獲的環境混合成為可能，開啟了混合真實/合成視覺設計的新路徑。2025 年是 3DGS 從研究走向生產的一年；2026 年是它成為標準工具的拐點。
+
+### React Three Fiber v9 + WebGPU
+
+React Three Fiber（R3F）現在通過**非同步 `gl` prop 工廠**支援 WebGPU。`Canvas` 元件接受一個非同步函數來建立和初始化 `WebGPURenderer`，使 React 生態系統完全相容新的渲染管線。結合 TSL 節點材質，R3F 專案現在可以存取 compute shader、原生後處理和所有 WebGPU 性能優勢，而不需要離開 React 範式。
+
+### 「Vibe Coding」與 AI 輔助 3D
+
+2025 年 2 月，Andrej Karpathy 創造了 **「vibe coding」** 這個詞——用 AI 工具透過描述你想要什麼來生成代碼。Three.js 成為這個工作流程的理想庫：簡單設定（只需 JavaScript，無需伺服器）、即時視覺回饋、龐大的訓練語料庫。「Vibe coding」成為 Collins 字典 2025 年度詞彙，Three.js 是 AI 輔助 3D 開發的首選庫。這大幅降低了創建視覺上令人印象深刻的 3D 網頁體驗的門檻。
+
+### Three.js 生態系統規模
+
+Three.js 現在超過 **270 萬週 NPM 下載量**——是競爭 3D 網頁庫的 270 倍。生態系統已擴展到網站之外，涵蓋博物館裝置、零售展示、資料視覺化儀表板和實體互動場館。這個庫的主導地位意味著為 Three.js 開發的視覺技術實際上就是網頁 3D 的標準。
+
 ## Steal — 可直接復用的模式
 
 ### 1. 四行基礎
@@ -318,3 +366,101 @@ renderer.shadowMap.enabled = true;
 - 烘焙光照貼圖 > 即時光源（靜態場景）
 
 最好看的 Three.js 場景，通常是假裝最多東西的那些。
+
+## References
+
+### Lightsaber & Weapon Effects
+
+- [WebGL Lightsaber — Polyboard trail technique breakdown](https://glampert.com/2015/06-07/webgl-lightsaber/)
+- [Slow-Motion Sword Trail Effect in Three.js — 80.lv](https://80.lv/articles/slow-motion-sword-trail-effect-recreated-with-three-js)
+- [TrailRendererJS — 3D motion trail library for Three.js](https://github.com/mkkellogg/TrailRendererJS)
+- [Star Wars Blaster Demo — Three.js Forum](https://discourse.threejs.org/t/blaster-demo-inspired-by-star-wars-blaster/14190)
+- [X-Wing Star Wars WebGL Game](https://amilajack.com/xwing/)
+- [My Star Wars Game — Three.js Forum](https://discourse.threejs.org/t/my-starwars-game/61887)
+
+### Glow & Bloom
+
+- [Selective Unreal Bloom — Wael Yasmina](https://waelyasmina.net/articles/unreal-bloom-selective-threejs-post-processing/)
+- [Three.js Official Selective Bloom Example](https://threejs.org/examples/webgl_postprocessing_unreal_bloom_selective.html)
+- [UnrealBloomPass Docs](https://threejs.org/docs/pages/UnrealBloomPass.html)
+- [SelectiveUnrealBloomPass Library — GitHub](https://github.com/VisualSource/selectiveUnrealBloomPass)
+- [Fake Glow Material for Three.js — GitHub](https://github.com/ektogamat/fake-glow-material-threejs)
+- [Geometric Glow Extension — GitHub](https://github.com/jeromeetienne/threex.geometricglow)
+- [Shader Glow Demo — Lee Stemkoski](https://stemkoski.github.io/Three.js/Shader-Glow.html)
+- [Best Way to Achieve Glow — Three.js Forum](https://discourse.threejs.org/t/whats-the-best-way-to-achieve-a-glow-effect/59724)
+
+### Post-Processing
+
+- [pmndrs/postprocessing Library — GitHub](https://github.com/pmndrs/postprocessing)
+- [Post-Processing with Three.js — Wael Yasmina](https://waelyasmina.net/articles/post-processing-with-three-js-the-what-and-how/)
+- [Post-Processing Tutorial — Sangil Lee](https://sangillee.com/2025-01-15-post-processing/)
+- [SSAO Example — Three.js Official](https://threejs.org/examples/webgl_postprocessing_ssao.html)
+- [Bloom — React Postprocessing Docs](https://react-postprocessing.docs.pmnd.rs/effects/bloom)
+- [SSAO — React Postprocessing Docs](https://react-postprocessing.docs.pmnd.rs/effects/ssao)
+- [Dissolve Effect with Shaders and Particles — Codrops](https://tympanus.net/codrops/2025/02/17/implementing-a-dissolve-effect-with-shaders-and-particles-in-three-js/)
+
+### Lighting & Environment
+
+- [How to Create Ultra-Realistic Scenes — Wael Yasmina](https://waelyasmina.net/articles/how-to-create-ultra-realistic-scenes-in-three.js/)
+- [Realistic Render Lesson — Three.js Journey](https://threejs-journey.com/lessons/realistic-render)
+- [Environment Map Lesson — Three.js Journey](https://threejs-journey.com/lessons/environment-map)
+- [HDR Environment Mapping — Three.js Official Example](https://threejs.org/examples/webgl_materials_envmaps_hdr.html)
+- [Live Envmaps for Realistic Studio Lighting — Three.js Forum](https://discourse.threejs.org/t/live-envmaps-and-getting-realistic-studio-lighting-almost-for-free/35627)
+- [FastHDR Environment Maps — Needle](https://cloud.needle.tools/articles/fasthdr-environment-maps)
+- [HDR Lighting in Three.js — PixelCapture](https://pixel-capture.com/tutorials/hdr-lighting-threejs-article)
+
+### Tone Mapping & Color
+
+- [Tone Mapping Overview — Three.js Forum](https://discourse.threejs.org/t/tone-mapping-overview/75204)
+- [Tone Mapping Example — Three.js Official](https://threejs.org/examples/webgl_tonemapping.html)
+- [Color Management in Three.js — Don McCurdy](https://www.donmccurdy.com/2020/06/17/color-management-in-threejs/)
+- [Color Grading Techniques in Three.js — MoldStud](https://moldstud.com/articles/p-an-in-depth-look-at-color-grading-techniques-in-threejs-post-processing)
+- [AgX Tone Mapping Support — GitHub Issue](https://github.com/mrdoob/three.js/issues/27362)
+
+### Volumetric & Atmospheric Effects
+
+- [Volumetric Light Rays — Codrops](https://tympanus.net/codrops/2022/06/27/volumetric-light-rays-with-three-js/)
+- [Volumetric Lighting with Raymarching — Maxime Heckel](https://blog.maximeheckel.com/posts/shaping-light-volumetric-lighting-with-post-processing-and-raymarching/)
+- [God Rays Post-Processing Tutorial — Red Stapler](https://redstapler.co/godrays-three-js-post-processing-tutorial/)
+- [Volumetric Light Example — GitHub](https://github.com/netpraxis/volumetric_light_example)
+- [Volumetric Lights with Radial Blur — TheFrontDev](https://www.thefrontdev.co.uk/creating-volumetric-lights-with-radial-blur-in-three.js-using-layers/)
+- [God Rays Forum Discussion](https://discourse.threejs.org/t/help-with-persistent-volumetric-light-god-rays-light-shafts-sunbeam-sunburst-for-underground-cave-scene/79085)
+
+### Trails & Particles
+
+- [Particle Trail Effect — Three.js Forum](https://discourse.threejs.org/t/particle-trail-effect/31642)
+- [Creating a Mouse Trail — Leanne Werner](https://medium.com/@leannewerner/creating-a-mouse-trail-in-three-js-fb15346ce784)
+- [Three Ways to Create 3D Particle Effects — Varun Vachhar](https://varun.ca/three-js-particles/)
+- [Interactive Particle Simulation — Three.js Forum](https://discourse.threejs.org/t/interactive-particle-simulation/67581)
+
+### General Visual Quality & Best Practices
+
+- [100 Three.js Best Practices (2026) — Utsubo](https://www.utsubo.com/blog/threejs-best-practices-100-tips)
+- [Building Efficient Scenes: Quality + Performance — Codrops](https://tympanus.net/codrops/2025/02/11/building-efficient-three-js-scenes-optimize-performance-while-maintaining-quality/)
+- [Design Fundamentals with Three.js — Zero to Mastery](https://zerotomastery.io/blog/design-fundamentals-with-threejs/)
+- [How Can I Make This Scene More Beautiful — Three.js Forum](https://discourse.threejs.org/t/how-can-i-make-this-game-scene-more-beautiful/56620)
+- [Building a Vaporwave Scene — Maxime Heckel](https://blog.maximeheckel.com/posts/vaporwave-3d-scene-with-threejs/)
+
+### Learning Resources
+
+- [Three.js Journey (Paid Course)](https://threejs-journey.com/)
+- [Poly Haven — Free HDRIs, Textures, Models](https://polyhaven.com/)
+- [Awwwards Three.js Websites — Inspiration](https://www.awwwards.com/websites/three-js/)
+- [Codrops Three.js Demos](https://tympanus.net/codrops/hub/tag/three-js/)
+
+### 2026 Updates Sources
+
+- [What Changed in Three.js 2026? WebGPU, Vibe Coding & Beyond — Utsubo](https://www.utsubo.com/blog/threejs-2026-what-changed)
+- [Migrate Three.js to WebGPU (2026) — The Complete Checklist — Utsubo](https://www.utsubo.com/blog/webgpu-threejs-migration-guide)
+- [Field Guide to TSL and WebGPU — Maxime Heckel](https://blog.maximeheckel.com/posts/field-guide-to-tsl-and-webgpu/)
+- [TSL: A Better Way to Write Shaders in Three.js — Three.js Roadmap](https://threejsroadmap.com/blog/tsl-a-better-way-to-write-shaders-in-threejs)
+- [Three.js Shading Language Wiki — GitHub](https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language)
+- [TSL Textures Collection — GitHub](https://github.com/boytchev/tsl-textures)
+- [Spark — Advanced 3D Gaussian Splatting Renderer for Three.js](https://sparkjs.dev/)
+- [GaussianSplats3D — Three.js Gaussian Splatting](https://github.com/mkkellogg/GaussianSplats3D)
+- [3D Gaussian Splatting Complete Guide (2026) — Utsubo](https://www.utsubo.com/blog/gaussian-splatting-guide)
+- [React Three Fiber v9 Migration Guide](https://r3f.docs.pmnd.rs/tutorials/v9-migration-guide)
+- [R3F WebGPU Starter — Anderson Mancini](https://github.com/ektogamat/r3f-webgpu-starter)
+- [Interactive Text Destruction with Three.js, WebGPU, and TSL — Codrops](https://tympanus.net/codrops/2025/07/22/interactive-text-destruction-with-three-js-webgpu-and-tsl/)
+- [Three.js BatchedMesh and Post Processing with WebGPURenderer — Codrops](https://tympanus.net/codrops/2024/10/30/interactive-3d-with-three-js-batchedmesh-and-webgpurenderer/)
+- [Three.js Releases — GitHub](https://github.com/mrdoob/three.js/releases)

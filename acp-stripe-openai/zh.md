@@ -449,6 +449,22 @@ ACP 技术上是"开放标准"，但实际上是 Stripe 产品：
 | 双协议策略 | 同时实现 ACP 和 UCP 获得 40% 更多流量 | 协议无关的商户基础设施有回报 |
 | 风险信号转发 | SPT 包含 Stripe 风险评分，即使非 Stripe 商户也能用 | 欺诈保护作为共享基础设施 |
 
+## 最新动态 (2026)
+
+**ChatGPT 即时结账正式上线（2026 年 2 月 16 日）。** OpenAI 面向所有美国 ChatGPT 用户（Plus、Pro、Free）推出"Buy it in ChatGPT"。美国 Etsy 卖家从第一天起即可使用。超过 100 万 Shopify 商户（包括 Glossier、SKIMS、Spanx、Vuori）已宣布即将接入。用户点击"Buy"，确认订单/配送/支付详情，无需离开对话即可完成购买。
+
+**PayPal 成为第二个 PSP，打破 Stripe 垄断（2025 年 10 月宣布，2026 年推出）。** PayPal 与 OpenAI 宣布合作为 ChatGPT 即时结账提供支持。PayPal 的 ACP 服务器 — 基于 PayPal 的订单管理系统、结账和商务平台构建 — 将把数千万小企业和主要零售品牌的产品目录带入 ChatGPT。PayPal 将负责支付合规、商户路由、PCI 合规和速率限制。PayPal 用户可以使用 PayPal 余额即时结账。这是 ACP 生态系统中第一个真正替代 Stripe 的 PSP，支持 ACP、A2A 和 AP2 协议。
+
+**Salesforce 通过 Agentforce Commerce 集成 ACP（2025 年 10 月）。** Salesforce 宣布与 Stripe 和 OpenAI 合作支持 ACP。来自 Agentforce Commerce 的产品目录将出现在 ChatGPT 中，通过 Stripe 令牌化实现嵌入式 ACP 结账。Salesforce 数据显示，2025 年上半年 AI 助手带来的线上流量同比增长 119%，预计 AI 代理将在 Cyber Week 驱动全球 22% 的订单。
+
+**Visa 推出可信代理协议（TAP）（2025 年 10 月）。** Visa 推出了一个开放框架 — 与 Cloudflare 联合开发 — 使商户能够在结账时区分合法 AI 代理和恶意机器人。该协议应对美国零售网站 AI 驱动流量激增 4,700% 的挑战。超过 100 家合作伙伴正与 Visa 合作，30+ 家在 VIC 沙盒中构建，20+ 家代理服务商直接集成。Visa 预测到 2026 年假日季，数百万消费者将使用 AI 代理购物。亚太和欧洲的试点项目正在推进中。
+
+**Mastercard Agent Pay 和代理令牌（2025 年 4 月 → 2026 年 1 月）。** Mastercard 推出 Agent Pay，引入 Mastercard 代理令牌 — 基于移动非接触支付和 Payment Passkeys 的成熟令牌化能力。Mastercard 正与 Microsoft 合作将 Agent Pay 引入 Copilot Checkout，并与 PayPal 合作将其集成到 PayPal 钱包中进行代理发起的交易。2026 年 1 月，Mastercard 推出 Agent Suite（2026 年 Q2 可用），结合可定制 AI 代理和咨询支持。Mastercard 正在跨协议合作：Google UCP、AP2、A2A 和 OpenAI ACP。
+
+**Google UCP 进入生产（2026 年 1 月）。** Google 在 NRF 2026 大会上推出通用商务协议，与 Shopify、Etsy、Wayfair、Target 和 Walmart 联合开发，获得 20+ 家公司背书，包括 Stripe、Mastercard、Visa、American Express、Best Buy、Macy's、Home Depot 和 Zalando。UCP 驱动的结账已在 AI Mode（Google 搜索）和 Gemini 应用中面向美国消费者上线，可从 Etsy 和 Wayfair 购买。Shopify、Target 和 Walmart 的集成计划随后跟进。自 NRF 发布以来，Google 收到数百家顶级科技公司、支付合作伙伴和零售商的兴趣。
+
+**多协议现实。** 代理商务格局已经形成并行生态系统：ACP（OpenAI/Stripe）在 ChatGPT 中，UCP（Google）在搜索 AI 模式和 Gemini 中，Mastercard Agent Pay 在 Copilot 中，Visa TAP 作为跨平台认证层。Etsy 和 Shopify 已在 ACP 和 UCP 上上线或宣布接入。PayPal 通过其 ACP 服务器桥接协议。原始分析中的实用建议 — 同时实现 ACP 和 UCP — 现已被生态系统趋同所验证。
+
 ## 总结
 
 **已经落地的**：ACP 在生产环境运行。真实用户通过 ChatGPT 即时结账购买真实产品。SPT 机制很巧妙 — 它真正解决了"代理需要付款但不应该持有凭证"的问题。规范简洁、精简，迭代迅速。
@@ -458,3 +474,76 @@ ACP 技术上是"开放标准"，但实际上是 Stripe 产品：
 **诚实评估**：ACP 是大规模代理商务的第一个可工作实现。8 亿+ ChatGPT 用户基础给了它任何竞争协议无法匹敌的分发能力。但 4% 费用 + Stripe 依赖制造了与 x402+Coinbase 相同的中心化张力。真正的问题是 UCP（Google）是否能迫使真正的多供应商竞争，还是我们最终得到两个专有的"开放标准"。
 
 **今天该做什么**：如果你在线销售实体产品，申请 ChatGPT 即时结账。4% 费用的 30 天免费试用意味着测试零风险。如果你在构建代理基础设施，实现 ACP 的结账端点 — 它们是简单的 REST，规范足够稳定可以在上面构建。但也要密切关注 UCP，考虑同时实现两者。
+
+## References
+
+### Official Specification & Source Code
+
+- [ACP Specification — Stripe Docs](https://docs.stripe.com/agentic-commerce/protocol/specification) — Full OpenAPI spec: 5 endpoints, data schemas, error handling
+- [ACP Getting Started — OpenAI](https://developers.openai.com/commerce/guides/get-started/) — Merchant onboarding guide: product feeds, checkout endpoints, certification
+- [Delegated Payment Spec — OpenAI](https://developers.openai.com/commerce/specs/payment/) — SPT lifecycle, credential delegation flow, PSP integration
+- [ACP GitHub Repository](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol) — Open-source spec (Apache 2.0), RFCs, examples, all spec versions
+- [ACP Community Site — agenticcommerce.dev](https://www.agenticcommerce.dev/) — Protocol overview, docs, contribution info
+- [Integrate ACP — Stripe Docs](https://docs.stripe.com/agentic-commerce/protocol) — Stripe integration guide: SPT handling, webhook setup
+
+### Announcements & Press
+
+- [Stripe Powers Instant Checkout in ChatGPT — Stripe Newsroom](https://stripe.com/newsroom/news/stripe-openai-instant-checkout) — Launch announcement, merchant list, SPT introduction
+- [OpenAI Expands Agentic Commerce Push — Digital Commerce 360](https://www.digitalcommerce360.com/2026/02/16/openai-expands-agentic-commerce-push/) — Feb 2026 expansion coverage
+- [Developing ACP — Stripe Blog](https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce) — Stripe's design rationale
+- [Buy it in ChatGPT — OpenAI](https://openai.com/index/buy-it-in-chatgpt/) — Official launch announcement
+
+### Technical Deep Dives
+
+- [ChatGPT Instant Checkout Retailer Guide — Ekamoira](https://www.ekamoira.com/blog/chatgpt-instant-checkout-agentic-commerce-protocol-2026) — Fee structure (4% + 2.9%), onboarding paths, market data, early adopters
+- [ACP Deep Dive — Fintech Wrap Up](https://www.fintechwrapup.com/p/deep-dive-inside-stripe-and-openais) — Business model analysis, merchant economics, competitive positioning
+- [ACP for Product Teams — Department of Product](https://departmentofproduct.substack.com/p/what-is-acp-agentic-commerce-protocol) — Product manager perspective
+- [ACP Strategic Blueprint — WeArePresta](https://wearepresta.com/agentic-commerce-protocol-acp-the-definitive-2026-guide-for-ai-driven-retail/) — Strategic analysis for retailers
+- [Step-by-Step ACP Implementation — Medium](https://medium.com/@maheshlambe/step-by-step-guide-for-implementing-the-agentic-commerce-protocol-acp-aed4f9b1a457) — Developer walkthrough
+
+### Reference Implementation
+
+- [ACP Demo — locus-technologies/agentic-commerce-protocol-demo](https://github.com/locus-technologies/agentic-commerce-protocol-demo) — TypeScript/Node.js demo: MCP-UI client + Merchant API + PSP server, Docker Compose
+
+### Google UCP (Competing Protocol)
+
+- [Universal Commerce Protocol (UCP) — Google Developers Blog](https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/) — Architecture, /.well-known/ucp discovery, capability manifest, payment handlers
+- [How to Implement UCP — WeArePresta](https://wearepresta.com/how-to-implement-universal-commerce-protocol-ucp-in-2026-complete-well-known-ucp-setup-guide/) — UCP setup guide
+- [Google UCP Developer Guide](https://developers.google.com/merchant/ucp) — Official UCP documentation
+- [Building the Universal Commerce Protocol — Shopify Engineering](https://shopify.engineering/ucp) — Shopify's UCP implementation perspective
+- [UCP Launch at NRF 2026 — Google Blog](https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/) — Google's retail tools and UCP announcement
+
+### Additional Technical Sources
+
+- [Shared Payment Tokens — Stripe Docs](https://docs.stripe.com/agentic-commerce/concepts/shared-payment-tokens) — SPT lifecycle, webhook events, credential isolation
+- [Agentic Checkout Spec — OpenAI](https://developers.openai.com/commerce/specs/checkout/) — Full checkout endpoint spec
+- [Agentic Commerce Suite — Stripe Blog](https://stripe.com/blog/agentic-commerce-suite) — Stripe's hosted ACP solution for merchants
+- [Agentic Commerce Solutions — Stripe Blog](https://stripe.com/blog/introducing-our-agentic-commerce-solutions) — Enterprise integration patterns
+- [ChatGPT Product Feed Guide — Lengow](https://www.lengow.com/get-to-know-more/chatgpt-product-feed/) — Product feed format deep dive
+- [ACP vs UCP — Checkout.com](https://www.checkout.com/blog/openai-acp-google-ucp-difference) — Head-to-head protocol comparison
+
+### Protocol Comparisons
+
+- [ACP, AP2, x402 Comparison — Orium](https://orium.com/blog/agentic-payments-acp-ap2-x402) — Payment protocol comparison
+- [AP2 vs ACP — Grid Dynamics](https://www.griddynamics.com/blog/agentic-payments) — Enterprise analysis
+- [MCP, A2A, AP2, ACP, x402 & ERC-8004 — PayRam](https://payram.com/blog/mcp-a2a-ap2-acp-x402-erc-8004) — Full 6-protocol stack comparison
+- [Top 6 Agent-Native Rails — MarkTechPost](https://www.marktechpost.com/2025/11/14/comparing-the-top-6-agent-native-rails-for-the-agentic-internet-mcp-a2a-ap2-acp-x402-and-kite/) — Protocol landscape
+
+### PSP & Card Network Initiatives
+
+- [PayPal + OpenAI Partnership — PayPal Newsroom](https://newsroom.paypal-corp.com/2025-10-28-OpenAI-and-PayPal-Team-Up-to-Power-Instant-Checkout-and-Agentic-Commerce-in-ChatGPT) — PayPal ACP Server announcement
+- [PayPal Agentic Commerce — paypal.ai](https://www.paypal.ai/agenticcommerce) — PayPal's ACP Server platform
+- [Making Sense of the AI Shopping Protocol Moment — PayPal](https://newsroom.paypal-corp.com/2026-01-22-Making-Sense-of-the-AI-Shopping-Protocol-Moment) — PayPal's protocol landscape analysis
+- [Visa Trusted Agent Protocol — Visa](https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.21716.html) — TAP framework for AI commerce
+- [Visa Completes Secure AI Transactions — Visa](https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.21961.html) — Visa partner progress and 2026 predictions
+- [Mastercard Agent Pay — Mastercard](https://www.mastercard.com/us/en/business/artificial-intelligence/mastercard-agent-pay.html) — Agentic Tokens and Agent Pay platform
+- [Mastercard Agent Suite Launch — Mastercard](https://www.mastercard.com/global/en/news-and-trends/press/2026/january/mastercard-launches-agent-suite-to-ready-enterprises-for-a-new-e.html) — Q2 2026 enterprise agent tools
+- [Mastercard + PayPal Agentic Commerce — PayPal](https://newsroom.paypal-corp.com/2025-10-27-Mastercard-and-PayPal-Join-Forces-To-Accelerate-Secure-Global-Agentic-Commerce) — Joint agentic commerce acceleration
+- [Salesforce ACP Support — Salesforce](https://www.salesforce.com/news/press-releases/2025/10/14/stripe-openai-agentic-commerce-protocol-announcement/?bc=OTH) — Agentforce Commerce + ACP integration
+
+### Market Analysis
+
+- [Agentic Commerce Complete Guide 2026 — Ekamoira](https://www.ekamoira.com/blog/what-is-agentic-commerce-the-complete-2026-guide-to-ai-shopping-agents) — 45% consumer AI shopping adoption
+- [AI Shopping Assistant Guide 2026 — Opascope](https://opascope.com/insights/ai-shopping-assistant-guide-2026-agentic-commerce-protocols/) — Protocol comparison and market landscape
+- [2025: The Year AI Agents Entered Payments — PYMNTS](https://www.pymnts.com/news/artificial-intelligence/2025/2025-the-year-ai-agents-entered-payments-and-changed-whos-in-control) — Industry transformation analysis
+- [AI Agent Payments Landscape 2026 — Proxy](https://www.useproxy.ai/blog/ai-agent-payments-landscape-2026) — Protocols, players, and primitives overview

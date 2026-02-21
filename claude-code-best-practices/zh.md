@@ -324,6 +324,36 @@ claude /allowed-tools
 
 權限會累積；定期審查防止安全漂移。
 
+## 最新動態 (2026)
+
+### Opus 4.6 與模型陣容更新
+
+Anthropic 於 2026 年 2 月 5 日發布了 Claude Opus 4.6 和 Sonnet 4.6。Opus 4.6 具備 1M token 上下文視窗（測試版）、128K 輸出 token 限制（從 64K 翻倍）以及自適應思考功能，讓模型根據上下文線索自動調整擴展思考深度。Agent Teams（TeammateTool）隨 Opus 4.6 正式發布，通過 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` 啟用。Sonnet 4.5 的 1M 上下文版本已退役；Sonnet 4.6 以相同的 1M 上下文視窗取代之。這些模型升級意味著 Claude Code 中的 Opus vs Sonnet 決策矩陣已經改變 -- Opus 4.6 憑藉擴展的上下文原生處理更大的代碼庫，而 Sonnet 4.6 以 Sonnet 的價格提供接近 Opus 的編碼質量。
+
+### Skills 系統取代斜杠命令
+
+自定義斜杠命令（`.claude/commands/`）已正式合併到 Skills 系統（`.claude/skills/`）。現有的命令文件仍然可用，但 Skills 現在是推薦的方式。Skills 相比普通命令增加了關鍵能力：用於控制調用行為的 YAML 前置資料（`disable-model-invocation`、`user-invocable`）、支持模板和腳本的附屬文件目錄、用於沙盒執行的 `allowed-tools` 限制、用於子代理隔離的 `context: fork`，以及通過 `!`command`` 語法在發送給 Claude 之前預處理 shell 輸出的動態上下文注入。Skills 還遵循 [Agent Skills](https://agentskills.io) 開放標準，實現跨工具可移植性。Monorepo 支持自動運作 -- 嵌套的 `.claude/skills/` 目錄中的 Skills 會根據正在編輯的文件自動被發現。
+
+### 內建 Git Worktree 支持（`--worktree` 標誌）
+
+Claude Code 現在有原生的 `--worktree`（`-w`）標誌，可以創建隔離的 git worktree 並在其中啟動會話。這消除了之前並行功能開發所需的手動 `git worktree add` 工作流程。子代理也支持 `"worktree"` 隔離，使單個會話內可以並行工作，每個子代理在自己的 worktree 中操作而不產生文件衝突。結合 `--tmux`，你可以啟動完全隔離的後台會話：`claude --worktree my-feature --tmux`。新的 `WorktreeCreate` 和 `WorktreeRemove` hook 事件（v2.1.50）允許在 worktree 創建或銷毀時進行自定義 VCS 設置自動化。
+
+### Agent Teams 多代理編排
+
+Agent Teams 讓你協調多個 Claude Code 實例，其中一個會話作為團隊領導，分配任務並綜合結果。與子代理（共享父代理的上下文視窗）不同，隊友各自擁有獨立的上下文視窗，可以直接相互通信。你也可以繞過領導直接與單個隊友互動。最佳使用場景：並行調查的研究、分別所有權的新模塊、競爭假設的調試，以及跨層協調（前端/後端/測試）。權衡是顯著的 token 開銷 -- Agent Teams 最適合隊友可以在不同文件上獨立操作的場景。
+
+### IDE 整合成熟
+
+VS Code 擴展現在提供原生圖形界面，包含計劃預覽、自動接受編輯、帶行範圍的 @-mention 文件、對話歷史標籤頁和多個並行對話。JetBrains 插件（IntelliJ、PyCharm、WebStorm）在 IDE 終端內運行 CLI，更改通過 IDE 的 diff 查看器呈現。VS Code 整合稍微更精緻（更快的上下文載入），但兩個平台都能可靠工作。對於高級用戶，CLI 仍然是最靈活的選擇，功能交付更快。
+
+### Hooks 系統擴展
+
+Hooks 系統已從最初的 `PreToolUse`/`PostToolUse` 增長到 15 個生命週期事件。新增包括用於多代理工作流的 `TeammateIdle` 和 `TaskCompleted`、用於設置修改時安全審計的 `ConfigChange`，以及用於 worktree 生命週期管理的 `WorktreeCreate`/`WorktreeRemove`。`Stop` 和 `SubagentStop` hook 輸入新增了 `last_assistant_message` 字段，提供最終回應文本，無需解析轉錄文件。通過延遲 `SessionStart` hook 執行，啟動性能提升了約 500ms。`disableAllHooks` 設置現在正確遵守託管設置層級，防止非託管配置覆蓋組織策略 hooks。
+
+### 性能和平台改進 (v2.1.37-v2.1.50)
+
+2026 年 2 月的發布節奏中，僅 v2.1.47 就帶來了 60+ 修復。關鍵改進：Windows ARM64 原生二進制支持、`claude auth login/status/logout` CLI 子命令、使用 `/rename` 自動生成會話名稱、Agent Teams 和任務狀態管理的內存洩漏修復、改進的壓縮行為（壓縮後清除緩存、文件歷史快照限制），以及用於可配置多行輸入的 `chat:newline` 按鍵綁定操作。自動記憶（MEMORY.md）在 v2.1.32 中引入 -- Claude 現在會自行記錄項目慣例和用戶偏好的筆記，與 CLAUDE.md 分開。
+
 ## 關鍵洞察
 
 非顯而易見的洞察：**上下文新鮮度優於上下文積累**。
@@ -331,3 +361,96 @@ claude /allowed-tools
 直覺認為「更多上下文 = 更好的理解」。現實是：LLM 輸出質量隨上下文長度增加而下降。最佳實踐者積極使用 `/clear` 並撰寫交接文檔，將每次會話視為帶有精心策劃上下文的全新開始，而非連續對話。
 
 這顛覆了心智模型：從「AI 助手記住一切」轉變為「AI 助手以完美的簡報文檔重新開始」。
+
+## References
+
+### 官方文檔
+- [Best Practices for Claude Code - Claude Code Docs](https://code.claude.com/docs/en/best-practices)
+- [Common Workflows - Claude Code Docs](https://code.claude.com/docs/en/common-workflows)
+- [Optimize Your Terminal Setup - Claude Code Docs](https://code.claude.com/docs/en/terminal-config)
+- [Orchestrate Teams of Claude Code Sessions - Claude Code Docs](https://code.claude.com/docs/en/agent-teams)
+- [Using CLAUDE.MD Files: Customizing Claude Code for Your Codebase | Claude](https://claude.com/blog/using-claude-md-files)
+- [Extend Claude with Skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
+- [Hooks Reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
+- [Claude Code Releases - GitHub](https://github.com/anthropics/claude-code/releases)
+- [What's New in Claude 4.6 - Claude API Docs](https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6)
+- [Introducing Claude Opus 4.6 - Anthropic](https://www.anthropic.com/news/claude-opus-4-6)
+
+### 綜合指南
+- [How I Use Claude Code (+ My Best Tips) - Builder.io](https://www.builder.io/blog/claude-code)
+- [32 Claude Code Tips: From Basics to Advanced - Agentic Coding Substack](https://agenticcoding.substack.com/p/32-claude-code-tips-from-basics-to)
+- [Claude Code CLI Cheatsheet: Config, Commands, Prompts, + Best Practices - Shipyard](https://shipyard.build/blog/claude-code-cheat-sheet/)
+- [Claude Code Complete Guide 2026: From Basics to Advanced MCP, Agents & Git Workflows](https://www.jitendrazaa.com/blog/ai/claude-code-complete-guide-2026-from-basics-to-advanced-mcp-2/)
+- [Cooking with Claude Code: The Complete Guide | Sid Bharath](https://www.siddharthbharath.com/claude-code-the-complete-guide/)
+- [50 Claude Code Tips & Tricks for Daily Coding in 2026 - Geeky Gadgets](https://www.geeky-gadgets.com/claude-code-tips-2/)
+- [Claude Code Best Practices: 15 Tips from 6 Projects (2026) | aiorg.dev](https://aiorg.dev/blog/claude-code-best-practices)
+
+### GitHub 資源
+- [ykdojo/claude-code-tips: 45 Tips for Getting the Most Out of Claude Code](https://github.com/ykdojo/claude-code-tips)
+- [shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice)
+- [hesreallyhim/awesome-claude-code: Curated List of Skills, Hooks, Slash-Commands](https://github.com/hesreallyhim/awesome-claude-code)
+- [trailofbits/claude-code-config: Opinionated Defaults and Workflows](https://github.com/trailofbits/claude-code-config)
+- [disler/claude-code-hooks-mastery: Master Claude Code Hooks](https://github.com/disler/claude-code-hooks-mastery)
+
+### CLAUDE.md 配置
+- [Writing a Good CLAUDE.md | HumanLayer Blog](https://www.humanlayer.dev/blog/writing-a-good-claude-md)
+- [Creating the Perfect CLAUDE.md for Claude Code - Dometrain](https://dometrain.com/blog/creating-the-perfect-claudemd-for-claude-code/)
+- [ClaudeLog - Claude Code Docs, Guides, Tutorials & Best Practices](https://claudelog.com/configuration/)
+- [How to Write a Good CLAUDE.md File - Builder.io](https://www.builder.io/blog/claude-md-guide)
+- [Claude Skills and CLAUDE.md: A Practical 2026 Guide for Teams - Gend](https://www.gend.co/blog/claude-skills-claude-md-guide)
+
+### 終端整合
+- [Claude Code + tmux: The Ultimate Terminal Workflow for AI Development](https://www.blle.co/blog/claude-code-tmux-beautiful-terminal)
+- [How to Use Claude Code CLI and Tmux for Continuous Workflows - Geeky Gadgets](https://www.geeky-gadgets.com/making-claude-code-work-247-using-tmux/)
+- [Build a 24/7 Autonomous Coding Assistant with Tmux & Claude Code - Geeky Gadgets](https://www.geeky-gadgets.com/autonomous-coding-assistant-setup/)
+- [How tmux Automation Made Claude Code Development Much More Efficient - Qiita](https://qiita.com/vibecoding/items/c04741332b6617781684)
+- [Combining tmux and Claude to Build an Automated AI Agent System - Scuti Ai](https://scuti.asia/combining-tmux-and-claude-to-build-an-automated-ai-agent-system-for-mac-linux/)
+- [Multi-agent Claude Code Workflow Using tmux for Parallel Sessions - GitHub Gist](https://gist.github.com/andynu/13e362f7a5e69a9f083e7bca9f83f60a)
+- [Notification System for Tmux and Claude Code - Alexandre Quemy](https://quemy.info/2025-08-04-notification-system-tmux-claude.html)
+
+### Ghostty 終端
+- [How to Integrate Claude Code with Neovim Using Ghostty Terminal Panes | Daniel Miessler](https://danielmiessler.com/blog/claude-code-neovim-ghostty-integration)
+- [The State of Vibe Coding: Agentic Software Development with Ghostty, Git Worktree & Claude Code | Medium](https://medium.com/@takafumi.endo/the-state-of-vibe-coding-agentic-software-development-with-ghostty-git-worktree-claude-code-18f4d56b8e01)
+- [Why Ghostty Terminal Is My Fastest Claude Code Workflow | Engr Mejba Ahmed](https://www.mejba.me/blog/ghostty-terminal-claude-code-workflow)
+- [Ghostty Terminal Configuration | DeepWiki](https://deepwiki.com/awwsillylife/ghostty-claude-code-setup/4.1-ghostty-terminal-configuration)
+- [Claude Code Session Fork for Ghostty - GitHub Gist](https://gist.github.com/yottahmd/8e6d0a4213be6a559dfe3dcdd350ce09)
+- [Add Shift-Enter Support for Ghostty via `/terminal-setup` - GitHub Issue](https://github.com/anthropics/claude-code/issues/1282)
+
+### 生產力與工作流
+- [Claude Code Tips: 10 Real Productivity Workflows for 2026 - F22 Labs](https://www.f22labs.com/blogs/10-claude-code-productivity-tips-for-every-developer/)
+- [The Claude Code Playbook: 5 Tips Worth $1000s in Productivity | White Prompt Blog](https://blog.whiteprompt.com/the-claude-code-playbook-5-tips-worth-1000s-in-productivity-22489d67dd89)
+- [My 7 Essential Claude Code Best Practices for Production-Ready AI in 2025 - Eesel](https://www.eesel.ai/blog/claude-code-best-practices)
+- [The Ultimate Guide to Claude Code: Production Prompts, Power Tricks, and Workflow Recipes | Medium](https://medium.com/@tonimaxx/the-ultimate-guide-to-claude-code-production-prompts-power-tricks-and-workflow-recipes-42af90ca3b4a)
+- [Two Simple Tricks That Will Dramatically Improve Your Productivity with Claude | Medium](https://julsimon.medium.com/two-simple-tricks-that-will-dramatically-improve-your-productivity-with-claude-db90ce784931)
+- [Mastering Claude Code: Essential Tips for Maximum Productivity - Tembo](https://www.tembo.io/blog/mastering-claude-code-tips)
+- [How I Use Claude Code to Maximize Productivity | Medium](https://medium.com/@shivang.tripathii/how-i-use-claude-code-to-maximize-productivity-c853104804d6)
+- [How I Use Every Claude Code Feature - Shrivu Shankar](https://blog.sshh.io/p/how-i-use-every-claude-code-feature)
+
+### Agent Teams 與多代理
+- [How to Set Up and Use Claude Code Agent Teams | Medium](https://darasoba.medium.com/how-to-set-up-and-use-claude-code-agent-teams-and-actually-get-great-results-9a34f8648f6d)
+- [How Claude Code Agent Teams Changed Everything About AI Coding | How Do I Use AI](https://www.howdoiuseai.com/blog/2026-02-10-how-claude-code-agent-teams-changed-everything-abo)
+- [Claude Code Agent Teams: The Complete Guide 2026 - ClaudeFast](https://claudefa.st/blog/guide/agents/agent-teams)
+- [Claude Code's Hidden Multi-Agent System - Paddo.dev](https://paddo.dev/blog/claude-code-hidden-swarm/)
+- [Claude Code Swarm Orchestration Skill - GitHub Gist](https://gist.github.com/kieranklaassen/4f2aba89594a4aea4ad64d753984b2ea)
+- [Multi-agent Orchestration for Claude Code in 2026 - Shipyard](https://shipyard.build/blog/claude-code-multi-agent/)
+- [Claude Code Swarms - Addy Osmani](https://addyosmani.com/blog/claude-code-agent-teams/)
+
+### IDE 整合
+- [Use Claude Code in VS Code - Claude Code Docs](https://code.claude.com/docs/en/vs-code)
+- [Claude Code Plugin for JetBrains IDEs - JetBrains Marketplace](https://plugins.jetbrains.com/plugin/27310-claude-code-beta-)
+- [Claude Code IDE Integrations for JetBrains and VS Code | Medium](https://medium.com/vibecodingpub/claude-code-ide-integrations-for-jetbrains-ides-and-vs-code-71023d27b86d)
+
+### Worktree 與隔離
+- [Claude Code Worktree: Complete Guide for Developers - SupaTest](https://supatest.ai/blog/claude-code-worktree-the-complete-developer-guide)
+- [Claude Code Multiple Agent Systems: Complete 2026 Guide - Eesel](https://www.eesel.ai/blog/claude-code-multiple-agent-systems-complete-2026-guide)
+
+### 模型更新
+- [Anthropic Releases Opus 4.6 with New 'Agent Teams' | TechCrunch](https://techcrunch.com/2026/02/05/anthropic-releases-opus-4-6-with-new-agent-teams/)
+- [Claude Opus 4.6: What Actually Changed and Why It Matters | Medium](https://medium.com/data-science-collective/claude-opus-4-6-what-actually-changed-and-why-it-matters-1c81baeea0c9)
+- [Claude Sonnet 4.6 Promises Opus-Level Coding at Sonnet Pricing - The New Stack](https://thenewstack.io/claude-sonnet-46-launch/)
+
+### 教程
+- [Claude Code Tutorial for Beginners - Complete 2026 Guide to AI Coding - codewithmukesh](https://codewithmukesh.com/blog/claude-code-for-beginners/)
+- [Claude Code CLI Best Practices Checklist - Engineering Notes](https://notes.muthu.co/2026/02/claude-code-cli-best-practices-checklist/)
+- [Mastering the Vibe: Claude Code Best Practices That Actually Work | Medium](https://dinanjana.medium.com/mastering-the-vibe-claude-code-best-practices-that-actually-work-823371daf64c)
+- [Claude Code Hooks: Complete Guide with 20+ Ready-to-Use Examples (2026) | aiorg.dev](https://aiorg.dev/blog/claude-code-hooks)

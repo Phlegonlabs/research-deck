@@ -199,15 +199,81 @@ Assume every agent will get stuck. Periodic sweeper detects stale missions and r
 ### 5. Kill the Second Scheduler
 When two things do the same job, one is a bug. Always choose one source of truth.
 
-## Sources
+## Latest Updates (2026)
 
+### VoxYZ Evolves from Demo to Product Platform
+
+VoxYZ has matured from a 2-week experiment into a full product platform at [voxyz.space](https://www.voxyz.space/). The six agents now autonomously **track real problems, validate demand, and ship solutions** — going beyond content generation into actual product development. The system runs on a single VPS ($8/month) and one Supabase database, demonstrating that autonomous multi-agent companies can operate at remarkably low infrastructure cost.
+
+### Full Tutorial and Production Architecture Released
+
+VoxYZ published a [complete tutorial](https://x.com/Voxyz_ai/status/2020272022417289587) detailing the production architecture. The system runs **10 processes and 18 cron jobs across 4 AI models** on one server. Named worker processes include: `roundtable-worker` (conversation orchestration + memory extraction), `x-autopost` (tweet publishing), `analyze-worker` (analysis task execution), `content-worker` (content creation), and `crawl-worker` (web crawling). This reveals a more sophisticated production setup than the original 2-week prototype suggested.
+
+### Productization: Framework, Schema, and Course
+
+VoxYZ now offers its multi-agent architecture as a reusable package: a **multi-agent framework**, **production database schema**, and a **video course**. Early adopters report pulling templates and having their first agent pipeline running in under 2 hours — saving at least a week of scaffolding. This signals a shift from "look what I built" to "here's how you build it."
+
+### OpenClaw Foundation Transition
+
+A major development for VoxYZ's core infrastructure: [OpenClaw creator Peter Steinberger joined OpenAI on Feb 14, 2026](https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/). Sam Altman called him "a genius with amazing ideas about the future of very smart agents interacting with each other." OpenClaw will transition to an **open-source foundation** that OpenAI will continue to support. For VoxYZ, this is a double-edged sword — the underlying framework gains massive institutional backing, but the development direction may shift toward OpenAI's priorities. Recent OpenClaw updates include 1M context beta for Opus/Sonnet, a `/subagents spawn` command, an iOS share extension, and Telegram voice-note transcription.
+
+### Crypto Token on Base
+
+VoxYZ launched a token ("VoxYZ Agent World") on the Base blockchain, [trading on Uniswap](https://dexscreener.com/base/0xaf8d92a6b6f8bdb1dd8f07dd5d6fb986339e89334530fc4ca823983ebdd9158a) at micro-cap valuations (~$22K market cap). This follows the broader trend of AI agent projects launching tokens — see Virtuals Protocol and similar AI-agent-token platforms. Whether this adds value or is a distraction from the core product remains to be seen.
+
+### Industry Context: 2026 Is the Year of Agent Scaling
+
+VoxYZ's timing aligns with explosive industry growth. Gartner predicts **40% of enterprise applications will embed AI agents by end of 2026** (up from <5% in 2025). The agentic AI market is projected to reach $52B by 2030. However, Gartner also warns that **over 40% of agentic AI projects will fail by 2027** because legacy systems cannot support modern AI execution demands. VoxYZ's lightweight architecture (1 VPS + 1 Supabase) sidesteps this legacy-system problem entirely — it was born cloud-native with zero legacy debt.
+
+### Viral Traction and Community
+
+The VoxYZ Medium article was published in the [Coding Nexus](https://medium.com/coding-nexus/) publication in February 2026, and the [@Voxyz_ai](https://x.com/Voxyz_ai) X account has grown to 6,200+ followers. The project has attracted attention as a practical demonstration that multi-agent autonomous systems are no longer theoretical — they run real companies at real scale, today.
+
+## References
+
+### Primary Source
+- [@Voxyz_ai tweet thread](https://x.com/Voxyz_ai/status/2019914775061270747) — "I Built an AI Company with OpenClaw + Vercel + Supabase — Two Weeks Later, They Run It Themselves"
+- [VoxYZ website](https://www.voxyz.space/) — 6 AI Agents, One Company
+- [VoxYZ About page](https://www.voxyz.space/about)
+- [VoxYZ full tutorial tweet](https://x.com/Voxyz_ai/status/2020272022417289587) — "The Full Tutorial: 6 AI Agents That Run a Company — How I Built Them From Scratch"
+- [Medium article — Coding Nexus](https://medium.com/coding-nexus/i-built-an-ai-company-with-openclaw-vercel-supabase-two-weeks-later-they-run-it-themselves-514cf3db07e6)
+
+### Multi-Agent Orchestration Patterns
 - [Four Design Patterns for Event-Driven Multi-Agent Systems — Confluent](https://www.confluent.io/blog/event-driven-multi-agent-systems/)
 - [Choosing the Right Orchestration Pattern — Kore.ai](https://www.kore.ai/blog/choosing-the-right-orchestration-pattern-for-multi-agent-systems)
+- [CrewAI vs LangGraph vs AutoGen — DataCamp](https://www.datacamp.com/tutorial/crewai-vs-langgraph-vs-autogen)
+
+### OpenClaw
+- [OpenClaw Architecture Guide — Vertu](https://vertu.com/ai-tools/openclaw-clawdbot-architecture-engineering-reliable-and-controllable-ai-agents/)
+- [What is OpenClaw — Contabo](https://contabo.com/blog/what-is-openclaw-self-hosted-ai-agent-guide/)
+- [OpenClaw Risks — Cyber Strategy Institute](https://cyberstrategyinstitute.com/openclaw-risks-autonomous-ai-agents/)
+- [OpenClaw GitHub](https://github.com/openclaw/openclaw)
+- [OpenClaw creator joins OpenAI — TechCrunch](https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/)
+- [Peter Steinberger's announcement](https://steipete.me/posts/2026/openclaw)
+- [What is OpenClaw in 2026 — DigitalOcean](https://www.digitalocean.com/resources/articles/what-is-openclaw)
+
+### State Management
 - [State Management for AI Agents: Redis vs External DBs — DEV](https://dev.to/inboryn_99399f96579fcd705/state-management-patterns-for-long-running-ai-agents-redis-vs-statefulsets-vs-external-databases-39c5)
+- [Supabase vs Redis Comparison — Leanware](https://www.leanware.co/insights/supabase-vs-redis-comparison)
+
+### Failure & Self-Healing
 - [Multi-Agent Failure Recovery — Galileo](https://galileo.ai/blog/multi-agent-ai-system-failure-recovery)
 - [Why 40% of Agentic AI Projects Fail — Squirro](https://squirro.com/squirro-blog/avoiding-agentic-ai-failure)
 - [The Agent Company: AI Agents Failed 75% — Reworked](https://www.reworked.co/digital-workplace/the-fake-startup-that-exposed-ais-real-limits-as-autonomous-workers/)
+- [4 Common Causes of Agentic AI Failure — Built In](https://builtin.com/articles/agentic-ai-implementation-failure-causes)
+
+### Queue & Distributed Systems Patterns
 - [Avoiding Insurmountable Queue Backlogs — AWS](https://aws.amazon.com/builders-library/avoiding-insurmountable-queue-backlogs/)
-- [OpenClaw Architecture Guide — Vertu](https://vertu.com/ai-tools/openclaw-clawdbot-architecture-engineering-reliable-and-controllable-ai-agents/)
-- [OpenClaw Risks — Cyber Strategy Institute](https://cyberstrategyinstitute.com/openclaw-risks-autonomous-ai-agents/)
-- [CrewAI vs LangGraph vs AutoGen — DataCamp](https://www.datacamp.com/tutorial/crewai-vs-langgraph-vs-autogen)
+- [Backpressure in Distributed Systems — DEV](https://dev.to/devcorner/effective-backpressure-handling-in-distributed-systems-techniques-implementations-and-workflows-16lm)
+- [Transactional Outbox Pattern — microservices.io](https://microservices.io/patterns/data/transactional-outbox.html)
+
+### Vercel Cron
+- [Vercel Cron Jobs Setup Guide](https://vercel.com/guides/how-to-setup-cron-jobs-on-vercel)
+- [Running Cron Jobs on Vercel Without Paying Extra — DEV](https://dev.to/hexshift/how-to-run-cron-jobs-in-a-vercel-serverless-environment-without-paying-extra-502h)
+
+### Industry Context (2026)
+- [7 Agentic AI Trends to Watch in 2026 — MachineLearningMastery](https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/)
+- [Agentic AI Strategy — Deloitte](https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2026/agentic-ai-strategy.html)
+- [Taming AI Agents: The Autonomous Workforce of 2026 — CIO](https://www.cio.com/article/4064998/taming-ai-agents-the-autonomous-workforce-of-2026.html)
+- [The 2026 Guide to AI Agents — IBM](https://www.ibm.com/think/ai-agents)
+- [VoxYZ Agent World token — DEX Screener](https://dexscreener.com/base/0xaf8d92a6b6f8bdb1dd8f07dd5d6fb986339e89334530fc4ca823983ebdd9158a)

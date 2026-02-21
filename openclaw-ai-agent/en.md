@@ -360,6 +360,38 @@ Unlike most "crypto + AI" plays, OpenClaw's onchain integration has practical us
 
 ---
 
+## Latest Updates (2026)
+
+### Founder Joins OpenAI, Project Moves to Foundation
+
+On February 14, 2026, Peter Steinberger announced he would be joining OpenAI to "drive the next generation of personal agents," as Sam Altman described it on X. OpenClaw will transition to an independent open-source foundation under the MIT license — sponsored by OpenAI but not controlled by them. This acqui-hire signals that OpenAI views the personal agent gateway pattern as core to their future strategy, not just a side project. VentureBeat called it "the beginning of the end of the ChatGPT era" — the shift from chat interfaces to autonomous agents acting on your behalf.
+
+### Explosive Growth: 180K+ Stars, 2M Visitors in One Week
+
+OpenClaw became the fastest-growing open-source AI project in GitHub history. The project surpassed 180,000 GitHub stars by mid-February 2026, with over 2 million visitors in a single week. This growth was fueled by the viral popularity of the Moltbook project and extensive media coverage (CNBC, Scientific American, Fortune, Bloomberg). Raspberry Pi Holdings shares surged 43% as enthusiasts rushed to deploy OpenClaw on dedicated hardware.
+
+### Critical Security Crisis (CVE-2026-25253 + Six Additional Vulnerabilities)
+
+A critical remote code execution vulnerability (CVE-2026-25253, CVSS 8.8) was disclosed on February 3, 2026 — a logic flaw allowing an attacker to steal a user's authentication token and achieve RCE with a single click through the victim's browser. The vulnerability was patched in v2026.1.29. Subsequently, Endor Labs researchers revealed six additional vulnerabilities including SSRF, missing authentication, and path traversal bugs. Bitsight observed over 30,000 exposed OpenClaw instances on the public internet with authentication bypass conditions. Over 341 malicious skills were documented circulating in the ecosystem, with independent scans reporting more than one-third of community skills contained vulnerabilities or risky behaviors.
+
+### Enterprise Bans: Meta, Google DeepMind Restrict Access
+
+Meta, Google DeepMind, and a coalition of AI companies restricted or banned OpenClaw usage in late January/early February 2026. A Meta executive told staff they risk losing their jobs if they use the software on work laptops. Google DeepMind withdrew several contributed modules entirely. This represents one of the most significant reversals in the open-source AI movement — companies that initially contributed to the project actively pulling back over security concerns including demonstrations that OpenClaw's core modules could be repurposed for autonomous weapons targeting and critical infrastructure attacks.
+
+### Astrix OpenClaw Scanner — Enterprise Detection Tool
+
+Astrix Security released the OpenClaw Scanner (available free on PyPI), an open-source tool that detects where autonomous AI agents are operating across corporate environments. It works with existing EDR telemetry (CrowdStrike Falcon, Microsoft Defender), analyzes behavioral indicators of OpenClaw activity on endpoints, and produces portable reports — all with read-only access and no data transmitted externally. CrowdStrike also added native OpenClaw visibility via their AI Service Usage Monitor dashboard.
+
+### ClawBody — Physical Robotics Bridge
+
+The community-built ClawBody project (by Tom Rikert) bridges OpenClaw to physical robot hardware, integrating MuJoCo simulation support for training agents in high-fidelity 3D physics environments before deploying to real motors. The initial integration uses the Reachy Mini humanoid platform for multi-joint control. A dedicated OpenClaw Robotics Community has formed, and ClawBox (a pre-configured Jetson Orin Nano with OpenClaw optimized for production) is available for pre-order in Q2 2026.
+
+### Raspberry Pi as Dedicated AI Agent Hardware
+
+Raspberry Pi officially endorsed running OpenClaw on Pi 5 (or Pi 4 with 8GB RAM) as a security-conscious deployment option — providing isolation, always-on operation, and low power consumption. This sparked a broader trend of treating consumer single-board computers as dedicated AI agent infrastructure, with the official Raspberry Pi blog publishing a setup guide.
+
+---
+
 ## Stealable Patterns
 
 | Pattern | What To Steal |
@@ -372,3 +404,71 @@ Unlike most "crypto + AI" plays, OpenClaw's onchain integration has practical us
 | **Session scope modes** | `per-channel-peer` prevents context leakage — critical for multi-user |
 | **Forward-compat fallbacks** | New model identifiers gracefully downgrade — never crash on unknown model |
 | **Heartbeat pattern** | `HEARTBEAT.md` automated health checks — self-healing agent infrastructure |
+
+---
+
+## References
+
+### Official
+- OpenClaw GitHub: https://github.com/openclaw/openclaw
+- OpenClaw Website: https://openclaw.ai/
+- OpenClaw Docs — Getting Started: https://docs.openclaw.ai/start/getting-started
+- OpenClaw Docs — Skills: https://docs.openclaw.ai/tools/skills
+- OpenClawd AI (Hosted Platform): https://openclawd.ai/
+- ClawHub (Skills Registry): https://clawhub.com
+
+### Release Notes
+- v2026.2.6 Release: https://github.com/openclaw/openclaw/releases/tag/v2026.2.6
+- v2026.2.6 Announcement (X): https://x.com/openclaw/status/2020059808444084506
+- v2026.2.6 Coverage (CyberSecurity News): https://cybersecuritynews.com/openclaw-v2026-2-6-released/
+- v2026.2.2 Onchain Release: https://evolutionaihub.com/openclaw-2026-2-2-ai-agent-framework-onchain/
+
+### Analysis & Deep Dives
+- IBM Think — OpenClaw, Moltbook and the future of AI agents: https://www.ibm.com/think/news/clawdbot-ai-agent-testing-limits-vertical-integration
+- Sapt — Architecture, Security, and Best Practices: https://sapt.ai/insights/openclaw-architecture-security-agentic-ai-best-practices
+- DigitalOcean — What is OpenClaw?: https://www.digitalocean.com/resources/articles/what-is-openclaw
+- Sterlites — Architecture, Emergence & Security Risks: https://sterlites.com/blog/moltbot-local-first-ai-agents-guide-2026
+- Wikipedia — OpenClaw: https://en.wikipedia.org/wiki/OpenClaw
+
+### Guides & Tutorials
+- Molt Founders — OpenClaw Mega Cheatsheet: https://moltfounders.com/openclaw-mega-cheatsheet
+- Codecademy — OpenClaw Tutorial: https://www.codecademy.com/article/open-claw-tutorial-installation-to-first-chat-setup
+- DigitalOcean — How to Run OpenClaw: https://www.digitalocean.com/community/tutorials/how-to-run-openclaw
+
+### Ecosystem & Skills
+- Awesome OpenClaw Skills: https://github.com/VoltAgent/awesome-openclaw-skills
+- QMD Memory Plugin: https://github.com/sac34333/openclawmemory
+- OpenClaw Extensions Ecosystem Guide: https://help.apiyi.com/en/openclaw-extensions-ecosystem-guide-en.html
+
+### Alternatives & Comparisons
+- CodeConductor — Top OpenClaw Alternatives: https://codeconductor.ai/blog/openclaw-alternatives/
+- SuperPrompt — Best OpenClaw Alternatives 2026: https://superprompt.com/blog/best-openclaw-alternatives-2026
+- Metana — OpenClaw vs Moltbook: https://metana.io/blog/openclaw-vs-moltbook-what-are-the-key-differences/
+
+### News
+- CNBC — From Clawdbot to OpenClaw: https://www.cnbc.com/2026/02/02/openclaw-open-source-ai-agent-rise-controversy-clawdbot-moltbot-moltbook.html
+- Yahoo Finance — OpenClawd Hosted Platform Launch: https://finance.yahoo.com/news/openclawd-ai-launches-hosted-platform-143600648.html
+- CoinMarketCap — OpenClaw and Crypto: https://coinmarketcap.com/academy/article/what-is-openclaw-moltbot-clawdbot-ai-agent-crypto-twitter
+- The Defiant — OpenClaw x Crypto Ecosystem: https://thedefiant.io/newsletter/defi-daily/the-openclaw-x-crypto-ecosystem
+
+### Security
+- Security.com — The Rise of OpenClaw: https://www.security.com/expert-perspectives/rise-openclaw
+- Xpert Digital — AI agents out of control?: https://xpert.digital/en/local-ai-assistant/
+
+### Latest (2026 Updates)
+- TechCrunch — OpenClaw creator joins OpenAI: https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/
+- Peter Steinberger — OpenClaw, OpenAI and the future: https://steipete.me/posts/2026/openclaw
+- Fortune — Who is Peter Steinberger?: https://fortune.com/2026/02/19/openclaw-who-is-peter-steinberger-openai-sam-altman-anthropic-moltbook/
+- CNBC — Steinberger joining OpenAI: https://www.cnbc.com/2026/02/15/openclaw-creator-peter-steinberger-joining-openai-altman-says.html
+- VentureBeat — OpenAI acquisition signals end of ChatGPT era: https://venturebeat.com/technology/openais-acquisition-of-openclaw-signals-the-beginning-of-the-end-of-the
+- CrowdStrike — What Security Teams Need to Know: https://www.crowdstrike.com/en-us/blog/what-security-teams-need-to-know-about-openclaw-ai-super-agent/
+- Help Net Security — OpenClaw Scanner: https://www.helpnetsecurity.com/2026/02/12/openclaw-scanner-open-source-tool-detects-autonomous-ai-agents/
+- Infosecurity Magazine — Six New Vulnerabilities: https://www.infosecurity-magazine.com/news/researchers-six-new-openclaw/
+- SOCRadar — CVE-2026-25253 Analysis: https://socradar.io/blog/cve-2026-25253-rce-openclaw-auth-token/
+- Meta Bans OpenClaw (TechBuzz): https://www.techbuzz.ai/articles/meta-bans-viral-ai-tool-openclaw-over-security-risks
+- Fortune — OpenClaw Security Risks: https://fortune.com/2026/02/12/openclaw-ai-agents-security-risks-beware/
+- Raspberry Pi — Turn your Pi into an AI agent: https://www.raspberrypi.com/news/turn-your-raspberry-pi-into-an-ai-agent-with-openclaw/
+- Bloomberg — Raspberry Pi shares surge on OpenClaw: https://www.bloomberg.com/news/articles/2026-02-17/ai-agent-openclaw-puts-raspberry-pi-shares-on-investor-radars
+- Scientific American — OpenClaw runs your computer: https://www.scientificamerican.com/article/moltbot-is-an-open-source-ai-agent-that-runs-your-computer/
+- ClawBody GitHub (Reachy Mini robotics): https://github.com/tomrikert/clawbody
+- Astrix Security — OpenClaw Scanner: https://astrix.security/learn/blog/introducing-astrix-openclaw-moltbot-footprint-scanner/

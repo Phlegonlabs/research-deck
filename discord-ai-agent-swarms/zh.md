@@ -1179,6 +1179,44 @@ Bots 需要持久連接(WebSocket)。Webhooks 是無狀態 HTTP。盡可能選�
 
 Discord 使 human-in-the-loop 變得微不足道。隨著法規要求 AI 可審計性,這變得關鍵。
 
+## 最新動態 (2026)
+
+### Discord 平台轉型：從聊天工具到應用平台
+
+2025 年標誌著 Discord 從「聊天工具」全面蛻變為**應用平台**。被動文本 bot 的時代正在結束，取而代之的是由應用內商務、HTML5 Activities 和嚴格安全協議驅動的 Discord 應用經濟。影響 agent 構建者的關鍵平台變更：
+
+- **Guild 創建端點移除（2025 年 7 月）**：`POST /guilds` API 端點被棄用以打擊垃圾農場。Bot 不再能自動生成伺服器；開發者必須使用伺服器模板連結。這直接影響以程式化方式創建沙盒 guild 環境的 agent swarm 設置。
+
+- **Pin Messages 權限拆分（2025 年 8 月）**：「Pin Messages」功能從「Manage Messages」中分離為獨立的 `PIN_MESSAGES` 權限節點。僅依賴 `MANAGE_MESSAGES` 來固定上下文的代碼（「Pinned Messages 作為工作記憶」方法的核心模式）將在不更新權限請求的情況下靜默失敗。
+
+- **經典 Token 格式失效（2025 年 11 月）**：舊版 bot token 格式被完全失效。所有 agent bot 必須通過開發者門戶重新生成憑證。使用硬編碼舊版 token 的現有部署 swarm 在未遷移的情況下會崩潰。
+
+- **成員獲取速率限制收緊（2025 年 10 月）**：啟動時獲取所有 guild 成員現在觸發更嚴格的速率限制。使用基於能力路由（模式 B）在啟動時枚舉成員的 agent 系統必須切換到 LRU 緩存和按需成員檢索。
+
+### DAVE 協議：端到端加密強制實施（2026 年 3 月）
+
+Discord 的 DAVE（Discord 音頻和視頻端到端加密）協議，由 Trail of Bits 使用 WebRTC 編碼轉換和消息層安全（MLS）構建，將在 **2026 年 3 月 1 日成為強制要求**。DM、群組消息、語音頻道和 Go Live 直播中的所有音頻和視頻都將要求 E2EE。連接到 Discord 語音的第三方應用和 bot **必須實現 DAVE 支持**，否則將失去參與通話的能力。這對使用語音頻道進行協調或即時通信的 agent swarm 來說是一個重大發展——它們必須升級或被完全切斷。協議白皮書發布在 [daveprotocol.com](https://daveprotocol.com/)。
+
+### Google ADK Discord 集成
+
+Google 在 Google Cloud NEXT 2025 上發佈了 **Agent Development Kit (ADK)** —— 一個開源的、模型無關的框架，針對 Gemini 優化，用於構建多智能體系統。參考實現 ([bjbloemker-google/discord-adk-agent](https://github.com/bjbloemker-google/discord-adk-agent)) 展示了如何將 ADK agent 連接到 Discord，將伺服器變成與**有狀態 AI agent** 互動的實驗室，這些 agent 可以在多輪對話中維持上下文、使用工具和執行任務。這從主要雲供應商的角度使 Discord 作為 agent 運行時獲得了合法性。與基於 MCP 的方法不同，ADK 提供原生工作流 agent 用於可預測的管道，以及 LLM 驅動的動態路由用於自適應行為。
+
+### MCP 協議在 Linux Foundation 下進入主流
+
+Model Context Protocol 最初由 Anthropic 於 2024 年 11 月創建，於 **2025 年 12 月轉移到 Linux Foundation Agentic AI Foundation**。治理現在是供應商中立的，並獲得 Anthropic、OpenAI、Google 和 Microsoft 的採用，MCP Discord 伺服器（KOBA789/human-in-the-loop、OoriData/Discord-AI-Agent、netixc/mcp-discord）被定位為商品基礎設施。配套協議已經出現：Agent-to-Agent Protocol (A2A) 用於智能體間通信，Agent Payment Protocol (APP) 用於智能體商務——兩者都可以疊加在基於 Discord 的 swarm 協調之上。
+
+### 多智能體市場爆發
+
+數字說明了一切：多智能體系統查詢從 2024 年 Q1 到 2025 年 Q2 激增了 **1,445%**。AI agent 市場預計 2025 年達到 78.4 億美元，以 46.3% 的 CAGR 增長到 2030 年的 526.2 億美元。Gartner 預測到 2026 年底 40% 的企業應用將包含特定任務的 AI agent（2025 年不到 5%）。這一爆發驗證了 Discord 作為協調層的模式——隨著更多 agent 的激增，對零基礎設施協調和人工可觀察性的需求成比例增長。
+
+### 安全警告：Agent 到 Discord 的攻擊面
+
+herdctl 項目（一個 Claude Code 編排工具）明確警告**將 AI agent 連接到公共 Discord 頻道會創建新的攻擊向量**。通過 Discord 消息進行的提示注入、附件中的惡意文件、以及通過 agent 可讀 thread 進行的社會工程都是現實的威脅。建議：僅將 Discord 用於**內部私有伺服器**，並在將 Discord 輸入饋送給 LLM agent 時將所有輸入視為不可信。這與原始分析一致——Discord 最適合內部工具，而非面向客戶的系統。
+
+### Agent Activities 的原生應用內商務
+
+Discord 的新貨幣化原語——**Consumable SKUs**、**Durable SKUs** 和 **Subscriptions**——使 agent Activities（在語音頻道 iframe 中運行的 HTML5 應用）能夠直接在 Discord 內變現。Agent 現在可以銷售高級功能、代幣或訪問權限，無需外部支付重定向。這為在 Discord 內運行的**付費 agent 服務**開闢了道路：想像一個按每次 PR 審查收費的代碼審查 swarm，或一個帶訂閱模式的研究 agent 團隊，全部在 Discord 的支付基礎設施內原生交易。
+
 ## 結論
 
 Discord 作為 agent 基礎設施是一個**務實的 hack**,之所以有效是因為:
@@ -1191,3 +1229,191 @@ Discord 作為 agent 基礎設施是一個**務實的 hack**,之所以有效是�
 **模式**: Discord 是你的**控制平面**(協調,可觀察性)。重計算發生在別處(Lambda, K8s)。結果發布回 Discord。
 
 **Steal this**: Thread-per-task, reactions-as-state, webhooks-for-logs, MCP-for-tools, humans-via-mentions.
+
+## References
+
+### Primary Source
+
+- [@jumperz — "I Built an AI Agent Swarm in Discord. It Works Better Than Anything I've Tried (Full Guide)"](https://x.com/jumperz/status/2020305891430428767) — X Article, Feb 8, 2026
+- [I Managed a Swarm of 20 AI Agents for a Week and Built a Product | Zach Wills](https://zachwills.net/i-managed-a-swarm-of-20-ai-agents-for-a-week-here-are-the-8-rules-i-learned/) — Complementary case study on agent swarm management rules
+
+### Multi-Agent Architecture (Broader Context)
+
+- [How to Build Multi-Agent Systems: Complete 2026 Guide](https://dev.to/eira-wexford/how-to-build-multi-agent-systems-complete-2026-guide-1io6) — Framework comparisons, design patterns, cost analysis
+- [The Agentic AI Future: Swarm Intelligence and Multi-Agent Systems | Tribe AI](https://www.tribe.ai/applied-ai/the-agentic-ai-future-understanding-ai-agents-swarm-intelligence-and-multi-agent-systems)
+- [A Taxonomy of Hierarchical Multi-Agent Systems](https://arxiv.org/html/2508.12683) — Five-dimensional taxonomy, coordination mechanisms
+- [Google's Eight Essential Multi-Agent Design Patterns](https://www.infoq.com/news/2026/01/multi-agent-design-patterns/)
+- [AI Agent Orchestration Patterns - Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
+- [Mixture of Agents Enhances LLM Capabilities](https://arxiv.org/html/2406.04692v1) — MoA architecture (65.1% AlpacaEval vs GPT-4 57.5%)
+- [Why AI Swarms Cannot Build Architecture](https://jsulmont.github.io/swarms-ai/) — Analysis of flat swarm limitations
+- [Benchmarking Multi-Agent Architectures | LangChain](https://blog.langchain.com/benchmarking-multi-agent-architectures/)
+- [Claude Code Agent Teams Documentation](https://code.claude.com/docs/en/agent-teams)
+- [Claude Code Swarms | Addy Osmani](https://addyosmani.com/blog/claude-code-agent-teams/)
+- [Claude Code's Hidden Multi-Agent System](https://paddo.dev/blog/claude-code-hidden-swarm/)
+
+### GitHub Repositories
+
+#### Agent Frameworks & Discord Integration
+
+- [kyegomez/SwarmsDiscord](https://github.com/kyegomez/SwarmsDiscord) - A discord bot that can do anything with swarming intelligence
+- [kyegomez/swarms](https://github.com/kyegomez/swarms) - The Enterprise-Grade Production-Ready Multi-Agent Orchestration Framework
+- [ruvnet/claude-flow](https://github.com/ruvnet/claude-flow) - The leading agent orchestration platform for Claude with distributed swarm intelligence
+- [openai/swarm](https://github.com/openai/swarm) - Educational framework exploring ergonomic, lightweight multi-agent orchestration
+- [VRSEN/agency-swarm](https://github.com/VRSEN/agency-swarm) - Reliable Multi-Agent Orchestration Framework
+- [langchain-ai/langgraph-swarm-py](https://github.com/langchain-ai/langgraph-swarm-py) - For your multi-agent needs
+
+#### MCP Discord Integration
+
+- [KOBA789/human-in-the-loop](https://github.com/KOBA789/human-in-the-loop) - An MCP (Model Context Protocol) server that allows AI assistants to ask questions to humans via Discord
+- [OoriData/Discord-AI-Agent](https://github.com/OoriData/Discord-AI-Agent) - Discord bot for supporting AI/LLM chat applications powered by the Model Context Protocol (MCP)
+- [netixc/mcp-discord](https://github.com/netixc/mcp-discord) - A Model Context Protocol (MCP) server that provides Discord integration capabilities to AI agents
+- [SaseQ/discord-mcp](https://github.com/SaseQ/discord-mcp) - A MCP server for the Discord integration
+- [v-3/discordmcp](https://github.com/v-3/discordmcp) - Discord MCP Server for Claude Integration
+
+#### Discord Bot Infrastructure
+
+- [Rapptz/discord.py](https://github.com/Rapptz/discord.py) - An API wrapper for Discord written in Python
+- [interactions-py/interactions.py](https://github.com/interactions-py/interactions.py) - A highly extensible, easy to use, and feature complete bot framework for Discord
+- [ArrowM/Queue-Bot](https://github.com/ArrowM/Queue-Bot) - Queue Bot is a Discord bot that provides live user queues with powerful customization
+- [LaurenceRawlings/queue-bot](https://github.com/LaurenceRawlings/queue-bot) - Discord bot that puts users in a queue to wait for a designated assistant
+
+#### Claude Code Multi-Agent System
+
+- [Claude Code Multi-Agent Orchestration System (Gist)](https://gist.github.com/kieranklaassen/d2b35569be2c7f1412c64861a219d51f) - Technical analysis of Claude Code's file-based multi-agent coordination
+
+### Articles & Blog Posts
+
+#### Multi-Agent Orchestration
+
+- [The Agentic AI Future: Understanding AI Agents, Swarm Intelligence, and Multi-Agent Systems | Tribe AI](https://www.tribe.ai/applied-ai/the-agentic-ai-future-understanding-ai-agents-swarm-intelligence-and-multi-agent-systems)
+- [The 2026 Architect's Dilemma: Orchestrating AI Agents, Not Writing Code - DEV Community](https://dev.to/ridwan_sassman_3d07/the-2026-architects-dilemma-orchestrating-ai-agents-not-writing-code-the-paradigm-shift-from-219c)
+- [Claude Code multiple agent systems: Complete 2026 guide](https://www.eesel.ai/blog/claude-code-multiple-agent-systems-complete-2026-guide)
+- [What Is Agentic Swarm Coding? Definition, Architecture and Use Cases | Augment Code](https://www.augmentcode.com/guides/what-is-agentic-swarm-coding-definition-architecture-and-use-cases)
+- [The Simple Step-by-Step System to Create Powerful Agent Swarms | by Kye Gomez | Medium](https://medium.com/@kyeg/the-simple-step-by-step-system-to-create-powerful-agent-swarms-fd28816be8f7)
+- [The Untold Story of Swarms | by Kye Gomez | Medium](https://medium.com/@kyeg/the-untold-story-of-swarms-1dd8e8e86b37)
+- [I Managed a Swarm of 20 AI Agents for a Week | zach wills](https://zachwills.net/i-managed-a-swarm-of-20-ai-agents-for-a-week-here-are-the-8-rules-i-learned/)
+
+#### Discord-Based Agent Teams
+
+- [Building Discord Based Agentic Teams | by Michael Brown | Medium](https://medium.com/@icarusabiding/building-discord-based-agentic-teams-5a29895b4b85)
+- [Managing Discord Threads with Artificial Intelligence | by Javier Calderon Jr | Medium](https://xthemadgenius.medium.com/managing-discord-threads-with-artificial-intelligence-206bd6c7674d)
+- [Adding an AI Agent to your Discord Server with Agent Development Kit | Google Cloud](https://medium.com/google-cloud/adding-an-ai-agent-to-your-discord-server-with-agent-development-kit-48f86683bf72)
+
+#### Orchestration Patterns
+
+- [Choosing the right orchestration pattern for multi agent systems](https://www.kore.ai/blog/choosing-the-right-orchestration-pattern-for-multi-agent-systems)
+- [Semantic Kernel: Multi-agent Orchestration | Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/semantic-kernel-multi-agent-orchestration/)
+- [AI Agent Orchestration Patterns - Azure Architecture Center | Microsoft Learn](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
+- [Agent Orchestration Patterns in Multi-Agent Systems: Linear and Adaptive Approaches with Dynamiq](https://www.getdynamiq.ai/post/agent-orchestration-patterns-in-multi-agent-systems-linear-and-adaptive-approaches-with-dynamiq)
+- [Multi-Agent Orchestration - The Agentic Systems Series](https://gerred.github.io/building-an-agentic-system/second-edition/part-iv-advanced-patterns/chapter-10-multi-agent-orchestration.html)
+- [Four Design Patterns for Event-Driven, Multi-Agent Systems](https://www.confluent.io/blog/event-driven-multi-agent-systems/)
+- [Building Multi-Agent Architectures | Medium](https://medium.com/@akankshasinha247/building-multi-agent-architectures-orchestrating-intelligent-agent-systems-46700e50250b)
+
+### Documentation & Guides
+
+#### Discord Integration for AI
+
+- [Discord AI Integration: AI Agent Integration | Beam.ai](https://beam.ai/integrations/discord)
+- [SmythOS - Essential Discord Integration for Collaboration Success](https://smythos.com/developers/agent-integrations/discord-integration/)
+- [Discord AI: The Complete Guide to Building and Integrating AI Chatbots on Discord | FlowHunt](https://www.flowhunt.io/blog/discord-ai/)
+- [How To Effortlessly Add AI Agents to Discord | AgentX](https://www.agentx.so/post/how-to-effortlessly-add-ai-agents-to-discord-integrate-gpt-4-gemini-1-5-pro-and-claude-3)
+- [Building a No-Code AI Agent for Discord with Scout and Modal](https://www.scoutos.com/blog/discord-ai-agent-tutorial)
+
+#### Discord API & Development
+
+- [Discord Developer Portal - Rate Limits](https://discord.com/developers/docs/topics/rate-limits)
+- [Discord Developer Portal - Webhooks](https://discord.com/developers/docs/resources/webhook)
+- [Intro to Webhooks | Discord](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
+- [Tutorial: How to Configure Discord Webhooks Using the API](https://hookdeck.com/webhooks/platforms/tutorial-how-to-configure-discord-webhooks-using-the-api)
+- [Guide to Discord Webhooks Features and Best Practices](https://hookdeck.com/webhooks/platforms/guide-to-discord-webhooks-features-and-best-practices)
+- [Threads FAQ | Discord](https://support.discord.com/hc/en-us/articles/4403205878423-Threads-FAQ)
+- [Understanding Threads on Discord: A Guide to Organized Conversations](https://www.oreateai.com/blog/understanding-threads-on-discord-a-guide-to-organized-conversations/dc1075cca820ed91e662671eaa63d9f7)
+- [Discord Development 2025: The Complete Year-in-Review & API Migration Guide](https://discord-media.com/en/news/development-2025-the-complete-year-in-review-api-migration-guide.html)
+- [Discord Developer Newsletter - January 2026](https://discord.com/developer-newsletter/january-2026)
+- [Discord Change Log](https://docs.discord.com/developers/change-log)
+
+#### Discord Bot Development
+
+- [Discord.py Documentation - Quickstart](https://discordpy.readthedocs.io/en/stable/quickstart.html)
+- [discord.js Guide - Threads](https://discordjs.guide/popular-topics/threads.html)
+- [discord.js Guide - Reactions](https://discordjs.guide/popular-topics/reactions)
+- [Error Handling | Pycord Guide](https://guide.pycord.dev/popular-topics/error-handling)
+- [Discord4J - Error Handling](https://github.com/Discord4J/Discord4J/wiki/Error-Handling)
+- [Architecting discord bot the right way - DEV Community](https://dev.to/itsnikhil/architecting-discord-bot-the-right-way-383e)
+- [Building a Multifunctional Discord Bot: A Comprehensive Technical Deep Dive](https://dev.to/j3ffjessie/building-a-multifunctional-discord-bot-a-comprehensive-technical-deep-dive-3kf6)
+
+#### Model Context Protocol
+
+- [Model Context Protocol - Example Clients](https://modelcontextprotocol.io/clients)
+- [Building a Model Context Protocol (MCP) server for Discord | Speakeasy](https://www.speakeasy.com/blog/build-a-mcp-server-tutorial)
+- [Bridging AI and Discord: A Deep Dive into the Genm Webhooks MCP Server](https://skywork.ai/skypage/en/ai-discord-genm-webhooks/1980819716392685568)
+
+### AI Agent Observability & Monitoring
+
+- [Agent Monitoring with AgentOps - crewAI](https://docs.crewai.com/how-to/AgentOps-Observability/)
+- [AI Agent Observability with Langfuse](https://langfuse.com/blog/2024-07-ai-agent-observability-with-langfuse)
+- [AI Agent Observability: Monitoring and Debugging Agent Workflows](https://www.truefoundry.com/blog/ai-agent-observability-tools)
+- [AI agent observability - The measured leap | Deloitte US](https://www.deloitte.com/us/en/services/consulting/articles/ai-agent-observability-human-in-the-loop.html)
+- [Agent Factory: Top 5 agent observability best practices for reliable AI | Microsoft Azure Blog](https://azure.microsoft.com/en-us/blog/agent-factory-top-5-agent-observability-best-practices-for-reliable-ai/)
+- [10 Best Tools to Monitor AI Agents in 2025 | Medium](https://medium.com/@kuldeep.paul08/10-best-tools-to-monitor-ai-agents-in-2025-and-why-observability-matters-72657ddc241b)
+- [Thread-Level Human-in-the-Loop Feedback for Agent Validation](https://www.comet.com/site/blog/thread-level-human-feedback/)
+
+### Task Allocation & Coordination
+
+- [Decentralized adaptive task allocation for dynamic multi-agent systems | Scientific Reports](https://www.nature.com/articles/s41598-025-21709-9)
+- [Scheduling Agent Supervisor Pattern - System Design](https://www.geeksforgeeks.org/system-design/scheduling-agent-supervisor-pattern-system-design/)
+- [Multi-Agent Coordination Gone Wrong? Fix With 10 Strategies | Galileo](https://galileo.ai/blog/multi-agent-coordination-strategies)
+- [Multi-Agent Coordination - Adopt AI](https://www.adopt.ai/glossary/multi-agent-coordination)
+
+### Discord Rate Limits & Error Handling
+
+- [My Bot is Being Rate Limited! - Discord Support](https://support-dev.discord.com/hc/en-us/articles/6223003921559-My-Bot-is-Being-Rate-Limited)
+- [Troubleshooting Rate Limits on Your Discord Bot](https://cybrancee.com/learn/knowledge-base/troubleshooting-rate-limits-on-your-discord-bot/)
+- [Discord API Rate Limiting: A Troubleshooting Guide | Stateful](https://stateful.com/blog/discord-rate-limiting)
+- [Rate Limits & API Optimization | discord.js](https://deepwiki.com/discordjs/discord.js/5.3-rate-limits-and-api-optimization)
+- [Design Patterns for Fault Tolerance in Distributed Systems](https://www.momentslog.com/development/design-pattern/design-patterns-for-fault-tolerance-in-distributed-systems)
+
+### Community Resources
+
+- [10 Best AI Discord Servers to Join in 2025 | DigitalOcean](https://www.digitalocean.com/resources/articles/ai-discord-servers)
+- [best-ai-agents/discord-servers-for-ai-agents](https://github.com/best-ai-agents/discord-servers-for-ai-agents) - List of AI Agent related discord channels with links
+- [MCP (Model Context Protocol) Discord Server](https://discord.me/mcp)
+- [Community Resources: Discord & Wiki | ruvnet/claude-flow](https://github.com/ruvnet/claude-flow/issues/549)
+
+### Industry Trends
+
+- [15 AI Agents Trends to Watch in 2026 - Analytics Vidhya](https://www.analyticsvidhya.com/blog/2026/01/ai-agents-trends/)
+- [Data Agent Swarms: A New Paradigm in Agentic AI](https://powerdrill.ai/blog/data-agent-swarms-a-new-paradigm-in-agentic-ai)
+- [Exploring the Future of Agentic AI Swarms](https://codewave.com/insights/future-agentic-ai-swarms/)
+- [What is an AI Agent Swarm - Relevance AI](https://relevanceai.com/learn/agent-swarms-orchestrating-the-future-of-ai-collaboration)
+- [2026 will be the Year of Multiple AI Agents](https://www.rtinsights.com/if-2025-was-the-year-of-ai-agents-2026-will-be-the-year-of-multi-agent-systems/)
+- [2026 will be the Year of Multi-agent Systems](https://aiagentsdirectory.com/blog/2026-will-be-the-year-of-multi-agent-systems)
+- [AI agent trends for 2026: 7 shifts to watch](https://www.salesmate.io/blog/future-of-ai-agents/)
+- [Agent Swarms: The Next AI Paradigm? | TLDL](https://www.tldl.io/blog/ai-agent-swarms-next-paradigm)
+
+### Additional Resources
+
+#### Discord Bot Examples
+- [Discord IP Monitor Bot](https://github.com/froghouse/Discord-IP-Monitor-Bot) - Example of robust Discord bot with error handling
+- [Simple Error Handling for Prefix and App commands - discord.py](https://gist.github.com/EvieePy/7822af90858ef65012ea500bcecf1612)
+
+#### Multi-Turn Conversations
+- [Multi-turn Conversations with Agents: Building Context Across Dialogues | Medium](https://medium.com/@sainitesh/multi-turn-conversations-with-agents-building-context-across-dialogues-f0d9f14b8f64)
+- [Discord Bot - Agno](https://docs.agno.com/integrations/discord/overview)
+
+#### Agent Frameworks
+- [mcp-agent](https://github.com/lastmile-ai/mcp-agent) - Build effective agents using Model Context Protocol
+- [Create a Swarm of Agents | Haystack](https://haystack.deepset.ai/cookbook/swarm)
+
+#### New Sources (2026 Update)
+- [DAVE Protocol Whitepaper](https://daveprotocol.com/) - Discord's Audio & Video End-to-End Encryption protocol
+- [Bringing DAVE to All Discord Platforms | Discord Blog](https://discord.com/blog/bringing-dave-to-all-discord-platforms)
+- [DAVE Protocol GitHub](https://github.com/discord/dave-protocol) - Open-source protocol specification
+- [Discord is Your Place for AI with Friends | Discord Blog](https://discord.com/blog/ai-on-discord-your-place-for-ai-with-friends)
+- [Google Agent Development Kit (ADK)](https://google.github.io/adk-docs/) - Official ADK documentation
+- [bjbloemker-google/discord-adk-agent](https://github.com/bjbloemker-google/discord-adk-agent) - Reference Discord bot using Google ADK
+- [Google ADK Announcement | Google Developers Blog](https://developers.googleblog.com/en/agent-development-kit-easy-to-build-multi-agent-applications/)
+- [AI Agent Protocols 2026: The Complete Guide](https://www.ruh.ai/blogs/ai-agent-protocols-2026-complete-guide) - MCP, A2A, APP protocol landscape
+- [Discord Embedded App SDK](https://github.com/discord/embedded-app-sdk) - SDK for building HTML5 Activities
+- [herdctl: orchestration layer for Claude Code](https://edspencer.net/2026/1/29/herdctl-orchestration-claude-code) - Security warnings about agent-Discord connections
+- [8 best Discord AI bots in 2025 | eesel.ai](https://www.eesel.ai/blog/discord-ai) - Comprehensive bot platform comparison

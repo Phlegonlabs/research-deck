@@ -447,6 +447,71 @@ codex mcp login my-http    # HTTP 服务器的 OAuth
 | 一等脚本支持（`codex exec`） | 复杂多文件重构验证不足 |
 | 档案系统做上下文切换 | AGENTS.md 32KB 限制（可配置） |
 
+## 最新動態 (2026)
+
+### GPT-5.3-Codex（2026 年 2 月 5 日）
+
+最新模型将 Codex + GPT-5 训练栈合并为一个统一模型 —— 代码生成、推理、通用智能融为一体。相比 GPT-5.2-Codex 的关键改进：
+
+- **速度提升约 25%**，token 消耗为历代最低
+- **Terminal-Bench 2.0 得分 77.3%**，**OSWorld-Verified 得分 64.7%**（较 5.2 大幅提升）
+- **实时引导**：GPT-5.3-Codex 在执行过程中频繁提供进度更新，开发者可以实时交互、提问、在任务进行中重新引导 agent，而非等待最终输出
+- **GPT-5.3-Codex-Spark**：Pro 订阅用户研究预览版，优化为近即时响应，1000+ tokens/秒（纯文本，128k 上下文）
+- **首个在 OpenAI 网络安全准备度框架中被评为"高"的模型** —— 在自动化大规模场景下具备有意义地赋能现实世界网络任务的能力
+
+### Codex macOS 桌面应用（2026 年 2 月 2 日）
+
+OpenAI 发布了专属 macOS 桌面应用 —— 一个"agent 指挥中心"：
+
+- **并行 agent**：多个 agent 在按项目组织的独立线程中运行，每个都在隔离的 worktree 上工作（同一仓库，无冲突）
+- **自动化**：后台任务按自动计划运行，结果排队等待审查
+- **30 分钟自主运行**：agent 独立工作最多 30 分钟后返回完成的代码
+- **个性选择**：务实型、共情型等，根据工作风格选择
+- **要求**：Apple Silicon（M1+），macOS 14+。Windows 版本开发中
+
+### 统一 App Server 架构
+
+App Server 现在驱动所有 Codex 界面 —— CLI、VS Code 扩展、Web 应用、macOS 桌面、JetBrains 和 Xcode —— 通过单一的双向 JSON-RPC 协议（JSONL over stdio）。核心协议原语：
+
+| 原语 | 用途 |
+|------|------|
+| **Item** | 原子级 I/O 单元，生命周期：started → delta（流式）→ completed |
+| **Turn** | 单个 agent 工作单元产生的 item 序列 |
+| **Thread** | 持久化会话容器，支持创建、恢复、分支、归档 |
+
+客户端绑定已有 Go、Python、TypeScript、Swift 和 Kotlin 实现。架构将 agent 逻辑与界面解耦 —— 第三方 IDE 集成现在通过同一个稳定 API 接入。
+
+### Skills 系统
+
+Agent 技能将 Codex 扩展到代码生成之外。一个技能是包含 `SKILL.md` 以及可选脚本和引用的目录，存放在从 CWD 到仓库根的 `.agents/skills/` 目录中：
+
+- **显式调用**：`$skill-name`（如 `$skill-installer`、`$create-plan`）
+- **自动选择**：Codex 根据任务上下文自动选择技能
+- 在 CLI、IDE 扩展和 Codex 应用中均可用
+- 官方技能目录：[github.com/openai/skills](https://github.com/openai/skills)
+
+### Codex SDK 和 Slack 集成（GA，2025 年 10 月）
+
+Codex 达到一般可用性，新增三项能力：
+
+- **Codex SDK**（TypeScript，更多语言即将推出）：将驱动 CLI 的同一 agent 嵌入自定义工作流、工具和应用 —— 无需额外调优
+- **Slack 中的 @Codex**：直接从团队频道委派任务或提问，Codex 创建云任务并回复结果
+- **管理工具**：面向 Business、Edu 和 Enterprise 计划的企业级控制
+
+### CLI 快速迭代（v0.99–v0.104，2026 年 2 月）
+
+CLI 在 10 天内发布了 6 个版本，反映出激进的迭代节奏：
+
+- **实验性 JavaScript REPL**（`js_repl`）：跨工具调用的持久状态，适用于数据探索和脚本编写
+- **记忆管理**：`/m_update` 和 `/m_drop` 斜杠命令，控制 agent 记忆
+- **统一权限流程**：TUI 中更清晰的权限历史，结构化的网络审批带协议/主机上下文
+- **提交联合作者归属**：通过 prepare-commit-msg hook 管理
+- **WebSocket 代理支持**：`WS_PROXY`/`WSS_PROXY` 环境变量
+- **GIF/WebP 图片附件支持**
+- **Shell 环境快照**
+- **活跃回合中并发 shell 命令**
+- **Linux 和 Windows 上的沙箱改进**
+
 ## 可偷 —— 可直接复用的模式
 
 ### 1. 测试驱动代理循环
@@ -491,3 +556,81 @@ codex -i mockup.png "implement this design using React + Tailwind"
 
 ### 8. 增量打补丁纪律
 在 AGENTS.md 中给代码修改写指令时，明确指定："一次打一个补丁 —— import、函数签名、返回值分开。"防止上下文不匹配导致补丁失败。
+
+## References
+
+### Official Documentation
+- [Codex CLI Overview](https://developers.openai.com/codex/cli/)
+- [Codex CLI Features](https://developers.openai.com/codex/cli/features/)
+- [Codex Quickstart](https://developers.openai.com/codex/quickstart/)
+- [Command Line Options Reference](https://developers.openai.com/codex/cli/reference/)
+- [Slash Commands](https://developers.openai.com/codex/cli/slash-commands/)
+- [AGENTS.md Guide](https://developers.openai.com/codex/guides/agents-md/)
+- [Workflows](https://developers.openai.com/codex/workflows/)
+- [Advanced Configuration](https://developers.openai.com/codex/config-advanced/)
+- [Configuration Reference](https://developers.openai.com/codex/config-reference/)
+- [Codex Prompting Guide (Cookbook)](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide)
+- [Building Workflows with Codex CLI & Agents SDK (Cookbook)](https://cookbook.openai.com/examples/codex/codex_mcp_agents_sdk/building_consistent_workflows_codex_cli_agents_sdk)
+- [Codex Changelog](https://developers.openai.com/codex/changelog/)
+- [Agent Skills](https://developers.openai.com/codex/skills/)
+- [Codex App Server](https://developers.openai.com/codex/app-server/)
+- [Codex Models](https://developers.openai.com/codex/models/)
+- [Codex SDK](https://developers.openai.com/codex/sdk/)
+- [Codex in Slack](https://developers.openai.com/codex/integrations/slack/)
+
+### GitHub
+- [openai/codex — Official Repository](https://github.com/openai/codex)
+- [AGENTS.md in Codex repo](https://github.com/openai/codex/blob/main/AGENTS.md)
+- [openai/skills — Skills Catalog for Codex](https://github.com/openai/skills)
+- [Codex Releases](https://github.com/openai/codex/releases)
+
+### Product Announcements
+- [Introducing Codex — OpenAI Blog](https://openai.com/index/introducing-codex/)
+- [Introducing Upgrades to Codex — OpenAI](https://openai.com/index/introducing-upgrades-to-codex/)
+- [Introducing GPT-5.2-Codex — OpenAI](https://openai.com/index/introducing-gpt-5-2-codex/)
+- [Introducing GPT-5.3-Codex — OpenAI](https://openai.com/index/introducing-gpt-5-3-codex/)
+- [Codex is Now Generally Available — OpenAI](https://openai.com/index/codex-now-generally-available/)
+- [Introducing the Codex App — OpenAI](https://openai.com/index/introducing-the-codex-app/)
+- [Unlocking the Codex Harness: How We Built the App Server — OpenAI](https://openai.com/index/unlocking-the-codex-harness/)
+- [Unrolling the Codex Agent Loop — OpenAI](https://openai.com/index/unrolling-the-codex-agent-loop/)
+- [Get Started with Codex — OpenAI](https://openai.com/codex/get-started/)
+- [Codex | AI Coding Partner — OpenAI](https://openai.com/codex/)
+
+### Community & Tutorials
+- [Tips and Tricks for using Codex — OpenAI Developer Community](https://community.openai.com/t/best-practices-for-using-codex/1373143)
+- [Skills for Codex: Experimental Support — OpenAI Developer Community](https://community.openai.com/t/skills-for-codex-experimental-support-starting-today/1369367)
+- [OpenAI Codex CLI Tutorial — DataCamp](https://www.datacamp.com/tutorial/open-ai-codex-cli-tutorial)
+- [GPT-5.3 Codex: From Coding Assistant to General Work Agent — DataCamp](https://www.datacamp.com/blog/gpt-5-3-codex)
+- [OpenAI Codex CLI Guide 2026: Setup + Hidden Features — Serenities AI](https://serenitiesai.com/articles/openai-codex-cli-guide-2026)
+- [How to Use OpenAI Codex: Complete AI Coding Agent Guide — AI.cc](https://www.ai.cc/blogs/how-to-use-openai-codex-ai-coding-guide/)
+- [OpenAI Codex CLI: Official Description & Setup Guide — SmartScope](https://smartscope.blog/en/generative-ai/chatgpt/openai-codex-cli-comprehensive-guide/)
+- [Skills in OpenAI Codex — blog.fsck.com](https://blog.fsck.com/2025/12/19/codex-skills/)
+- [OpenAI Are Quietly Adopting Skills — Simon Willison](https://simonw.substack.com/p/openai-are-quietly-adopting-skills)
+- [Integrate Codex into Your Workflow — OpenReplay](https://blog.openreplay.com/integrate-openais-codex-cli-tool-development-workflow/)
+
+### Analysis & News
+- [OpenAI Publishes Codex App Server Architecture — InfoQ](https://www.infoq.com/news/2026/02/opanai-codex-app-server/)
+- [OpenAI Begins Article Series on Codex CLI Internals — InfoQ](https://www.infoq.com/news/2026/02/codex-agent-loop/)
+- [OpenAI Codex Adds SDK, Admin Tools, Slack Integration — InfoWorld](https://www.infoworld.com/article/4070541/openai-codex-adds-sdk-admin-tools-slack-integration.html)
+- [OpenAI Launches New macOS App for Agentic Coding — TechCrunch](https://techcrunch.com/2026/02/02/openai-launches-new-macos-app-for-agentic-coding/)
+- [GPT-5.3-Codex Raises Unprecedented Cybersecurity Risks — Fortune](https://fortune.com/2026/02/05/openai-gpt-5-3-codex-warns-unprecedented-cybersecurity-risks/)
+- [GPT-5.3 Codex: Features, Benchmarks, and Migration Guide — DigitalApplied](https://www.digitalapplied.com/blog/gpt-5-3-codex-release-features-benchmarks-guide)
+- [Codex February 2026 Release Notes — Releasebot](https://releasebot.io/updates/openai/codex)
+
+### Chinese Resources
+- [Codex & Codex CLI 国内使用教程（2025-12最新版）— 知乎](https://zhuanlan.zhihu.com/p/1952169109400842799)
+- [Codex 使用教程 — blog.196000.xyz](https://blog.196000.xyz/2025/2025-10-16-develope-ai-codex.html)
+- [OpenAI Codex CLI — 博客园](https://www.cnblogs.com/sddai/p/18830867)
+- [如何安装和使用Codex CLI — Apifox](https://apifox.com/apiskills/how-to-install-and-use-codex-cli-the-claude-code/)
+- [通过 CloseAI 使用 OpenAI Codex — CloseAI](https://doc.closeai-asia.com/tutorial/integrations/codex-cli.html)
+
+### Comparison Articles
+- [Codex vs Claude Code: Which is Better? — Builder.io](https://www.builder.io/blog/codex-vs-claude-code)
+- [Claude Code vs OpenAI Codex CLI Comparison — Zen van Riel](https://zenvanriel.nl/ai-engineer-blog/claude-code-vs-openai-codex-cli-comparison/)
+- [Claude Code vs OpenAI Codex — Composio](https://composio.dev/blog/claude-code-vs-openai-codex)
+- [Claude Code vs OpenAI Codex 2026 — Northflank](https://northflank.com/blog/claude-code-vs-openai-codex)
+- [Codex vs Claude Code: Definitive Guide — UI Bakery](https://uibakery.io/blog/codex-vs-claude-code)
+- [Codex App vs Claude Code — Bind AI](https://blog.getbind.co/codex-app-vs-claude-code-which-is-better-for-developers/)
+- [Comparing Claude Code, Codex, Gemini CLI — DeployHQ](https://www.deployhq.com/blog/comparing-claude-code-openai-codex-and-google-gemini-cli-which-ai-coding-assistant-is-right-for-your-deployment-workflow)
+- [Claude Code vs Codex for Coding — Graphite](https://graphite.com/guides/claude-code-vs-codex)
+- [Claude Code vs Codex CLI 2026 — Serenities AI](https://serenitiesai.com/articles/claude-code-vs-codex-cli-2026)

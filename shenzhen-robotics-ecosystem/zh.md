@@ -636,6 +636,38 @@ DexForce 选择了轮式而非腿式。这是刻意的权衡：轮式牺牲了�
 
 ---
 
+## 最新動態 (2026)
+
+### 春晚：中国人形机器人的"超级碗时刻"
+
+2026 年春节联欢晚会（2 月 17 日）成为中国人形机器人产业的分水岭事件。来自四家公司的 24 台人形机器人 — 宇树、魔法实验室 (MagicLab)、银河通用 (Galbot) 和 诺亦腾 (Noetix) — 在央视最高收视率的直播中亮相。宇树的 G1 和 H2 机器人与武术演员同台表演，展示了马步、双截棍、醉拳等动作。MagicLab 的 Z1 完成了人形机器人历史上首次"托马斯 360"特技动作。机器人们完成了世界首次连续自由式跳马跑酷、空中翻转、单腿连续翻转、两步踩墙后空翻，以及 7.5 圈大风车旋转。与 2025 年春晚（机器人颤颤巍巍地甩手帕跳民间舞）形成鲜明对比。CNN、CNBC、NBC、半岛电视台和欧洲新闻网均进行了报道。四家公司据报获得了总价值约 1 亿元（$1,400 万）的春晚合作协议。直播结束后数分钟内，MagicLab、宇树和 Noetix 的机器人在线售罄。
+
+### 市场爆发：2025 年出货 13,000 台，2026 年预测 28,000 台
+
+2025 年全球人形机器人出货量约 13,000 台，其中中国企业占近 80%（约 10,400 台）。摩根士丹利将 2026 年中国销售预测翻倍至 28,000 台 — 同比增长 133%。该行预计全球人形机器人产业到 2050 年将达到 5 万亿美元规模，届时中国将拥有 3.023 亿台人形机器人，而美国为 7,770 万台。中国目前已有超过 200 家人形机器人制造商（从 2025 年 4 月的 110 家增长），已发布 330+ 款人形机器人型号。行业观察者指出，如果 2025 年是概念普及的"元年"，那么 2026 年就是深度场景部署的"应用之年"。
+
+### 优必选空客合作：人形机器人进入航空航天
+
+空客 (Airbus) 采购了优必选 Walker S2 机器人，用于评估人形机器人在飞机装配中的部署 — 这标志着中国人形机器人首次进入欧洲航空航天制造领域。协议涵盖早期概念测试，探索全尺寸人形机器人（1.76 米高，刻意设计以适配现有工位）如何在不需要工厂重新设计的情况下在生产设施中执行任务。优必选的累计订单总额达到约 14 亿元（~$1.95 亿）。公司目标 2026 年实现年产能 5,000 台，2027 年扩展到 10,000 台。
+
+### 众擎发起世界首个人形机器人格斗联赛
+
+众擎于 2026 年 2 月 9 日在深圳发起了 Ultimate Robot Knockout Legend (UKRL) — 号称世界首个全尺寸人形机器人自由格斗联赛。参赛团队免费获得 T800 机器人。2026 赛季冠军将获得重达 10 公斤的纯金腰带，价值约 1,000 万元（$144 万）。T800 配备 360 度激光雷达、双目摄像头，关节电机峰值扭矩达 450 Nm。分级赛事将持续至 2026 年 12 月。这是一个巧妙的商业策略：免费硬件分发建立开发者社区，并产生仿真环境无法获得的真实格斗数据。
+
+### 越疆上市，逐际动力发布 COSA AI 操作系统
+
+越疆 (Dobot) 于 2024 年 12 月 23 日在港交所上市（股票代码：2432.HK），融资约 7.52 亿港元（$9,670 万）。是港交所 18C 章节制度下第三家成功上市的专精科技公司。越疆在中国协作机器人公司中排名第一，全球前二。与此同时，逐际动力发布了 COSA — 一个智能体 AI "操作系统"，使机器人能根据环境反馈实时调整身体动作，例如在抓取物体时动态调整握力。逐际的开发者版 Oli 定价 29 万元（~$41,400），几乎是基础版的两倍。
+
+### 深圳机器人产业产值突破 2,000 亿元
+
+深圳机器人产业产值在 2024 年首次突破 2,000 亿元，达到 2,012 亿元 — 同比增长 12.58%。新成立机器人企业数量同比增长 39.64%，达到 14,534 家（2023 年为 10,408 家）。深圳 2025-2026 行动计划目标是到 2026 年 AI 终端产业规模超过 8,000 亿元（$1,100 亿），拥有 3,000+ 家 AI 企业和 10+ 家独角兽。FAIR+（AI 与机器人博览会）2026 版将于 4 月 22-24 日在深圳会展中心举办，规模较 2025 年进一步扩大。
+
+### 宇树目标 2026 年出货 20,000 台
+
+总部位于杭州的宇树（非深圳总部但深度嵌入生态系统）宣布计划 2026 年出货 10,000 至 20,000 台人形机器人，较 2025 年约 5,500 台大幅增长。这将使宇树成为全球出货量最大的人形机器人制造商。其 G1（起价 $16,000）和 H2 型号因春晚表演获得了巨大的市场关注度。
+
+---
+
 ## 17. 可能出问题的地方
 
 1. **产能过剩**：74,000 家企业和 18+ 家人形制造商对于预计 2026 年仅 $14 亿的市场来说太多了。行业整合不可避免
@@ -644,3 +676,193 @@ DexForce 选择了轮式而非腿式。这是刻意的权衡：轮式牺牲了�
 4. **数据护城河幻觉**：出货量产生数据，但前提是数据收集和训练管道达到世界级水平。带着粗糙数据基础设施出货的机器人无济于事
 5. **小鹏 IRON 的教训**：公开演示可能适得其反。技术尚不够健壮以应对不可控环境
 6. **政府依赖**：严重依赖国有资本和补贴带来政治风险和潜在的资源错配
+
+---
+
+## References
+
+### Shenzhen Ecosystem Overview
+
+- [Burgeoning ecosystem bolsters Shenzhen's AI and robotics innovation — Shenzhen Government Online](https://www.sz.gov.cn/en_szgov/business/news/content/post_12148975.html)
+- [Stakes are raised: Shenzhen eyeing lead in AI, embodied AI robotics — Shenzhen Government Online](https://www.sz.gov.cn/en_szgov/news/latest/content/post_12063362.html)
+- [Robot fair to showcase cutting-edge innovations — Shenzhen Government Online](https://www.sz.gov.cn/en_szgov/aboutsz/whatson/content/post_12132570.html)
+- [Chinese localities vie for leadership in embodied AI race — Global Times](https://www.globaltimes.cn/page/202503/1329924.shtml)
+- [The Landscape of China's Robotics Industry — The China Academy](https://thechinaacademy.org/the-landscape-of-chinas-robotics-industry/)
+- [Top 20+ Chinese Humanoid Robots from Summer 2025 — Mike Kalil](https://mikekalil.com/blog/china-humanoid-summer-2025/)
+- [China's humanoid robots step from spectacle toward scalable industrial reality — Xinhua](https://english.news.cn/20251231/0a082888ab384fcaa572ee7a11ae7d9d/c.html)
+- [Chinese firms lead global humanoid robot production in 2025 — China Daily](https://subsites.chinadaily.com.cn/wic/2026-01/10/c_1155843.htm)
+- [A Look at 18+ Humanoid Robotics Companies in Shenzhen — CMRA](https://cnmra.com/a-look-at-18-humanoid-robotics-companies-in-shenzhen-industry-veterans-vs-rising-dark-horses/)
+- [Shenzhen home to 74,000 robotics firms — Bastille Post](https://www.bastillepost.com/global/article/4972000-shenzhen-home-to-74000-robotics-firms)
+
+### UBTECH Robotics
+
+- [UBTech Completes First Mass Humanoid Robot Delivery — AI Business](https://aibusiness.com/robotics/chinese-company-completes-first-mass-humanoid-robot-delivery)
+- [UBTech Humanoid Robot Walker S2 Begins Mass Production and Delivery — The AI Insider](https://theaiinsider.tech/2025/11/20/ubtech-humanoid-robot-walker-s2-begins-mass-production-and-delivery/)
+- [China's humanoid robots: UBTech scores US$112 million in factory orders — SCMP](https://www.scmp.com/tech/tech-trends/article/3332372/chinas-humanoid-robots-get-factory-jobs-ubtechs-model-scores-us112-million-orders)
+- [China's UBTech ships world's 1st mass batch of humanoid robot workers — Interesting Engineering](https://interestingengineering.com/ai-robotics/worlds-first-large-delivery-of-humanoid-workers)
+- [Ubtech Sells Products Worth 1.3 Billion Yuan — 36Kr](https://eu.36kr.com/en/p/3573683700078727)
+- [UBTECH Walker S2 Begins Mass Production, Orders Exceeding 800 Million Yuan — PR Newswire](https://www.prnewswire.com/news-releases/ubtech-humanoid-robot-walker-s2-begins-mass-production-and-delivery-with-orders-exceeding-800-million-yuan-302616924.html)
+- [UBTech's 2026 humanoid robot output to grow 10-fold — Yahoo Finance](https://finance.yahoo.com/news/ubtechs-2026-humanoid-robot-output-093000689.html)
+- [UBTECH robot dances, kicks box as 1000 Walker S2 milestone marked — Interesting Engineering](https://interestingengineering.com/ai-robotics/china-ubtech-builds-1000-humanoid-robots)
+- [Walker S2 specifications — UBTECH Official](https://www.ubtrobot.com/en/humanoid/products/walker-s2)
+- [Walker S2 Details and Specifications — Origin of Bots](https://www.originofbots.com/robot/walker-s2-by-ubtech-robotics-details-specifications-rating)
+- [UBTech Robotics Wikipedia](https://en.wikipedia.org/wiki/UBtech_Robotics)
+- [UBTECH Hong Kong IPO listing announcement](https://www.ubtrobot.com/en/about/news/498762019606597)
+- [Chinese Robot Maker UBTech Bags USD128 Million in Hong Kong IPO — Yicai Global](https://www.yicaiglobal.com/news/chinese-robot-maker-ubtech-bags-usd128-million-in-hong-kong-ipo)
+- [Tencent-Backed Robot-Maker UBTech Robotics Files for IPO — Caproasia](https://www.caproasia.com/2023/02/04/tencent-backed-robot-maker-ubtech-robotics-files-for-ipo-in-hong-kong-valued-at-7-billion-in-2021-fundraising-with-founder-zhou-jian-to-become-a-billionaire-at-ipo/)
+- [UBTech's US$237 million Fenglong deal tightens humanoid robot supply chain — SCMP](https://www.scmp.com/business/china-business/article/3337708/ubtechs-us237-million-fenglong-deal-tightens-humanoid-robot-supply-chain)
+- [Robot-Maker UBTech Tries for A-Share Foothold With Takeover of Auto Parts Firm — Caixin](https://www.caixinglobal.com/2025-12-25/robot-maker-ubtech-tries-for-a-share-foothold-with-takeover-of-auto-parts-firm-102397205.html)
+- [UBTECH Reports 27.5% Revenue Growth in H1 2025 — TMTPOST](https://en.tmtpost.com/post/7680109)
+- [UBTech Sales Hit 1.3 Billion Yuan — Humanoid Sports Network](https://humanoidsportsnetwork.com/ubtech-robotic-sales-hit-1-3-billion-yuan-as-walker-s2-humanoid-orders-surge/)
+- [UBTECH, Huawei join forces in embodied intelligence — Nanshan Gov](https://www.szns.gov.cn/english/business/industrialnews/content/post_12177399.html)
+- [Airbus turns to humanoid robots in early-stage manufacturing trials — Aerospace Global News](https://aerospaceglobalnews.com/news/airbus-humanoid-robots-manufacturing-ubtech/)
+- [Airbus Tests UBTech Walker S2 Humanoid Robots in Aircraft Assembly — Humanoid.guide](https://humanoid.guide/airbus-tests-ubtech-walker-s2-humanoid-robots-in-aircraft-assembly/)
+- [China's Ubtech Surges After Airbus Buys Walker S2 Humanoid Robots — Yicai Global](https://www.yicaiglobal.com/news/chinas-ubtech-surges-after-airbus-buys-walker-s2-humanoid-robots)
+
+### LimX Dynamics
+
+- [CNBC China Connection: China-made humanoid robots set sights on Middle East — CNBC](https://www.cnbc.com/2026/01/28/cnbc-china-connection-newsletter-humanoid-robots-middle-east-us-limx-tesla-optimus.html)
+- [LimX Dynamics' $6,800 TRON 2 Humanoid Robot — Mike Kalil](https://mikekalil.com/blog/limx-dynamics-tron2-humanoid-robot/)
+- [China's Robot Surge Targets U.S., Gulf: LimX Challenges Tesla's Optimus — WebProNews](https://www.webpronews.com/chinas-robot-surge-targets-u-s-gulf-limx-challenges-teslas-optimus-throne/)
+- [China's LimX Dynamics raises funds to build humanoid robot 'brains' — Interesting Engineering](https://interestingengineering.com/ai-robotics/china-limx-dynamics-robot-brain-funding)
+- [Funding surge powers Chinese robotics firms — SCMP](https://www.scmp.com/tech/article/3342246/funding-surge-powers-chinese-robotics-firms-focus-shifts-humanoid-brains)
+- [LimX Dynamics demonstrates latest humanoid robot motions — The Robot Report](https://www.therobotreport.com/limx-dynamics-demonstrates-latest-humanoid-robot-motions/)
+- [LimX Dynamics TRON 2 specifications — Origin of Bots](https://www.originofbots.com/robot/tron-2-by-limx-dynamics-details-specifications-rating)
+- [LimX Dynamics launches TRON 2 modular shapeshifter — Humanoids Daily](https://www.humanoidsdaily.com/news/limx-dynamics-launches-tron-2-a-modular-shapeshifter-for-embodied-ai-research)
+- [LimX Dynamics picks up $200M for humanoid robot expansion — The Robot Report](https://www.therobotreport.com/limx-dynamics-raises-200m-for-humanoid-robot-expansion/)
+- [LimX Dynamics Official Site](https://www.limxdynamics.com/en)
+
+### EngineAI
+
+- [Engine AI Wikipedia](https://en.wikipedia.org/wiki/Engine_AI)
+- [Engine AI: China's High-Speed Contender — Humanoids Daily](https://www.humanoidsdaily.com/feed/engine-ai-chinas-high-speed-contender-shakes-up-the-humanoid-robot-race)
+- [EngineAI's T800 Robot Stuns CES — BriefGlance](https://briefglance.com/articles/engineais-t800-robot-stuns-ces-signaling-chinas-robotics-ascent)
+- [EngineAI Debuts at CES 2025 — PR Newswire](https://www.prnewswire.com/news-releases/engineai-debuts-at-ces-2025-with-revolutionary-robotics-lineup-302347746.html)
+- [EngineAI Introduces T800 at CES 2026 — PR Newswire](https://www.prnewswire.com/news-releases/engineai-robotics-technology-introduces-the-t800-humanoid-robot-at-ces-2026-302655094.html)
+- [China's humanoid robot maker EngineAI snaps over $139m in fresh funding — DealStreetAsia](https://www.dealstreetasia.com/stories/engineai-funding-449971)
+- [EngineAI CEO proves T800 can kick — NotebookCheck](https://www.notebookcheck.net/EngineAI-CEO-bravely-proves-its-T800-humanoid-robot-can-really-kick-like-Jackie-Chan.1181250.0.html)
+- [Engine AI Humanoids deployed by Shenzhen Police — Mike Kalil](https://mikekalil.com/blog/engine-ai-robocop/)
+- [EngineAI SA02 Anime Inspired Robot — Mike Kalil](https://mikekalil.com/blog/engineai-sa02-humanoid-robot/)
+- [World's first humanoid robot free combat league kicks off in Shenzhen — Global Times](https://www.globaltimes.cn/page/202602/1355090.shtml)
+- [China starts 'world's first' robot combat league with $1.44M prize — Interesting Engineering](https://interestingengineering.com/ai-robotics/china-worlds-first-humanoid-robot-combat-league)
+- [EngineAI Teases Combat-Ready T800 Ahead of Robot Boxing Event — Humanoids Daily](https://www.humanoidsdaily.com/news/engineai-teases-combat-ready-t800-humanoid-ahead-of-robot-boxing-event)
+
+### Dobot
+
+- [Dobot releases third ATOM humanoid batch — Interesting Engineering](https://interestingengineering.com/ai-robotics/dobot-releases-third-humanoid-robot-batch)
+- [DOBOT Debuted Global Delivery of Humanoid Robot ATOM — Dobot Official](https://www.dobot-robots.com/insights/news/dobot-debuted-global-delivery-of-humanoid-robot.html)
+- [Dobot Deploys ATOM Robot Army in Third Mass Delivery — Humanoids Daily](https://www.humanoidsdaily.com/news/dobot-deploys-atom-robot-army-in-third-mass-delivery-phase)
+- [China's $27K Humanoid Robot Enters Mass Production — Mike Kalil](https://mikekalil.com/blog/shenzhen-dobot-atom/)
+- [Chinese robotics firm Shenzhen Dobot excites investors with US$27,500 humanoid — SCMP](https://www.scmp.com/tech/tech-trends/article/3302868/chinese-robotics-firm-shenzhen-dobot-excites-investors-us27500-humanoid)
+- [Dobot Launches Third Batch, Targets Mass Delivery in 2026 — Pandaily](https://pandaily.com/dobot-launches-third-batch-of-full-size-industrial-humanoid-robots-atom-targets-mass-delivery-in-2026)
+- [Dobot Robotics Successfully Listing Hong Kong Stock Exchange — Dobot Official](https://www.dobot-robots.com/insights/news/dobot-robotics-successfully-listing-hong-kong-stock-exchange.html)
+- [Wilson Sonsini Advises Shenzhen Dobot on IPO and SEHK Listing — Wilson Sonsini](https://www.wsgr.com/en/insights/wilson-sonsini-advises-shenzhen-dobot-on-ipo-and-sehk-listing-the-third-chapter-18c-listing-in-hong-kong.html)
+
+### Leju Robot
+
+- [Leju Robot Wikipedia](https://en.wikipedia.org/wiki/Leju_Robot)
+- [Chinese Humanoid Robot Maker Raises $200 Million Ahead of IPO — Bloomberg](https://www.bloomberg.com/news/articles/2025-10-22/chinese-humanoid-robot-maker-raises-200-million-ahead-of-ipo)
+- [Tencent-backed humanoid robot startup Leju raises $210m — DealStreetAsia](https://www.dealstreetasia.com/stories/humanoid-robot-maker-leju-raises-funding-460790)
+- [Leju raises $200M for humanoid production — The Robot Report](https://www.therobotreport.com/leju-raises-200m-humanoid-production-unitree-unveils-h2-robot/)
+- [Leju's Kuavo humanoid robot carries torch at National Games — Robotics & Automation News](https://roboticsandautomationnews.com/2025/11/03/leju-robots-humanoid-makes-history-as-torchbearer-at-chinas-15th-national-games/96156/)
+- [Leju Robot Official Site](https://www.lejurobot.com/en)
+
+### Lumos Robotics
+
+- [Lumos Robotics Deep Dive — Humanoids.dev](https://humanoids.dev/p/lumos-robotics-deep-dive)
+- [Touch-enabled robots inch closer as Lumos secures funding — KrASIA](https://kr-asia.com/touch-enabled-robots-inch-closer-to-reality-as-lumos-robotics-secures-new-funding)
+- [New Class of Sci-Fi Robots Emerges in Shenzhen — Mike Kalil](https://mikekalil.com/blog/shenzhen-digit-robots/)
+- [Lumos Robotics Official Site](https://lumosrobotics.com/)
+- [Lumos Robotics LUS1 — RobGen](https://robgen.com/catalog/LUS1)
+
+### Cyborg Robotics
+
+- [WAIC 2025: Shanghai Hosts 60+ Humanoid Robots — Mike Kalil](https://mikekalil.com/blog/waic-2025/)
+- [China showcases over 150 humanoid robots at WAIC 2025 — Global Times](https://www.globaltimes.cn/page/202507/1339392.shtml)
+- [The Day the Robots Came to Shanghai: WAIC 2025 — Aparobot](https://www.aparobot.com/articles/the-day-the-robots-came-to-shanghai-a-look-at-waic-2025)
+
+### DexForce
+
+- [DexForce Company Profile — Aparobot](https://www.aparobot.com/companies/dexforce)
+- [DexForce W1 Pro Specifications — Aparobot](https://www.aparobot.com/robots/dexforce-w1-pro)
+- [DexForce W1 Pro — Robots International](https://www.robotsinternational.com/Dexforce-W1pro-W1-Pro-General-Purpose-Embodied-Intelligence-Wheeled-Humanoid-Robot.htm)
+- [Humanoid robots poised to transform China's factory floor — Xinhua](https://english.news.cn/20250516/c2b5bc9aa36a4ecba7d4798bb6e7b0b7/c.html)
+
+### Xpeng IRON
+
+- [Xpeng's IRON humanoid robot catwalk stumble — Interesting Engineering](https://interestingengineering.com/ai-robotics/xpeng-iron-humanoid-robot-shenzhen)
+- [Xpeng unveils next-gen Iron humanoid robot at 2025 AI Day — CnEVPost](https://cnevpost.com/2025/11/05/xpeng-unveils-next-gen-iron-humanoid-robot/)
+- [Xpeng Debuts 'Most Human-Like' Iron Robot — Humanoids Daily](https://www.humanoidsdaily.com/news/xpeng-debuts-most-human-like-iron-robot-details-vlt-brain-and-2026-production-goal)
+
+### Daimon Robotics
+
+- [Shenzhen robotics start-up Daimon secures China Mobile backing — SCMP](https://www.scmp.com/tech/tech-trends/article/3335084/shenzhen-robotics-start-daimon-secures-china-mobile-backing-ai-push)
+- [HKUST-Backed Embodied Robotics Startup Secures China Mobile Investment — Pandaily](https://pandaily.com/hkust-backed-embodied-robotics-startup-secures-strategic-investment-from-china-mobile-ranks-no-1-globally-in-single-product-shipments)
+- [Daimon Robotics Official Site](https://www.dmrobot.com/en/)
+
+### Nanshan / Robot Valley / Supply Chain
+
+- [Inside China's robot valley, where the future gets built at speed — Xinhua (Feb 2026)](https://english.news.cn/20260205/013137a2eee740ea839faa94d5317628/c.html)
+- [Shenzhen district powers dense robot innovation ecosystem — Space Daily](https://www.spacedaily.com/reports/Shenzhen_district_powers_dense_robot_innovation_ecosystem_999.html)
+- [Shenzhen's Robot Valley: the "Silicon Valley" in robotic world — Our China Story](https://www.ourchinastory.com/en/14788/Shenzhen's-Robot-Valley:-the-)
+- [Nanshan rises as hardware innovation hub — China Daily](http://usa.chinadaily.com.cn/a/202602/06/WS69854832a310d6866eb37d3e.html)
+- [Shenzhen: Hardware Capital of the World — Diamandis](https://www.diamandis.com/blog/shenzhen-global-hardware-capital)
+- [6 Reasons Why You Should Move Your Hardware Startup to Shenzhen — TechDesign](https://blog.techdesign.com/6-reasons-move-hardware-startup-shenzhen/)
+- [Shenzhen's Robot Valley Redefining Future of Global Industry — Robot Magazine](https://www.robot-magazine.fr/en/shenzhens-robot-valley-the-silicon-valley-of-robotics-redefining-the-future-of-global-industry/)
+
+### Government Policy & Funding
+
+- [China's tech hub Shenzhen to launch 10 bln yuan fund — Gov.cn](https://english.www.gov.cn/news/202502/24/content_WS67bd2946c6d0868f4e8eff2c.html)
+- [Shenzhen Robot Revolution: $1.4 billion AI fund — CGTN](https://news.cgtn.com/news/2025-03-04/VHJhbnNjcmlwdDgzMzcz/index.html)
+- [Shenzhen establishes RMB 1.55 billion AI and robotics fund — TechNode](https://technode.com/2025/10/09/shenzhen-establishes-rmb-1-55-billion-artificial-intelligence-and-robotics-industry-fund/)
+- [Shenzhen Pledges 10 Billion Yuan to AI and Robotics — CMRA](https://cnmra.com/shenzhen-pledges-10-billion-yuan-to-ai-and-robotics-fueling-industry-transformation/)
+- [Shenzhen unveils plan to boost embodied intelligent robotics — SCIO](http://english.scio.gov.cn/m/pressroom/2025-03/04/content_117744032.html)
+- [Shenzhen sows seeds for next tech breakthroughs with AI, robotics funding — SCMP](https://www.scmp.com/economy/china-economy/article/3299916/shenzhen-sows-seeds-chinas-next-tech-breakthroughs-ai-robotics-funding)
+- [Embodied Intelligence: The PRC's Whole-of-Nation Push into Robotics — Jamestown](https://jamestown.org/program/embodied-intelligence-the-prcs-whole-of-nation-push-into-robotics/)
+- [How China's government is supercharging the rise of humanoid robots — SCMP](https://www.scmp.com/economy/china-economy/article/3297482/how-chinas-government-supercharging-rise-humanoid-robots)
+- [Shenzhen Action Plan for Accelerating AI Terminal Industry (2025-2026) — Longhua Government Online](https://www.szlhq.gov.cn/english/business/yszc/content/post_12210400.html)
+- [Shenzhen to Set Up USD6.9 Billion State-Backed Fund to Boost AI, Robotics — Yicai Global](https://www.yicaiglobal.com/news/shenzhen-to-set-up-usd69-billion-state-backed-fund-to-boost-ai-robotics)
+
+### Huawei Embodied AI Center
+
+- [Huawei launches embodied intelligence innovation center in Shenzhen — TechNode](https://technode.com/2024/11/18/huawei-launches-embodied-intelligence-innovation-center-in-shenzhen/)
+- [Huawei making moves in China's robotics industry — Yahoo Finance](https://finance.yahoo.com/news/huawei-making-moves-chinas-robotics-093000524.html)
+- [Huawei invests $413M into robotics subsidiary — The Robot Report](https://www.therobotreport.com/huawei-invests-413m-into-robotics-subsidiary/)
+- [Here comes embodied robots! Huawei teams up with Qianhai and Bao'an — GDToday](https://www.newsgd.com/node_5c070fdd03/d56474ab82.shtml)
+
+### Investment Landscape
+
+- [Shenzhen establishes RMB 1.55B AI and robotics industry fund — TechNode](https://technode.com/2025/10/09/shenzhen-establishes-rmb-1-55-billion-artificial-intelligence-and-robotics-industry-fund/)
+- [Venture capital and private equity in robotics — Robotics & Automation News](https://roboticsandautomationnews.com/2025/12/21/venture-capital-and-private-equity-in-robotics-where-is-the-smart-money-going/97794/)
+- [The Chinese Humanoid Robot AI Market: Investor Opportunities — China Briefing](https://www.china-briefing.com/news/chinese-humanoid-robot-market-opportunities/)
+- [Humanoid Funding Rounds in 2025 — Humanoid Robotics Technology](https://humanoidroboticstechnology.com/articles/humanoid-funding-rounds-in-2025/)
+
+### City Comparisons
+
+- [Shenzhen boosts role as China's humanoid robotics base — SCMP](https://www.scmp.com/tech/big-tech/article/3301328/shenzhen-boosts-role-chinas-humanoid-robotics-base-unitree-local-venture)
+- [Inside China's bold push to build humanoid robots — Asia Tech Lens](https://www.asiatechlens.com/p/inside-chinas-bold-push-to-build)
+- [Top 20 Chinese Humanoid Robot Companies Ranked by Valuation — XCarSpace](https://xcarspace.com/top-20-chinese-humanoid-robot-companies-ranked-by-valuation/)
+- [Embodied AI: China's Big Bet on Smart Robots — Carnegie Endowment](https://carnegieendowment.org/research/2025/11/embodied-ai-china-smart-robots?lang=en)
+- [Is China Winning the Race for Robotics? — The AI Insider](https://theaiinsider.tech/2025/10/04/is-china-winning-the-race-for-robotics/)
+
+### Supply Chain & Manufacturing
+
+- [Embodied AI: China as global powerhouse for industrial and humanoid robotics — Premia Partners](https://www.premia-partners.com/insight/embodied-ai-china-as-the-global-powerhouse-for-industrial-and-humanoid-robotics)
+- [Rise of China's Robotics Industry — AIProem Substack](https://aiproem.substack.com/p/the-rise-of-chinas-robotics-industry)
+- [Why Shenzhen is the World's Best Destination for Prototyping — FDI China](https://fdichina.com/blog/prototyping-and-development-in-shenzhen/)
+- [Shenzhen Electronics Manufacturing Guide — Greentime](https://cngreentime.com/shenzhen-electronics-manufacturing-for-importers/)
+
+### 2026 Updates
+
+- [Who's laughing now? China's humanoid robots go from viral stumbles to kung fu flips in one year — CNBC](https://www.cnbc.com/2026/02/20/china-humanoid-robots-spring-festival-gala-unitree-tesla-ai-race.html)
+- [Humanoid robots perform advanced martial arts at Chinese New Year gala — Al Jazeera](https://www.aljazeera.com/news/2026/2/17/humanoid-robots-perform-advanced-martial-arts-at-chinese-new-year-gala)
+- [Humanoid robots take center stage at 2026 Spring Festival Gala — TechNode](https://technode.com/2026/02/17/humanoid-robots-take-center-stage-at-2026-spring-festival-gala-revealing-chinas-latest-robotics-advances/)
+- [Analysis: China's biggest TV event had a clear star: the robot — CNN](https://www.cnn.com/2026/02/18/china/china-humanoid-robots-new-year-gala-intl-hnk)
+- [Humanoids go mainstream as China's robotics champions appear at CCTV spectacle — SCMP](https://www.scmp.com/tech/big-tech/article/3343634/chinas-tech-companies-vie-attention-cctvs-festival-gala-years-biggest-stage)
+- [Kung fu, somersaults and scale: Unitree eyes 20,000-robot output in 2026 after gala — SCMP](https://www.scmp.com/tech/big-tech/article/3343825/kung-fu-somersaults-and-scale-unitree-eyes-20000-robot-output-2026-after-gala)
+- [China's Unitree Aims to Ship 20,000 Humanoid Robots in 2026 — eWeek](https://www.eweek.com/news/unitree-20000-humanoid-robots-2026-china/)
+- [China leads the humanoid robot supply chain, with 2026 sales forecast to jump — Digitimes](https://www.digitimes.com/news/a20260203PD235/robot-2026-sales-supply-chain-market.html)
+- [Humanoid Robot Market Expected to Reach $5 Trillion by 2050 — Morgan Stanley](https://www.morganstanley.com/insights/articles/humanoid-robot-market-5-trillion-by-2050)
+- [China Now Has Over 200 Humanoid Robot Manufacturers — CMRA](https://cnmra.com/china-now-has-over-200-humanoid-robot-manufacturers/)
+- [Top 10 Chinese Humanoid Robots of 2026 — Humanoid Robotics Technology](https://humanoidroboticstechnology.com/articles/top-10-chinese-humanoid-robots-of-2026/)
+- [Boeing's biggest competitor brings China's Walker S2 humanoid robot into its factories — Prototyping China](https://www.prototypingchina.com/2026/01/19/boeings-biggest-competitor-brings-chinas-walker-s2-humanoid-robot-into-its-factories/)

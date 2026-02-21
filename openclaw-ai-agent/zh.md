@@ -360,6 +360,38 @@ QMD 插件（BM25 + Vector + LLM Rerank，全部本地）实现 60-97% Token 节
 
 ---
 
+## 最新動態 (2026)
+
+### 创始人加入 OpenAI，项目转入基金会
+
+2026年2月14日，Peter Steinberger 宣布加入 OpenAI，Sam Altman 在 X 上称其将"推动下一代个人 Agent"。OpenClaw 将过渡到一个独立的开源基金会，继续使用 MIT 许可证——由 OpenAI 赞助但不受其控制。这次 acqui-hire 表明 OpenAI 将个人 Agent 网关模式视为其未来战略的核心，而非附属项目。VentureBeat 称之为"ChatGPT 时代终结的开始"——从聊天界面转向代你行事的自主 Agent。
+
+### 爆发式增长：180K+ Star，一周 200 万访客
+
+OpenClaw 成为 GitHub 历史上增长最快的开源 AI 项目。到2026年2月中旬，项目已超过 180,000 GitHub star，一周内吸引超过 200 万访客。这一增长受到 Moltbook 项目的病毒式传播和广泛媒体报道（CNBC、Scientific American、Fortune、Bloomberg）的推动。Raspberry Pi Holdings 股价飙升 43%，因为爱好者纷纷在专用硬件上部署 OpenClaw。
+
+### 严重安全危机（CVE-2026-25253 + 六个额外漏洞）
+
+2026年2月3日披露了一个严重的远程代码执行漏洞（CVE-2026-25253，CVSS 8.8）——这是一个逻辑缺陷，允许攻击者通过受害者的浏览器一次点击即可窃取用户认证令牌并实现 RCE。该漏洞在 v2026.1.29 中被修复。随后，Endor Labs 研究人员又揭示了六个额外漏洞，包括 SSRF、缺失认证和路径遍历缺陷。Bitsight 观测到超过 30,000 个暴露在公网上的 OpenClaw 实例存在认证绕过条件。生态中记录了超过 341 个恶意技能在流通，独立扫描报告超过三分之一的社区技能包含漏洞或风险行为。
+
+### 企业禁令：Meta、Google DeepMind 限制使用
+
+Meta、Google DeepMind 及一系列 AI 公司在2026年1月底/2月初限制或禁止了 OpenClaw 的使用。Meta 高管告知员工，如果在工作笔记本上使用该软件将面临失业风险。Google DeepMind 完全撤回了其贡献的多个模块。这代表了开源 AI 运动中最重大的逆转之一——最初为项目做出贡献的公司因安全顾虑而主动撤退，其中包括 OpenClaw 核心模块可被改用于自主武器瞄准和关键基础设施攻击的演示。
+
+### Astrix OpenClaw Scanner — 企业检测工具
+
+Astrix Security 发布了 OpenClaw Scanner（在 PyPI 上免费提供），这是一个开源工具，用于检测企业环境中自主 AI Agent 的运行位置。它与现有 EDR 遥测数据（CrowdStrike Falcon、Microsoft Defender）配合使用，分析端点上的 OpenClaw 活动行为指标，并生成可移植报告——全部以只读方式访问，无数据外传。CrowdStrike 也通过其 AI Service Usage Monitor 仪表板增加了原生 OpenClaw 可见性。
+
+### ClawBody — 物理机器人桥接
+
+社区构建的 ClawBody 项目（Tom Rikert 开发）将 OpenClaw 桥接到物理机器人硬件，集成 MuJoCo 仿真支持，可在高保真 3D 物理环境中训练 Agent，然后再部署到真实电机。初始集成使用 Reachy Mini 人形平台进行多关节控制。专门的 OpenClaw Robotics Community 已经成立，ClawBox（预配置的 Jetson Orin Nano，针对 OpenClaw 生产使用优化）可在2026年 Q2 预订。
+
+### Raspberry Pi 作为专用 AI Agent 硬件
+
+Raspberry Pi 官方认可在 Pi 5（或 8GB RAM 的 Pi 4）上运行 OpenClaw，作为注重安全的部署方案——提供隔离性、全天候运行和低功耗。这引发了将消费级单板计算机作为专用 AI Agent 基础设施的更广泛趋势，Raspberry Pi 官方博客发布了配置指南。
+
+---
+
 ## 可偷的模式
 
 | 模式 | 可以偷什么 |
@@ -372,3 +404,71 @@ QMD 插件（BM25 + Vector + LLM Rerank，全部本地）实现 60-97% Token 节
 | **会话作用域模式** | `per-channel-peer` 防止上下文泄漏——多用户场景必备 |
 | **前向兼容降级** | 新模型标识符优雅降级——永不因未知模型而崩溃 |
 | **心跳模式** | `HEARTBEAT.md` 自动化健康检查——自愈 Agent 基础设施 |
+
+---
+
+## References
+
+### 官方
+- OpenClaw GitHub: https://github.com/openclaw/openclaw
+- OpenClaw 官网: https://openclaw.ai/
+- OpenClaw 文档 — 入门: https://docs.openclaw.ai/start/getting-started
+- OpenClaw 文档 — 技能: https://docs.openclaw.ai/tools/skills
+- OpenClawd AI (托管平台): https://openclawd.ai/
+- ClawHub (技能注册表): https://clawhub.com
+
+### 版本发布
+- v2026.2.6 发布: https://github.com/openclaw/openclaw/releases/tag/v2026.2.6
+- v2026.2.6 公告 (X): https://x.com/openclaw/status/2020059808444084506
+- v2026.2.6 报道 (CyberSecurity News): https://cybersecuritynews.com/openclaw-v2026-2-6-released/
+- v2026.2.2 链上发布: https://evolutionaihub.com/openclaw-2026-2-2-ai-agent-framework-onchain/
+
+### 分析与深度研究
+- IBM Think — OpenClaw、Moltbook 与 AI Agent 的未来: https://www.ibm.com/think/news/clawdbot-ai-agent-testing-limits-vertical-integration
+- Sapt — 架构、安全与最佳实践: https://sapt.ai/insights/openclaw-architecture-security-agentic-ai-best-practices
+- DigitalOcean — 什么是 OpenClaw?: https://www.digitalocean.com/resources/articles/what-is-openclaw
+- Sterlites — 架构、演进与安全风险: https://sterlites.com/blog/moltbot-local-first-ai-agents-guide-2026
+- Wikipedia — OpenClaw: https://en.wikipedia.org/wiki/OpenClaw
+
+### 指南与教程
+- Molt Founders — OpenClaw 超级速查表: https://moltfounders.com/openclaw-mega-cheatsheet
+- Codecademy — OpenClaw 教程: https://www.codecademy.com/article/open-claw-tutorial-installation-to-first-chat-setup
+- DigitalOcean — 如何运行 OpenClaw: https://www.digitalocean.com/community/tutorials/how-to-run-openclaw
+
+### 生态与技能
+- Awesome OpenClaw Skills: https://github.com/VoltAgent/awesome-openclaw-skills
+- QMD 记忆插件: https://github.com/sac34333/openclawmemory
+- OpenClaw 扩展生态指南: https://help.apiyi.com/en/openclaw-extensions-ecosystem-guide-en.html
+
+### 替代方案对比
+- CodeConductor — 顶级 OpenClaw 替代方案: https://codeconductor.ai/blog/openclaw-alternatives/
+- SuperPrompt — 2026年最佳 OpenClaw 替代方案: https://superprompt.com/blog/best-openclaw-alternatives-2026
+- Metana — OpenClaw vs Moltbook: https://metana.io/blog/openclaw-vs-moltbook-what-are-the-key-differences/
+
+### 新闻
+- CNBC — 从 Clawdbot 到 OpenClaw: https://www.cnbc.com/2026/02/02/openclaw-open-source-ai-agent-rise-controversy-clawdbot-moltbot-moltbook.html
+- Yahoo Finance — OpenClawd 托管平台发布: https://finance.yahoo.com/news/openclawd-ai-launches-hosted-platform-143600648.html
+- CoinMarketCap — OpenClaw 与加密: https://coinmarketcap.com/academy/article/what-is-openclaw-moltbot-clawdbot-ai-agent-crypto-twitter
+- The Defiant — OpenClaw x 加密生态: https://thedefiant.io/newsletter/defi-daily/the-openclaw-x-crypto-ecosystem
+
+### 安全
+- Security.com — OpenClaw 的崛起: https://www.security.com/expert-perspectives/rise-openclaw
+- Xpert Digital — AI Agent 失控?: https://xpert.digital/en/local-ai-assistant/
+
+### 最新 (2026 更新)
+- TechCrunch — OpenClaw 创始人加入 OpenAI: https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/
+- Peter Steinberger — OpenClaw、OpenAI 与未来: https://steipete.me/posts/2026/openclaw
+- Fortune — Peter Steinberger 是谁?: https://fortune.com/2026/02/19/openclaw-who-is-peter-steinberger-openai-sam-altman-anthropic-moltbook/
+- CNBC — Steinberger 加入 OpenAI: https://www.cnbc.com/2026/02/15/openclaw-creator-peter-steinberger-joining-openai-altman-says.html
+- VentureBeat — OpenAI 收购标志 ChatGPT 时代终结: https://venturebeat.com/technology/openais-acquisition-of-openclaw-signals-the-beginning-of-the-end-of-the
+- CrowdStrike — 安全团队须知: https://www.crowdstrike.com/en-us/blog/what-security-teams-need-to-know-about-openclaw-ai-super-agent/
+- Help Net Security — OpenClaw Scanner: https://www.helpnetsecurity.com/2026/02/12/openclaw-scanner-open-source-tool-detects-autonomous-ai-agents/
+- Infosecurity Magazine — 六个新漏洞: https://www.infosecurity-magazine.com/news/researchers-six-new-openclaw/
+- SOCRadar — CVE-2026-25253 分析: https://socradar.io/blog/cve-2026-25253-rce-openclaw-auth-token/
+- Meta 禁止 OpenClaw (TechBuzz): https://www.techbuzz.ai/articles/meta-bans-viral-ai-tool-openclaw-over-security-risks
+- Fortune — OpenClaw 安全风险: https://fortune.com/2026/02/12/openclaw-ai-agents-security-risks-beware/
+- Raspberry Pi — 将 Pi 变成 AI Agent: https://www.raspberrypi.com/news/turn-your-raspberry-pi-into-an-ai-agent-with-openclaw/
+- Bloomberg — OpenClaw 推动 Raspberry Pi 股价飙升: https://www.bloomberg.com/news/articles/2026-02-17/ai-agent-openclaw-puts-raspberry-pi-shares-on-investor-radars
+- Scientific American — OpenClaw 控制你的电脑: https://www.scientificamerican.com/article/moltbot-is-an-open-source-ai-agent-that-runs-your-computer/
+- ClawBody GitHub (Reachy Mini 机器人): https://github.com/tomrikert/clawbody
+- Astrix Security — OpenClaw Scanner: https://astrix.security/learn/blog/introducing-astrix-openclaw-moltbot-footprint-scanner/

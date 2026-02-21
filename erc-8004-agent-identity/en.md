@@ -329,6 +329,22 @@ This is the classic network effect bootstrap problem. Ethereum Foundation's dAI 
 | Domain verification | `/.well-known/agent-registration.json` | Proves agent controls its claimed HTTPS endpoint |
 | Progressive validation | Multiple responses per requestHash with tags | "Soft finality" → "hard finality" for staged verification |
 
+## Latest Updates (2026)
+
+**Mainnet launch and rapid adoption.** ERC-8004 went live on Ethereum mainnet on January 29, 2026. Within the first two weeks, over 24,000 agent identities were registered across Ethereum-based deployments. Platforms such as Olas report thousands of mirrored agents operating across multiple environments. The standard became the second most discussed proposal on the Ethereum Magicians forum, with over 150 projects building on it.
+
+**Ethereum Foundation dAI 2026 Roadmap.** Davide Crapis, Head of AI at the Ethereum Foundation, published the dAI team's 2026 roadmap aiming to establish Ethereum as the global decentralized settlement and coordination backbone for AI. ERC-8004 and x402 are designated as the two key pillars. In just three months the team built a builder group exceeding 1,000 members with hundreds of participants in community calls. The Foundation's leadership has stated: "if Ethereum does not take the lead, closed platforms or centralized entities will dominate, concentrating control over the growing AI economy."
+
+**Multi-chain expansion beyond Ethereum.** BNB Chain announced official support for ERC-8004 on February 4, 2026, deploying registries on BSC Mainnet and Testnet. Alongside it, BNB Chain launched BAP-578 (Non-Fungible Agent standard), which lets AI agents exist as on-chain assets that can hold assets, execute logic, interact with DeFi protocols, and be bought, sold, or hired. Avalanche C-Chain also adopted ERC-8004 in February 2026. Major L2s including Base, Taiko, Polygon, Arbitrum, Scroll, and Linea all have official registry deployments.
+
+**The Graph indexing infrastructure.** The Graph published dedicated Subgraphs indexing ERC-8004 identity, reputation, and validation registries across eight blockchains. This allows agents on different chains to instantly verify each other's reputation without scanning raw blockchain data. The Graph also developed GraphTally, a micropayment system addressing x402's gas cost problem by letting agents issue cryptographically signed vouchers that are aggregated into single batch settlements — enabling thousands of queries per minute without gas bottlenecks.
+
+**Real-world adoption: AdPrompt.ai.** AdPrompt.ai became one of the first commercial platforms to register agents under ERC-8004, deploying three purpose-scoped API resources (Brand Scan Agent, Creative Asset Agent, and Strategy Agent) with x402 pay-per-use access. This demonstrates the ERC-8004 + x402 stack working in production for agentic marketing services — identity, reputation signals, and micropayments in a single flow.
+
+**Cortensor three-phase integration plan.** Cortensor, a decentralized AI inference network, published a detailed three-phase integration plan for x402 + ERC-8004. Phase 1 uses delegated sessions with no core protocol changes. Phase 2 evolves their Router Node into a dual-mode Router Agent exposing both inference and validation services via HTTP and MCP, discoverable as ERC-8004 agents and payable via x402. Phase 3 adds one-shot x402 for inference endpoints with ERC-8004 agent bindings. This is the most concrete public roadmap for deep ERC-8004 integration by a DePIN/inference project.
+
+**V2 specification progress.** The v2 specification continues development with focus on: enhanced MCP support for broader compatibility beyond A2A, more flexible on-chain data storage for reputation enabling sophisticated smart contract composability, cleaner x402 integration with standardized payment proof formats, and refined schemas for feedback and agent registration files to power specialized agent explorers and marketplaces. x402 V2 itself launched in December 2025 with multi-chain support and legacy payment rail compatibility (ACH, card networks).
+
 ## Bottom Line
 
 **What's real**: ERC-8004 is deployed on mainnet and 20+ L2s. The contracts work. The Identity Registry is straightforward ERC-721. The specification is thoughtful and minimal.
@@ -338,3 +354,58 @@ This is the classic network effect bootstrap problem. Ethereum Foundation's dAI 
 **The honest assessment**: ERC-8004 is the right *shape* for agent identity — NFT-based, composable, with layered trust. But it's infrastructure waiting for adoption. The escrow-on-validation pattern is genuinely powerful and could become the foundation for trustless agent commerce. Whether that happens on ERC-8004 specifically, or a successor, depends on ecosystem momentum in 2026-2027.
 
 **What to do today**: If you're building agents, register in the Identity Registry. It costs one transaction and makes your agent discoverable. Don't wait for the reputation ecosystem to mature — early registrants benefit from first-mover positioning when the trust layer gets traction.
+
+## References
+
+### Official Specification
+
+- [EIP-8004: Trustless Agents — Ethereum.org](https://eips.ethereum.org/EIPS/eip-8004) — Full EIP specification with Solidity interfaces
+- [ERC-8004 Discussion — Fellowship of Ethereum Magicians](https://ethereum-magicians.org/t/erc-8004-trustless-agents/25098) — Community discussion thread
+- [erc-8004-contracts — GitHub](https://github.com/erc-8004/erc-8004-contracts) — Reference implementation, deployment addresses (20+ networks)
+- [awesome-erc8004 — GitHub](https://github.com/sudeepb02/awesome-erc8004) — Curated resource list
+
+### Technical Deep Dives
+
+- [ERC-8004: Practical Explainer — Composable Security](https://composable-security.com/blog/erc-8004-a-practical-explainer-for-trustless-agents/) — Security audit perspective, architecture walkthrough
+- [ERC-8004 Explained — Backpack Exchange](https://learn.backpack.exchange/articles/erc-8004-explained) — Complete guide: registries, validation tiers, timeline, roadmap
+- [ERC-8004: Trust Layer for AI Agent Economy — PayRam](https://payram.com/blog/what-is-erc-8004-protocol) — Protocol stack integration, escrow patterns, tiered security
+- [ERC-8004: Trustless Extension of A2A — Coinmonks/Medium](https://medium.com/coinmonks/erc-8004-a-trustless-extension-of-googles-a2a-protocol-for-on-chain-agents-b474cc422c9a) — A2A integration patterns
+- [ERC-8004 Technical, Economic, and Policy Analysis — Medium](https://medium.com/@gwrx2005/erc-8004-and-the-ethereum-ai-agent-economy-technical-economic-and-policy-analysis-3134290b24d1) — Economic model, validator incentives
+- [ERC-8004: Building the Trustless Agent Layer — Medium](https://medium.com/@savvysid/erc-8004-building-the-trustless-agent-layer-of-ethereum-0eec8b9ad112) — Architecture analysis
+- [ERC-8004 Standard Explained — C# Corner](https://www.c-sharpcorner.com/article/erc-8004-standard-explained-the-trustless-agents-protocol-for-identity-reputati/) — Developer walkthrough
+
+### News & Industry Coverage
+
+- [ERC-8004 Mainnet Launch — CoinDesk](https://www.coindesk.com/markets/2026/01/28/ethereum-s-erc-8004-aims-to-put-identity-and-trust-behind-ai-agents/) — Mainnet deployment coverage (Jan 29, 2026)
+- [ERC-8004 Standard Nears Mainnet — CCN](https://www.ccn.com/news/crypto/erc-8004-agents-standard-nears-mainnet-as-ethereum-teases-rollout/) — Pre-launch coverage
+- [What Is ERC-8004? Risks Explained — CCN](https://www.ccn.com/education/crypto/erc-8004-ai-agents-on-chain-ethereum-how-works-risks-explained/) — Risks and limitations analysis
+- [Ethereum Introduces ERC-8004 — CryptoRank](https://cryptorank.io/news/feed/53277-ethereum-introduces-erc-8004-standard-for-ai-agent-identity-and-reputation-systems) — Standard introduction
+- [ERC-8004 Mainnet Launch Explained — Bitcoin Ethereum News](https://bitcoinethereumnews.com/tech/erc-8004-mainnet-launch-what-this-agent-protocol-actually-does/) — What it actually does
+- [Ethereum's Decentralized AI Revolution — Technology.org](https://www.technology.org/2026/02/05/ethereums-decentralized-ai-revolution-surges-as-agentic-standards-transform-2026/) — dAI team strategy
+- [The Protocol: Ethereum AI Agents Standard — CoinDesk](https://www.coindesk.com/tech/2026/01/28/the-protocol-ethereum-to-roll-out-new-ai-agents-standard-soon/) — Protocol newsletter coverage
+
+### Ecosystem & Platforms
+
+- [ERC-8004 on Eco — Eco Support](https://eco.com/support/en/articles/13221214-what-is-erc-8004-the-ethereum-standard-enabling-trustless-ai-agents) — Validation tiers, escrow pattern, x402 connection
+- [ERC-8004 Beginner's Guide — Bitget](https://web3.bitget.com/en/academy/what-is-erc-8004-a-beginners-guide-to-trustless-ai-agents-on-ethereum) — Beginner overview
+- [ERC-8004: Trustless Agents — Oasis Network](https://oasis.net/blog/erc-8004-trustless-agents) — ROFL/TEE integration perspective
+- [ERC-8004 — BuildBear](https://www.buildbear.io/blog/erc-8004) — Developer tutorial
+
+### Related Context
+
+- [Onchain Reputation for AI Agents — Medium](https://medium.com/@ellie_43405/onchain-reputation-for-ai-agents-human-users-64c7b8ef25dc) — Broader reputation landscape
+- [Agentic AI in DeFi — Medium](https://medium.com/@trentice.bolar/agentic-ai-in-defi-the-dawn-of-autonomous-on-chain-finance-584652364d08) — DeFi agent economy context
+- [CV VC: AI Agents as Catalyst for Onchain Finance — CVVC](https://www.cvvc.com/blogs/cv-vc-insights-ai-agents-as-the-catalyst-for-onchain-finance) — Investor perspective
+
+### 2026 Updates
+
+- [ERC-8004 Powers Thousands of Onchain AI Identities — Bitcoin.com](https://news.bitcoin.com/what-is-erc-8004-ethereums-new-agent-standard-powers-thousands-of-onchain-ai-identities/) — 24K+ registered agents
+- [Ethereum Foundation dAI 2026 Roadmap — Metaverse Post](https://mpost.io/ethereum-foundation-progresses-dai-teams-2026-roadmap-highlighting-erc-8004-and-x402-as-key-priorities/) — dAI team priorities and milestones
+- [BNB Chain Announces ERC-8004 Support — Chainwire](https://chainwire.org/2026/02/04/bnb-chain-announces-support-for-erc-8004-to-enable-verifiable-identity-for-autonomous-ai-agents/) — BSC deployment and BAP-578
+- [BNB Chain AI Advances with ERC-8004 — Cryptonomist](https://en.cryptonomist.ch/2026/02/18/bnb-chain-ai-standards/) — BNB Chain ecosystem expansion
+- [Understanding x402 and ERC-8004 — The Graph Blog](https://thegraph.com/blog/understanding-x402-erc8004/) — Subgraph indexing and GraphTally micropayments
+- [AdPrompt.ai Registers Under ERC-8004 — PRWeb](https://www.prweb.com/releases/adpromptai-registers-its-agentic-marketing-solution-under-erc-8004-for-on-chain-agent-identity-and-reputation-signals-302689395.html) — First commercial agent registration
+- [Cortensor x402 & ERC-8004 Integration Plan — Cortensor Docs](https://docs.cortensor.network/technical-architecture/designs-wip/x402-and-erc-8004-three-phase-integration-plan) — Three-phase DePIN integration
+- [Davide Crapis on ERC-8004 — CryptoBriefing/Unchained](https://cryptobriefing.com/davide-crapis-erc-8004-enables-decentralized-ai-agent-interactions-establishes-trustless-commerce-and-enhances-reputation-systems-on-ethereum-unchained/) — Foundation head interview
+- [ERC-8004 on Avalanche C-Chain — Medium](https://medium.com/@gwrx2005/erc-8004-a-trustless-agent-standard-for-on-chain-ai-in-avalanche-c-chain-4dc1bdad509a) — Avalanche adoption
+- [x402 & ERC-8004: AI Commerce Infrastructure — SmartContracts.tools](https://www.smartcontracts.tools/blog/erc8004-x402-infrastructure-for-autonomous-ai-agents/) — x402 V2 integration details

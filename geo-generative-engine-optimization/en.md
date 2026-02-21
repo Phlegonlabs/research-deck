@@ -323,6 +323,36 @@ Many publishers block training bots but allow search bots. Your call.
 6. **Freshness signals**: Visible publication and update dates
 7. **Perplexity advantage**: It indexes fast—use it for time-sensitive content
 
+## Latest Updates (2026)
+
+### ChatGPT Ads Launch Changes the GEO Calculus
+
+OpenAI began testing ads in ChatGPT on February 9, 2026, initially for free-tier and Go-tier users in the US. Ads appear at the bottom of answers when there is a relevant sponsored product or service. Critically, OpenAI states that ads do not influence the answers ChatGPT generates — organic citations and paid placements are separate channels. This creates a two-lane system: brands can now pursue both organic GEO (getting cited in answers) and paid AI search placement. Plus, Pro, Business, Enterprise, and Education tiers remain ad-free. This mirrors the early days of Google's ad model and signals that AI search monetization is accelerating.
+
+### Perplexity Abandons Advertising, Doubles Down on Subscriptions
+
+In a sharp contrast to OpenAI, Perplexity AI abandoned its advertising model entirely in early 2026 after stopping new advertiser signups in October 2025. The company concluded that ads hurt the user trust essential to an "answer engine." Perplexity reached $200 million ARR by late 2025 purely through subscriptions, proving an ad-free path is viable. For GEO practitioners, this means Perplexity citations remain purely organic — there is no pay-to-play option, making content quality and authority the only levers.
+
+### Google AI Overviews Now Appear in 60% of US Queries
+
+Google AI Overviews expanded dramatically through 2025, rising from ~6.5% of queries in January 2025 to 60% of total US search queries by late 2025. The impact on traditional SEO is severe: organic click-through rates dropped 61% (from 1.76% to 0.61%) for queries showing AI Overviews, and 26% of users end their search session after seeing an AI Overview without clicking any result. This makes GEO optimization for Google's AI Overviews a survival imperative, not an optional enhancement.
+
+### Microsoft Publishes AEO/GEO Playbook
+
+Microsoft Advertising released its "Guide to AEO and GEO" in January 2026 (updated February 2026), formalizing the distinction between Answer Engine Optimization (AEO — structured data clarity for AI interpretation) and Generative Engine Optimization (GEO — content credibility for brand authority). A key finding: AI systems evaluate content through three data pathways — feeds, crawled data, and offsite data. Products with more complete structured data fields consistently rank higher in AI recommendations. Microsoft's conclusion: "completeness beats cleverness."
+
+### The llms.txt Standard Gains Traction (But Remains Contested)
+
+The `llms.txt` standard — a plain-text Markdown file at `yoursite.com/llms.txt` directing AI models to high-value content — has seen significant adoption with 844,000+ websites implementing it by October 2025. Anthropic (Claude), Cursor, and Mintlify officially support it, while OpenAI and Perplexity also parse the file without official announcements. However, Google's John Mueller stated in mid-2025 that no AI system currently uses llms.txt for ranking. The standard's impact remains strongest in developer tools and API documentation, with limited evidence of broader effect.
+
+### Vercel Case Study: 10% of Signups Now From ChatGPT
+
+Vercel reported that ChatGPT referrals grew from 1% to 10% of new signups within six months — a 10x increase in AI-driven acquisition. Their strategy focused on depth and clarity over keyword optimization: owning a concept with comprehensive documentation, structuring content for retrieval, and keeping it reliably updated. Tally (form builder) saw similar results, with AI search becoming their biggest acquisition channel and helping grow from $2M to $3M ARR in four months. These case studies provide concrete evidence that GEO investment has measurable business impact.
+
+### Market Scale and Adoption Statistics
+
+The GEO market is growing explosively: China's GEO market alone reached $3.65 billion in H1 2025 (240% YoY growth), while the global market is projected to reach $7.3 billion by 2031 (34% CAGR). An estimated 25% of search queries are expected to migrate from traditional search engines to AI chatbots by end of 2026. ChatGPT now has 800 million weekly users processing 2.5 billion prompts per day, and 37% of product discovery queries now start in AI interfaces. 94% of CMOs plan to increase AI visibility investment in 2026.
+
 ## Future Direction
 
 By 2026, Gartner predicts AI-assisted search will influence 50%+ of consumer queries. The shift is:
@@ -331,3 +361,98 @@ By 2026, Gartner predicts AI-assisted search will influence 50%+ of consumer que
 - From **keywords** to **entity recognition**
 
 GEO isn't replacing SEO. You need both. But ignoring GEO means becoming invisible to a growing segment of searchers.
+
+## References
+
+### Academic Research
+
+- [GEO: Generative Engine Optimization (Original Paper)](https://arxiv.org/abs/2311.09735) - Princeton/IIT research paper
+- [GEO: Generative Engine Optimization - ACM KDD 2024](https://dl.acm.org/doi/10.1145/3637528.3671900)
+- [E-GEO: A Testbed for Generative Engine Optimization in E-Commerce](https://arxiv.org/abs/2511.20867)
+- [Generative Engine Optimization: How to Dominate AI Search](https://arxiv.org/abs/2509.08919)
+
+### GEO Guides & Best Practices
+
+- [Generative Engine Optimization (GEO): The 2026 Guide to AI Search Visibility - LLMrefs](https://llmrefs.com/generative-engine-optimization)
+- [Generative Engine Optimization Best Practices For 2026 - Digital Authority](https://www.digitalauthority.me/resources/generative-engine-optimization-best-practices/)
+- [GEO vs. SEO: Everything to Know in 2026 - WordStream](https://www.wordstream.com/blog/generative-engine-optimization)
+- [GEO vs. SEO: Understanding the Future of Search - SEO.com](https://www.seo.com/ai/geo-vs-seo/)
+- [Generative engine optimization (GEO): How to win AI mentions - Search Engine Land](https://searchengineland.com/what-is-generative-engine-optimization-geo-444418)
+
+### Platform-Specific Optimization
+
+#### ChatGPT Search
+- [ChatGPT search | OpenAI Help Center](https://help.openai.com/en/articles/9237897-chatgpt-search)
+- [How to Index Your Site on ChatGPT & Other AI Search Engines - Prerender](https://prerender.io/blog/how-to-get-indexed-on-ai-platforms/)
+- [How to Get Your Site Indexed in ChatGPT Search - Rank Math](https://rankmath.com/kb/indexing-in-chatgpt-search/)
+- [What Is ChatGPT Search & How Does It Work? - Semrush](https://www.semrush.com/blog/chatgpt-search/)
+- [OpenAI Has A Cached Index For ChatGPT Search - LLMrefs](https://llmrefs.com/blog/openai-cached-index-chatgpt-search)
+
+#### Perplexity
+- [Perplexity Crawlers - Official Documentation](https://docs.perplexity.ai/guides/bots)
+- [Behind Perplexity's Architecture: How AI Search Handles Real-Time Web Data](https://www.frugaltesting.com/blog/behind-perplexitys-architecture-how-ai-search-handles-real-time-web-data)
+- [Perplexity AI Optimization: How to Get Cited in Real-Time Search - AmICited](https://www.amicited.com/blog/perplexity-ai-optimization-get-cited-real-time-search/)
+- [How to Rank in Perplexity AI: Strategies for Success - MADX](https://www.madx.digital/learn/how-to-rank-on-perplexity-ai)
+- [Perplexity Search Visibility Tips: 8 Ways to Get Cited 2025 - Wellows](https://wellows.com/blog/perplexity-search-visibility-tips/)
+
+#### Google AI Overviews
+- [Top ways to ensure your content performs well in Google's AI experiences on Search - Google Developers](https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search)
+- [AI Overviews: What Are They & How to Optimize for Them - Semrush](https://www.semrush.com/blog/ai-overviews/)
+- [How to optimize for AI Overviews: 7 best practices - SE Ranking](https://seranking.com/blog/how-to-optimize-for-ai-overviews/)
+- [AI Overviews: What They Are and How to Optimize for Them - Backlinko](https://backlinko.com/ai-overviews)
+
+### AI Citation Patterns & Research
+
+- [AI Platform Citation Patterns: How ChatGPT, Google AI Overviews, and Perplexity Source Information - Profound](https://www.tryprofound.com/blog/ai-platform-citation-patterns)
+- [How to Get Content Cited by ChatGPT & Perplexity: Agency Best Practices - GeneO](https://geneo.app/blog/ai-optimized-content-cited-chatgpt-perplexity-best-practices/)
+- [AI Citation Optimization: How to Get Cited by ChatGPT in 2026 - Snezzi](https://snezzi.com/blog/getting-citations-right-in-ai-generated-answers-best-practices-for-2025/)
+
+### Schema Markup for AI
+
+- [Schema Markup for AI: The Tags That Help You Get Pulled - The HOTH](https://www.thehoth.com/blog/schema-markup-for-ai/)
+- [Schema Markup for AI Search: Complete Guide - SEOptimer](https://www.seoptimer.com/blog/schema-markup-for-ai-search/)
+- [The Complete Guide to Schema Markup for AI Search Optimization - Geostar](https://www.geostar.ai/blog/complete-guide-schema-markup-ai-search-optimization)
+- [Are FAQ Schemas Important for AI Search, GEO & AEO? - Frase](https://www.frase.io/blog/faq-schema-ai-search-geo-aeo)
+- [Structured Data for AI Search: Complete Schema Markup Guide 2026 - Stackmatix](https://www.stackmatix.com/blog/structured-data-ai-search)
+
+### Robots.txt & AI Crawlers
+
+- [How to Allow AI Bots in Your robots.txt File - Adnan's Code Nexus](https://www.adnanzameer.com/2025/09/how-to-allow-ai-bots-in-your-robotstxt.html)
+- [AI Bots and Robots.txt - Paul Calvano](https://paulcalvano.com/2025-08-21-ai-bots-and-robots-txt/)
+- [Optimizing Your Robots.txt for Generative AI Crawlers - GenRank](https://genrank.io/blog/optimizing-your-robots-txt-for-generative-ai-crawlers/)
+- [Understanding AI Crawlers: Complete Guide 2025 - Qwairy](https://www.qwairy.co/blog/understanding-ai-crawlers-complete-guide)
+- [List of Top AI Search Crawlers + User Agents - Momentic Marketing](https://momenticmarketing.com/blog/ai-search-crawlers-bots)
+
+### GEO Monitoring Tools
+
+- [Otterly.ai - AI Search Monitoring Tool](https://otterly.ai)
+- [Geoptie - Best GEO Tools to Boost Your AI Search Visibility](https://geoptie.com/blog/best-geo-tools)
+- [AI Citation Tracking Tools for Brands 2026 Guide - Siftly](https://siftly.ai/blog/tools-measure-citation-rates-ai-generated-content-brands-2026)
+- [GEO Metrics That Matter: How to Track AI Citations - Averi](https://www.averi.ai/how-to/how-to-track-ai-citations-and-measure-geo-success-the-2026-metrics-guide)
+- [22 Best AI Search Rank Tracking & Visibility Tools 2026 - Rankability](https://www.rankability.com/blog/best-ai-search-visibility-tracking-tools/)
+- [6 Best ChatGPT Rank Tracking Tools in 2026 - AIClicks](https://aiclicks.io/blog/best-ai-search-monitoring-tools-for-chatgpt)
+
+### Controversies & Technical Issues
+
+- [Perplexity is using stealth, undeclared crawlers to evade website no-crawl directives - Cloudflare](https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/)
+- [Perplexity AI - Wikipedia (Controversies section)](https://en.wikipedia.org/wiki/Perplexity_AI)
+
+### 2026 Updates — New Sources
+
+- [Our approach to advertising and expanding access to ChatGPT - OpenAI](https://openai.com/index/our-approach-to-advertising-and-expanding-access/)
+- [Testing ads in ChatGPT - OpenAI](https://openai.com/index/testing-ads-in-chatgpt/)
+- [ChatGPT rolls out ads - TechCrunch](https://techcrunch.com/2026/02/09/chatgpt-rolls-out-ads/)
+- [Perplexity AI Abandons Advertising - ALM Corp](https://almcorp.com/blog/perplexity-ai-abandons-advertising-2026-analysis/)
+- [Perplexity AI Drops Ads Implementation Plan - Android Headlines](https://www.androidheadlines.com/2026/02/perplexity-ai-drops-ads-user-trust-subscription-growth.html)
+- [Google AI Overviews Now Appear in 60% of Searches - Xponent21](https://xponent21.com/insights/google-ai-overviews-surpass-60-percent/)
+- [AI Overviews Killed CTR 61% - Dataslayer](https://www.dataslayer.ai/blog/google-ai-overviews-the-end-of-traditional-ctr-and-how-to-adapt-in-2025)
+- [From Discovery to Influence: A Guide to AEO and GEO - Microsoft Advertising](https://about.ads.microsoft.com/en/blog/post/january-2026/from-discovery-to-influence-a-guide-to-aeo-and-geo)
+- [Microsoft's Guide To Winning In AEO & GEO - Search Engine Journal](https://www.searchenginejournal.com/a-breakdown-of-microsofts-guide-to-aeo-geo/565651/)
+- [What Is llms.txt? How the New AI Standard Works - Bluehost](https://www.bluehost.com/blog/what-is-llms-txt/)
+- [llms.txt in 2026: What It Does (and Doesn't) Do - Search Signal](https://searchsignal.online/blog/llms-txt-2026)
+- [How Vercel's adapting SEO for LLMs and AI search - Vercel](https://vercel.com/blog/how-were-adapting-seo-for-llms-and-ai-search)
+- [How Vercel 10x'd ChatGPT Traffic to 10% of New Signups - AI SEO Tracker](https://aiseotracker.com/case-study/vercel)
+- [2026 GEO Statistics: Applications, Market and Future Outlook - Incremys](https://www.incremys.com/en/resources/blog/geo-statistics)
+- [100+ AI SEO Statistics for 2026 - Position Digital](https://www.position.digital/blog/ai-seo-statistics/)
+- [GEO: The 2026 Playbook for Getting Recommended by AI - Frekwency](https://www.frekwency.com/post/generative-engine-optimization-geo-the-2026-playbook-for-getting-recommended-by-ai)
+- [LLM SEO in 2026: 8 Strategies to Boost AI Search Visibility - SEOProfy](https://seoprofy.com/blog/llm-seo/)

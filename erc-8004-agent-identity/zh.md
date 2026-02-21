@@ -270,6 +270,22 @@ ERC-8004 要有用，代理需要注册，客户端需要查注册表。但：
 | 域名验证 | `/.well-known/agent-registration.json` | 证明代理控制其声称的 HTTPS 端点 |
 | 渐进验证 | 每个 requestHash 多个响应 + tag | "软最终性" → "硬最终性" 分阶段验证 |
 
+## 最新动态 (2026)
+
+**主网上线与快速采用。** ERC-8004 于 2026 年 1 月 29 日在以太坊主网上线。前两周内，超过 24,000 个代理身份在以太坊生态系统中注册。Olas 等平台报告有数千个镜像代理在多个环境中运行。该标准成为 Ethereum Magicians 论坛上讨论量第二高的提案，超过 150 个项目在其基础上构建。
+
+**以太坊基金会 dAI 2026 路线图。** 以太坊基金会 AI 负责人 Davide Crapis 发布了 dAI 团队 2026 路线图，旨在将以太坊打造为 AI 的全球去中心化结算与协调骨干。ERC-8004 和 x402 被指定为两大核心支柱。短短三个月内团队建立了超过 1,000 名成员的开发者社群，社区电话会议有数百人参与。基金会领导层表示："如果以太坊不带头，封闭平台或中心化实体将主导并控制不断增长的 AI 经济。"
+
+**以太坊之外的多链扩展。** BNB Chain 于 2026 年 2 月 4 日宣布正式支持 ERC-8004，在 BSC 主网和测试网上部署注册表。同时，BNB Chain 推出了 BAP-578（Non-Fungible Agent 标准），让 AI 代理作为链上资产存在，能够持有资产、执行逻辑、与 DeFi 协议交互，并可被买卖或雇用。Avalanche C-Chain 也在 2026 年 2 月采用了 ERC-8004。包括 Base、Taiko、Polygon、Arbitrum、Scroll 和 Linea 在内的主要 L2 均已部署官方注册表。
+
+**The Graph 索引基础设施。** The Graph 发布了专门的 Subgraph，为八条区块链上的 ERC-8004 身份、声誉和验证注册表建立索引。这使得不同链上的代理能即时验证彼此的声誉，无需扫描原始区块链数据。The Graph 还开发了 GraphTally 微支付系统，解决 x402 的 gas 成本问题 — 让代理发行加密签名凭证，聚合为单笔批量结算 — 每分钟支持数千次查询而不被 gas 费用瓶颈制约。
+
+**真实采用案例：AdPrompt.ai。** AdPrompt.ai 成为首批在 ERC-8004 下注册代理的商业平台之一，部署了三个按用途划分的 API 资源（品牌扫描代理、创意资产代理和策略代理），搭配 x402 按次付费访问。这展示了 ERC-8004 + x402 技术栈在代理营销服务中的生产环境运作 — 身份、声誉信号和微支付在单一流程中完成。
+
+**Cortensor 三阶段集成计划。** 去中心化 AI 推理网络 Cortensor 发布了详细的 x402 + ERC-8004 三阶段集成计划。阶段一使用委托会话，无需核心协议变更。阶段二将其路由节点升级为双模路由代理，通过 HTTP 和 MCP 暴露推理与验证服务，作为 ERC-8004 代理可被发现并通过 x402 支付。阶段三为推理端点添加一次性 x402 支付及 ERC-8004 代理绑定。这是 DePIN/推理项目中最具体的公开 ERC-8004 深度集成路线图。
+
+**V2 规范进展。** V2 规范持续开发中，重点包括：增强 MCP 支持以实现超越 A2A 的更广泛兼容性、更灵活的链上声誉数据存储以支持复杂的智能合约可组合性、更简洁的 x402 集成及标准化支付证明格式、以及优化反馈和代理注册文件的 schema 以驱动专业代理浏览器和市场。x402 V2 本身已于 2025 年 12 月上线，支持多链及传统支付通道兼容（ACH、银行卡网络）。
+
 ## 结论
 
 **真实的**：ERC-8004 已部署在主网和 20+ 个 L2。合约能用。身份注册表就是标准 ERC-721。规范经过深思且最小化。
@@ -279,3 +295,58 @@ ERC-8004 要有用，代理需要注册，客户端需要查注册表。但：
 **诚实评估**：ERC-8004 是代理身份的正确*形状* — 基于 NFT、可组合、分层信任。但它是等待采用的基础设施。验证托管模式真正强大，可能成为无信任代理商务的基础。是否发生在 ERC-8004 上，取决于 2026-2027 年的生态势头。
 
 **今天该做的**：如果你在构建代理，去身份注册表注册。一笔交易的成本，让你的代理可被发现。不用等声誉生态成熟 — 早期注册者在信任层获得势头时有先发优势。
+
+## References
+
+### 官方规范
+
+- [EIP-8004: Trustless Agents — Ethereum.org](https://eips.ethereum.org/EIPS/eip-8004) — 完整 EIP 规范与 Solidity 接口
+- [ERC-8004 Discussion — Fellowship of Ethereum Magicians](https://ethereum-magicians.org/t/erc-8004-trustless-agents/25098) — 社区讨论帖
+- [erc-8004-contracts — GitHub](https://github.com/erc-8004/erc-8004-contracts) — 参考实现、部署地址（20+ 网络）
+- [awesome-erc8004 — GitHub](https://github.com/sudeepb02/awesome-erc8004) — 精选资源列表
+
+### 技术深度分析
+
+- [ERC-8004: Practical Explainer — Composable Security](https://composable-security.com/blog/erc-8004-a-practical-explainer-for-trustless-agents/) — 安全审计视角、架构解析
+- [ERC-8004 Explained — Backpack Exchange](https://learn.backpack.exchange/articles/erc-8004-explained) — 完整指南：注册表、验证层级、时间线、路线图
+- [ERC-8004: Trust Layer for AI Agent Economy — PayRam](https://payram.com/blog/what-is-erc-8004-protocol) — 协议栈集成、托管模式、分层安全
+- [ERC-8004: Trustless Extension of A2A — Coinmonks/Medium](https://medium.com/coinmonks/erc-8004-a-trustless-extension-of-googles-a2a-protocol-for-on-chain-agents-b474cc422c9a) — A2A 集成模式
+- [ERC-8004 Technical, Economic, and Policy Analysis — Medium](https://medium.com/@gwrx2005/erc-8004-and-the-ethereum-ai-agent-economy-technical-economic-and-policy-analysis-3134290b24d1) — 经济模型、验证者激励
+- [ERC-8004: Building the Trustless Agent Layer — Medium](https://medium.com/@savvysid/erc-8004-building-the-trustless-agent-layer-of-ethereum-0eec8b9ad112) — 架构分析
+- [ERC-8004 Standard Explained — C# Corner](https://www.c-sharpcorner.com/article/erc-8004-standard-explained-the-trustless-agents-protocol-for-identity-reputati/) — 开发者教程
+
+### 新闻与行业报道
+
+- [ERC-8004 Mainnet Launch — CoinDesk](https://www.coindesk.com/markets/2026/01/28/ethereum-s-erc-8004-aims-to-put-identity-and-trust-behind-ai-agents/) — 主网部署报道（2026 年 1 月 29 日）
+- [ERC-8004 Standard Nears Mainnet — CCN](https://www.ccn.com/news/crypto/erc-8004-agents-standard-nears-mainnet-as-ethereum-teases-rollout/) — 上线前报道
+- [What Is ERC-8004? Risks Explained — CCN](https://www.ccn.com/education/crypto/erc-8004-ai-agents-on-chain-ethereum-how-works-risks-explained/) — 风险与局限性分析
+- [Ethereum Introduces ERC-8004 — CryptoRank](https://cryptorank.io/news/feed/53277-ethereum-introduces-erc-8004-standard-for-ai-agent-identity-and-reputation-systems) — 标准介绍
+- [ERC-8004 Mainnet Launch Explained — Bitcoin Ethereum News](https://bitcoinethereumnews.com/tech/erc-8004-mainnet-launch-what-this-agent-protocol-actually-does/) — 实际功能解析
+- [Ethereum's Decentralized AI Revolution — Technology.org](https://www.technology.org/2026/02/05/ethereums-decentralized-ai-revolution-surges-as-agentic-standards-transform-2026/) — dAI 团队策略
+- [The Protocol: Ethereum AI Agents Standard — CoinDesk](https://www.coindesk.com/tech/2026/01/28/the-protocol-ethereum-to-roll-out-new-ai-agents-standard-soon/) — 协议通讯报道
+
+### 生态系统与平台
+
+- [ERC-8004 on Eco — Eco Support](https://eco.com/support/en/articles/13221214-what-is-erc-8004-the-ethereum-standard-enabling-trustless-ai-agents) — 验证层级、托管模式、x402 连接
+- [ERC-8004 Beginner's Guide — Bitget](https://web3.bitget.com/en/academy/what-is-erc-8004-a-beginners-guide-to-trustless-ai-agents-on-ethereum) — 入门概述
+- [ERC-8004: Trustless Agents — Oasis Network](https://oasis.net/blog/erc-8004-trustless-agents) — ROFL/TEE 集成视角
+- [ERC-8004 — BuildBear](https://www.buildbear.io/blog/erc-8004) — 开发者教程
+
+### 相关背景
+
+- [Onchain Reputation for AI Agents — Medium](https://medium.com/@ellie_43405/onchain-reputation-for-ai-agents-human-users-64c7b8ef25dc) — 更广泛的声誉景观
+- [Agentic AI in DeFi — Medium](https://medium.com/@trentice.bolar/agentic-ai-in-defi-the-dawn-of-autonomous-on-chain-finance-584652364d08) — DeFi 代理经济背景
+- [CV VC: AI Agents as Catalyst for Onchain Finance — CVVC](https://www.cvvc.com/blogs/cv-vc-insights-ai-agents-as-the-catalyst-for-onchain-finance) — 投资者视角
+
+### 2026 年更新
+
+- [ERC-8004 Powers Thousands of Onchain AI Identities — Bitcoin.com](https://news.bitcoin.com/what-is-erc-8004-ethereums-new-agent-standard-powers-thousands-of-onchain-ai-identities/) — 24K+ 注册代理
+- [Ethereum Foundation dAI 2026 Roadmap — Metaverse Post](https://mpost.io/ethereum-foundation-progresses-dai-teams-2026-roadmap-highlighting-erc-8004-and-x402-as-key-priorities/) — dAI 团队优先事项与里程碑
+- [BNB Chain Announces ERC-8004 Support — Chainwire](https://chainwire.org/2026/02/04/bnb-chain-announces-support-for-erc-8004-to-enable-verifiable-identity-for-autonomous-ai-agents/) — BSC 部署与 BAP-578
+- [BNB Chain AI Advances with ERC-8004 — Cryptonomist](https://en.cryptonomist.ch/2026/02/18/bnb-chain-ai-standards/) — BNB Chain 生态扩展
+- [Understanding x402 and ERC-8004 — The Graph Blog](https://thegraph.com/blog/understanding-x402-erc8004/) — Subgraph 索引与 GraphTally 微支付
+- [AdPrompt.ai Registers Under ERC-8004 — PRWeb](https://www.prweb.com/releases/adpromptai-registers-its-agentic-marketing-solution-under-erc-8004-for-on-chain-agent-identity-and-reputation-signals-302689395.html) — 首个商业代理注册
+- [Cortensor x402 & ERC-8004 Integration Plan — Cortensor Docs](https://docs.cortensor.network/technical-architecture/designs-wip/x402-and-erc-8004-three-phase-integration-plan) — 三阶段 DePIN 集成
+- [Davide Crapis on ERC-8004 — CryptoBriefing/Unchained](https://cryptobriefing.com/davide-crapis-erc-8004-enables-decentralized-ai-agent-interactions-establishes-trustless-commerce-and-enhances-reputation-systems-on-ethereum-unchained/) — 基金会负责人访谈
+- [ERC-8004 on Avalanche C-Chain — Medium](https://medium.com/@gwrx2005/erc-8004-a-trustless-agent-standard-for-on-chain-ai-in-avalanche-c-chain-4dc1bdad509a) — Avalanche 采用
+- [x402 & ERC-8004: AI Commerce Infrastructure — SmartContracts.tools](https://www.smartcontracts.tools/blog/erc8004-x402-infrastructure-for-autonomous-ai-agents/) — x402 V2 集成详情

@@ -747,9 +747,41 @@ Jito Labs 和 Jump Crypto 是**独立组织**，都构建关键的 Solana 基础
 
 ---
 
-## 12. 诚实评估与可借鉴模式
+## 12. 最新動態 (2026)
 
-### 12.1 Jito 真正做得更好的地方
+### 12.1 21Shares JSOL ETP 在欧洲上线
+
+2026 年 1 月 29 日，21Shares 在 Euronext 阿姆斯特丹和巴黎交易所推出了 Jito Staked SOL ETP（代码：JSOL）— 全球首个直接挂钩 JitoSOL 的交易所交易产品。该 ETP 以美元（JSOL NA）和欧元（JSOL FP）交易，总费用率 0.99%。投资者获得完整的 SOL 价格敞口，同时自动赚取质押收益（上线时基础 APY 为 5.8-6%）和 MEV 收入，无需管理链上操作。这是继 VanEck 于 2025 年 8 月提交美国 S-1 申请后的又一里程碑，代表流动性质押收益正式进入传统金融 — 现已在欧洲实时交易，而美国申请仍在 SEC 审核中。
+
+### 12.2 BAM 主网上线与推广
+
+BAM 于 2025 年 9 月 25 日正式在 Solana 主网上线，首批验证者包括 Figment、Helius、SOL Strategies 和 Triton One。从 Jito 专有区块引擎到开源 BAM 框架的过渡标志着根本性的架构转变。早期测试表明 BAM 每季度可产生超过 $2,500 万的费用。JIP-31 提案计划于 2026 年 Q1 推出验证者补贴计划，通过补贴参与的验证者来加速 BAM 采用。BAM 计划发展为完全无许可的平台，配备开源节点软件和社区管理的治理。
+
+### 12.3 Jito 成为 Solana Mobile Guardian
+
+Jito 被选为 Solana Mobile TEEPIN（可信执行环境平台基础设施网络）的首批 Guardian 之一，与 Helius 一起在 2026 年 1 月 Seeker 网络上线时启动。Guardian 的功能类似于验证者，但面向移动生态系统 — 验证应用完整性、设备安全和整体生态系统信任。SKR 代币质押同步上线，用户可以质押 SKR 支持 Guardian 并获得奖励。这将 Jito 的基础设施角色从 MEV 和质押扩展到了移动安全领域。
+
+### 12.4 JIP-25：验证者集扩展
+
+JIP-25 于 2025 年 10 月 8 日通过，将 StakeNet 验证者集从 200 个扩展到 400 个。该提案还修改了资格和排名标准，以缓解负面的质押池动态。管理者程序已升级为新的评分机制和参数更新。验证者集翻倍是对中心化担忧的直接回应，将 JitoSOL 质押分配到更广泛的验证者群体中。
+
+### 12.5 JTO 代币：历史低点与反弹
+
+JTO 于 2026 年 2 月 6 日跌至历史低点 $0.218 — 较 2023 年 12 月 $6.01 的 ATH 下跌 96.4%。然而，代币迅速反弹，2 月 17 日飙升 37%，到 2 月 18 日达到约 $0.39（从 ATL 恢复 51.2%）。反弹伴随着显著的成交量激增。尽管加密经济学子 DAO（CSD）在 JIP-24 下管理回购和费用切换金库，代币仍难以反映协议的主导地位和收入创造能力。
+
+### 12.6 NCN 生态系统扩展
+
+NCN 生态系统持续在 TipRouter 之外扩展。Switchboard 正在利用 Jito 再质押构建预言机解决方案，为链上和链下数据提供便捷访问。MagicBlock 正在集成再质押以增强支持实时去中心化应用的临时 rollup 安全性。自 2025 年 1 月上线以来，TipRouter NCN 已分发超过 $284K 的奖励。再质押 TVL 保持在约 $2.27 亿，分布在九个 VRT 中，但奖励分配等基于活动的指标显示采用率在增加。
+
+### 12.7 治理成熟化
+
+活跃的治理活动持续进行，除 JIP-24 和 JIP-25 外还有多个重要提案。JID-10 提议将 $JTO 质押直接集成到 NCN 框架中，为代币增加经济安全性和新效用。DAO 还通过了定向质押偏好（允许 JitoSOL 持有者表达验证者委托偏好）和加速 BAM 采用的提案。Jito 基金会从开曼群岛迁至美国的计划于 2025 年宣布后正在推进，以利用 GENIUS 法案带来的监管清晰度并扩大机构合作伙伴关系。
+
+---
+
+## 13. 诚实评估与可借鉴模式
+
+### 13.1 Jito 真正做得更好的地方
 
 1. **集成 MEV + LST 飞轮**：没有其他协议将 MEV 基础设施与流动性质押结合。飞轮是真实且自我增强的。
 
@@ -761,7 +793,7 @@ Jito Labs 和 Jump Crypto 是**独立组织**，都构建关键的 Solana 基础
 
 5. **BAM 作为工程解决方案**：不依赖政策（内存池关闭），BAM 使用 TEE 使三明治攻击在结构上变得困难。
 
-### 12.2 真正的弱点和风险
+### 13.2 真正的弱点和风险
 
 1. **客户端单一文化风险**：95%+ 的质押在一个客户端上 = 系统性风险。Jito-Solana 的 bug 可能导致网络停止。
 
@@ -775,7 +807,7 @@ Jito Labs 和 Jump Crypto 是**独立组织**，都构建关键的 Solana 基础
 
 6. **再质押处于早期**：$2.27 亿 TVL vs EigenLayer 的 $180 亿。NCN 生态系统还在萌芽期 — TipRouter 是唯一的生产级 NCN。
 
-### 12.3 可借鉴的模式
+### 13.3 可借鉴的模式
 
 | 模式 | 描述 | 适用性 |
 |------|------|--------|
@@ -790,10 +822,195 @@ Jito Labs 和 Jump Crypto 是**独立组织**，都构建关键的 Solana 基础
 | **NCN 模型** | 通用再质押 → 运营者执行链下工作 → 链上强制执行。比 AVS 更灵活（多资产，SPL 代币支持） | 共享安全系统 |
 | **收入到 DAO 管道** | 协议产生收入 → 所有费用流入 DAO 金库 → DAO 管理的子 DAO 部署资本（回购、补贴） | 代币价值累积 |
 
-### 12.4 大局观
+### 13.4 大局观
 
 Jito 是 Solana 上最重要的第三方基础设施。它控制着 MEV 提取、流动性质押、验证者经济学，以及越来越多的区块构建。这使它既极具价值，又是系统性风险的单一节点。
 
 诚实的张力：**Jito 使 Solana 运行得更好（更高的验证者收入、有竞争力的 MEV 市场、流动性质押），同时将关键基础设施集中在一家公司的栈上。** BAM、TipRouter、StakeNet 和 JIP-24 是朝着去中心化的真诚步骤。但 Jito 飞轮的经济引力使替代方案难以竞争。Firedancer 提供了客户端多样性的最大希望，但 FireBAM 集成意味着即使 Firedancer 验证者也可能运行 Jito MEV 基础设施。
 
 问题不在于 Jito 是好是坏 — 而在于当一个协议生态系统 95%+ 的经济基础设施通过一家公司的软件运行时，无论该软件多么开源和 DAO 治理，这个生态系统是否能健康发展。
+
+---
+
+## References
+
+### 官方文档与网站
+
+- Jito Labs 官网: https://www.jito.wtf/
+- Jito Foundation: https://www.jito.network/
+- Jito 文档 (Block Engine): https://docs.jito.wtf/
+- Jito MEV GitBook: https://jito-foundation.gitbook.io/mev/
+- Jito Restaking 文档: https://docs.restaking.jito.network/
+- Jito StakeNet 文档: https://www.jito.network/docs/stakenet/introduction/
+- Jito 治理宪法: https://www.jito.network/docs/governance/constitution-of-the-jito-foundation/
+- Jito JTO 代币页面: https://www.jito.network/jto/
+- BAM 官网: https://bam.dev/
+- Jito GitHub (jito-solana): https://github.com/jito-foundation/jito-solana
+- Jito GitHub (jito-relayer): https://github.com/jito-foundation/jito-relayer
+- Jito NCN 模板: https://github.com/jito-foundation/ncn-template
+
+### 架构与技术深度解析
+
+- Jito-Solana 工作原理深度解析 (Dare to Know): https://thogiti.github.io/2025/01/01/How-Jito-Solana-Works.html
+- Jito 工作原理深度解析 (Eclipse Labs): https://www.eclipselabs.io/blogs/how-jito-works---a-deep-dive
+- Solana MEV 介绍 (Helius): https://www.helius.dev/blog/solana-mev-an-introduction
+- Solana MEV 报告 (Helius): https://www.helius.dev/blog/solana-mev-report
+- Solana 上的 MEV (Umbra Research): https://www.umbraresearch.xyz/writings/mev-on-solana
+- Solana MEV：Jito 与套利的未来深度解析 (sanj.dev): https://sanj.dev/post/solana-mev-jito-deep-dive
+- Jito Bundles 指南 (QuickNode): https://www.quicknode.com/guides/solana-development/transactions/jito-bundles
+
+### 区块装配市场 (BAM)
+
+- BAM 深度解析 (Helius): https://www.helius.dev/blog/block-assembly-marketplace-bam
+- BAM 介绍 (BAM 官方博客): https://bam.dev/blog/introducing-bam/
+- Jito 推出 BAM 重塑 Solana 区块空间经济 (CoinDesk): https://www.coindesk.com/tech/2025/07/21/jito-launches-bam-to-reshape-solanas-blockspace-economy
+- Jito 区块构建架构重大升级 (Blockworks): https://blockworks.co/news/jito-upgrade-block-assembly-marketplace
+- BAM 思考 (Chorus One): https://chorus.one/reports-research/thoughts-on-bam-the-new-block-building-architecture-introduced-by-jito
+- BAM 在 Solana 上重新定义区块构建 (PR Newswire): https://www.prnewswire.com/news-releases/bam-launches-to-redefine-block-building-on-solana-302508999.html
+- Solana 区块构建之战 (Blockworks Research): https://app.blockworksresearch.com/unlocked/solana-s-block-building-wars
+- Jito BAM 上线 Solana 主网 (Blockworks): https://blockworks.co/news/jito-bam-solana-mainnet
+
+### MEV 经济学与分析
+
+- Solana 上的 Jito 捆绑与 MEV 优化策略 (Jung-Hua Liu): https://medium.com/@gwrx2005/jito-bundling-and-mev-optimization-strategies-on-solana-an-economic-analysis-c035b6885e1f
+- Jito 小费剖析 (Shamikh Zafar): https://medium.com/@shamikhzafar0/the-anatomy-of-jito-tips-who-pays-why-and-how-market-dynamics-shape-solanas-mev-economy-de2a0b09ca26
+- 超越基础费用：Jito 小费如何成为 Solana MEV 强者 (Deepak S): https://medium.com/@alchemist1411/beyond-base-fees-how-jito-tips-became-solanas-mev-powerhouse-e915d40e241c
+- Jito 代币经济学 (Tokenomics.com): https://tokenomics.com/articles/jito-tokenomics-how-jto-captures-mev-and-staking-revenue-on-solana
+- 延迟与利润：Solana 上的 MEV (Paul Timofeev): https://paultimofeevresearch.medium.com/latency-and-profits-mev-on-solana-defe9a05011a
+- Solana MEV 经济学 (QuickNode): https://blog.quicknode.com/solana-mev-economics-jito-bundles-liquid-staking-guide/
+- MEV 系列第一部分：区块空间市场 (Volt Capital): https://volt.capital/blog/mev-series-part-i-blockspace-markets-across-ecosystems
+
+### 内存池争议与三明治攻击
+
+- Jito Labs 终止内存池功能 (Blockworks): https://blockworks.co/news/jito-labs-suspends-mempool-functionality
+- Jito 宣布终止内存池功能 (CoinDesk): https://www.coindesk.com/business/2024/03/08/solana-client-developer-jito-announces-end-of-mempool-function
+- Jito 为什么暂停 Solana 内存池 (Decentralised): https://www.decentralised.co/p/mev-on-solana
+- Solana 重量级对抗私有内存池运营者 (CoinDesk): https://www.coindesk.com/business/2024/06/10/solana-heavyweights-wage-war-against-private-mempool-operators
+- Solana 基金会因三明治攻击驱逐验证者 (Gate): https://www.gate.com/learn/articles/solana-foundation-ousts-validators-for-sandwich-attacks-against-retail-traders/3373
+- Solana 验证者三明治攻击全记录 (blocmates): https://www.blocmates.com/news-posts/solana-validator-sandwich-attacks-here-s-everything-that-s-happened
+- 量化 Jito 上三明治 MEV 威胁 (学术论文): https://cnitarot.github.io/papers/imc26_solana.pdf
+- Solana MEV 暴露：三明治攻击分析 (Solana Compass): https://solanacompass.com/learn/accelerate-25/scale-or-die-at-accelerate-2025-the-state-of-solana-mev
+- Jito 提出更安全的 Solana 区块构建 (Cryptopolitan): https://www.cryptopolitan.com/jito-proposes-safer-solana-block-buildings-fully-protecting-against-sandwich-attacks/
+
+### TipRouter NCN 与再质押
+
+- 什么是 Jito TipRouter？(Jito Foundation 博客): https://www.jito.network/blog/what-is-jito-tiprouter/
+- TipRouter 概述 (Jito 文档): https://www.jito.network/docs/tiprouter/overview/
+- JIP-8：采用 TipRouter NCN (Jito 论坛): https://forum.jito.network/t/jip-8-adopt-tiprouter-ncn-protocol-development/413
+- TipRouter：Jito 的 2025 增长引擎 (Kairos Crypto): https://kairoscrypto.substack.com/p/tiprouter-jitos-2025-growth-engine
+- TipRouter 升级：促进优先费用 (Jito 博客): https://www.jito.network/blog/tiprouter-upgrade-facilitating-priority-fees/
+- 理解节点共识网络 (Jito Foundation 博客): https://www.jito.network/blog/understanding-node-consensus-networks/
+- 宣布 Jito (Re)staking (Jito Foundation 博客): https://www.jito.network/blog/announcing-jito-restaking/
+- Jito 再质押 NCN 列表: https://www.jito.network/restaking/ncns/
+- Jito 再质押生态统计: https://www.jito.network/restaking/stats/
+- 发现 Jito 再质押 (Kiln): https://www.kiln.fi/post/discover-jito-restaking-unlocking-additional-rewards-on-solana
+- Solana vs 以太坊再质押比较 (Solana Compass): https://solanacompass.com/learn/Lightspeed/everything-you-need-to-know-about-restaking-on-solana-vs-ethereum-lucas-bruder-sreeram-kannan
+
+### 流动性质押与 JitoSOL
+
+- Jito 流动性质押 (DefiLlama): https://defillama.com/protocol/jito-liquid-staking
+- JitoSOL：Solana 第一 LST (Vault of Azmoth): https://medium.com/@azm0th/jitosol-the-1-liquid-staking-token-lst-on-solana-a5e1fe95dc32
+- Solana 流动性质押指南 (Phantom): https://phantom.com/learn/crypto-101/solana-liquid-staking
+- 2025 最佳 Solana 流动性质押代币 (Sanctum): https://sanctum.so/blog/best-solana-liquid-staking-tokens-2025
+- Solana 流动性质押指南 (CoinGecko): https://www.coingecko.com/learn/solana-liquid-staking-top-liquid-staking-sol-platforms
+- Solana 流动性质押 (The DeFi Report): https://thedefireport.substack.com/p/solana-liquid-staking-revisiting
+- Solana 流动性质押项目比较 (Gate): https://www.gate.com/post/status/12000166
+- 2025 年 Solana 质押：机构动能 (Solana Floor): https://solanafloor.com/news/solana-staking-in-2025-institutional-momentum-grows-as-marinade-select-surpasses-3-1-m-sol-in-tvl
+
+### JTO 代币与治理
+
+- 宣布 JTO 代币 (Jito Foundation 博客): https://www.jito.network/blog/announcing-jto-the-jito-governance-token/
+- JTO 空投资格 (Jito Foundation 博客): https://www.jito.network/blog/jto-airdrop-eligibility-and-allocation-specifications/
+- 小额 Jito 空投者也获得数千美元 (CoinDesk): https://www.coindesk.com/markets/2023/12/07/even-small-time-jito-airdroppers-are-getting-thousands-of-dollars-in-jto-tokens
+- Jito Labs (JTO) 代币解锁与归属 (CryptoRank): https://cryptorank.io/price/jito-labs/vesting
+- Jito (JTO) 代币经济学与释放计划 (Tokenomist): https://tokenomist.ai/jito-governance-token
+- Jito 价格 (CoinGecko): https://www.coingecko.com/en/coins/jito
+- Jito 价格历史 (CoinMarketCap): https://coinmarketcap.com/currencies/jito/historical-data/
+
+### JIP-24、JIP-25 与 DAO 收入
+
+- JIP-24：Jito DAO 获得所有费用 (Jito 论坛): https://forum.jito.network/t/jip-24-jito-dao-receives-all-jito-block-engine-fees-and-future-bam-fees/860
+- Jito DAO 提议 100% 费用进入金库 (Solana Floor): https://solanafloor.com/news/jito-dao-proposes-directing-100-of-fees-into-dao-treasury-via-jip-24
+- Solana 的 Jito 提议 100% 费用路由到 DAO (CoinDesk): https://www.coindesk.com/tech/2025/08/05/solana-s-jito-proposes-routing-100-of-block-engine-fees-to-dao-treasury
+- Jito Labs 提议 DAO 完全控制收入 (Invezz): https://invezz.com/news/2025/08/05/jito-labs-proposes-full-revenue-control-for-dao-in-jip-24-governance-proposal/
+- Jito DAO 可能开始收取 MEV 费用 (Blockworks): https://blockworks.co/news/jito-dao-mev-fee-scheme
+- JIP-25：扩展验证者集 (Jito 论坛): https://forum.jito.network/t/jip-25-expand-the-validator-set-and-modify-jito-stake-pool-eligibility-and-ranking-criteria/877
+
+### VanEck JitoSOL ETF
+
+- 宣布 VanEck JitoSOL ETF S-1 申请 (Jito Foundation): https://www.jito.network/blog/announcing-the-s-1-filing-for-the-vaneck-jitosol-etf/
+- VanEck 申请推出 JitoSOL 支持的质押 Solana ETF (CoinDesk): https://www.coindesk.com/markets/2025/08/22/vaneck-aims-to-take-solana-s-liquid-staking-to-tradfi-investors-via-jitosol-etf
+- VanEck JitoSOL ETF SEC 文件: https://www.sec.gov/Archives/edgar/data/2082189/000162828025041000/vaneckjitosoletfs-1.htm
+- VanEck 提议 JitoSOL ETF (The Block): https://www.theblock.co/post/367959/vaneck-proposes-jitosol-etf-signaling-new-chapter-in-potential-crypto-staking-funds
+- VanEck 和 Jito 提交首个流动性质押支持的 Solana ETF (CryptoSlate): https://cryptoslate.com/vaneck-and-jito-file-the-first-liquid-staking-backed-solana-etf/
+
+### 21Shares JSOL ETP
+
+- 21Shares 推出 Jito Staked SOL ETP (GlobeNewsWire): https://www.globenewswire.com/news-release/2026/01/29/3228224/0/en/21shares-Launches-Jito-Staked-SOL-ETP-JSOL-Offering-Enhanced-Yield-Exposure-to-Solana.html
+- 21Shares 扩展 JitoSOL 质押 ETP 的 Solana 敞口 (CoinLaw): https://coinlaw.io/21shares-jitosol-solana-etp-launch/
+- 21Shares 在 Euronext 推出 JitoSOL 质押 ETP (crypto.news): https://crypto.news/21shares-launches-jitosol-etp-on-euronext-2026/
+- 21Shares 在欧洲推出基于 JitoSOL 的 Solana 质押 ETP (The Block): https://www.theblock.co/post/387614/21shares-launches-jitosol-based-solana-staking-etp-in-europe
+
+### Solana Mobile 与 SKR Guardian
+
+- SKR 于 2026 年 1 月上线 (Solana Mobile 博客): https://blog.solanamobile.com/post/skr-launches-january-2026
+- Solana Mobile Seeker 2025 更新：SKR 代币、Guardian (Solana Compass): https://solanacompass.com/learn/breakpoint-25/update-from-solana-mobile-the-seeker-economy
+
+### 团队与融资
+
+- Jito Labs 团队 (CryptoRank): https://cryptorank.io/price/jito-labs/team
+- Lucas Bruder (IQ.wiki): https://iq.wiki/wiki/lucas-bruder
+- Zano Sherwani (IQ.wiki): https://iq.wiki/wiki/zano-sherwani
+- Lucas Bruder (Crunchbase): https://www.crunchbase.com/person/lucas-bruder-3a25
+- Zano Sherwani (Crunchbase): https://www.crunchbase.com/person/zano-sherwani-8e4b
+- Jito Labs (Crunchbase): https://www.crunchbase.com/organization/jito-labs
+- Jito Labs 融资 (CryptoRank): https://cryptorank.io/ico/jito-labs
+- a16z Crypto 投资 Jito $5,000 万 (a16z): https://a16zcrypto.com/posts/article/investing-in-jito/
+- a16z 投资 Jito $5,000 万 (Blockworks): https://blockworks.co/news/a16z-invests-jito-v
+- Jito Labs CEO 采访 (Solana Compass): https://solanacompass.com/learn/Midcurve/jito-and-the-future-of-solana-w-lucas-bruder-ep-2
+- Zano Sherwani 谈 Solana 未来 (Solana Compass): https://solanacompass.com/learn/Lightspeed/the-future-of-solana-in-2024-beyond-zano-sherwani
+
+### StakeNet
+
+- 介绍 StakeNet 管理者计划 (Jito Foundation 博客): https://www.jito.network/blog/introducing-the-stakenet-steward-program/
+- Jito StakeNet 深度解析 (Chainflow): https://chainflow.io/jito-stakenet/
+- SPL Stake Pool 内部机制 (Jito 文档): https://www.jito.network/docs/stakenet/jito-steward/advanced/spl-stake-pool-internals/
+- Jito DAO 的 $17.6 亿 StakeNet 问题 (Blockworks): https://blockworks.co/news/lightspeed-newsletter-jito-dao-delegation-management
+- 委托标准 (Jito 文档): https://www.jito.network/docs/jitosol/jitosol-liquid-staking/stake-pool-operations/delegation-criteria/
+
+### Solana MEV vs 以太坊比较
+
+- Solana vs 以太坊 MEV 交易 2025 指南 (sanj.dev): https://sanj.dev/post/solana-ethereum-mev-trading-2025
+- Solana vs 以太坊 MEV (Dmitry Sky): https://medium.com/@Sky_Hustle/mev-on-solana-vs-ethereum-309d272b0eb3
+- 解析 Solana 上的 MEV (Adevar Labs): https://www.adevarlabs.com/blog/unpacking-mev-on-solana-challenges-threats-and-developer-defenses
+- Solana MEV 指南 (QuickNode): https://www.quicknode.com/guides/solana-development/defi/mev-on-solana
+- Solana MEV (RPC Fast): https://rpcfast.com/blog/solana-mev
+
+### Firedancer 集成
+
+- Jito 的 Firedancer 设置指南 (GitBook): https://jito-foundation.gitbook.io/mev/jito-solana/firedancer-setup-guide
+- Solana Firedancer 验证者客户端深度解析 (BlockDaemon): https://www.blockdaemon.com/blog/solanas-firedancer-validator-client-deep-dive
+- Jump Crypto 的 Firedancer 登陆 Solana 主网 (The Block): https://www.theblock.co/post/382411/jump-cryptos-firedancer-hits-solana-mainnet-as-the-network-aims-to-unlock-1-million-tps
+
+### 市场与生态分析
+
+- Jito：过去、现在和未来 (Lucas Bruder, Substack): https://buffalu.substack.com/p/jito-past-present-and-future
+- Jito Labs 与 Solana MEV 基础设施的未来 (Ainvest): https://www.ainvest.com/news/jito-labs-future-solana-mev-infrastructure-2601/
+- Jito 成为 Solana 最大协议 (The Block): https://www.theblock.co/post/292146/jito-network-largest-defi-protocol-solana-tvl
+- 衡量 Solana 的去中心化 (Helius): https://www.helius.dev/blog/solana-decentralization-facts-and-figures
+- Jito 在 Solana 中的角色深度解析 (Killy/Pine Analytics): https://pineanalytics.substack.com/p/jitos-role-in-solana-deep-dive
+- Jito Solana 项目评论 (Solana Compass): https://solanacompass.com/projects/jito
+- 什么是 Jito Solana MEV 客户端？(GetBlock): https://getblock.io/blog/what-is-jito-solana-mev-client/
+- Jito 开源公告 (Jito Foundation): https://www.jito.network/blog/jito-solana-is-now-open-source/
+- Jito Foundation 回归 (Jito Foundation): https://www.jito.network/blog/the-jito-foundation-comes-home/
+- Jito 2025 月度评论 (Jito Foundation): https://www.jito.network/blog/jito-january-month-in-review/ , https://www.jito.network/blog/jito-february-month-in-review/
+
+### 再质押与流动性质押市场统计
+
+- 2025 年流动性质押与再质押采用统计 (CoinLaw): https://coinlaw.io/liquid-staking-and-restaking-adoption-statistics/
+- 2025 年 Solana 质押统计与趋势 Top 10 (DataWallet): https://www.datawallet.com/crypto/solana-staking-statistics-and-trends
+- 2025 年 Solana 统计 (CoinLaw): https://coinlaw.io/solana-statistics/
+- 2026 最佳 DeFi 质押平台 (Coin Bureau): https://coinbureau.com/analysis/best-defi-staking-platforms
+- 顶级 Solana 再质押协议 (BingX): https://bingx.com/en/learn/article/what-are-the-top-solana-restaking-protocols-to-earn-sol-rewards
+- 2025 年 Solana 再质押指南 (KuCoin Learn): https://www.kucoin.com/learn/crypto/restaking-on-solana-comprehensive-guide
+- Jito 积累 1470 万 SOL TVL (Solana Floor): https://solanafloor.com/news/jito-amasses-14-7m-sol-in-tvl-amid-surging-restaking-demand

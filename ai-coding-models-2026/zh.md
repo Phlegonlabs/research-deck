@@ -326,6 +326,58 @@ Claude Code 比 Cursor 少用 5.5 倍 token。GPT-5 比 o3 少用 22%。规模�
 
 ---
 
+## 最新动态 (2026)
+
+### Anthropic 爆发式增长与 300 亿美元 G 轮融资
+
+Anthropic 于 2026 年 2 月 12 日完成 **300 亿美元 G 轮融资**，**投后估值 3800 亿美元**——有史以来第二大风投交易。年化收入达 **140 亿美元**，连续三年同比增长超 10 倍。财富 10 强中已有 8 家是 Claude 客户。Claude Code 单项年化收入达 **25 亿美元**（2026 年 1 月 1 日以来翻了一倍多），周活跃用户同期也翻倍。Anthropic 还在 2026 年 1 月推出 **Cowork**，通过 11 个开源插件将 Claude Code 的工程能力扩展到非编码知识工作（销售、法务、财务）。
+
+来源：[TechCrunch](https://techcrunch.com/2026/02/12/anthropic-raises-another-30-billion-in-series-g-with-a-new-value-of-380-billion/)、[Anthropic](https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation)、[Constellation Research](https://www.constellationr.com/insights/news/anthropics-claude-code-revenue-doubled-jan-1)
+
+### Cursor 2.0 与 Composer 模型
+
+Cursor 于 2025 年 10 月发布 **2.0 版本**，推出首个自有模型：**Composer**，一个混合专家模型，通过在真实代码库中使用实际开发工具（语义搜索、文件编辑器、终端命令）进行强化学习训练。Composer 大部分交互在 30 秒内完成——号称比同等能力系统**快 4 倍**。Cursor 2.0 支持最多 **8 个并行代理**，每个在隔离的工作区克隆中运行。到 2026 年 2 月，**Composer 1.5** 发布，RL 训练扩大 20 倍，在 **Terminal-Bench 2.0 上得分 47.9%**，配备自适应思考和自摘要。Cursor 年化收入突破 **5 亿美元**，估值 **100 亿美元**，超过 50% 的财富 500 强采用（包括 Nvidia、Uber、Adobe）。2026 年 2 月新推出**插件系统**，代理可通过 Marketplace 连接外部工具（Amplitude、AWS、Figma、Stripe 预置）。
+
+来源：[VentureBeat](https://venturebeat.com/ai/vibe-coding-platform-cursor-releases-first-in-house-llm-composer-promising)、[The New Stack](https://thenewstack.io/cursor-2-0-ide-is-now-supercharged-with-ai-and-im-impressed/)、[DigitalApplied](https://www.digitalapplied.com/blog/cursor-composer-1-5-ai-coding-model-guide)
+
+### Devin 2.0 — 从 $500/月 降到 $20/月
+
+Cognition 推出 **Devin 2.0**，价格大幅下调：从 **$500/月** 降至 **$20/月 Core 计划**。新版本引入交互式云端 IDE，用户可并行启动多个 Devin。据 Cognition 称，Devin 2.0 每 Agent 计算单元完成的初级任务量比前代**多 83%**。价格层级：Core（$20/月）、Team（$500/月含 250 ACU）、Enterprise（定制）。额外 ACU 每个 $2。
+
+来源：[VentureBeat](https://venturebeat.com/programming-development/devin-2-0-is-here-cognition-slashes-price-of-ai-software-engineer-to-20-per-month-from-500)、[TechCrunch](https://techcrunch.com/2025/04/03/devin-the-viral-coding-ai-agent-gets-a-new-pay-as-you-go-plan/)
+
+### GitHub Copilot Agent Mode 正式发布
+
+GitHub Copilot 的 agent mode 正式全面可用，新增重要功能：**find_symbol 工具**实现语言感知的符号导航（C++、C#、TypeScript 及任何支持 LSP 的语言），**Agent Skills** 可为特定项目工作流定制 Copilot，以及 **Copilot Coding Agent**——异步自主后台代理，在 GitHub Actions 环境中工作并提交 PR 等待审查。**Explore agent** 现已集成 GitHub MCP 工具。
+
+来源：[GitHub Newsroom](https://github.com/newsroom/press-releases/coding-agent-for-github-copilot)、[GitHub Features](https://github.com/features/copilot/whats-new)
+
+### Google Gemini Code Assist Agent Mode
+
+Google 的 **Gemini Code Assist** agent mode 现已对所有用户开放（不再限于 insiders）。功能包括：IDE 重启间保持代理/对话状态、实时 shell 命令输出、**Next Edit Predictions**（VS Code 预览版）、聊天中内联 diff 视图和直接 diff 编辑。Google AI Pro/Ultra 订阅者的更高模型请求限额现在在 **Gemini CLI、agent mode 和 Gemini Code Assist** 之间共享。底层模型为 **Gemini 2.5**。
+
+来源：[Google Developers Blog](https://developers.googleblog.com/new-in-gemini-code-assist/)、[Google Developers](https://developers.google.com/gemini-code-assist/resources/release-notes)
+
+### 开源模型进一步缩小差距
+
+**DeepSeek V3.2**（6850 亿参数，128K 上下文）在 SWE-bench Verified 上得分 **70.2%**，提供标准版和 V3.2-Speciale（专攻数学/编码）两个变体。**MiniMax M2.5** 达到 **80.2%**——首个突破 80% 的非 Anthropic 模型。**GLM-5**（智谱 AI）达 **77.8%**，**Kimi K2.5** 达 **76.8%**。SWE-bench Verified 排行榜现有 **71 个评估模型**，部分对比中开源与闭源的前五名差距已缩小到 1 个百分点以内。
+
+来源：[llm-stats.com](https://llm-stats.com/benchmarks/swe-bench-verified)、[VentureBeat](https://venturebeat.com/technology/qwen3-coder-next-offers-vibe-coders-a-powerful-open-source-ultra-sparse)、[Epoch AI](https://epoch.ai/benchmarks/swe-bench-verified)
+
+### Windsurf 与 AWS Kiro 加入 IDE 大战
+
+**Windsurf**（Wave 13）推出一流的**多代理并行会话**，支持 Git worktree、并列 Cascade 窗格，以及 **Arena Mode**（IDE 内盲测并列模型对比）。**AWS Kiro** 作为基于 VS Code 的新型规范驱动代理 IDE 发布，底层使用 Claude Sonnet 4.0/3.7，采用结构化开发方法论：Kiro 在写代码前自动生成 `requirements.md`，包含用户故事和 EARS 验收标准。Aurora DSQL MCP 服务器集成支持一键数据库感知开发。
+
+来源：[Windsurf Changelog](https://windsurf.com/changelog)、[VentureBeat](https://venturebeat.com/programming-development/amazon-launches-kiro-its-own-claude-powered-challenger-to-windsurf-and-codex)
+
+### 开发者 AI 采用率达 93%
+
+据 **JetBrains AI Pulse**（2026 年 1 月），**93% 的开发者**现在定期使用 AI 编程工具——高于 2025 年中的 85%。MIT 科技评论将**生成式编程**列为 [2026 年 10 大突破技术](https://www.technologyreview.com/2026/01/12/1130027/generative-coding-ai-software-2026-breakthrough-technology/) 之一。讨论已不再是"要不要用 AI？"，而是"哪种 AI 工具组合能最大化产出？"
+
+来源：[JetBrains AI Blog](https://blog.jetbrains.com/ai/2026/02/the-best-ai-models-for-coding-accuracy-integration-and-developer-fit/)、[MIT Technology Review](https://www.technologyreview.com/2026/01/12/1130027/generative-coding-ai-software-2026-breakthrough-technology/)
+
+---
+
 ## 最终判决：谁赢了？
 
 **没有单一赢家。**
@@ -345,3 +397,197 @@ Claude Code 比 Cursor 少用 5.5 倍 token。GPT-5 比 o3 少用 22%。规模�
 | 开发者心智（编码） | Claude | "最强编码大脑" |
 | 开发者心智（速度） | Codex | "快速迭代" |
 | Token 效率 | Claude Code | Cursor 的 5.5 倍 |
+
+---
+
+## References
+
+### Official -- OpenAI
+
+- [Introducing OpenAI o3 and o4-mini](https://openai.com/index/introducing-o3-and-o4-mini/)
+- [Introducing GPT-4.1 in the API](https://openai.com/index/gpt-4-1/)
+- [Introducing GPT-5](https://openai.com/index/introducing-gpt-5/)
+- [Introducing GPT-5 for developers](https://openai.com/index/introducing-gpt-5-for-developers/)
+- [Introducing GPT-5.2](https://openai.com/index/introducing-gpt-5-2/)
+- [Introducing GPT-5.2-Codex](https://openai.com/index/introducing-gpt-5-2-codex/)
+- [Introducing GPT-5.3-Codex](https://openai.com/index/introducing-gpt-5-3-codex/)
+- [GPT-5.3-Codex System Card (PDF)](https://cdn.openai.com/pdf/23eca107-a9b1-4d2c-b156-7deb4fbc697c/GPT-5-3-Codex-System-Card-02.pdf)
+- [Introducing Codex](https://openai.com/index/introducing-codex/)
+- [Introducing the Codex App](https://openai.com/index/introducing-the-codex-app/)
+- [Introducing upgrades to Codex](https://openai.com/index/introducing-upgrades-to-codex/)
+- [Unlocking the Codex harness: App Server architecture](https://openai.com/index/unlocking-the-codex-harness/)
+- [Unrolling the Codex agent loop](https://openai.com/index/unrolling-the-codex-agent-loop/)
+- [Codex product page](https://openai.com/codex/)
+- [O3 80% price cut + o3-pro](https://community.openai.com/t/o3-is-80-cheaper-and-introducing-o3-pro/1284925)
+- [OpenAI for Developers 2025](https://developers.openai.com/blog/openai-for-developers-2025/)
+- [OpenAI API Pricing](https://openai.com/api/pricing/)
+- [OpenAI Models comparison](https://platform.openai.com/docs/models/compare)
+
+### Official -- Anthropic
+
+- [Introducing Claude 4 (Opus 4 + Sonnet 4)](https://www.anthropic.com/news/claude-4)
+- [Claude Opus 4.1](https://www.anthropic.com/news/claude-opus-4-1)
+- [Introducing Claude Sonnet 4.5](https://www.anthropic.com/news/claude-sonnet-4-5)
+- [Introducing Claude Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5)
+- [Introducing Claude Opus 4.6](https://www.anthropic.com/news/claude-opus-4-6)
+- [500+ Zero-Days Found (Red Team)](https://red.anthropic.com/2026/zero-days/)
+- [Claude's Extended Thinking](https://www.anthropic.com/news/visible-extended-thinking)
+- [The "think" Tool](https://www.anthropic.com/engineering/claude-think-tool)
+- [Advanced Tool Use](https://www.anthropic.com/engineering/advanced-tool-use)
+- [Building C Compiler with Agent Teams](https://www.anthropic.com/engineering/building-c-compiler)
+- [Claude SWE-Bench Performance](https://www.anthropic.com/research/swe-bench-sonnet)
+- [Claude API Pricing](https://platform.claude.com/docs/en/about-claude/pricing)
+- [Models Overview](https://platform.claude.com/docs/en/about-claude/models/overview)
+- [Claude Code Overview](https://code.claude.com/docs/en/overview)
+- [Claude Code Subagents](https://code.claude.com/docs/en/sub-agents)
+- [Anthropic raises $30B Series G at $380B valuation](https://www.anthropic.com/news/anthropic-raises-30-billion-series-g-funding-380-billion-post-money-valuation)
+
+### Developer Documentation
+
+- [Codex CLI on GitHub](https://github.com/openai/codex)
+- [Codex CLI docs](https://developers.openai.com/codex/cli/)
+- [Codex Models](https://developers.openai.com/codex/models/)
+- [Codex Cloud](https://developers.openai.com/codex/cloud)
+- [Gemini Code Assist overview](https://developers.google.com/gemini-code-assist/docs/overview)
+- [Gemini Code Assist release notes](https://developers.google.com/gemini-code-assist/resources/release-notes)
+- [GitHub Copilot features](https://docs.github.com/en/copilot/get-started/features)
+
+### Benchmark Leaderboards
+
+- [SWE-bench Verified -- llm-stats.com](https://llm-stats.com/benchmarks/swe-bench-verified)
+- [SWE-bench Official](https://www.swebench.com/)
+- [SWE-bench Pro Public -- Scale](https://scale.com/leaderboard/swe_bench_pro_public)
+- [SWE-bench Live](https://swe-bench-live.github.io/)
+- [Terminal-Bench 2.0 -- llm-stats.com](https://llm-stats.com/benchmarks/terminal-bench-2)
+- [Terminal-Bench Official](https://www.tbench.ai/)
+- [Live-SWE-agent Leaderboard](https://live-swe-agent.github.io/)
+- [Best AI for Coding -- llm-stats.com](https://llm-stats.com/leaderboards/best-ai-for-coding)
+- [SWE-bench Verified -- Epoch AI](https://epoch.ai/benchmarks/swe-bench-verified)
+- [LLM Leaderboard -- Vellum](https://www.vellum.ai/llm-leaderboard)
+- [Best LLM for Coding -- Vellum](https://www.vellum.ai/best-llm-for-coding)
+- [EvalPlus Leaderboard (HumanEval)](https://evalplus.github.io/leaderboard.html)
+- [LiveBench](https://livebench.ai/)
+- [Artificial Analysis](https://artificialanalysis.ai/models)
+
+### Head-to-Head Comparisons
+
+- [Claude Opus 4.6 vs GPT-5.3 Codex -- DigitalApplied](https://www.digitalapplied.com/blog/claude-opus-4-6-vs-gpt-5-3-codex-comparison)
+- [Claude vs Codex: AI Coding Agent Battle 2026 -- WaveSpeedAI](https://wavespeed.ai/blog/posts/claude-vs-codex-comparison-2026/)
+- [Codex App vs Claude Code Showdown -- Serenities AI](https://serenitiesai.com/articles/openai-codex-app-vs-claude-code-2026)
+- [Claude Code vs OpenAI Codex -- Northflank](https://northflank.com/blog/claude-code-vs-openai-codex)
+- [Codex vs Claude Code -- Builder.io](https://www.builder.io/blog/codex-vs-claude-code)
+- [GPT-5.3 Codex vs Claude Opus 4.6 -- NxCode](https://www.nxcode.io/resources/news/gpt-5-3-codex-vs-claude-opus-4-6-ai-coding-comparison-2026)
+- [Codex CLI vs Claude Code Benchmark -- SmartScope](https://smartscope.blog/en/generative-ai/chatgpt/codex-vs-claude-code-2026-benchmark/)
+- [Devin vs Cursor -- Builder.io](https://www.builder.io/blog/devin-vs-cursor)
+
+### Analysis & Reviews
+
+- [Best AI for Coding 2026: SWE-Bench Breakdown -- marc0.dev](https://www.marc0.dev/en/blog/best-ai-for-coding-2026-swe-bench-breakdown-opus-4-6-qwen3-coder-next-gpt-5-3-and-what-actually-matters-1770387434111)
+- [GPT-5 Benchmarks -- Vellum](https://www.vellum.ai/blog/gpt-5-benchmarks)
+- [Claude Opus 4.6 Benchmarks -- Vellum](https://www.vellum.ai/blog/claude-opus-4-6-benchmarks)
+- [GPT-5.3-Codex Guide -- DigitalApplied](https://www.digitalapplied.com/blog/gpt-5-3-codex-release-features-benchmarks-guide)
+- [Claude Opus 4.6 Guide -- DigitalApplied](https://www.digitalapplied.com/blog/claude-opus-4-6-release-features-benchmarks-guide)
+- [Claude Opus 4.6 -- DataCamp](https://www.datacamp.com/blog/claude-opus-4-6)
+- [O4-Mini -- DataCamp](https://www.datacamp.com/blog/o4-mini)
+- [Best AI Coding Agents 2026 -- Faros AI](https://www.faros.ai/blog/best-ai-coding-agents-2026)
+- [Best AI Coding Assistants 2026 -- PlayCode](https://playcode.io/blog/best-ai-coding-assistants-2026)
+- [Best LLMs for Coding 2026 -- Builder.io](https://www.builder.io/blog/best-llms-for-coding)
+- [AI Dev Tool Power Rankings -- LogRocket](https://blog.logrocket.com/ai-dev-tool-power-rankings/)
+- [Best AI Coding Models 2026 -- CodeConductor](https://codeconductor.ai/blog/ai-coding-models/)
+- [Best AI Models for Coding -- JetBrains AI Blog](https://blog.jetbrains.com/ai/2026/02/the-best-ai-models-for-coding-accuracy-integration-and-developer-fit/)
+- [Cursor 2.0 -- The New Stack](https://thenewstack.io/cursor-2-0-ide-is-now-supercharged-with-ai-and-im-impressed/)
+- [Cursor Composer 1.5 Guide -- DigitalApplied](https://www.digitalapplied.com/blog/cursor-composer-1-5-ai-coding-model-guide)
+- [Devin 2.0 Review -- ai-coding-flow](https://ai-coding-flow.com/blog/devin-review-2026/)
+
+### News Coverage
+
+- [AI coding wars heat up -- VentureBeat](https://venturebeat.com/technology/openais-gpt-5-3-codex-drops-as-anthropic-upgrades-claude-ai-coding-wars-heat)
+- [Claude Opus 4.6 1M context + Agent Teams -- VentureBeat](https://venturebeat.com/technology/anthropics-claude-opus-4-6-brings-1m-token-context-and-agent-teams-to-take)
+- [GPT-5.3-Codex 25% faster -- Neowin](https://www.neowin.net/news/openai-debuts-gpt-53-codex-25-faster-and-setting-new-coding-benchmark-records/)
+- [Opus 4.6 Agent Teams -- TechCrunch](https://techcrunch.com/2026/02/05/anthropic-releases-opus-4-6-with-new-agent-teams/)
+- [Claude Opus 4.6 -- CNBC](https://www.cnbc.com/2026/02/05/anthropic-claude-opus-4-6-vibe-working.html)
+- [500 Zero-Days -- Axios](https://www.axios.com/2026/02/05/anthropic-claude-opus-46-software-hunting)
+- [500 Zero-Days -- CSO Online](https://www.csoonline.com/article/4128889/claude-ai-finds-500-high-severity-software-vulnerabilities.html)
+- [500 Zero-Days -- Fortune](https://fortune.com/2026/02/06/anthropic-claude-ai-model-cybersecurity-security-vulnerabilities-risks/)
+- [GPT-5.3-Codex cybersecurity risks -- Fortune](https://fortune.com/2026/02/05/openai-gpt-5-3-codex-warns-unprecedented-cybersecurity-risks/)
+- [Opus 4.6 coding-writing tradeoff -- Winbuzzer](https://winbuzzer.com/2026/02/05/claude-opus-4-6-coding-writing-tradeoff-xcxwbn/)
+- [GPT-5.1-Codex-Max 24hr task -- VentureBeat](https://venturebeat.com/ai/openai-debuts-gpt-5-1-codex-max-coding-model-and-it-already-completed-a-24)
+- [AI coding everywhere -- MIT Technology Review](https://www.technologyreview.com/2025/12/15/1128352/rise-of-ai-coding-developers-2026/)
+- [Generative coding: 10 Breakthrough Technologies 2026 -- MIT Technology Review](https://www.technologyreview.com/2026/01/12/1130027/generative-coding-ai-software-2026-breakthrough-technology/)
+- [Opus 4.6 GitHub Copilot -- GitHub Changelog](https://github.blog/changelog/2026-02-05-claude-opus-4-6-is-now-generally-available-for-github-copilot/)
+- [Opus 4.6 on Azure -- Azure Blog](https://azure.microsoft.com/en-us/blog/claude-opus-4-6-anthropics-powerful-model-for-coding-agents-and-enterprise-workflows-is-now-available-in-microsoft-foundry-on-azure/)
+- [Anthropic $30B Series G -- TechCrunch](https://techcrunch.com/2026/02/12/anthropic-raises-another-30-billion-in-series-g-with-a-new-value-of-380-billion/)
+- [Anthropic $30B Series G -- Bloomberg](https://www.bloomberg.com/news/articles/2026-02-12/anthropic-finalizes-30-billion-funding-at-380-billion-value)
+- [Claude Code revenue doubled -- Constellation Research](https://www.constellationr.com/insights/news/anthropics-claude-code-revenue-doubled-jan-1)
+- [Devin 2.0 price cut -- VentureBeat](https://venturebeat.com/programming-development/devin-2-0-is-here-cognition-slashes-price-of-ai-software-engineer-to-20-per-month-from-500)
+- [Devin 2.0 -- Cognition](https://cognition.ai/blog/devin-2)
+- [Cursor Composer model -- VentureBeat](https://venturebeat.com/ai/vibe-coding-platform-cursor-releases-first-in-house-llm-composer-promising)
+- [AWS Kiro launch -- VentureBeat](https://venturebeat.com/programming-development/amazon-launches-kiro-its-own-claude-powered-challenger-to-windsurf-and-codex)
+- [Copilot Coding Agent -- GitHub Newsroom](https://github.com/newsroom/press-releases/coding-agent-for-github-copilot)
+
+### Developer Productivity Studies
+
+- [METR: AI Impact on Experienced OS Devs](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
+- [METR Paper -- arXiv](https://arxiv.org/abs/2507.09089)
+- [Stack Overflow 2025 AI Survey](https://survey.stackoverflow.co/2025/ai)
+- [JetBrains State of Developer Ecosystem 2025](https://blog.jetbrains.com/research/2025/10/state-of-developer-ecosystem-2025/)
+- [AI Coding Impact 2026 -- Opsera](https://opsera.ai/resources/report/ai-coding-impact-2025-benchmark-report/)
+- [AI Pair Programming Statistics -- Index.dev](https://www.index.dev/blog/ai-pair-programming-statistics)
+
+### Multi-Agent & Agentic Coding
+
+- [Claude Agent Teams Guide -- ClaudeFast](https://claudefa.st/blog/guide/agents/agent-teams)
+- [Agent Teams Setup -- marc0.dev](https://www.marc0.dev/en/blog/claude-code-agent-teams-multiple-ai-agents-working-in-parallel-setup-guide-1770317684454)
+- [Claude Code Hidden Swarm -- paddo.dev](https://paddo.dev/blog/claude-code-hidden-swarm/)
+- [Multi-Agent Orchestration -- Shipyard](https://shipyard.build/blog/claude-code-multi-agent/)
+- [Codex Desktop Parallel Agents -- VentureBeat](https://venturebeat.com/orchestration/openai-launches-a-codex-desktop-app-for-macos-to-run-multiple-ai-coding)
+- [Codex Desktop -- DevOps.com](https://devops.com/openai-shifts-toward-autonomous-team-model-with-codex-desktop-launch/)
+- [Terminal-Bench Paper -- arXiv](https://arxiv.org/html/2601.11868v1)
+- [Terminal-Bench -- GitHub](https://github.com/laude-institute/terminal-bench)
+
+### Open Source Models
+
+- [Qwen3-Coder -- Qwen Blog](https://qwenlm.github.io/blog/qwen3-coder/)
+- [Qwen3-Coder-Next -- Dev Genius](https://blog.devgenius.io/qwen3-coder-next-just-launched-open-source-is-winning-0724b76f13cc)
+- [Qwen3-Coder-Next Sparse MoE -- Winbuzzer](https://winbuzzer.com/2026/02/04/alibaba-qwen3-coder-next-open-source-sparse-moe-coding-model-xcxwbn/)
+- [Qwen3-Coder-Next -- VentureBeat](https://venturebeat.com/technology/qwen3-coder-next-offers-vibe-coders-a-powerful-open-source-ultra-sparse)
+
+### Claude Code Coverage
+
+- [Claude Code Product Page](https://claude.com/product/claude-code)
+- [Creator of Claude Code Workflow -- VentureBeat](https://venturebeat.com/technology/the-creator-of-claude-code-just-revealed-his-workflow-and-developers-are)
+- [Karpathy's Claude Code Field Notes -- DEV](https://dev.to/jasonguo/karpathys-claude-code-field-notes-real-experience-and-deep-reflections-on-the-ai-programming-era-4e2f)
+- [Claude Code Has Engineers Buzzing -- GeekWire](https://www.geekwire.com/2026/a-new-era-of-software-development-claude-code-has-seattle-engineers-buzzing-as-ai-coding-hits-new-phase/)
+- [Claude Code CLI Cheatsheet -- Shipyard](https://shipyard.build/blog/claude-code-cheat-sheet/)
+- [Claude Code's "ChatGPT" moment -- Uncover Alpha](https://www.uncoveralpha.com/p/anthropics-claude-code-is-having)
+- [Claude Code creator predicts -- AOL](https://www.aol.com/articles/anthropics-claude-code-creator-predicts-100101646.html)
+
+### Pricing Guides
+
+- [OpenAI Pricing 2026 -- Finout](https://www.finout.io/blog/openai-pricing-in-2026)
+- [Anthropic API Pricing 2026 -- nOps](https://www.nops.io/blog/anthropic-api-pricing/)
+- [LLM API Pricing Comparison -- CloudIDR](https://www.cloudidr.com/llm-pricing)
+- [Claude Code Pricing -- o-mega](https://o-mega.ai/articles/claude-code-pricing-2026-costs-plans-and-alternatives)
+
+### IDE & Tool Coverage
+
+- [Windsurf Changelog](https://windsurf.com/changelog)
+- [Windsurf Review 2026 -- Second Talent](https://www.secondtalent.com/resources/windsurf-review/)
+- [AWS Kiro -- The New Stack](https://thenewstack.io/kiro-is-awss-specs-centric-answer-to-windsurf-and-cursor/)
+- [Gemini Code Assist Updates -- Google Blog](https://developers.googleblog.com/new-in-gemini-code-assist/)
+- [Cursor Changelog 2026 -- PromptLayer](https://blog.promptlayer.com/cursor-changelog-whats-coming-next-in-2026/)
+- [GitHub Copilot What's New](https://github.com/features/copilot/whats-new)
+- [GitHub Copilot Agents](https://github.com/features/copilot/agents)
+
+### Community & Discussion
+
+- [Claude Code vs Codex Sentiment -- Hacker News](https://news.ycombinator.com/item?id=45610266)
+- [Claude vs Cursor vs Copilot -- Cursor Forum](https://forum.cursor.com/t/comparison-claude-vs-cursor-vs-copilot-review-from-a-regular-coder/130701)
+- [METR Study Discussion -- Sean Goedecke](https://www.seangoedecke.com/impact-of-ai-study/)
+- [OpenAI Codex App Analysis -- Latent Space](https://www.latent.space/p/ainews-openai-codex-app-death-of)
+
+### Wikipedia
+
+- [OpenAI o3](https://en.wikipedia.org/wiki/OpenAI_o3)
+- [GPT-4.1](https://en.wikipedia.org/wiki/GPT-4.1)
+- [Claude (Language Model)](https://en.wikipedia.org/wiki/Claude_(language_model))

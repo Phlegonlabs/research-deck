@@ -367,6 +367,40 @@ Token impact:
 | **Custom MCP Memory** | MCP server with vector DB backend | Semantic search, unlimited storage | Complex setup, external infrastructure |
 | **Windsurf Rules** | `.windsurfrules` file | Simple single-file approach | No hierarchy, no auto memory, no conditional rules |
 
+## Latest Updates (2026)
+
+### Auto Memory Goes GA (v2.1.32, Feb 5 2026)
+
+Auto memory graduated from experimental opt-in to enabled-by-default in v2.1.32. Claude now automatically records and recalls memories as it works without requiring the `CLAUDE_CODE_DISABLE_AUTO_MEMORY=0` environment variable. Users who want to disable it can still set `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1`. This is the single biggest change to the memory system since its introduction — every Claude Code session now builds persistent project knowledge by default.
+
+### Agent Memory Frontmatter (v2.1.32-2.1.33)
+
+The `memory` frontmatter field for custom subagents was formalized in v2.1.32, supporting three scopes (`user`, `project`, `local`). v2.1.33 expanded it with `TeammateIdle` and `TaskCompleted` hook events, enabling multi-agent teams to coordinate memory updates. Each subagent gets its own persistent `MEMORY.md` with the same 200-line loading rule as the main session. Combined with `isolation: worktree` (which gives each agent its own git worktree), agents can now run fully parallel with independent memory and filesystem state.
+
+### "Summarize from here" — Partial Compaction (v2.1.32)
+
+A new alternative to `/compact` was added: using `Esc + Esc` or `/rewind`, users can select a message checkpoint and choose "Summarize from here" to condense only messages from that point forward, keeping earlier context intact. This gives much finer-grained control over context management compared to the all-or-nothing `/compact` command.
+
+### Built-in Git Worktree Support (v2.1.39+)
+
+The `--worktree` CLI flag enables running Claude Code in an isolated git worktree. Subagents can declare `isolation: worktree` in their agent definition. `WorktreeCreate` and `WorktreeRemove` hook events were added for custom VCS setup/teardown. This is critical for parallel agent workflows — multiple Claude sessions can edit the same repo without clobbering each other. Known limitation: worktrees share local databases and Docker state, creating potential race conditions for stateful operations.
+
+### Memory Leak Fixes (v2.1.45-2.1.49)
+
+February 2026 saw a wave of critical memory fixes after v2.1.27 shipped a regression that caused OOM crashes within seconds. The fixes included: releasing API stream buffers and agent context after use (v2.1.47), trimming agent task message history after completion to eliminate O(n^2) message accumulation (v2.1.47), capping shell command output to prevent unbounded RSS growth (v2.1.45), periodically resetting the tree-sitter parser to stop WASM memory growth (v2.1.49), and fixing out-of-memory crashes when resuming sessions with heavy subagent usage (v2.1.49). These were not cosmetic fixes — users reported 15-20GB RAM consumption in sessions longer than 20 minutes.
+
+### New Hook Events for Enterprise Control
+
+Two significant hook events were added: **PermissionRequest** (v2.1.45) lets external scripts automatically approve or deny tool permission requests with custom logic, and **ConfigChange** (v2.1.49) fires when configuration files change during a session, enabling enterprise security auditing and optional blocking of unauthorized settings changes. Both hooks support the same user/project/local scoping as the rest of the configuration system.
+
+### CLAUDE.md from Additional Directories (v2.1.20)
+
+The `--add-dir` flag gained the ability to load CLAUDE.md files from additional directories (via `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1`). Skills in `.claude/skills/` within `--add-dir` directories also auto-load (v2.1.32). This is particularly useful for monorepos and shared configuration repositories where memory and rules live outside the immediate project root.
+
+### Compaction Buffer Reduction
+
+The autocompact buffer was reduced from ~45K tokens to ~33K tokens (16.5% of the 200K window), freeing roughly 12K additional tokens for actual work. Compaction also now correctly handles conversations containing many PDF documents by stripping document blocks alongside images before sending to the compaction API. Additionally, skills invoked by subagents no longer incorrectly appear in the main session context after compaction.
+
 ## Stealable Patterns
 
 1. **The 200-line index pattern**: Keep your main memory file as a concise index with pointers to detailed topic files. This works for any LLM tool, not just Claude Code.
@@ -384,3 +418,76 @@ Token impact:
 7. **Symlink shared rules**: Use symlinks in `.claude/rules/` to share common rules across multiple projects without duplication.
 
 8. **Agent memory scoping**: Use `user` scope for portable knowledge, `project` scope for team collaboration, `local` scope for personal annotations.
+
+## References
+
+### Official Documentation
+
+- [Manage Claude's memory - Claude Code Docs](https://code.claude.com/docs/en/memory)
+- [Extend Claude with skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
+- [Best Practices for Claude Code - Claude Code Docs](https://code.claude.com/docs/en/best-practices)
+- [Using CLAUDE.MD files - Anthropic Blog](https://claude.com/blog/using-claude-md-files)
+- [Context windows - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/context-windows)
+- [Compaction - Claude API Docs](https://platform.claude.com/docs/en/build-with-claude/compaction)
+- [Memory tool - Claude API Docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool)
+- [Agent Skills - Claude API Docs](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+- [Skill authoring best practices - Claude API Docs](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
+- [Hooks reference - Claude Code Docs](https://code.claude.com/docs/en/hooks)
+- [Create custom subagents - Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
+- [Common workflows - Claude Code Docs](https://code.claude.com/docs/en/common-workflows)
+
+### GitHub Issues and Discussions
+
+- [MEMORY.md loaded twice: auto-memory and claudeMd loaders both inject same file - Issue #24044](https://github.com/anthropics/claude-code/issues/24044)
+- [Option to disable auto-memory - Issue #23750](https://github.com/anthropics/claude-code/issues/23750)
+- [Slavka Memory Pattern: Unlimited scalable memory with a fixed context window - Issue #24718](https://github.com/anthropics/claude-code/issues/24718)
+- [Configurable Context Window Compaction Threshold - Issue #15719](https://github.com/anthropics/claude-code/issues/15719)
+- [Compaction fails with 'Conversation too long' at 48% (Opus 4.6) - Issue #23751](https://github.com/anthropics/claude-code/issues/23751)
+- [Memory gauge forces chat termination at 0% while 60%+ token budget remains - Issue #10996](https://github.com/anthropics/claude-code/issues/10996)
+- [Context compaction fails with 'Conversation too long' when context limit is reached - Issue #26317](https://github.com/anthropics/claude-code/issues/26317)
+- [Critical memory regression in 2.1.27 - OOM crash on simple input - Issue #22042](https://github.com/anthropics/claude-code/issues/22042)
+- [Subagent processes not terminating on macOS, causing memory leak - Issue #22554](https://github.com/anthropics/claude-code/issues/22554)
+- [Memory leak in long-running idle Claude Code sessions - Issue #18859](https://github.com/anthropics/claude-code/issues/18859)
+- [Add PreCompact and PostCompact hooks for custom context management - Issue #17237](https://github.com/anthropics/claude-code/issues/17237)
+
+### Community Guides and Blog Posts
+
+- [Writing a good CLAUDE.md - HumanLayer Blog](https://www.humanlayer.dev/blog/writing-a-good-claude-md)
+- [Stop Bloating Your CLAUDE.md: Progressive Disclosure - alexop.dev](https://alexop.dev/posts/stop-bloating-your-claude-md-progressive-disclosure-ai-coding-tools/)
+- [How I use Claude Code (+ my best tips) - Builder.io](https://www.builder.io/blog/claude-code)
+- [Claude Code Memory System - Developer Toolkit](https://developertoolkit.ai/en/claude-code/advanced-techniques/memory-system/)
+- [Claude Code Tips & Tricks: Maximising Memory - Cloud Artisan](https://cloudartisan.com/posts/2025-04-16-claude-code-tips-memory/)
+- [Stop Repeating Yourself: Give Claude Code a Memory - ProductTalk](https://www.producttalk.org/give-claude-code-a-memory/)
+- [Claude Code's Memory: Working with AI in Large Codebases - Thomas Landgraf](https://thomaslandgraf.substack.com/p/claude-codes-memory-working-with)
+- [Claude Code Context Buffer: The 33K-45K Token Problem - ClaudeFast](https://claudefa.st/blog/guide/mechanics/context-buffer-management)
+- [Persistent Memory for Claude Code: Setup Guide - Agent Native (Medium)](https://agentnativedev.medium.com/persistent-memory-for-claude-code-never-lose-context-setup-guide-2cb6c7f92c58)
+- [Claude Code Best Practices: Memory Management - Cuong Tham (Medium)](https://medium.com/@codecentrevibe/claude-code-best-practices-memory-management-7bc291a87215)
+- [Claude Code Compaction - Steve Kinney](https://stevekinney.com/courses/ai-development/claude-code-compaction)
+- [Claude Code's Memory Evolution: Auto Memory & PreCompact Hooks - Yuanchang's Blog](https://yuanchang.org/en/posts/claude-code-auto-memory-and-hooks/)
+- [Six Things That Changed in Claude Code This Month - Brent W. Peterson (Medium)](https://medium.com/@brentwpeterson/six-things-that-changed-in-claude-code-this-month-8012f49fcb90)
+- [Claude Code Context Backups: Beat Auto-Compaction - ClaudeFast](https://claudefa.st/blog/tools/hooks/context-recovery-hook)
+- [Claude Code Hooks: Complete Guide with 20+ Examples - aiorg.dev](https://aiorg.dev/blog/claude-code-hooks)
+- [Claude Skills and CLAUDE.md: a practical 2026 guide for teams - Gend](https://www.gend.co/blog/claude-skills-claude-md-guide)
+
+### Research and Analysis
+
+- [Claude Code Agent Memory Report - shanraisshan/claude-code-best-practice](https://github.com/shanraisshan/claude-code-best-practice/blob/main/reports/claude-agent-memory.md)
+- [Context Window & Compaction - DeepWiki](https://deepwiki.com/anthropics/claude-code/3.3-session-and-conversation-management)
+- [Token Budget Management - DeepWiki](https://deepwiki.com/shanraisshan/claude-code-best-practice/4.3-token-budget-management)
+- [Claude Code by Anthropic - Release Notes February 2026 - Releasebot](https://releasebot.io/updates/anthropic/claude-code)
+- [Claude Agent Skills: A First Principles Deep Dive](https://leehanchung.github.io/blogs/2025/10/26/claude-skills-deep-dive/)
+- [Claude Code Changelog - ClaudeLog](https://claudelog.com/claude-code-changelog/)
+- [Claude Code Changelog: Complete Version History - ClaudeFast](https://claudefa.st/blog/guide/changelog)
+
+### Templates and Starter Configs
+
+- [claude-code-best-practice - shanraisshan](https://github.com/shanraisshan/claude-code-best-practice)
+- [my-claude-code-setup - centminmod](https://github.com/centminmod/my-claude-code-setup)
+- [claude-mem - thedotmack](https://github.com/thedotmack/claude-mem)
+- [awesome-claude-skills - travisvn](https://github.com/travisvn/awesome-claude-skills)
+
+### Tools
+
+- [CLAUDE.md for .NET Developers - codewithmukesh](https://codewithmukesh.com/blog/claude-md-mastery-dotnet/)
+- [Claude Code Tutorial for Beginners - Complete 2026 Guide - codewithmukesh](https://codewithmukesh.com/blog/claude-code-for-beginners/)
+- [Claude Skills and CLAUDE.md: a practical 2026 guide for teams - Gend](https://www.gend.co/blog/claude-skills-claude-md-guide)

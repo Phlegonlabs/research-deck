@@ -234,6 +234,42 @@ CLAUDE_CODE_PARENT_SESSION_ID="session-xyz"
 
 **LangGraph** 在控制性、合規性和生產級狀態管理上勝出。**CrewAI** 在原型速度上勝出。**Claude Code Agent Team** 在與現有 Claude Code 工作流的零摩擦集成上勝出。
 
+## 最新動態 (2026)
+
+### 隨 Opus 4.6 正式發布（2026 年 2 月）
+
+Agent Teams 作為實驗性功能隨 Claude Opus 4.6 於 2026 年 2 月 5 日發布。通過在 settings.json 或環境變量中設置 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` 即可啟用。該功能在早期 Claude Code 二進制文件中以功能標誌關閉狀態存在（2026 年 1 月社區研究人員通過對二進制文件運行 `strings` 命令發現），後正式上線。Anthropic 注意到社區已經在獨立構建類似模式，使用自定義 Docker 編排腳本和 OpenClaw 等工具。
+
+### C 編譯器壓力測試：16 個智能體、$20K、10 萬行代碼
+
+Anthropic 研究員 Nicholas Carlini 發布了一個里程碑式的案例研究：[16 個並行 Opus 4.6 智能體](https://www.anthropic.com/engineering/building-c-compiler)自主構建了一個基於 Rust 的 C 編譯器，能夠在 x86、ARM 和 RISC-V 架構上編譯 Linux 6.9。關鍵指標：近 2,000 個 Claude Code 會話、20 億輸入 token、1.4 億輸出 token、$20,000 API 成本、約 2 週內產出 10 萬行 Rust 代碼。每個智能體在自己的 Docker 容器中運行，通過在 `current_tasks/` 中創建鎖文件認領任務，推送到共享 git 上游。編譯器通過 99% 的 GCC torture 測試，能夠構建 QEMU、FFmpeg、SQLite、PostgreSQL 和 Redis。顯著限制：當所有智能體同時遇到相同 bug 時，擴展出現瓶頸，導致重複修復和合併衝突 — 解決方案是使用 GCC 作為「已知正確的預言機」來重新劃分工作。
+
+### Claude Code SDK 更名為 Claude Agent SDK
+
+Claude Code SDK 正式更名為 **Claude Agent SDK**，以反映其超越編碼的更廣泛範圍。提供 Python（`pip install claude-agent-sdk`）和 TypeScript（`npm install @anthropic-ai/claude-agent-sdk`）版本，提供與 Claude Code 相同的工具、智能體循環和上下文管理作為可編程庫。2026 年初的關鍵新增功能包括：`ThinkingConfig` 用於細粒度控制擴展思考（努力級別：low/medium/high/max），通過 `@tool` 裝飾器的 MCP 工具註解，以及修復了大型智能體定義因 CLI 參數大小限制而靜默失敗的問題。SDK 支持通過 `Task` 工具生成子智能體、自定義 Hook（`PreToolUse`、`PostToolUse`、`Stop` 等）以及多輪工作流的會話恢復。
+
+### VS Code 成為多智能體指揮中心
+
+隨著 [VS Code v1.109](https://code.visualstudio.com/blogs/2026/02/05/multi-agent-development)（2026 年 1 月），Microsoft 將 VS Code 打造為「多智能體開發的家園」。Claude 智能體現在通過官方 Claude Agent harness 原生運行在 VS Code 中 — 與獨立 Claude Code 相同的提示詞、工具和架構。開發者可以從一個界面同時運行 Claude、Codex 和 GitHub Copilot 智能體，可選擇本地（交互式）、後台（異步）或雲端（遠程自主）部署。2 月更新新增了子智能體渲染 — 當 Claude 在流式傳輸期間生成子智能體時，你可以內聯查看其工具調用和進度。Agent Skills（Anthropic 的開放標準）現在在 VS Code 中已正式可用。
+
+### 社區工具生態爆發
+
+Agent Team 模式催生了一系列開源協調工具：
+- **[claude-swarm](https://blog.nikosbaxevanis.com/2026/02/08/agent-teams-and-claude-swarm/)**：用於在 Docker 容器中運行多個 Claude Code 會話的可重用框架，通過 git 協調，使用裸倉庫以只讀方式掛載為卷。
+- **[ccswarm](https://github.com/nwiizo/ccswarm)**：工作流自動化框架，提供任務委派基礎設施、模板腳手架和 git worktree 隔離。
+- **[worktree-cli](https://github.com/agenttools/worktree)**：管理 git worktree 的 CLI 工具，集成 GitHub Issues 和 Claude Code Hook。
+- **[Clash](https://github.com/clash-sh/clash)**：跨 git worktree 的合併衝突管理器，用於並行 AI 智能體工作流。
+
+尚未解決的缺口：目前沒有工具能乾淨地將 worktree 代碼隔離與完整環境隔離（Dev Containers）結合起來。多個 GitHub issue 顯示 worktree 和 devcontainer 無法良好配合 — `.git` 文件格式會破壞容器內的 git 操作。
+
+### 企業採用激增
+
+自 2026 年初以來，Claude Code 的企業訂閱增長了四倍，企業使用現在占 Claude Code 收入的一半以上。Agent Teams 功能被認為是主要推動力 — 團隊報告在可並行化的重構、遷移和審查任務上獲得了 5-10 倍的吞吐量提升。
+
+### Microsoft Agent Framework 集成
+
+Microsoft 的 Semantic Kernel 團隊宣布了 [Microsoft Agent Framework 與 Claude Agent SDK 的集成](https://devblogs.microsoft.com/semantic-kernel/build-ai-agents-with-claude-agent-sdk-and-microsoft-agent-framework/)，結合了 Agent Framework 一致的智能體抽象與 Claude 的文件編輯、代碼執行、函數調用、流式傳輸、多輪對話和 MCP 服務器集成。這將 Claude 驅動的智能體開放給企業級 .NET 和 Java 生態系統。
+
 ## 可以偷學的模式
 
 ### 1. 基於文件的協調優於數據庫
@@ -267,3 +303,64 @@ CLAUDE_CODE_PARENT_SESSION_ID="session-xyz"
 ### 8. 通過 CLAUDE.md 的上下文繼承
 
 所有隊友自動加載 CLAUDE.md。把團隊範圍的約定、約束和質量標準放在那裡。一個文件控制 N 個智能體的行為。
+
+## References
+
+### 原始來源
+- [@YukerX Twitter Thread — Claude Code Agent Team 入門教程](https://x.com/YukerX/status/2019977867061522525)
+
+### 官方文檔
+- [Orchestrate teams of Claude Code sessions — Claude Code Docs](https://code.claude.com/docs/en/agent-teams)
+- [Introducing Claude Opus 4.6 — Anthropic](https://www.anthropic.com/news/claude-opus-4-6)
+- [Common workflows — Claude Code Docs](https://code.claude.com/docs/en/common-workflows)
+- [Create custom subagents — Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
+- [Agent SDK overview — Claude API Docs](https://platform.claude.com/docs/en/agent-sdk/overview)
+- [Claude Agent SDK Python — GitHub](https://github.com/anthropics/claude-agent-sdk-python)
+- [Claude Agent SDK Demos — GitHub](https://github.com/anthropics/claude-agent-sdk-demos)
+
+### 深度技術分析
+- [Claude Code's Hidden Multi-Agent System — paddo.dev](https://paddo.dev/blog/claude-code-hidden-swarm/)
+- [Claude Code Swarm Orchestration Skill — Complete guide (GitHub Gist)](https://gist.github.com/kieranklaassen/4f2aba89594a4aea4ad64d753984b2ea)
+- [Claude Code Swarms — Addy Osmani](https://addyosmani.com/blog/claude-code-agent-teams/)
+- [Building a C compiler with a team of parallel Claudes — Anthropic Engineering](https://www.anthropic.com/engineering/building-c-compiler)
+- [Claude Code Agent Teams: How They Work Under the Hood — Claude Code Camp](https://www.claudecodecamp.com/p/claude-code-agent-teams-how-they-work-under-the-hood)
+
+### 指南與教程
+- [Claude Code Agent Teams: Parallel AI Agents Setup Guide — Marco Patzelt](https://www.marc0.dev/en/blog/claude-code-agent-teams-multiple-ai-agents-working-in-parallel-setup-guide-1770317684454)
+- [Claude Code Swarms Guide: How to Build Native Multi-Agent Teams — Tech On Play](https://techonplay.com/claude-code-swarms/)
+- [Claude Swarm Mode Complete Guide — Apiyi.com](https://help.apiyi.com/en/claude-code-swarm-mode-multi-agent-guide-en.html)
+- [Claude Code Agent Teams: Multi-Claude Orchestration — claudefa.st](https://claudefa.st/blog/guide/agents/agent-teams)
+- [What Is the Claude Code Swarm Feature? — Cyrus](https://www.atcyrus.com/stories/what-is-claude-code-swarm-feature)
+- [Claude Code Agent Teams: Run Parallel AI Agents on Your Codebase — SitePoint](https://www.sitepoint.com/anthropic-claude-code-agent-teams/)
+- [How to Set Up and Use Claude Code Agent Teams — Dára Sobaloju (Medium)](https://darasoba.medium.com/how-to-set-up-and-use-claude-code-agent-teams-and-actually-get-great-results-9a34f8648f6d)
+
+### 發現與探索
+- [I Discovered This Claude Code Agent Swarm Mode — Joe Njenga (Medium)](https://medium.com/@joe.njenga/i-discovered-this-claude-code-agent-swarm-mode-you-dont-know-exists-bf36e3898ad1)
+- [I Tried (New) Claude Code Agent Teams (And Discovered New Way to Swarm) — Joe Njenga (Medium)](https://medium.com/@joe.njenga/i-tried-new-claude-code-agent-teams-and-discovered-new-way-to-swarm-28a6cd72adb8)
+- [Anthropic releases Opus 4.6 with new 'agent teams' — TechCrunch](https://techcrunch.com/2026/02/05/anthropic-releases-opus-4-6-with-new-agent-teams/)
+- [Claude Code's new hidden feature: Swarms — Hacker News](https://news.ycombinator.com/item?id=46743908)
+
+### Git Worktree 與並行開發
+- [Parallel Development with Claude Code and Git Worktrees — Yee Fei (Medium)](https://medium.com/@ooi_yee_fei/parallel-ai-development-with-git-worktrees-f2524afc3e33)
+- [Mastering Git Worktrees with Claude Code — Dogukan Uraz Tuna (Medium)](https://medium.com/@dtunai/mastering-git-worktrees-with-claude-code-for-parallel-development-workflow-41dc91e645fe)
+- [Clash — Manage merge conflicts across git worktrees for parallel AI agents](https://github.com/clash-sh/clash)
+- [ccpm — Project management for Claude Code using GitHub Issues and Git worktrees](https://github.com/automazeio/ccpm)
+- [ccswarm — Multi-agent orchestration with Git worktree isolation](https://github.com/nwiizo/ccswarm)
+- [worktree — CLI tool for managing Git worktrees with Claude Code integration](https://github.com/agenttools/worktree)
+- [Agent Teams and claude-swarm — Nikos Baxevanis](https://blog.nikosbaxevanis.com/2026/02/08/agent-teams-and-claude-swarm/)
+
+### 替代框架（對比）
+- [LangGraph vs CrewAI vs AutoGen: Top 10 AI Agent Frameworks](https://o-mega.ai/articles/langgraph-vs-crewai-vs-autogen-top-10-agent-frameworks-2026)
+- [claude-flow — Agent orchestration platform for Claude](https://github.com/ruvnet/claude-flow)
+- [Support for Claude Code Agent Teams (TeammateTool, SendMessage, TaskList) — superpowers Issue #429](https://github.com/obra/superpowers/issues/429)
+
+### IDE 與平台集成
+- [Your Home for Multi-Agent Development — VS Code Blog](https://code.visualstudio.com/blogs/2026/02/05/multi-agent-development)
+- [VS Code becomes multi-agent command center for developers — The New Stack](https://thenewstack.io/vs-code-becomes-multi-agent-command-center-for-developers/)
+- [Build AI Agents with Claude Agent SDK and Microsoft Agent Framework — Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/build-ai-agents-with-claude-agent-sdk-and-microsoft-agent-framework/)
+- [Agent Teams with Claude Code and Claude Agent SDK — Isaac Kargar (Medium)](https://kargarisaac.medium.com/agent-teams-with-claude-code-and-claude-agent-sdk-e7de4e0cb03e)
+
+### 最佳實踐
+- [A Guide to Claude Code 2.0 and getting better at using coding agents — sankalp](https://sankalp.bearblog.dev/my-experience-with-claude-code-20-and-how-to-get-better-at-using-coding-agents/)
+- [Best practices for Claude Code subagents — PubNub](https://www.pubnub.com/blog/best-practices-for-claude-code-sub-agents/)
+- [How Claude Code Agents and MCPs Work Better Together — Yee Fei (Medium)](https://medium.com/@ooi_yee_fei/how-claude-code-agents-and-mcps-work-better-together-5c8d515fcbbd)

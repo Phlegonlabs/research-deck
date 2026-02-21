@@ -266,6 +266,87 @@ material.positionNode = Fn(() => {
 | Rendering every frame for static scenes | Render on demand (camera move, animation) |
 | Huge textures | Use KTX2/basis compressed textures |
 
+## Latest Updates (2026)
+
+### Release Cadence: r170 through r183
+
+Three.js maintained its aggressive monthly release cycle throughout 2025 into early 2026. Key milestone releases:
+
+- **r170** (October 2024) — Halloween release with continued WebGPU stabilization.
+- **r171** (September 2025) — The landmark release: global codesplit WebGL/WebGPU entrypoints, introduction of `three.tsl.js`, zero-config `import { WebGPURenderer } from 'three/webgpu'`.
+- **r175** (March 2025) — Enhanced TSL with compute-in-materials, `RaymarchingBox`, `debug()` function, while loop support, and improved WebXR Layers integration.
+- **r177** (mid-2025) — Added `maskNode`, `toJSON()`/`fromJSON()` for scene serialization, improved `shapeCircle()`.
+- **r178** (June 2025) — 112 goals completed. Added Float16Array support in renderers, corrected blending formulas across all backends.
+- **r181** (November 2025) — Major rendering quality leap: **Screen-Space Global Illumination (SSGINode)**, **Screen-Space Shadows (SSSNode)**, DFG LUT replacing analytical approximations, GGX VNDF importance sampling, multi-scattering energy compensation, WebGL 1.0 code removal, and WebGPU Inspector for debugging.
+- **r182** (December 2025) — ESLint 9 migration, modernized shadow mapping, Multiple Render Target (MRT) support in WebGPU.
+- **r183** (February 2026) — `BezierInterpolant` for animation, reversed depth buffer across both renderers, `BatchedMesh` per-instance opacity and wireframe support, USDC/USD format loading, `KHR_meshopt_compression` in GLTFLoader, TSL `retroPass` and `exponentialHeightFogFactor()`, and deprecated `Clock` in favor of `Timer`.
+
+### GitHub & NPM Growth
+
+Three.js has surged past **110K GitHub stars** (up from 93K in mid-2025) and now records **5.4M+ weekly NPM downloads** — more than doubling from 2.7M in under a year. The ecosystem dominance is even more pronounced: roughly **500x** the download volume of Babylon.js.
+
+### Vibe Coding Revolution
+
+"Vibe coding" — using natural language prompts with AI tools (Claude, ChatGPT, Cursor) to generate code — was named Collins Dictionary's Word of the Year 2025. Three.js became the de facto library for this workflow because:
+
+1. **Simple API** — scene setup is ~10 lines, ideal for LLM generation.
+2. **Immediate visual feedback** — results render in-browser instantly.
+3. **Massive training corpus** — 15+ years of examples, tutorials, and StackOverflow answers.
+4. **No engine install** — runs from a CDN or `npm install three`.
+
+Indie developers reported building complete 3D browser games in days using AI pair-programming. Rosebud AI released a series of fully vibe-coded Three.js games, and multiple developers have reached significant revenue from AI-generated game prototypes.
+
+### WebGPU: From Experimental to Default
+
+Since Safari 26 shipped WebGPU support in September 2025 (macOS, iOS, iPadOS, visionOS), WebGPU is available on **100% of modern browsers**. Three.js now treats WebGPU as the primary path:
+
+- `WebGPURenderer` auto-falls back to WebGL 2 — no feature detection needed.
+- Async initialization via `await renderer.init()` before first render is the only new requirement.
+- Compute shaders unlocked GPU-side physics, particle systems, and ML inference in the browser.
+- Real-world migrations report **2-10x** improvements for draw-call-heavy scenes, with edge cases hitting **100x** on million-point datasets.
+
+### Advanced Rendering Features (Built-In)
+
+The r181-r183 cycle brought rendering capabilities previously only available via post-processing add-ons directly into core:
+
+| Feature | Release | Impact |
+|---------|---------|--------|
+| SSGINode (Screen-Space GI) | r181 | Real-time color bleeding and light bounces without baked maps |
+| SSSNode (Screen-Space Shadows) | r181 | Per-pixel contact shadows, no shadow map required |
+| Reversed Depth Buffer | r183 | Eliminates z-fighting at large distances (space, terrain) |
+| MRT (Multiple Render Targets) | r182 | Write to multiple textures in one pass — enables deferred rendering |
+| BatchedMesh opacity/wireframe | r183 | Per-instance visual control for complex scenes |
+
+### TSL Maturation
+
+TSL has evolved from experimental to the recommended shader authoring path. Key 2025-2026 additions:
+
+- **Compute-in-materials** (r175) — run compute operations directly from material nodes.
+- **RaymarchingBox / raymarchingTexture3D** (r174) — volumetric rendering via TSL.
+- **TSL Transpiler expansion** — matrix types, varying support, discard operations.
+- **`debug()` function** (r175) — inspect intermediate node values during development.
+- **`retroPass`** (r183) — retro/CRT visual effect as a built-in post-processing node.
+- **`exponentialHeightFogFactor()`** (r183) — height-based fog without custom shaders.
+
+### WebXR & Spatial Computing
+
+Three.js WebXR support matured alongside new hardware:
+
+- **Samsung Galaxy XR** (October 2025) launched with native WebXR support.
+- **Apple Vision Pro** continues to support WebXR through Safari.
+- r175 added deeper **WebXR Layers** integration for better performance in VR/AR overlays.
+- r174 added tone-mapping and output color space support for XR rendering.
+- Use cases expanding into VR surgical training, real estate virtual tours, and in-browser AR product try-on.
+
+### React Three Fiber: Stability Phase
+
+R3F entered a period of stability in late 2025 — no major breaking changes, focused on reliability. Key ecosystem developments:
+
+- **@react-three/drei** reached v10.7+ with 100+ helper components.
+- **Threlte** (Svelte + Three.js) gained traction as the Svelte equivalent of R3F, working toward Svelte 5 compatibility.
+- R3F is evolving beyond "website 3D" toward supporting complex real-time apps, live simulations, and browser-native video games.
+- Server-side rendering of 3D scenes via React Server Components and Next.js integration is now possible, improving SEO and initial load performance.
+
 ## Steal: Patterns to Reuse
 
 ### 1. WebGPU with Automatic Fallback
@@ -297,3 +378,106 @@ Don't render at 60fps if nothing is moving. Listen for interaction events, anima
 
 ### 6. The pmndrs Stack
 `R3F + drei + rapier + postprocessing + zustand + leva` = complete 3D application stack with zero custom infrastructure. This pattern of "curated ecosystem of composable libraries" beats "one monolithic engine" for web development.
+
+## References
+
+### Official
+
+- [Three.js Official Site & Examples](https://threejs.org/examples/)
+- [Three.js WebGPU Docs](https://threejs.org/docs/pages/WebGPU.html)
+- [Three.js Shading Language (TSL) Wiki](https://github.com/mrdoob/three.js/wiki/Three.js-Shading-Language)
+- [React Three Fiber (R3F) GitHub](https://github.com/pmndrs/react-three-fiber)
+- [R3F Documentation](https://docs.pmnd.rs/react-three-fiber)
+- [pmndrs/postprocessing GitHub](https://github.com/pmndrs/postprocessing)
+- [react-three-rapier GitHub](https://github.com/pmndrs/react-three-rapier)
+
+### WebGPU & TSL Deep Dives
+
+- [What's New in Three.js (2026): WebGPU, New Workflows & Beyond](https://www.utsubo.com/blog/threejs-2026-what-changed)
+- [Field Guide to TSL and WebGPU — Maxime Heckel](https://blog.maximeheckel.com/posts/field-guide-to-tsl-and-webgpu/)
+- [TSL: A Better Way to Write Shaders — Three.js Roadmap](https://threejsroadmap.com/blog/tsl-a-better-way-to-write-shaders-in-threejs)
+- [Why TSL is So Interesting — Three.js Forum](https://discourse.threejs.org/t/why-tsl-three-js-shading-language-is-so-interesting/56306)
+- [WebGL vs WebGPU Explained — Three.js Roadmap](https://threejsroadmap.com/blog/webgl-vs-webgpu-explained)
+- [Moving from WebGL to WebGPU in Three.js — Sude Nur Çevik](https://medium.com/@sudenurcevik/upgrading-performance-moving-from-webgl-to-webgpu-in-three-js-4356e84e4702)
+- [Three.js Introduction to WebGPU and TSL — Forum](https://discourse.threejs.org/t/three-js-introduction-to-webgpu-and-tsl/78205)
+- [GPU Acceleration in Browsers: WebGPU Benchmarks](https://www.mayhemcode.com/2025/12/gpu-acceleration-in-browsers-webgpu.html)
+
+### Architecture & Internals
+
+- [Scene Graph & Object System — DeepWiki](https://deepwiki.com/mrdoob/three.js/2.3-scene-graph-and-object-system)
+- [How THREE.js Abstracts 3D Graphics — Evan Perry](https://medium.com/@evmaperry/how-three-js-abstracts-away-the-complexities-of-programming-3d-graphics-c3b74dbf051c)
+- [Three.js Renderer Docs](https://threejs.org/docs/pages/Renderer.html)
+- [R3F Performance Pitfalls](https://r3f.docs.pmnd.rs/advanced/pitfalls)
+
+### Comparisons & Alternatives
+
+- [React Three Fiber vs Three.js in 2026 — GraffersID](https://graffersid.com/react-three-fiber-vs-three-js/)
+- [Three.js vs Babylon.js — LogRocket](https://blog.logrocket.com/three-js-vs-babylon-js/)
+- [Why We Use Babylon.js Instead of Three.js — Spot Virtual](https://www.spotvirtual.com/blog/why-we-use-babylonjs-instead-of-threejs-in-2022)
+- [Babylon.js vs Three.js — Slant](https://www.slant.co/versus/11077/11348/~babylon-js_vs_three-js)
+- [PlayCanvas vs Three.js — Slant](https://www.slant.co/versus/5149/11348/~playcanvas_vs_three-js)
+- [Overview of 3D Web Rendering Engines — VIVERSE](https://docs.viverse.com/optimization/overview-of-3d-web-rendering-engines)
+- [JS Game Rendering Benchmark — GitHub](https://github.com/Shirajuki/js-game-rendering-benchmark)
+
+### Showcases & Projects
+
+- [Best Three.js Websites — Awwwards](https://www.awwwards.com/websites/three-js/)
+- [Three.js Forum Showcase](https://discourse.threejs.org/c/showcase/7)
+- [10 Award-Winning Three.js Projects — Orpetron](https://orpetron.com/blog/10-award-winning-projects-showcasing-three-js-innovation/)
+- [Best Three.js Portfolio Examples 2025 — CreativeDevJobs](https://www.creativedevjobs.com/blog/best-threejs-portfolio-examples-2025)
+- [20 Best Three.js Examples 2025 — UI Cookies](https://uicookies.com/threejs-examples/)
+- [142 Three.js Examples — FreeFrontend](https://freefrontend.com/three-js/)
+- [50+ Three.js Examples — DevSnap](https://devsnap.me/three-js-examples)
+- [Three.js Demos — Codrops](https://tympanus.net/codrops/hub/tag/three-js/)
+- [Top Games Made with Three.js — itch.io](https://itch.io/games/made-with-threejs)
+- [Genuary 2026 — Three.js Forum](https://discourse.threejs.org/t/genuary-2026-generative-january/89632)
+
+### Performance & Optimization
+
+- [Building Efficient Three.js Scenes — Codrops](https://tympanus.net/codrops/2025/02/11/building-efficient-three-js-scenes-optimize-performance-while-maintaining-quality/)
+- [The Big List of Three.js Tips and Tricks — Discover Three.js](https://discoverthreejs.com/tips-and-tricks/)
+- [Performance Tips — Three.js Journey](https://threejs-journey.com/lessons/performance-tips)
+- [Three.js vs WebGPU for 500MB+ Models — AlterSquare](https://altersquare.io/three-js-vs-webgpu-construction-3d-viewers-scale-beyond-500mb/)
+- [100 Three.js Tips That Actually Improve Performance (2026)](https://www.utsubo.com/blog/threejs-best-practices-100-tips)
+
+### Tutorials & Learning
+
+- [Three.js Journey (Paid Course)](https://threejs-journey.com/)
+- [Discover Three.js (Free Book)](https://discoverthreejs.com/)
+- [Wawa Sensei — R3F + WebGPU/TSL Course](https://wawasensei.dev/courses/react-three-fiber/lessons/webgpu-tsl)
+- [Three.js WebGPU Renderer Tutorial — SBCode](https://sbcode.net/threejs/webgpu-renderer/)
+- [TSL Getting Started — SBCode](https://sbcode.net/tsl/getting-started/)
+- [From Websites to Games: Future of R3F — Kris Baumgartner](https://gitnation.com/contents/from-websites-to-games-the-future-of-react-three-fiber)
+- [Building 3D Web Apps in 2025 — Bela Bohlender](https://gitnation.com/contents/building-3d-web-apps-in-2025-react-xr-and-ai)
+
+### Release Notes (2025-2026)
+
+- [Three.js Releases — GitHub](https://github.com/mrdoob/three.js/releases)
+- [Release r175 — GitHub](https://github.com/mrdoob/three.js/releases/tag/r175)
+- [Release r178 — GitHub](https://github.com/mrdoob/three.js/releases/tag/r178)
+- [Release r181 — GitHub](https://github.com/mrdoob/three.js/releases/tag/r181)
+- [Release r183 — GitHub](https://github.com/mrdoob/three.js/releases/tag/r183)
+- [Migration Guide — GitHub Wiki](https://github.com/mrdoob/three.js/wiki/Migration-Guide)
+- [Migrate Three.js to WebGPU (2026) — Complete Checklist](https://www.utsubo.com/blog/webgpu-threejs-migration-guide)
+
+### Vibe Coding & AI Integration
+
+- [5 Three.js Game Examples Vibe Coded with AI — Rosebud AI](https://lab.rosebud.ai/blog/three-js-game-examples-vibe-coded)
+- [Ultimate Guide to Vibe Coding Games with Three.js and Cursor](https://webtech.tools/the-ultimate-guide-to-vibe-coding-games-in-2025)
+- [Getting AI to Write TSL That Works — Three.js Roadmap](https://threejsroadmap.com/blog/getting-ai-to-write-tsl-that-works)
+- [Three.js MCP Server — AI Control of 3D Scenes](https://skywork.ai/skypage/en/3d-worlds-ai-threejs-mcp-server/1980470680631943168)
+
+### WebXR & Spatial Computing
+
+- [Top VR/AR/XR Use Cases 2026 — Three.js Resources](https://threejsresources.com/vr/blog/top-vr-ar-xr-use-cases-in-2026-building-immersive-experiences-that-deliver-real-value)
+- [Best VR Headsets for WebXR & Three.js Development 2026](https://threejsresources.com/vr/blog/best-vr-headsets-with-webxr-support-for-three-js-developers-2026)
+- [SSGI WebGPU Demo — Anderson Mancini](https://ssgi-webgpu-demo.vercel.app/)
+- [Interactive Text Destruction with Three.js, WebGPU, and TSL — Codrops](https://tympanus.net/codrops/2025/07/22/interactive-text-destruction-with-three-js-webgpu-and-tsl/)
+
+### Ecosystem & Frameworks
+
+- [Threlte — 3D Framework for Svelte](https://threlte.xyz/)
+- [React Three Fiber: Stability in Late 2025 — Needle Radio](https://needle.tv/episode/react-three-fiber-a-quiet-period-of-stability-in-late-2025-852)
+- [Drei Documentation](https://drei.docs.pmnd.rs/)
+- [Three.js NPM Stats](https://www.npmjs.com/package/three)
+- [Three.js NPM Trends](https://npmtrends.com/three)
