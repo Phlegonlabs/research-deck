@@ -1,5 +1,75 @@
 # Progress
 
+## [2026-02-21] Nano Banana — Google's Native Image Generation Revolution
+- **Topic**: Nano Banana（Google Gemini 原生图像生成）深度分析——自回归 vs 扩散架构、MCP 生态系统、CLI 工具链、竞争格局
+- **Folder**: `nano-banana-gemini-image/`
+- **Key findings**:
+  - Nano Banana 是 Gemini 2.5 Flash Image 的代号，使用自回归 token 生成（1,290 tokens/image）而非扩散模型
+  - LMArena #1（171 Elo 领先，250 万+投票），Flash 0.8s/张，Pro 支持 4K
+  - 定价：Flash $0.039/张，Pro $0.134/张（1K），批量 5 折
+  - 生态系统：141+ GitHub 仓库，多个 MCP 服务器（ConechoAI 最热门），Gemini CLI 扩展（8 个命令），独立 CLI 工具（npm/Go/Python）
+  - 优势：自然语言编辑、文字渲染业界领先、32K token 上下文、成本低
+  - 弱点：风格迁移差、空间推理弱、多次编辑一致性漂移、安全过滤保守
+  - vs GPT Image 1.5：Pro 分辨率更高（4K vs 1.5K）速度更快，但编辑微弱落后，文字转图像竞争力相当
+  - 战略意义：唯一在 LLM API 中原生提供图像生成的主要云厂商，MCP 协议作为生态系统力量倍增器
+- Files: `nano-banana-gemini-image/en.md`, `nano-banana-gemini-image/zh.md`
+- Next steps: monitor Imagen 4 GA, track Nano Banana Pro stability improvements
+
+## [2026-02-21] How to Build an AI Agent Like OpenClaw — Complete Development Blueprint
+- **Topic**: 從零構建類似 OpenClaw 的 AI Agent 完整開發藍圖——五階段構建路徑、核心架構模式、生產加固清單
+- **Folder**: `build-openclaw-agent/`
+- **Key findings**:
+  - 核心公式：AI Agent = LLM + 工具 + 循環 + 持久化 + 消息通道
+  - 五階段構建：最小 Agent（Day 1）→ 記憶系統（Day 2-3）→ 多通道 Gateway（Day 4-7）→ 自主調度（Day 8-10）→ 技能與安全（Day 11-14）
+  - Agent 循環：input → context assembly → model call → tool execution → repeat → reply
+  - JSONL 會話持久化 + Channel Adapter 模式 + Gateway WebSocket 控制平面
+  - 混合記憶搜索：SQLite FTS5 (BM25) + 向量相似度 + 倒數排名融合
+  - OpenClaw 的教訓：默認無沙箱（CVE-2026-25253）、明文密鑰、43 萬行攻擊面
+  - 10 個可直接複用的模式：JSONL 會話、SOUL.md、Channel Adapter、會話級串行隊列等
+- Files: `build-openclaw-agent/en.md`, `build-openclaw-agent/zh.md`
+- Next steps: prototype minimal agent (Phase 1) with Anthropic SDK
+
+## [2026-02-21] AI Early-Stage Investments 2025-2026 — Complete Deal Database & Market Analysis
+- **Topic**: AI 早期投資（Pre-Seed / Seed / Pre-A / Series A）完整數據庫——2025 全年 40+ 筆 + 2026 Jan-Feb 26 筆、市場趨勢、估值基準（合併版）
+- **Folder**: `ai-early-stage-investments-2025-2026/`
+- **Key findings**:
+  - 2025：AI 種子 $150 億+（佔全球種子 42%+），AI 佔全球 VC 近 50%
+  - 2025 超級種子：Thinking Machines ($20 億)、Reflection AI ($20 億)、Humans& ($4.8 億)、Unconventional ($4.75 億)、Periodic Labs ($3 億)
+  - 2025 超大 A 輪：Lila Sciences ($3.5 億)、Ricursive Intelligence ($3 億/$40 億)、Lovable ($2 億/$18 億)、7AI ($1.3 億)、Resolve AI ($1.25 億/$10 億)
+  - 2026 (Jan-Feb)：26 筆 ~$29.2 億。Humans& ($4.8 億)、Merge Labs ($2.52 億)、Mal ($2.3 億)、Flapping Airplanes ($1.8 億)、Inferact ($1.5 億)
+  - 2026 A 輪：Ricursive ($3 億)、Fundamental ($2.55 億)、Upscale AI ($2 億)、Simile ($1 億)
+  - 趨勢：40%+ 資金流向 $1 億+ 輪次、「椰子輪」常態化、推理 > 訓練、名人創辦人模式、種子中位 $460 萬（AI 溢價 42%）
+- Files: `ai-early-stage-investments-2025-2026/en.md`, `ai-early-stage-investments-2025-2026/zh.md`
+- Next steps: track March 2026 deals, monitor Ineffable Intelligence close, compare mega-seed outcomes vs valuations
+
+## [2026-02-21] Explosive AI Tools 2026 — The Six Most Viral AI Tools of Early 2026
+- **Topic**: 2025 末至 2026 初最具爆發力的六款 AI 工具深度分析——OpenClaw、DeepSeek R1、Seedance 2.0、Cursor、Manus AI、Grok 3
+- **Folder**: `explosive-ai-tools-2026/`
+- **Key findings**:
+  - OpenClaw：200K+ GitHub stars in weeks，Peter Steinberger 選擇加入 OpenAI，安全災難（CVE-2026-25253 CVSS 8.8，135K+ 暴露實例）
+  - DeepSeek R1：$560 萬訓練成本，NVIDIA 單日蒸發 $6000 億市值，MoE+蒸餾架構永久改變「越大越好」敘事
+  - Seedance 2.0：字節跳動 2/12 發布，72 小時成為全網最熱 AI 工具，MPA 要求立即停止侵權，MMDiT+Flow Matching+雙分支架構
+  - Cursor：24 個月 $10 億 ARR（史上最快 B2B SaaS），60 人團隊，$96 億估值，Fortune 500 半數使用
+  - Manus AI：2025/3 上線→$1.25 億 ARR→12 月 Meta $20 億收購，2026/2 上線 Telegram Agent
+  - Grok 3：20 萬 GPU 訓練，Musk 確認開源，Tesla 歐洲車載整合
+  - 交叉分析：Agent 品類爆發（3/6 是 Agent）、中國因素（4/6 有中國參與）、效率 vs 規模辯論、分發致勝規律
+- Files: `explosive-ai-tools-2026/en.md`, `explosive-ai-tools-2026/zh.md`
+- Next steps: monitor DeepSeek R2 release, Seedance 2.0 legal outcomes, OpenClaw post-OpenAI trajectory, Cursor vs Devin paradigm war
+
+## [2026-02-21] a16z (Andreessen Horowitz) — 2025-2026 Complete Investment Portfolio Analysis
+- **Topic**: a16z 2025-2026 投資組合完整分析（合併版）— 172 筆交易（2025）+ 10 筆交易（2026 Jan-Feb）、$150 億募資、六大基金、AI/Crypto/Bio/American Dynamism/Fintech/Consumer/Gaming 全領域 + 策略分析
+- **Folder**: `a16z-investments-2025-2026/`
+- **Key findings**:
+  - 2025：172 筆投資、$63 億部署、121 家獨角獸、10/15 最有價值私人公司
+  - 2025 AI：Thinking Machines ($20 億種子)、SSI ($20 億)、xAI ($100 億+)、Databricks ($50 億)、Cursor ($9 億)、Unconventional ($4.75 億)
+  - 2025 Crypto：$9.28 億部署 29 筆。EigenLayer ($7000 萬)、Jito ($5000 萬)、Kalshi ($3 億)
+  - 2025 American Dynamism：Flock Safety ($2.75 億)、Anduril ($25 億)、Shield AI ($2.4 億)
+  - 2025 退出：Metronome (Stripe $10 億)、Navan IPO ($58 億)、Figma IPO ($135 億)
+  - 2026 (Jan-Feb)：Navan ($4.65 億)、Temporal ($3 億)、Kavak ($3 億)、Babylon ($1500 萬) + 4 筆 Speedrun
+  - 策略合作：Booz Allen ($4 億 LP)、Eli Lilly ($5 億合資基金)
+- Files: `a16z-investments-2025-2026/en.md`, `a16z-investments-2025-2026/zh.md`
+- Next steps: track $200 億 AI 超級基金、2026 Q1 後續交易
+
 ## [2026-02-21] Solana Firedancer — High-Performance Validator Client Deep Technical Analysis
 - **Topic**: Firedancer 完整技術架構、Tile 模型、AF_XDP 核心旁路、QUIC 實現、AVX512 簽名驗證、安全架構、Frankendancer vs 完整 Firedancer、性能基準、客戶端多樣性影響、與 Agave/Jito 比較
 - **Folder**: `solana-firedancer/`
