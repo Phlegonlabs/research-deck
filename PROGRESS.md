@@ -1,5 +1,25 @@
 # Progress
 
+## [2026-02-21] Solana Firedancer — High-Performance Validator Client Deep Technical Analysis
+- **Topic**: Firedancer 完整技術架構、Tile 模型、AF_XDP 核心旁路、QUIC 實現、AVX512 簽名驗證、安全架構、Frankendancer vs 完整 Firedancer、性能基準、客戶端多樣性影響、與 Agave/Jito 比較
+- **Folder**: `solana-firedancer/`
+- **Key findings**:
+  - Tile 架構：11 種 tile 類型（net→quic→verify→dedup→pack→bank→poh→shred→store+sign+replay），每個固定在專用 CPU 核心，通過 tango 共享記憶體 IPC 通信
+  - AF_XDP 零拷貝網路：4 個 CPU 核心飽和 25 Gbps NIC，達到 108 萬 TPS。UMEM 區域 4K 對齊、2048B 幀，跨 NIC/核心/tile 共享
+  - fd_quic：從零用 C11 實現 151 頁 RFC 9000，無 OpenSSL 依賴，自定義 fd_tls
+  - AVX512 Ed25519：比純量快 4x（34.2μs vs 154.4μs），可選 FPGA 達 800 萬簽名/秒@400W
+  - Reed-Solomon 糾刪編碼：~120 Gbps/核心編碼（比 Agave 的 rust-rse 快 15x）
+  - Frankendancer（混合）2024 年 9 月主網，完整 Firedancer 2025 年 12 月主網（Breakpoint 阿布達比）
+  - 2026 年 2 月：91 個完整 Firedancer 驗證器（~16.87% 質押），組合變體接近 30%
+  - Neodyme v0.4 審計：無 RCE，主要是 QUIC DoS 場景，一個高嚴重性 Agave 功能啟動問題
+  - 2025 年 2 月公開披露：3 個 QUIC 傳輸參數 UB + 1 個共識分裂轉換 bug（fd_cast.h 中 -INFINITY 返回 ULONG_MAX 而非 0）
+  - Figment 遷移：質押獎勵高 18-28 bps，99.8% 投票有效率，0.55% 跳過率
+  - Jito-Solana 仍佔 ~72% 質押——不是獨立客戶端，是 Agave 分叉+3 個 MEV 階段
+  - 真正的客戶端多樣性才剛開始：Firedancer 是唯一與 Agave 零代碼共享的客戶端
+  - Alpenglow（Q2 2026 主網）將最終性從 12.8s 降至 150ms，取代 PoH + Tower BFT
+- Files: `solana-firedancer/en.md`, `solana-firedancer/zh.md`
+- Next steps: monitor Firedancer+BAM MEV integration, Alpenglow implementation in Firedancer, stake adoption growth toward 33% threshold
+
 ## [2026-02-21] X (Twitter) External Link Penalty — Complete Mechanism & Data Deep Analysis
 - **Topic**: X 外部連結懲罰的完整機制、數據、時間線、Premium 差異、變通方法、官方聲明
 - **Folder**: `x-twitter-link-penalty/`
