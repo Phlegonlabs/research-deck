@@ -11,27 +11,25 @@ Google 的 A2A 和 AP2，加上 OpenAI/Stripe 的 ACP，填补这些缺口。和
 
 ## 完整协议栈
 
-```
-┌─────────────────────────────────────────────────────┐
-│                    身份 / 信任                        │
-│              ERC-8004（链上声誉）                      │
-├─────────────────────────────────────────────────────┤
-│                      支付                            │
-│  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
-│  │   x402    │  │   AP2    │  │      ACP         │  │
-│  │ 加密微    │  │ 法币 +   │  │ 聊天商务          │  │
-│  │ 支付      │  │ 加密     │  │ (Stripe 令牌)    │  │
-│  │           │  │ 授权令   │  │                  │  │
-│  └──────────┘  └──────────┘  └──────────────────┘  │
-├─────────────────────────────────────────────────────┤
-│                     协调                             │
-│              A2A（代理间协议）                         │
-│         任务委托、发现、流式传输                        │
-├─────────────────────────────────────────────────────┤
-│                    工具访问                           │
-│              MCP（模型上下文协议）                      │
-│         代理 ↔ API、数据库、工具                       │
-└─────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph identity["身份 / 信任"]
+        ERC["ERC-8004（链上声誉）"]
+    end
+    subgraph payments["支付"]
+        x402["x402\n加密微支付"]
+        AP2p["AP2\n法币 + 加密授权令"]
+        ACPp["ACP\n聊天商务\n(Stripe 令牌)"]
+    end
+    subgraph coord["协调"]
+        A2Ac["A2A（代理间协议）\n任务委托、发现、流式传输"]
+    end
+    subgraph tools["工具访问"]
+        MCPt["MCP（模型上下文协议）\n代理 ↔ API、数据库、工具"]
+    end
+    identity ~~~ payments
+    payments ~~~ coord
+    coord ~~~ tools
 ```
 
 | 层 | 协议 | 所有者 | 作用 |
@@ -55,19 +53,18 @@ A2A 是**代理间通信**的开放协议。想象 HTTP，但是代理和代理�
 
 ### 架构
 
-```
-客户端代理                                  远程代理
-    │                                           │
-    │── GET /.well-known/agent-card.json ──────>│
-    │<── Agent Card（能力、技能）─────────────────│
-    │                                           │
-    │── tasks/send (JSON-RPC) ────────────────->│
-    │<── Task { status: "working" } ────────────│
-    │                                           │
-    │── tasks/sendSubscribe (SSE 流) ──────────>│
-    │<── TaskStatusUpdate ──────────────────────│
-    │<── TaskArtifactUpdate ────────────────────│
-    │<── Task { status: "completed" } ──────────│
+```mermaid
+sequenceDiagram
+    participant C as 客户端代理
+    participant R as 远程代理
+    C->>R: GET /.well-known/agent-card.json
+    R-->>C: Agent Card（能力、技能）
+    C->>R: tasks/send (JSON-RPC)
+    R-->>C: Task { status: "working" }
+    C->>R: tasks/sendSubscribe (SSE 流)
+    R-->>C: TaskStatusUpdate
+    R-->>C: TaskArtifactUpdate
+    R-->>C: Task { status: "completed" }
 ```
 
 ### 核心概念
@@ -89,11 +86,14 @@ A2A 是**代理间通信**的开放协议。想象 HTTP，但是代理和代理�
 
 **Task 生命周期**：工作单元，状态机推进。
 
-```
-submitted → working → completed
-                   → failed
-                   → canceled
-            working → input-required → working（恢复）
+```mermaid
+stateDiagram-v2
+    submitted --> working
+    working --> completed
+    working --> failed
+    working --> canceled
+    working --> input_required: input-required
+    input_required --> working: 恢复
 ```
 
 **Messages**：任务执行期间的双向通信。支持文本、文件、结构化数据、表单。
@@ -176,25 +176,14 @@ AP2 解决了其他协议都不解决的三个问题：
 
 ### 角色架构
 
-```
-┌──────────┐         ┌──────────────┐         ┌──────────────┐
-│   用户    │────────>│  购物代理      │────A2A──>│   商家端点    │
-│           │ 意图    │  (SA)         │         │              │
-└──────────┘         └──────┬───────┘         └──────┬───────┘
-                            │                         │
-                     ┌──────▼───────┐         ┌──────▼───────┐
-                     │ 凭证提供者    │         │  商家支付     │
-                     │ (CP)         │         │  处理器       │
-                     │ 钱包、卡片   │         │  (MPP)       │
-                     │ 令牌化       │         │              │
-                     └──────┬───────┘         └──────┬───────┘
-                            │                         │
-                            └─────────────────────────┘
-                                      │
-                               ┌──────▼───────┐
-                               │  网络/发卡行   │
-                               │  (Visa 等)    │
-                               └──────────────┘
+```mermaid
+flowchart TD
+    User["用户"] -->|意图| SA["购物代理 (SA)"]
+    SA -->|A2A| ME["商家端点"]
+    SA --> CP["凭证提供者 (CP)\n钱包、卡片令牌化"]
+    ME --> MPP["商家支付\n处理器 (MPP)"]
+    CP --> NI["网络/发卡行\n(Visa 等)"]
+    MPP --> NI
 ```
 
 六个角色严格分离职责：
@@ -212,12 +201,11 @@ AP2 解决了其他协议都不解决的三个问题：
 
 AP2 是**支付轨道无关的**。V0.1 支持 "pull" 支付（卡）。未来版本加 "push" 支付 — 包括 x402 稳定币。
 
-```
-AP2 Mandate（授权层）
-    │
-    ├── 传统轨道：Visa/Mastercard/PayPal
-    ├── 实时银行转账
-    └── x402 稳定币结算 ← 这里
+```mermaid
+flowchart TD
+    M["AP2 Mandate\n（授权层）"] --> T["传统轨道：\nVisa/Mastercard/PayPal"]
+    M --> B["实时银行转账"]
+    M --> X["x402 稳定币结算 ←"]
 ```
 
 AP2 提供**信任和问责**（谁授权了什么）。x402 提供**结算**（即时链上支付）。一起用：

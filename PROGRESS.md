@@ -1,5 +1,57 @@
 # Progress
 
+## [2026-02-21] X (Twitter) External Link Penalty — Complete Mechanism & Data Deep Analysis
+- **Topic**: X 外部連結懲罰的完整機制、數據、時間線、Premium 差異、變通方法、官方聲明
+- **Folder**: `x-twitter-link-penalty/`
+- **Key findings**:
+  - Buffer 研究（1,880 萬帖子）：2025 年 3 月後非 Premium 連結帖子互動絕對為零，Premium 帳戶約 0.28%
+  - 懲罰三層機制：算法降權（30-50%）+ t.co 重定向節流（競爭對手慢 65 倍）+ UI 壓制（移除連結卡片標題）
+  - The Markup 證實 Bluesky/Facebook/Instagram/Substack 連結重定向 2,544ms vs 正常 39ms
+  - Jesse Colombo A/B 測試：連結帖子曝光下降 94%
+  - Musk 2024 年 11 月確認：「懶人連結」— 建議把連結放回覆中
+  - Nikita Bier 2025 年 10 月聲稱「連結沒有被降權」，推出新應用內瀏覽器
+  - 2025 年 10 月宣布移除懲罰，早期數據顯示 8 倍觸及增長，但 2026 年 3 月非 Premium 帳戶仍然零互動
+  - Premium 帳戶獲得約 10 倍觸及率，Premium+ 獲得約 1,550 次曝光/帖子 vs 免費帳戶 <100
+  - 最佳變通：連結放回覆中（3 倍曝光）、X Articles 原生內容、強描述+圖片
+  - URL 縮短器反而增加約 10% 額外懲罰
+- Files: `x-twitter-link-penalty/en.md`, `x-twitter-link-penalty/zh.md`
+- Next steps: combine with x-twitter-articles research for complete X content strategy
+
+## [2026-02-21] X (Twitter) Articles — Length, Format & Engagement Playbook
+- **Topic**: X Articles 功能規格、最佳長度、內容策略、Hook 寫法、算法權重、Thread vs Article 對比
+- **Folder**: `x-twitter-articles/`
+- **Key findings**:
+  - X Articles 上限 100K 字符，但最佳長度是 1,000-2,500 字（6,000-15,000 字符）
+  - X 是唯一文字贏影片 30% 的主流平台
+  - 外部連結被懲罰 30-50% 觸及率 → Articles 留在平台內避開懲罰
+  - 算法權重：收藏 > 回覆 > 引用推文 > 轉發 > 點讚
+  - 六種 Hook 類型：大膽斷言、引人深思問題、爭議觀點、時間定位、脆弱坦白、獨特洞察
+  - 80/20 法則：80% 提供價值，20% 推廣
+  - Thread 互動高 3 倍但保質期短（2 小時），Article 可被搜索索引
+- Files: `x-twitter-articles/en.md`, `x-twitter-articles/zh.md`
+- Next steps: none
+
+## [2026-02-21] TanStack Ecosystem — Strategy, Adoption, and the Framework-Agnostic Bet
+- **Topic**: TanStack ecosystem deep analysis — Tanner Linsley's vision, business model, adoption stats, Start vs Next.js, framework-agnostic architecture, DX, and 2026 roadmap
+- **Folder**: `tanstack-ecosystem/`
+- **Key findings**:
+  - TanStack Query: 68% usage, 42% positive sentiment, only 1% negative (State of React 2025). 7.5M weekly React downloads vs 340K Vue (22:1 ratio)
+  - Business model: 16 partners at ~$12K/month, Netlify/Cloudflare/Railway hosting partnerships, no VC or SaaS — Tanner calls 2026 "the real test"
+  - TanStack Start RC → 1.0: client-first philosophy, ~30-35% smaller bundles vs Next.js, Inngest migration cut dev load times by 83%
+  - New libraries: DB (beta, differential dataflow reactive client database), AI (alpha, "Switzerland of AI tooling"), massive unnamed library in development
+  - 9,000+ companies using, 4B+ total downloads, 112K+ GitHub stars, 36 core contributors
+  - Framework-agnostic reality: React overwhelmingly dominant but Vue adapter has meaningful 340K/week community
+  - Next.js still wins for content-heavy/SEO sites, ecosystem maturity, and enterprise hiring pool
+- Files: `tanstack-ecosystem/en.md`, `tanstack-ecosystem/zh.md`
+- Next steps: evaluate TanStack Start for interactive dashboard projects, monitor DB GA and Start 1.0 stable release
+
+## [2026-02-21] Cloudflare Code Mode MCP Deep Analysis
+- **Topic**: Cloudflare Code Mode — architectural pattern for giving AI agents entire APIs in ~1,000 tokens via 2 tools (search + execute)
+- **Folder**: `cloudflare-code-mode-mcp/`
+- **Key insight**: LLMs write code to call APIs better than calling MCP tools directly; 99.9% token reduction for large APIs
+- **Coverage**: Cloudflare server-side impl, Anthropic filesystem-as-API pattern, Goose client-side wrapper, SDK usage, practical setup guide
+- Next steps: none
+
 ## [2026-02-21] ASCII → Mermaid Diagram Conversion + CLAUDE.md Cleanup
 - **Diagram conversion**: Converted 44 ASCII box-drawing diagrams to Mermaid syntax across 10 topic folders (en.md + zh.md = 20 files)
 - **Folders**: ai-coding-models-2026, discord-ai-agent-swarms, erc-8004-agent-identity, jito-solana, mcp-x402-integration, openclaw-ai-agent, parallel-coding-agents, solana-blockchain, threejs-ecosystem, threejs-visual-design

@@ -11,27 +11,25 @@ Google's A2A and AP2, plus OpenAI/Stripe's ACP, fill these gaps. Together with M
 
 ## The Full Stack
 
-```
-┌─────────────────────────────────────────────────────┐
-│                    IDENTITY / TRUST                  │
-│              ERC-8004 (onchain reputation)            │
-├─────────────────────────────────────────────────────┤
-│                     PAYMENTS                         │
-│  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
-│  │   x402    │  │   AP2    │  │      ACP         │  │
-│  │ Crypto    │  │ Fiat +   │  │ Chat commerce    │  │
-│  │ micro-    │  │ crypto   │  │ (Stripe tokens)  │  │
-│  │ payments  │  │ mandates │  │                  │  │
-│  └──────────┘  └──────────┘  └──────────────────┘  │
-├─────────────────────────────────────────────────────┤
-│                  COORDINATION                        │
-│              A2A (Agent-to-Agent)                     │
-│         Task delegation, discovery, streaming        │
-├─────────────────────────────────────────────────────┤
-│                   TOOL ACCESS                        │
-│              MCP (Model Context Protocol)             │
-│         Agent ↔ APIs, databases, tools               │
-└─────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph identity["IDENTITY / TRUST"]
+        ERC["ERC-8004 (onchain reputation)"]
+    end
+    subgraph payments["PAYMENTS"]
+        x402["x402\nCrypto micropayments"]
+        AP2p["AP2\nFiat + crypto mandates"]
+        ACPp["ACP\nChat commerce\n(Stripe tokens)"]
+    end
+    subgraph coord["COORDINATION"]
+        A2Ac["A2A (Agent-to-Agent)\nTask delegation, discovery, streaming"]
+    end
+    subgraph tools["TOOL ACCESS"]
+        MCPt["MCP (Model Context Protocol)\nAgent ↔ APIs, databases, tools"]
+    end
+    identity ~~~ payments
+    payments ~~~ coord
+    coord ~~~ tools
 ```
 
 | Layer | Protocol | Owner | What It Does |
@@ -55,19 +53,18 @@ Core design principle: **opaque agents**. An agent doesn't need to expose its in
 
 ### Architecture
 
-```
-Client Agent                                Remote Agent
-    │                                           │
-    │── GET /.well-known/agent-card.json ──────>│
-    │<── Agent Card (capabilities, skills) ─────│
-    │                                           │
-    │── tasks/send (JSON-RPC) ────────────────->│
-    │<── Task { status: "working" } ────────────│
-    │                                           │
-    │── tasks/sendSubscribe (SSE stream) ──────>│
-    │<── TaskStatusUpdate ──────────────────────│
-    │<── TaskArtifactUpdate ────────────────────│
-    │<── Task { status: "completed" } ──────────│
+```mermaid
+sequenceDiagram
+    participant C as Client Agent
+    participant R as Remote Agent
+    C->>R: GET /.well-known/agent-card.json
+    R-->>C: Agent Card (capabilities, skills)
+    C->>R: tasks/send (JSON-RPC)
+    R-->>C: Task { status: "working" }
+    C->>R: tasks/sendSubscribe (SSE stream)
+    R-->>C: TaskStatusUpdate
+    R-->>C: TaskArtifactUpdate
+    R-->>C: Task { status: "completed" }
 ```
 
 ### Key Concepts
@@ -96,11 +93,14 @@ Client Agent                                Remote Agent
 
 **Task Lifecycle**: Unit of work with state machine progression.
 
-```
-submitted → working → completed
-                   → failed
-                   → canceled
-            working → input-required → working (resumes)
+```mermaid
+stateDiagram-v2
+    submitted --> working
+    working --> completed
+    working --> failed
+    working --> canceled
+    working --> input_required: input-required
+    input_required --> working: resumes
 ```
 
 **Messages**: Bidirectional communication during task execution. Supports text, files, structured data, forms.
@@ -185,26 +185,14 @@ Signals to Visa/Mastercard/issuers: "This transaction was initiated by an AI age
 
 ### Roles Architecture
 
-```
-┌──────────┐         ┌──────────────┐         ┌──────────────┐
-│   User    │────────>│  Shopping     │────A2A──>│   Merchant   │
-│           │ intent  │  Agent (SA)   │         │  Endpoint    │
-└──────────┘         └──────┬───────┘         └──────┬───────┘
-                            │                         │
-                     ┌──────▼───────┐         ┌──────▼───────┐
-                     │ Credentials   │         │  Merchant    │
-                     │ Provider (CP) │         │  Payment     │
-                     │ (wallet, card │         │  Processor   │
-                     │  tokenization)│         │  (MPP)       │
-                     └──────┬───────┘         └──────┬───────┘
-                            │                         │
-                            └─────────────────────────┘
-                                      │
-                               ┌──────▼───────┐
-                               │  Network /    │
-                               │  Issuer       │
-                               │  (Visa, etc.) │
-                               └──────────────┘
+```mermaid
+flowchart TD
+    User["User"] -->|intent| SA["Shopping Agent (SA)"]
+    SA -->|A2A| ME["Merchant Endpoint"]
+    SA --> CP["Credentials Provider (CP)\nwallet, card tokenization"]
+    ME --> MPP["Merchant Payment\nProcessor (MPP)"]
+    CP --> NI["Network / Issuer\n(Visa, etc.)"]
+    MPP --> NI
 ```
 
 Six roles with strict separation of concerns:
@@ -246,12 +234,11 @@ AP2 is **payment-rail agnostic**. V0.1 supports "pull" payments (cards). Future 
 
 The integration pattern:
 
-```
-AP2 Mandate (authorization layer)
-    │
-    ├── Traditional rails: Visa/Mastercard/PayPal
-    ├── Real-time bank transfers
-    └── x402 stablecoin settlement ← here
+```mermaid
+flowchart TD
+    M["AP2 Mandate\n(authorization layer)"] --> T["Traditional rails:\nVisa/Mastercard/PayPal"]
+    M --> B["Real-time bank transfers"]
+    M --> X["x402 stablecoin settlement ←"]
 ```
 
 AP2 provides the **trust and accountability** (who authorized what). x402 provides the **settlement** (instant on-chain payment). Together:

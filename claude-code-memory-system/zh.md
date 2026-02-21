@@ -110,13 +110,11 @@ paths:
 
 **支持的 glob 模式：**
 
-| 模式 | 匹配 |
-|---|---|
-| `**/*.ts` | 任何目录中的所有 TypeScript 文件 |
-| `src/**/*` | `src/` 下的所有文件 |
-| `*.md` | 仅项目根目录的 Markdown 文件 |
-| `src/**/*.{ts,tsx}` | 花括号展开匹配多种扩展名 |
-| `{src,lib}/**/*.ts` | 花括号展开匹配多个目录 |
+- **`**/*.ts`** — 任何目录中的所有 TypeScript 文件
+- **`src/**/*`** — `src/` 下的所有文件
+- **`*.md`** — 仅项目根目录的 Markdown 文件
+- **`src/**/*.{ts,tsx}`** — 花括号展开匹配多种扩展名
+- **`{src,lib}/**/*.ts`** — 花括号展开匹配多个目录
 
 ### 符号链接
 
@@ -280,12 +278,10 @@ Skill 描述从动态预算中消耗上下文：**上下文窗口的 2%**（回�
 
 ### 上下文控制环境变量
 
-| 变量 | 效果 |
-|---|---|
-| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | 设置压缩触发阈值（1-100） |
-| `autoCompact: false`（settings.json） | 完全禁用自动压缩 |
-| `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | 控制响应长度（不是压缩缓冲区） |
-| `SLASH_COMMAND_TOOL_CHAR_BUDGET` | 覆盖 skill 描述的上下文预算 |
+- **`CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`** — 设置压缩触发阈值（1-100）
+- **`autoCompact: false`（settings.json）** — 完全禁用自动压缩
+- **`CLAUDE_CODE_MAX_OUTPUT_TOKENS`** — 控制响应长度（不是压缩缓冲区）
+- **`SLASH_COMMAND_TOOL_CHAR_BUDGET`** — 覆盖 skill 描述的上下文预算
 
 ### 扩展上下文模型
 

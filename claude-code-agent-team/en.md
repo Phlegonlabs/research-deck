@@ -57,12 +57,10 @@ The tradeoff: you're locked into Claude as the LLM. No model mixing, no open-sou
 
 ### Core Components
 
-| Component | Role |
-|-----------|------|
-| **Team Lead** | Main Claude Code session. Creates team, spawns teammates, coordinates work |
-| **Teammates** | Separate Claude Code instances. Each has own context window, full tool access |
-| **Task List** | Shared work items with status tracking, ownership, and dependency management |
-| **Mailbox** | File-based messaging system for inter-agent communication |
+- **Team Lead** — Main Claude Code session. Creates team, spawns teammates, coordinates work
+- **Teammates** — Separate Claude Code instances. Each has own context window, full tool access
+- **Task List** — Shared work items with status tracking, ownership, and dependency management
+- **Mailbox** — File-based messaging system for inter-agent communication
 
 ### TeammateTool: 13 Operations
 
@@ -82,15 +80,13 @@ The tradeoff: you're locked into Claude as the LLM. No model mixing, no open-sou
 
 ### Message Types
 
-| Type | Purpose |
-|------|---------|
-| `message` | Direct text between agents |
-| `broadcast` | Same message to all teammates |
-| `shutdown_request` / `shutdown_response` | Graceful lifecycle management |
-| `idle_notification` | Auto-sent when teammate stops (normal, not an error) |
-| `task_completed` | Task completion signal |
-| `plan_approval_request` | Teammate sends plan for leader review |
-| `join_request` | Agent requests to join team |
+- **`message`** — Direct text between agents
+- **`broadcast`** — Same message to all teammates
+- **`shutdown_request` / `shutdown_response`** — Graceful lifecycle management
+- **`idle_notification`** — Auto-sent when teammate stops (normal, not an error)
+- **`task_completed`** — Task completion signal
+- **`plan_approval_request`** — Teammate sends plan for leader review
+- **`join_request`** — Agent requests to join team
 
 ### Task Dependency System
 

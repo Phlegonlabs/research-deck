@@ -24,13 +24,9 @@ ACP is **not** a marketplace. OpenAI is not the seller. Merchants keep their cus
 
 ### Four Actors
 
-```
-┌─────────┐     ┌──────────┐     ┌──────────┐     ┌─────────┐
-│  Buyer   │────>│ AI Agent │────>│ Merchant │────>│   PSP   │
-│ (human)  │     │(ChatGPT) │     │ (seller) │     │(Stripe) │
-└─────────┘     └──────────┘     └──────────┘     └─────────┘
-  Approves        Orchestrates     Fulfills          Processes
-  purchase        checkout flow    orders            payments
+```mermaid
+flowchart LR
+    Buyer["Buyer (human)\nApproves purchase"] --> Agent["AI Agent (ChatGPT)\nOrchestrates checkout"] --> Merchant["Merchant (seller)\nFulfills orders"] --> PSP["PSP (Stripe)\nProcesses payments"]
 ```
 
 **Key separation**: The agent orchestrates but never handles money. The PSP (Stripe) handles money but never sees the conversation. The merchant controls the catalog and fulfillment but doesn't need to understand AI.
@@ -46,54 +42,44 @@ ACP is **not** a marketplace. OpenAI is not the seller. Merchants keep their cus
 | Cancel Checkout | `POST /checkout_sessions/{id}/cancel` | Abort the transaction, with optional `intent_trace` |
 
 **Status state machine:**
-```
-not_ready_for_payment → ready_for_payment → completed
-                                          → canceled
-                      → in_progress       → completed
-                                          → canceled
-                      → authentication_required → completed  (3DS flow)
-                                                → canceled
+```mermaid
+stateDiagram-v2
+    not_ready_for_payment --> ready_for_payment
+    not_ready_for_payment --> in_progress
+    not_ready_for_payment --> authentication_required
+    ready_for_payment --> completed
+    ready_for_payment --> canceled
+    in_progress --> completed
+    in_progress --> canceled
+    authentication_required --> completed: 3DS flow
+    authentication_required --> canceled
 ```
 
 Required header: `API-Version: 2026-01-30`. All POST requests require `Idempotency-Key` (UUID v4).
 
 ### The Full Purchase Flow
 
-```
-Buyer           ChatGPT              Merchant API         Stripe (PSP)
-  │                │                       │                    │
-  │ "buy me a      │                       │                    │
-  │  blue jacket"  │                       │                    │
-  │───────────────>│                       │                    │
-  │                │                       │                    │
-  │                │── POST /checkouts ───>│                    │
-  │                │   {items, buyer}      │                    │
-  │                │<── checkout state ────│                    │
-  │                │   (prices, shipping)  │                    │
-  │                │                       │                    │
-  │ [shows options]│                       │                    │
-  │ "ship to home" │                       │                    │
-  │───────────────>│                       │                    │
-  │                │── PUT /checkouts/:id─>│                    │
-  │                │   {fulfillment_opt}   │                    │
-  │                │<── updated state ─────│                    │
-  │                │                       │                    │
-  │ "yes, buy it"  │                       │                    │
-  │───────────────>│                       │                    │
-  │                │── delegated payment ──────────────────────>│
-  │                │   {card, billing,     │                    │
-  │                │    risk signals}      │                    │
-  │                │<── SPT (spt_xxx) ─────────────────────────│
-  │                │                       │                    │
-  │                │── POST /complete ────>│                    │
-  │                │   {payment_data:      │                    │
-  │                │    {token: spt_xxx}}  │── PaymentIntent ──>│
-  │                │                       │<── confirmation ───│
-  │                │<── order confirmed ───│                    │
-  │                │                       │                    │
-  │ "Order placed! │                       │                    │
-  │  Track here:"  │                       │                    │
-  │<───────────────│                       │                    │
+```mermaid
+sequenceDiagram
+    participant B as Buyer
+    participant C as ChatGPT
+    participant M as Merchant API
+    participant S as Stripe (PSP)
+    B->>C: "buy me a blue jacket"
+    C->>M: POST /checkouts {items, buyer}
+    M-->>C: checkout state (prices, shipping)
+    Note over B,C: shows options
+    B->>C: "ship to home"
+    C->>M: PUT /checkouts/:id {fulfillment_opt}
+    M-->>C: updated state
+    B->>C: "yes, buy it"
+    C->>S: delegated payment {card, billing, risk signals}
+    S-->>C: SPT (spt_xxx)
+    C->>M: POST /complete {token: spt_xxx}
+    M->>S: PaymentIntent
+    S-->>M: confirmation
+    M-->>C: order confirmed
+    C-->>B: "Order placed! Track here:"
 ```
 
 ## Shared Payment Token (SPT) — The Key Innovation
@@ -175,20 +161,16 @@ This is the most technically interesting part. Three-phase credential delegation
 
 ### Security Guarantees
 
-```
-┌─────────────────────────────────────────────────┐
-│  What each actor sees:                           │
-│                                                  │
-│  Buyer:     Full card details (they own it)      │
-│  ChatGPT:   display_last4 + display_brand only   │
-│  Stripe:    Full card + risk signals             │
-│  Merchant:  SPT token only (spt_xxx)             │
-│                                                  │
-│  Nobody except the user and Stripe sees the      │
-│  actual card number. Agent sees display info.     │
-│  Merchant sees only the opaque token.            │
-└─────────────────────────────────────────────────┘
-```
+> **What each actor sees:**
+>
+> | Actor | Sees |
+> |-------|------|
+> | Buyer | Full card details (they own it) |
+> | ChatGPT | display_last4 + display_brand only |
+> | Stripe | Full card + risk signals |
+> | Merchant | SPT token only (spt_xxx) |
+>
+> Nobody except the user and Stripe sees the actual card number. Agent sees display info. Merchant sees only the opaque token.
 
 ## Payment Handler Framework (v4 — 2026-01-30)
 

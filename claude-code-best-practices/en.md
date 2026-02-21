@@ -18,12 +18,10 @@ Claude Code is Anthropic's official CLI tool for AI-assisted software developmen
 
 LLM performance degrades as context fills. A single debugging session can consume tens of thousands of tokens. The community response:
 
-| Strategy | Why It Works |
-|----------|--------------|
-| `/clear` frequently | Prevents stale context from degrading output quality |
-| `/compact` before major work | Condenses history, frees ~70% token space |
-| Fresh conversations per topic | Maintains peak model performance |
-| Handoff documents | Preserves progress across session boundaries |
+- **`/clear` frequently** — Prevents stale context from degrading output quality
+- **`/compact` before major work** — Condenses history, frees ~70% token space
+- **Fresh conversations per topic** — Maintains peak model performance
+- **Handoff documents** — Preserves progress across session boundaries
 
 ### CLAUDE.md Over Prompt Repetition
 
@@ -36,10 +34,8 @@ But there's a limit: frontier LLMs follow ~150-200 instructions consistently. Ov
 
 ### Terminal-First Over IDE Extension
 
-| Approach | Tradeoff |
-|----------|----------|
-| **VS Code Extension** | Higher memory (8GB+), update lag, limited parallel instances |
-| **Ghostty Terminal** | <500MB per instance, instant updates, unlimited parallel sessions |
+- **VS Code Extension** — Higher memory (8GB+), update lag, limited parallel instances
+- **Ghostty Terminal** — <500MB per instance, instant updates, unlimited parallel sessions
 
 Ghostty specifically chosen for GPU-accelerated rendering that prevents lag during long AI sessions.
 
@@ -265,13 +261,11 @@ Layer 3: Devcontainers for complete isolation
 
 ### 6. Essential Keyboard Shortcuts
 
-| Action | Keys |
-|--------|------|
-| New line (not submit) | Shift+Enter |
-| Stop generation | Escape |
-| Access previous messages | Escape × 2 |
-| Toggle extended thinking | Alt+T |
-| Paste image | Ctrl+V (not Cmd+V) |
+- **New line (not submit)** — Shift+Enter
+- **Stop generation** — Escape
+- **Access previous messages** — Escape × 2
+- **Toggle extended thinking** — Alt+T
+- **Paste image** — Ctrl+V (not Cmd+V)
 
 ### 7. Session Management
 

@@ -42,12 +42,10 @@ The original [GEO paper (arXiv 2311.09735)](https://arxiv.org/abs/2311.09735) fr
 
 ### Quantified Results
 
-| Strategy | Visibility Improvement |
-|----------|----------------------|
-| **Cite Sources** | +115% for lower-ranked sites |
-| **Statistics Addition** | +22% Position-Adjusted Word Count |
-| **Quotation Addition** | +37% Subjective Impression |
-| **Overall GEO methods** | Up to +40% visibility |
+- **Cite Sources** — +115% for lower-ranked sites
+- **Statistics Addition** — +22% Position-Adjusted Word Count
+- **Quotation Addition** — +37% Subjective Impression
+- **Overall GEO methods** — Up to +40% visibility
 
 **Critical finding**: Lower-ranked websites benefit MORE from GEO. Adding citations gave 5th-place SERP sites a 115% visibility boost—GEO is the great equalizer.
 
@@ -128,13 +126,11 @@ AI systems favor:
 
 What makes AI want to cite you:
 
-| Pattern | Why It Works |
-|---------|--------------|
-| **Specific statistics** | "40% improvement" beats "significant improvement" |
-| **Expert quotes with attribution** | Named authority signals credibility |
-| **Comparison tables** | AI loves structured comparisons |
-| **Original research/data** | Unique data = unique source |
-| **Recency indicators** | "As of February 2026" signals freshness |
+- **Specific statistics** — "40% improvement" beats "significant improvement"
+- **Expert quotes with attribution** — Named authority signals credibility
+- **Comparison tables** — AI loves structured comparisons
+- **Original research/data** — Unique data = unique source
+- **Recency indicators** — "As of February 2026" signals freshness
 
 ### E-E-A-T for AI
 
@@ -195,12 +191,10 @@ Structured data tells AI exactly what your content means.
 
 ### Schema Priority by Content Type
 
-| Content Type | Schema Types |
-|--------------|--------------|
-| Blog/Article | Article, Person (author), BreadcrumbList |
-| Product pages | Product, Review, AggregateRating |
-| How-to guides | HowTo, FAQPage |
-| Company pages | Organization, LocalBusiness |
+- **Blog/Article** — Article, Person (author), BreadcrumbList
+- **Product pages** — Product, Review, AggregateRating
+- **How-to guides** — HowTo, FAQPage
+- **Company pages** — Organization, LocalBusiness
 
 ## Platform-Specific Strategies
 
@@ -234,21 +228,17 @@ Structured data tells AI exactly what your content means.
 
 ### Key Metrics
 
-| Metric | Description |
-|--------|-------------|
-| **Citation Frequency** | How often your domain appears in AI answers |
-| **AI Share of Voice** | Your visibility vs competitors |
-| **Sentiment** | How AI describes your brand |
-| **Source Position** | Where in the answer you're cited |
+- **Citation Frequency** — How often your domain appears in AI answers
+- **AI Share of Voice** — Your visibility vs competitors
+- **Sentiment** — How AI describes your brand
+- **Source Position** — Where in the answer you're cited
 
 ### Monitoring Tools
 
-| Tool | Focus |
-|------|-------|
-| **Otterly.ai** | Cross-platform monitoring (6 AI platforms) |
-| **Geoptie** | GEO audit + content optimization |
-| **Relixir** | Citation tracking + revenue attribution |
-| **AmICited** | Simple citation checker |
+- **Otterly.ai** — Cross-platform monitoring (6 AI platforms)
+- **Geoptie** — GEO audit + content optimization
+- **Relixir** — Citation tracking + revenue attribution
+- **AmICited** — Simple citation checker
 
 ### DIY Monitoring
 

@@ -57,12 +57,10 @@ Agent Team 通過讓隊友成為**一等對等體**來解決這個問題：
 
 ### 核心組件
 
-| 組件 | 角色 |
-|------|------|
-| **Team Lead** | 主 Claude Code 會話。創建團隊、生成隊友、協調工作 |
-| **Teammates** | 獨立的 Claude Code 實例。各有自己的上下文窗口和完整工具訪問權 |
-| **Task List** | 共享工作項，帶狀態跟蹤、所有權和依賴管理 |
-| **Mailbox** | 基於文件的消息系統，用於智能體間通信 |
+- **Team Lead** — 主 Claude Code 會話。創建團隊、生成隊友、協調工作
+- **Teammates** — 獨立的 Claude Code 實例。各有自己的上下文窗口和完整工具訪問權
+- **Task List** — 共享工作項，帶狀態跟蹤、所有權和依賴管理
+- **Mailbox** — 基於文件的消息系統，用於智能體間通信
 
 ### TeammateTool：13 個操作
 
@@ -82,15 +80,13 @@ Agent Team 通過讓隊友成為**一等對等體**來解決這個問題：
 
 ### 消息類型
 
-| 類型 | 用途 |
-|------|------|
-| `message` | 智能體間直接文本消息 |
-| `broadcast` | 同一消息發送給所有隊友 |
-| `shutdown_request` / `shutdown_response` | 優雅的生命週期管理 |
-| `idle_notification` | 隊友停止時自動發送（正常行為，非錯誤） |
-| `task_completed` | 任務完成信號 |
-| `plan_approval_request` | 隊友發送計劃供領導審查 |
-| `join_request` | 智能體請求加入團隊 |
+- **`message`** — 智能體間直接文本消息
+- **`broadcast`** — 同一消息發送給所有隊友
+- **`shutdown_request` / `shutdown_response`** — 優雅的生命週期管理
+- **`idle_notification`** — 隊友停止時自動發送（正常行為，非錯誤）
+- **`task_completed`** — 任務完成信號
+- **`plan_approval_request`** — 隊友發送計劃供領導審查
+- **`join_request`** — 智能體請求加入團隊
 
 ### 任務依賴系統
 

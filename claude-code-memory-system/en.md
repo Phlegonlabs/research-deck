@@ -110,13 +110,11 @@ Rules **without** a `paths` field load unconditionally.
 
 **Supported glob patterns:**
 
-| Pattern | Matches |
-|---|---|
-| `**/*.ts` | All TypeScript files in any directory |
-| `src/**/*` | All files under `src/` |
-| `*.md` | Markdown files in project root only |
-| `src/**/*.{ts,tsx}` | Brace expansion for multiple extensions |
-| `{src,lib}/**/*.ts` | Brace expansion for multiple directories |
+- **`**/*.ts`** — All TypeScript files in any directory
+- **`src/**/*`** — All files under `src/`
+- **`*.md`** — Markdown files in project root only
+- **`src/**/*.{ts,tsx}`** — Brace expansion for multiple extensions
+- **`{src,lib}/**/*.ts`** — Brace expansion for multiple directories
 
 ### Symlinks
 
@@ -280,12 +278,10 @@ When context usage approaches the limit, Claude Code automatically compacts:
 
 ### Environment Variables for Context Control
 
-| Variable | Effect |
-|---|---|
-| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | Set compaction trigger threshold (1-100) |
-| `autoCompact: false` in settings.json | Disable auto-compaction entirely |
-| `CLAUDE_CODE_MAX_OUTPUT_TOKENS` | Controls response length (NOT compaction buffer) |
-| `SLASH_COMMAND_TOOL_CHAR_BUDGET` | Override skill description context budget |
+- **`CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`** — Set compaction trigger threshold (1-100)
+- **`autoCompact: false` in settings.json** — Disable auto-compaction entirely
+- **`CLAUDE_CODE_MAX_OUTPUT_TOKENS`** — Controls response length (NOT compaction buffer)
+- **`SLASH_COMMAND_TOOL_CHAR_BUDGET`** — Override skill description context budget
 
 ### Extended Context Models
 
