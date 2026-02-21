@@ -181,32 +181,19 @@ Validators only need to store recent data (rolling window). Historical data is d
 
 ### 1.9 How All 8 Work Together
 
-```
-Client sends tx
-    │
-    ▼
-Gulf Stream: forward to upcoming leader (no mempool)
-    │
-    ▼
-TPU Pipeline: fetch → verify sigs (GPU) → execute (CPU) → write (disk)
-    │
-    ▼
-Sealevel: parallel execution based on declared account access
-    │
-    ▼
-Cloudbreak: concurrent read/write to accounts DB
-    │
-    ▼
-PoH: timestamp the results into the hash chain
-    │
-    ▼
-Turbine: propagate block shreds through tree hierarchy
-    │
-    ▼
-Tower BFT: validators vote using PoH clock (O(n) messages)
-    │
-    ▼
-Archivers: store historical data with Proof of Replication
+```mermaid
+flowchart TD
+    A["Client sends tx"]
+    B["Gulf Stream: forward to upcoming leader (no mempool)"]
+    C["TPU Pipeline: fetch → verify sigs (GPU) → execute (CPU) → write (disk)"]
+    D["Sealevel: parallel execution based on declared account access"]
+    E["Cloudbreak: concurrent read/write to accounts DB"]
+    F["PoH: timestamp the results into the hash chain"]
+    G["Turbine: propagate block shreds through tree hierarchy"]
+    H["Tower BFT: validators vote using PoH clock (O(n) messages)"]
+    I["Archivers: store historical data with Proof of Replication"]
+
+    A --> B --> C --> D --> E --> F --> G --> H --> I
 ```
 
 **The system insight:** Each innovation solves one bottleneck, and they're designed to work in concert. PoH enables Tower BFT's efficiency; Tower BFT enables Gulf Stream's mempool-less design; Sealevel enables Cloudbreak's concurrent access; Pipelining ties the hardware utilization together. Remove any one piece and the system degrades significantly.
@@ -584,20 +571,15 @@ Solana has become the default chain for DePIN (Decentralized Physical Infrastruc
 
 ### 6.1 Pump.fun — How It Works
 
-```
-User uploads image + picks name/ticker
-         │
-         ▼ (costs < $2)
-Token created on bonding curve
-         │
-         ▼
-Trading begins immediately on pump.fun
-         │
-         ▼ (if market cap hits $90K)
-"Graduation" → listed on Raydium DEX
-         │
-         ▼
-Pump.fun earns: 1% swap fee + 1.5 SOL graduation fee
+```mermaid
+flowchart TD
+    A["User uploads image + picks name/ticker"]
+    B["Token created on bonding curve"]
+    C["Trading begins immediately on pump.fun"]
+    D["'Graduation' → listed on Raydium DEX"]
+    E["Pump.fun earns: 1% swap fee + 1.5 SOL graduation fee"]
+
+    A -- "costs < $2" --> B --> C -- "if market cap hits $90K" --> D --> E
 ```
 
 ### 6.2 Pump.fun By the Numbers

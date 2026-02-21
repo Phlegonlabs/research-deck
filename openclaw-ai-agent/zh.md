@@ -23,16 +23,12 @@ OpenClaw（前身 Clawdbot/Moltbot）是 Peter Steinberger（PSPDFKit 创始人�
 
 ### 三组件设计
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│    Brain     │     │   Memory    │     │    Arms     │
-│  (LLM 层)   │────▶│  (存储层)   │────▶│  (工具层)   │
-│              │     │             │     │             │
-│ 系统提示词    │     │ 短期记忆:   │     │ fs_tool     │
-│ + 聊天历史   │     │  聊天日志    │     │ bash_tool   │
-│ → LLM API   │     │ 长期记忆:   │     │ browser_tool│
-│              │     │  .md 文件   │     │ (CDP)       │
-└─────────────┘     └─────────────┘     └─────────────┘
+```mermaid
+flowchart LR
+    Brain["**Brain**\n(LLM 层)\n\n系统提示词\n+ 聊天历史\n→ LLM API"]
+    Memory["**Memory**\n(存储层)\n\n短期记忆:\n聊天日志\n长期记忆:\n.md 文件"]
+    Arms["**Arms**\n(工具层)\n\nfs_tool\nbash_tool\nbrowser_tool\n(CDP)"]
+    Brain --> Memory --> Arms
 ```
 
 | 组件 | 角色 | 实现方式 |

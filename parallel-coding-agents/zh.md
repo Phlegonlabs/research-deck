@@ -38,28 +38,19 @@ Warp CEO Zach Lloyd 的論述（Sequoia podcast，2026 年 1 月）：
 
 所有平台 — Cloudflare、Warp、E2B、Daytona — 都收斂到相同的分層架構：
 
-```
-┌─────────────────────────────────────────────┐
-│  觸發層 TRIGGER                              │
-│  Slack / Linear / GitHub / Webhook / Cron    │
-└──────────────────┬──────────────────────────┘
-                   │
-┌──────────────────▼──────────────────────────┐
-│  編排層 ORCHESTRATE                          │
-│  任務隊列 → 調度 → 狀態 → 密鑰注入           │
-│  (Cloudflare Agents SDK / Warp / 自建)       │
-└──────────────────┬──────────────────────────┘
-                   │ 生成 N 個
-┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐
-│ Sandbox │ │ Sandbox │ │ Sandbox │ │ Sandbox │
-│ Agent 1 │ │ Agent 2 │ │ Agent 3 │ │ Agent 4 │
-│ git+npm │ │ git+rsc │ │ git+py  │ │ git+go  │
-└─────────┘ └─────────┘ └─────────┘ └─────────┘
-                   │
-┌──────────────────▼──────────────────────────┐
-│  觀測層 OBSERVE                              │
-│  會話記錄 → 儀表板 → 審計日誌                 │
-└─────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    Trigger["觸發層 TRIGGER\nSlack / Linear / GitHub / Webhook / Cron"]
+    Orchestrate["編排層 ORCHESTRATE\n任務隊列 → 調度 → 狀態 → 密鑰注入\n(Cloudflare Agents SDK / Warp / 自建)"]
+    S1["Sandbox\nAgent 1\ngit+npm"]
+    S2["Sandbox\nAgent 2\ngit+rsc"]
+    S3["Sandbox\nAgent 3\ngit+py"]
+    S4["Sandbox\nAgent 4\ngit+go"]
+    Observe["觀測層 OBSERVE\n會話記錄 → 儀表板 → 審計日誌"]
+
+    Trigger --> Orchestrate
+    Orchestrate -- "生成 N 個" --> S1 & S2 & S3 & S4
+    S1 & S2 & S3 & S4 --> Observe
 ```
 
 **鐵律：永遠不要在編排器裡跑 agent 邏輯。** 編排器負責路由、認證和協調。沙箱負責執行。這個分離不可妥協。
@@ -212,20 +203,35 @@ Rivet Sandbox Agent SDK 是收斂信號 — 一個 API 可以在任何沙箱（D
 
 ## 決策框架
 
-```
-你需要自定義編排嗎？
-├── 要 → 需要全球邊緣嗎？
-│        ├── 要 → Cloudflare（Workers + Agents SDK + Containers）
-│        └── 不 → E2B/Daytona + 自建編排器
-└── 不 → 想要開箱即用嗎？
-         ├── 要 → Warp Ambient Agents（beta）或 GitHub Codespaces
-         └── 不 → 你的優先級是什麼？
-                   ├── 最快冷啟動      → Daytona (27ms)
-                   ├── 最佳 SDK 體驗   → E2B（一行代碼 API）
-                   ├── GPU 算力        → Modal (H100)
-                   ├── 持久工作空間    → Sprites (100GB NVMe)
-                   ├── 大規模最便宜    → Northflank ($0.017/hr)
-                   └── 企業自託管      → Coder / Northflank BYOC
+```mermaid
+flowchart TD
+    Q1{"需要自定義編排嗎？"}
+    Q2{"需要全球邊緣嗎？"}
+    Q3{"想要開箱即用嗎？"}
+    Q4{"你的優先級是什麼？"}
+
+    CF["Cloudflare\n(Workers + Agents SDK\n+ Containers)"]
+    E2B["E2B/Daytona\n+ 自建編排器"]
+    Warp["Warp Ambient Agents (beta)\n或 GitHub Codespaces"]
+    Daytona["Daytona (27ms)"]
+    E2BSDK["E2B（一行代碼 API）"]
+    Modal["Modal (H100)"]
+    Sprites["Sprites (100GB NVMe)"]
+    NF["Northflank ($0.017/hr)"]
+    Coder["Coder / Northflank BYOC"]
+
+    Q1 -- 要 --> Q2
+    Q1 -- 不 --> Q3
+    Q2 -- 要 --> CF
+    Q2 -- 不 --> E2B
+    Q3 -- 要 --> Warp
+    Q3 -- 不 --> Q4
+    Q4 -- "最快冷啟動" --> Daytona
+    Q4 -- "最佳 SDK 體驗" --> E2BSDK
+    Q4 -- "GPU 算力" --> Modal
+    Q4 -- "持久工作空間" --> Sprites
+    Q4 -- "大規模最便宜" --> NF
+    Q4 -- "企業自託管" --> Coder
 ```
 
 ## Steal：可直接複用的模式

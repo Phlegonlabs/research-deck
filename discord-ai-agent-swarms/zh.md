@@ -205,35 +205,12 @@ def agent_report_progress(task_id, status):
 
 **架構**(受 KOBA789/human-in-the-loop 啟發):
 
-```
-┌─────────────┐
-│   AI Agent  │ (Claude, GPT-4)
-│   (MCP)     │
-└──────┬──────┘
-       │ 需要人工輸入
-       │
-       ▼
-┌──────────────────┐
-│ MCP Discord      │
-│ Server (Rust)    │
-└──────┬───────────┘
-       │ 創建 thread
-       │
-       ▼
-┌──────────────────┐
-│  Discord Channel │
-│  (thread 生成)   │
-└──────┬───────────┘
-       │ @mention human
-       │
-       ▼
-┌──────────────────┐
-│  Human 回復      │
-└──────┬───────────┘
-       │ 響應
-       │
-       ▼
-  Agent 繼續
+```mermaid
+flowchart TD
+    A["AI Agent (Claude, GPT-4)\n(MCP)"] -->|需要人工輸入| B["MCP Discord\nServer (Rust)"]
+    B -->|創建 thread| C["Discord Channel\n(thread 生成)"]
+    C -->|"@mention human"| D["Human 回復"]
+    D -->|響應| E["Agent 繼續"]
 ```
 
 **關鍵流程**:
@@ -724,13 +701,14 @@ if cycle:
 ### 示例 1: 代碼審查 Swarm (GitHub + Discord)
 
 **架構**:
-```
-GitHub PR → Webhook → Discord #code-reviews
-  ├─ 每個 PR 創建 Thread
-  ├─ Linter-Agent 檢查風格
-  ├─ Security-Agent 掃描漏洞
-  ├─ Test-Agent 運行 CI
-  └─ Human 審查 thread,批准/拒絕
+```mermaid
+flowchart TD
+    A["GitHub PR"] -->|Webhook| B["Discord #code-reviews"]
+    B --> C["每個 PR 創建 Thread"]
+    C --> D["Linter-Agent 檢查風格"]
+    C --> E["Security-Agent 掃描漏洞"]
+    C --> F["Test-Agent 運行 CI"]
+    C --> G["Human 審查 thread，批准/拒絕"]
 ```
 
 **為何用 Discord**:
@@ -775,18 +753,13 @@ async def handle_pr(pr_data):
 5. 用戶問後續問題,agent 從 thread 歷史調用上下文
 
 **架構**:
-```
-Discord Message
-  ↓
-discord.py Cog Handler
-  ↓
-Conversation Memory (PGVector)
-  ↓
-LLM (Claude/GPT) with context
-  ↓
-MCP Tool Calls (RSS, DB)
-  ↓
-Response sent to Discord thread
+```mermaid
+flowchart TD
+    A["Discord Message"] --> B["discord.py Cog Handler"]
+    B --> C["Conversation Memory (PGVector)"]
+    C --> D["LLM (Claude/GPT) with context"]
+    D --> E["MCP Tool Calls (RSS, DB)"]
+    E --> F["Response sent to Discord thread"]
 ```
 
 **為何用 MCP**: Agents 獲得**動態工具訪問**無需硬編碼集成。

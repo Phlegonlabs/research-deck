@@ -205,35 +205,12 @@ def agent_report_progress(task_id, status):
 
 **Architecture** (inspired by KOBA789/human-in-the-loop):
 
-```
-┌─────────────┐
-│   AI Agent  │ (Claude, GPT-4)
-│   (MCP)     │
-└──────┬──────┘
-       │ needs human input
-       │
-       ▼
-┌──────────────────┐
-│ MCP Discord      │
-│ Server (Rust)    │
-└──────┬───────────┘
-       │ creates thread
-       │
-       ▼
-┌──────────────────┐
-│  Discord Channel │
-│  (thread spawned)│
-└──────┬───────────┘
-       │ @mention human
-       │
-       ▼
-┌──────────────────┐
-│  Human replies   │
-└──────┬───────────┘
-       │ response
-       │
-       ▼
-  Agent continues
+```mermaid
+flowchart TD
+    A["AI Agent (Claude, GPT-4)\n(MCP)"] -->|needs human input| B["MCP Discord\nServer (Rust)"]
+    B -->|creates thread| C["Discord Channel\n(thread spawned)"]
+    C -->|"@mention human"| D["Human replies"]
+    D -->|response| E["Agent continues"]
 ```
 
 **Key Flow**:
@@ -724,13 +701,14 @@ if cycle:
 ### Example 1: Code Review Swarm (GitHub + Discord)
 
 **Architecture**:
-```
-GitHub PR → Webhook → Discord #code-reviews
-  ├─ Thread created per PR
-  ├─ Linter-Agent checks style
-  ├─ Security-Agent scans for vulns
-  ├─ Test-Agent runs CI
-  └─ Human reviews thread, approves/rejects
+```mermaid
+flowchart TD
+    A["GitHub PR"] -->|Webhook| B["Discord #code-reviews"]
+    B --> C["Thread created per PR"]
+    C --> D["Linter-Agent checks style"]
+    C --> E["Security-Agent scans for vulns"]
+    C --> F["Test-Agent runs CI"]
+    C --> G["Human reviews thread, approves/rejects"]
 ```
 
 **Why Discord**:
@@ -775,18 +753,13 @@ async def handle_pr(pr_data):
 5. User asks follow-up, agent recalls context from thread history
 
 **Architecture**:
-```
-Discord Message
-  ↓
-discord.py Cog Handler
-  ↓
-Conversation Memory (PGVector)
-  ↓
-LLM (Claude/GPT) with context
-  ↓
-MCP Tool Calls (RSS, DB)
-  ↓
-Response sent to Discord thread
+```mermaid
+flowchart TD
+    A["Discord Message"] --> B["discord.py Cog Handler"]
+    B --> C["Conversation Memory (PGVector)"]
+    C --> D["LLM (Claude/GPT) with context"]
+    D --> E["MCP Tool Calls (RSS, DB)"]
+    E --> F["Response sent to Discord thread"]
 ```
 
 **Why MCP**: Agents get **dynamic tool access** without hardcoding integrations.

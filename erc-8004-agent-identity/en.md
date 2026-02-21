@@ -26,28 +26,11 @@ Without ERC-8004, the agent economy has a trust gap:
 
 **ERC-721 NFT = Agent's passport.** Each agent gets a unique `agentId` token that points to an off-chain registration file.
 
-```
-┌────────────────────────────┐
-│  Identity Registry (ERC-721)│
-│                             │
-│  agentId: 22                │
-│  owner: 0xABC...            │
-│  agentURI: ipfs://Qm...     │──── points to ────┐
-│  metadata: { key: value }   │                    │
-│  agentWallet: 0xDEF...      │                    ▼
-└────────────────────────────┘    ┌──────────────────────┐
-                                  │  Registration File    │
-                                  │  (JSON, off-chain)    │
-                                  │                       │
-                                  │  name: "Hotel Agent"  │
-                                  │  services:            │
-                                  │    - A2A endpoint     │
-                                  │    - MCP endpoint     │
-                                  │  x402Support: true    │
-                                  │  supportedTrust:      │
-                                  │    - reputation       │
-                                  │    - tee-attestation  │
-                                  └──────────────────────┘
+```mermaid
+flowchart LR
+    IDR["<b>Identity Registry (ERC-721)</b><br/>agentId: 22<br/>owner: 0xABC...<br/>agentURI: ipfs://Qm...<br/>metadata: { key: value }<br/>agentWallet: 0xDEF..."]
+    REG["<b>Registration File</b><br/>(JSON, off-chain)<br/><br/>name: 'Hotel Agent'<br/>services:<br/>  - A2A endpoint<br/>  - MCP endpoint<br/>x402Support: true<br/>supportedTrust:<br/>  - reputation<br/>  - tee-attestation"]
+    IDR -- "points to" --> REG
 ```
 
 **Registration file structure:**
@@ -102,29 +85,14 @@ function getMetadata(uint256 agentId, string memory metadataKey)
 
 **Structured feedback from real interactions.** Not a single score — raw signals that consumers aggregate however they want.
 
-```
-Client Agent                               Reputation Registry
-    │                                            │
-    │ (completes task with Agent #22)             │
-    │                                            │
-    │── giveFeedback(                            │
-    │     agentId: 22,                           │
-    │     value: 87,                              │
-    │     valueDecimals: 0,                       │
-    │     tag1: "starred",                        │
-    │     tag2: "hotel-booking",                  │
-    │     endpoint: "https://agent.example/book", │
-    │     feedbackURI: "ipfs://Qm...",            │
-    │     feedbackHash: 0xABC...                  │
-    │   ) ──────────────────────────────────────> │
-    │                                            │
-    │── getSummary(                               │
-    │     agentId: 22,                            │
-    │     clientAddresses: [0x111, 0x222],         │
-    │     tag1: "starred",                         │
-    │     tag2: ""                                 │
-    │   ) <────────────────────────────────────── │
-    │   returns: count=47, summaryValue=91        │
+```mermaid
+sequenceDiagram
+    participant CA as Client Agent
+    participant RR as Reputation Registry
+    Note over CA: completes task with Agent #22
+    CA->>RR: giveFeedback(<br/>agentId: 22,<br/>value: 87,<br/>valueDecimals: 0,<br/>tag1: "starred",<br/>tag2: "hotel-booking",<br/>endpoint: "https://agent.example/book",<br/>feedbackURI: "ipfs://Qm...",<br/>feedbackHash: 0xABC...)
+    CA->>RR: getSummary(<br/>agentId: 22,<br/>clientAddresses: [0x111, 0x222],<br/>tag1: "starred",<br/>tag2: "")
+    RR-->>CA: returns: count=47, summaryValue=91
 ```
 
 **Feedback value examples:**
@@ -167,29 +135,17 @@ Client Agent                               Reputation Registry
 
 **Independent verification of agent work.** This is where trust gets teeth — not just "people say it's good" but "we can prove it was done correctly."
 
-```
-Client                Validation Registry           Validator
-  │                          │                          │
-  │── validationRequest(     │                          │
-  │     validator: 0xVAL,    │                          │
-  │     agentId: 22,         │                          │
-  │     requestURI: "...",   │                          │
-  │     requestHash: 0x...   │                          │
-  │   ) ────────────────────>│                          │
-  │                          │── event ────────────────>│
-  │                          │                          │
-  │                          │   [validator re-executes │
-  │                          │    or checks proof]      │
-  │                          │                          │
-  │                          │<── validationResponse(   │
-  │                          │      requestHash: 0x..., │
-  │                          │      response: 95,       │
-  │                          │      responseURI: "...", │
-  │                          │      tag: "hard-finality" │
-  │                          │    ) ────────────────────│
-  │                          │                          │
-  │<── getValidationStatus() │                          │
-  │    returns: response=95  │                          │
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant VR as Validation Registry
+    participant V as Validator
+    C->>VR: validationRequest(<br/>validator: 0xVAL,<br/>agentId: 22,<br/>requestURI: "...",<br/>requestHash: 0x...)
+    VR->>V: event
+    Note over V: validator re-executes<br/>or checks proof
+    V->>VR: validationResponse(<br/>requestHash: 0x...,<br/>response: 95,<br/>responseURI: "...",<br/>tag: "hard-finality")
+    C->>VR: getValidationStatus()
+    VR-->>C: returns: response=95
 ```
 
 **Three validation tiers — security proportional to value:**
@@ -221,23 +177,21 @@ Also deployed on: Base, Arbitrum, Polygon, Optimism, Avalanche, Celo, Gnosis, Li
 
 ## How It Connects to the Protocol Stack
 
-```
-┌───────────────────────────────────────────────────────┐
-│  ERC-8004 (Trust Layer)                                │
-│  "Who is this agent? Should I trust it?"               │
-│                                                        │
-│  Identity ──── Reputation ──── Validation              │
-│  (who)         (track record)   (proof of work)        │
-├───────────────────────────────────────────────────────┤
-│  Payment Layer                                         │
-│  x402 (micropayments) │ AP2 (mandates) │ ACP (checkout)│
-├───────────────────────────────────────────────────────┤
-│  Coordination Layer                                    │
-│  A2A (agent-to-agent tasks)                            │
-├───────────────────────────────────────────────────────┤
-│  Tool Layer                                            │
-│  MCP (agent-to-tool access)                            │
-└───────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Trust["ERC-8004 (Trust Layer) — 'Who is this agent? Should I trust it?'"]
+        Identity["Identity<br/>(who)"] --- Reputation["Reputation<br/>(track record)"] --- Validation["Validation<br/>(proof of work)"]
+    end
+    subgraph Payment["Payment Layer"]
+        x402["x402<br/>(micropayments)"] ~~~ AP2["AP2<br/>(mandates)"] ~~~ ACP["ACP<br/>(checkout)"]
+    end
+    subgraph Coordination["Coordination Layer"]
+        A2A["A2A (agent-to-agent tasks)"]
+    end
+    subgraph Tool["Tool Layer"]
+        MCP["MCP (agent-to-tool access)"]
+    end
+    Trust --> Payment --> Coordination --> Tool
 ```
 
 **Concrete integrations:**

@@ -26,27 +26,11 @@ ERC-8004 用三个链上注册表回答这个问题 — 身份、声誉和验证
 
 **ERC-721 NFT = 代理的护照。** 每个代理获得唯一的 `agentId` 令牌，指向链下注册文件。
 
-```
-┌────────────────────────────┐
-│  身份注册表 (ERC-721)       │
-│                             │
-│  agentId: 22                │
-│  owner: 0xABC...            │
-│  agentURI: ipfs://Qm...     │──── 指向 ────┐
-│  metadata: { key: value }   │               │
-│  agentWallet: 0xDEF...      │               ▼
-└────────────────────────────┘    ┌──────────────────────┐
-                                  │  注册文件 (JSON)       │
-                                  │                       │
-                                  │  name: "Hotel Agent"  │
-                                  │  services:            │
-                                  │    - A2A 端点          │
-                                  │    - MCP 端点          │
-                                  │  x402Support: true    │
-                                  │  supportedTrust:      │
-                                  │    - reputation       │
-                                  │    - tee-attestation  │
-                                  └──────────────────────┘
+```mermaid
+flowchart LR
+    IDR["<b>身份注册表 (ERC-721)</b><br/>agentId: 22<br/>owner: 0xABC...<br/>agentURI: ipfs://Qm...<br/>metadata: { key: value }<br/>agentWallet: 0xDEF..."]
+    REG["<b>注册文件</b><br/>(JSON, 链下)<br/><br/>name: 'Hotel Agent'<br/>services:<br/>  - A2A 端点<br/>  - MCP 端点<br/>x402Support: true<br/>supportedTrust:<br/>  - reputation<br/>  - tee-attestation"]
+    IDR -- "指向" --> REG
 ```
 
 **注册文件结构：**
@@ -164,23 +148,21 @@ THEN releasePayment()
 
 ## 如何连接协议栈
 
-```
-┌───────────────────────────────────────────────────────┐
-│  ERC-8004（信任层）                                     │
-│  "这个代理是谁？我该信任它吗？"                           │
-│                                                        │
-│  身份 ──── 声誉 ──── 验证                               │
-│  (谁)     (履历)    (工作证明)                           │
-├───────────────────────────────────────────────────────┤
-│  支付层                                                │
-│  x402（微支付）│ AP2（授权令）│ ACP（结账）               │
-├───────────────────────────────────────────────────────┤
-│  协调层                                                │
-│  A2A（代理间任务）                                      │
-├───────────────────────────────────────────────────────┤
-│  工具层                                                │
-│  MCP（代理→工具访问）                                    │
-└───────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Trust["ERC-8004（信任层）— '这个代理是谁？我该信任它吗？'"]
+        Identity["身份<br/>(谁)"] --- Reputation["声誉<br/>(履历)"] --- Validation["验证<br/>(工作证明)"]
+    end
+    subgraph Payment["支付层"]
+        x402["x402<br/>（微支付）"] ~~~ AP2["AP2<br/>（授权令）"] ~~~ ACP["ACP<br/>（结账）"]
+    end
+    subgraph Coordination["协调层"]
+        A2A["A2A（代理间任务）"]
+    end
+    subgraph Tool["工具层"]
+        MCP["MCP（代理→工具访问）"]
+    end
+    Trust --> Payment --> Coordination --> Tool
 ```
 
 **具体集成：**

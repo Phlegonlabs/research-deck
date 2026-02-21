@@ -1,5 +1,13 @@
 # Progress
 
+## [2026-02-21] ASCII → Mermaid Diagram Conversion + CLAUDE.md Cleanup
+- **Diagram conversion**: Converted 44 ASCII box-drawing diagrams to Mermaid syntax across 10 topic folders (en.md + zh.md = 20 files)
+- **Folders**: ai-coding-models-2026, discord-ai-agent-swarms, erc-8004-agent-identity, jito-solana, mcp-x402-integration, openclaw-ai-agent, parallel-coding-agents, solana-blockchain, threejs-ecosystem, threejs-visual-design
+- **CLAUDE.md**: Removed `references.md` from repo structure/workflow, added Mermaid diagram convention
+- **Execution**: 5 parallel agents, all completed successfully
+- **Verification**: Zero ASCII box diagrams remaining in planned scope
+- Next steps: none
+
 ## [2026-02-21] Full Update & Reference Consolidation — All 25 Topics
 - **Structural change**: Merged `references.md` into `en.md` and `zh.md` as `## References` section at bottom of each file, then deleted all 25 `references.md` files
 - **Content update**: Added `## Latest Updates (2026)` / `## 最新動態 (2026)` section to all 25 topics with fresh web research on 2025-2026 developments

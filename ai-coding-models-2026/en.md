@@ -97,17 +97,12 @@ The real story: SWE-bench Pro improvement is marginal (+0.4%), but Terminal-Benc
 
 Not just a model — a full agent platform:
 
-```
-┌─────────────────────────────────────────────┐
-│  CODEX APP (Web + Desktop)                   │
-│  Command center, parallel agents             │
-├─────────────────────────────────────────────┤
-│  CODEX CLI (Terminal)                        │
-│  Open-source Rust, runs locally              │
-├─────────────────────────────────────────────┤
-│  CODEX MODELS (API)                          │
-│  codex-1 → GPT-5-Codex → 5.2 → 5.3         │
-└─────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    A["CODEX APP (Web + Desktop)\nCommand center, parallel agents"]
+    B["CODEX CLI (Terminal)\nOpen-source Rust, runs locally"]
+    C["CODEX MODELS (API)\ncodex-1 → GPT-5-Codex → 5.2 → 5.3"]
+    A --> B --> C
 ```
 
 Key design: codex-1 = o3 fine-tuned via RL on real coding tasks. Sandboxed (no internet). AGENTS.md for per-repo config. Built-in git worktrees for parallel agents. Automations (scheduled triggers for issue triage, CI monitoring).

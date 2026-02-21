@@ -10,9 +10,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```
 {topic-name}/             # one folder per research topic at repo root
-  en.md                   # English version
-  zh.md                   # 中文版本
-  references.md           # source links, tweets, papers
+  en.md                   # English version (references inline at bottom)
+  zh.md                   # 中文版本（references inline at bottom）
 PROGRESS.md               # daily log of what was researched
 ```
 
@@ -26,14 +25,13 @@ PROGRESS.md               # daily log of what was researched
 
 When adding a new research topic:
 1. Create folder: `{topic-name}/` at repo root
-2. Write `en.md` — English version (main analysis)
-3. Write `zh.md` — 中文版本（完整翻譯，不是摘要）
-4. Write `references.md` — all source URLs (tweets, articles, repos, papers)
-5. Update `PROGRESS.md` with date + topic summary
+2. Write `en.md` — English version (main analysis, references in `## References` at bottom)
+3. Write `zh.md` — 中文版本（完整翻譯，不是摘要，references in `## References` at bottom）
+4. Update `PROGRESS.md` with date + topic summary
 
 Both `en.md` and `zh.md` must contain the same content depth — zh.md is a full translation, not a summary.
 
-**One request = one folder.** Never split a single research request into multiple folders. Even if the topic covers multiple companies/tools/concepts, consolidate everything into ONE folder with ONE set of files (en.md, zh.md, references.md).
+**One request = one folder.** Never split a single research request into multiple folders. Even if the topic covers multiple companies/tools/concepts, consolidate everything into ONE folder with ONE set of files (en.md, zh.md).
 
 When the user says "research X" or shares a link:
 1. Fetch and analyze the source material
@@ -65,6 +63,7 @@ Rules:
 - Identify the non-obvious insights — things you only learn by building it
 - Include source attribution with links
 - Prefer tables and diagrams over walls of text
+- Use Mermaid (```mermaid) for diagrams, not ASCII box-drawing
 
 ## 鐵律
 

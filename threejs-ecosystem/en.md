@@ -24,16 +24,17 @@ The result: browser 3D went from "cool but limited" to "competitive with native 
 
 ### Core: Scene Graph + Object3D Hierarchy
 
-```
-Scene (root)
-├── Group
-│   ├── Mesh (geometry + material)
-│   ├── Mesh
-│   └── Light
-├── Camera
-└── Group
-    ├── Mesh
-    └── InstancedMesh (thousands of copies, one draw call)
+```mermaid
+flowchart TD
+    Scene["Scene (root)"]
+    Scene --> Group1["Group"]
+    Scene --> Camera["Camera"]
+    Scene --> Group2["Group"]
+    Group1 --> Mesh1["Mesh (geometry + material)"]
+    Group1 --> Mesh2["Mesh"]
+    Group1 --> Light["Light"]
+    Group2 --> Mesh3["Mesh"]
+    Group2 --> InstancedMesh["InstancedMesh (thousands of copies, one draw call)"]
 ```
 
 **Object3D** is the base class for everything. Each object maintains:

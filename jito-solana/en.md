@@ -27,28 +27,11 @@ Performance is identical to stock Agave — the additions are purely MEV-related
 
 The Block Engine is an **off-chain blockspace auction** — the core MEV coordination mechanism.
 
-```
-                            ┌─────────────┐
-                            │  Searchers   │
-                            │ (submit      │
-                            │  bundles +   │
-                            │  tips)       │
-                            └──────┬───────┘
-                                   │
-                            ┌──────▼───────┐
-  ┌──────────┐              │ Block Engine  │
-  │  Users   │──────────►   │              │
-  │(regular  │   Relayer    │ 1. Validate  │
-  │ txns)    │──(200ms)──►  │ 2. Simulate  │
-  └──────────┘              │ 3. Auction   │
-                            │ 4. Select    │
-                            └──────┬───────┘
-                                   │
-                            ┌──────▼───────┐
-                            │  Validator   │
-                            │ (Jito-Solana │
-                            │  client)     │
-                            └──────────────┘
+```mermaid
+flowchart TD
+    S["Searchers\n(submit bundles + tips)"] --> BE["Block Engine\n1. Validate\n2. Simulate\n3. Auction\n4. Select"]
+    U["Users\n(regular txns)"] -->|Relayer\n200ms| BE
+    BE --> V["Validator\n(Jito-Solana client)"]
 ```
 
 **Auction process:**
@@ -260,80 +243,54 @@ The first live NCN — decentralized MEV tip distribution.
 
 ### 3.1 Complete System Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        USER LAYER                                │
-│  Regular Users ──► RPC Nodes ──► Relayer ──► Validator          │
-│  Searchers ──────► Block Engine ──────────►  (Jito-Solana)      │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph UL["USER LAYER"]
+        RU["Regular Users"] --> RPC["RPC Nodes"] --> REL["Relayer"] --> VAL["Validator\n(Jito-Solana)"]
+        SR["Searchers"] --> BEn["Block Engine"] --> VAL
+    end
 
-┌─────────────────────────────────────────────────────────────────┐
-│                     BLOCK ENGINE LAYER                           │
-│                                                                  │
-│  ┌──────────┐   ┌────────────┐   ┌────────────┐                │
-│  │ Bundle   │──►│ Simulation │──►│  Auction   │                │
-│  │ Ingestion│   │  Engine    │   │  Engine    │                │
-│  └──────────┘   └────────────┘   └─────┬──────┘                │
-│                                         │                        │
-│  ┌──────────┐                    ┌──────▼──────┐                │
-│  │ Relayer  │────(200ms hold)───►│  Bundle     │                │
-│  │  (TPU    │                    │  Delivery   │                │
-│  │  proxy)  │                    └──────┬──────┘                │
-│  └──────────┘                           │                        │
-└─────────────────────────────────────────┼───────────────────────┘
-                                          │
-┌─────────────────────────────────────────▼───────────────────────┐
-│                    VALIDATOR LAYER (Jito-Solana)                  │
-│                                                                  │
-│  Standard Agave Pipeline                                         │
-│  ┌────────┐ ┌─────────┐ ┌───────────┐ ┌─────────────────┐      │
-│  │ SigVer │►│ Banking  │►│ Broadcast │►│ Ledger/Storage  │      │
-│  │ (GPU)  │ │ Stage    │ │ Stage     │ │                 │      │
-│  └────────┘ └─────────┘ └───────────┘ └─────────────────┘      │
-│                                                                  │
-│  + Jito Additions                                                │
-│  ┌────────────┐ ┌──────────────────┐ ┌───────────┐              │
-│  │ Relayer    │►│ BlockEngine      │►│ Bundle    │              │
-│  │ Stage      │ │ Stage            │ │ Stage     │              │
-│  └────────────┘ └──────────────────┘ └───────────┘              │
-└─────────────────────────────────────────────────────────────────┘
+    subgraph BEL["BLOCK ENGINE LAYER"]
+        BI["Bundle\nIngestion"] --> SE["Simulation\nEngine"] --> AE["Auction\nEngine"]
+        AE --> BD["Bundle\nDelivery"]
+        RP["Relayer\n(TPU proxy)"] -->|200ms hold| BD
+    end
 
-┌─────────────────────────────────────────────────────────────────┐
-│                    ON-CHAIN PROGRAMS                              │
-│                                                                  │
-│  ┌─────────────────┐  ┌──────────────────────┐                  │
-│  │ Tip Payment     │  │ Tip Distribution     │                  │
-│  │ Program         │  │ Program              │                  │
-│  │ (receive tips)  │  │ (Merkle distribution)│                  │
-│  └─────────────────┘  └──────────────────────┘                  │
-│                                                                  │
-│  ┌─────────────────┐  ┌──────────────────────┐                  │
-│  │ Restaking       │  │ TipRouter NCN        │                  │
-│  │ Program         │  │ (consensus on tips)  │                  │
-│  └─────────────────┘  └──────────────────────┘                  │
-└─────────────────────────────────────────────────────────────────┘
+    subgraph VL["VALIDATOR LAYER (Jito-Solana)"]
+        direction LR
+        SV["SigVer\n(GPU)"] --> BS["Banking\nStage"] --> BC["Broadcast\nStage"] --> LS["Ledger/Storage"]
+        RS["Relayer\nStage"] --> BES["BlockEngine\nStage"] --> BUS["Bundle\nStage"]
+    end
+
+    subgraph OC["ON-CHAIN PROGRAMS"]
+        TP["Tip Payment\nProgram\n(receive tips)"]
+        TD["Tip Distribution\nProgram\n(Merkle distribution)"]
+        RSP["Restaking\nProgram"]
+        TR["TipRouter NCN\n(consensus on tips)"]
+    end
+
+    BEL --> VL
 ```
 
 ### 3.2 Bundle Lifecycle
 
-```
-Searcher                Block Engine            Validator
-   │                        │                       │
-   │── Submit Bundle ──────►│                       │
-   │   (max 5 txns + tip)   │                       │
-   │                        │── Sanity Check        │
-   │                        │── Simulate All Txns   │
-   │                        │── Compare Tips        │
-   │                        │── Group by State Locks │
-   │                        │── Select Top-N        │
-   │                        │                       │
-   │                        │── Stream Winners ────►│
-   │                        │                       │── BundleStage
-   │                        │                       │── Execute Atomic
-   │                        │                       │── All succeed or
-   │                        │                       │   all revert
-   │                        │                       │
-   │◄── Result ─────────────┼───────────────────────│
+```mermaid
+sequenceDiagram
+    participant S as Searcher
+    participant BE as Block Engine
+    participant V as Validator
+
+    S->>BE: Submit Bundle (max 5 txns + tip)
+    BE->>BE: Sanity Check
+    BE->>BE: Simulate All Txns
+    BE->>BE: Compare Tips
+    BE->>BE: Group by State Locks
+    BE->>BE: Select Top-N
+    BE->>V: Stream Winners
+    V->>V: BundleStage
+    V->>V: Execute Atomic
+    V->>V: All succeed or all revert
+    V->>S: Result
 ```
 
 ### 3.3 How Jito-Solana Differs from Stock Agave
@@ -388,38 +345,45 @@ Searcher                Block Engine            Validator
 
 ### 5.1 Architecture
 
-```
-┌─────────────────────────────────────────────────┐
-│                    NCN Layer                      │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐      │
-│  │TipRouter │  │MagicBlock│  │ Future   │      │
-│  │  NCN     │  │  NCN     │  │ NCNs     │      │
-│  └────┬─────┘  └────┬─────┘  └────┬─────┘      │
-│       │              │              │             │
-└───────┼──────────────┼──────────────┼────────────┘
-        │              │              │
-┌───────▼──────────────▼──────────────▼────────────┐
-│                  Operator Layer                    │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐      │
-│  │Operator A│  │Operator B│  │Operator C│      │
-│  │(serves   │  │(serves   │  │(serves   │      │
-│  │ NCN 1,2) │  │ NCN 1)   │  │ NCN 2,3) │      │
-│  └────┬─────┘  └────┬─────┘  └────┬─────┘      │
-└───────┼──────────────┼──────────────┼────────────┘
-        │              │              │
-┌───────▼──────────────▼──────────────▼────────────┐
-│                   Vault Layer                     │
-│  ┌────────┐  ┌────────┐  ┌────────┐             │
-│  │ezSOL   │  │fragSOL │  │kySOL   │             │
-│  │($86.2M)│  │($77.5M)│  │($40.8M)│             │
-│  └────┬───┘  └────┬───┘  └────┬───┘             │
-└───────┼───────────┼───────────┼──────────────────┘
-        │           │           │
-┌───────▼───────────▼───────────▼──────────────────┐
-│              Staker Layer                         │
-│  Users deposit SOL/JitoSOL/JTO → receive VRTs    │
-│  VRTs are liquid → usable in DeFi                │
-└──────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph NCN["NCN Layer"]
+        TR["TipRouter\nNCN"]
+        MB["MagicBlock\nNCN"]
+        FN["Future\nNCNs"]
+    end
+
+    subgraph OP["Operator Layer"]
+        OA["Operator A\n(serves NCN 1,2)"]
+        OB["Operator B\n(serves NCN 1)"]
+        OC["Operator C\n(serves NCN 2,3)"]
+    end
+
+    subgraph VT["Vault Layer"]
+        EZ["ezSOL\n($86.2M)"]
+        FR["fragSOL\n($77.5M)"]
+        KY["kySOL\n($40.8M)"]
+    end
+
+    subgraph SK["Staker Layer"]
+        SL["Users deposit SOL/JitoSOL/JTO → receive VRTs\nVRTs are liquid → usable in DeFi"]
+    end
+
+    TR --> OA
+    TR --> OB
+    MB --> OA
+    MB --> OC
+    FN --> OC
+
+    OA --> EZ
+    OA --> FR
+    OB --> EZ
+    OC --> KY
+    OC --> FR
+
+    EZ --> SK
+    FR --> SK
+    KY --> SK
 ```
 
 ### 5.2 Jito vs EigenLayer Comparison
@@ -576,29 +540,15 @@ Jito Labs and Jump Crypto are **independent organizations** that both build crit
 
 ### 8.3 Revenue Flywheel
 
-```
-More validators run Jito-Solana
-        │
-        ▼
-More searchers submit bundles (larger market)
-        │
-        ▼
-Higher tip revenue
-        │
-        ▼
-Higher JitoSOL yield (MEV tips shared with stakers)
-        │
-        ▼
-More SOL staked as JitoSOL
-        │
-        ▼
-More delegation to Jito validators
-        │
-        ▼
-More validators incentivized to run Jito-Solana
-        │
-        ▼
-(cycle repeats)
+```mermaid
+flowchart TD
+    A["More validators run Jito-Solana"] --> B["More searchers submit bundles\n(larger market)"]
+    B --> C["Higher tip revenue"]
+    C --> D["Higher JitoSOL yield\n(MEV tips shared with stakers)"]
+    D --> E["More SOL staked as JitoSOL"]
+    E --> F["More delegation to Jito validators"]
+    F --> G["More validators incentivized\nto run Jito-Solana"]
+    G --> A
 ```
 
 ---

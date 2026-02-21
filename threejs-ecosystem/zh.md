@@ -24,16 +24,17 @@ Web 是最後一個沒有嚴肅 3D 能力的平台。原生應用有 Unity/Unrea
 
 ### 核心：場景圖 + Object3D 層級
 
-```
-Scene (root)
-├── Group
-│   ├── Mesh (geometry + material)
-│   ├── Mesh
-│   └── Light
-├── Camera
-└── Group
-    ├── Mesh
-    └── InstancedMesh（上千個副本，一次 draw call）
+```mermaid
+flowchart TD
+    Scene["Scene (root)"]
+    Scene --> Group1["Group"]
+    Scene --> Camera["Camera"]
+    Scene --> Group2["Group"]
+    Group1 --> Mesh1["Mesh (geometry + material)"]
+    Group1 --> Mesh2["Mesh"]
+    Group1 --> Light["Light"]
+    Group2 --> Mesh3["Mesh"]
+    Group2 --> InstancedMesh["InstancedMesh（上千個副本，一次 draw call）"]
 ```
 
 **Object3D** 是一切的基類。每個物件維護：

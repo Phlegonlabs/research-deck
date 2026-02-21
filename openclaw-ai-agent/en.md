@@ -23,16 +23,12 @@ A local-first AI agent gateway that:
 
 ### Three-Component Design
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│    Brain     │     │   Memory    │     │    Arms     │
-│ (LLM Layer) │────▶│  (Storage)  │────▶│  (Tools)    │
-│              │     │             │     │             │
-│ System prompt│     │ Short-term: │     │ fs_tool     │
-│ + chat hist  │     │  chat logs  │     │ bash_tool   │
-│ → LLM API   │     │ Long-term:  │     │ browser_tool│
-│              │     │  .md files  │     │ (CDP)       │
-└─────────────┘     └─────────────┘     └─────────────┘
+```mermaid
+flowchart LR
+    Brain["**Brain**\n(LLM Layer)\n\nSystem prompt\n+ chat hist\n→ LLM API"]
+    Memory["**Memory**\n(Storage)\n\nShort-term:\nchat logs\nLong-term:\n.md files"]
+    Arms["**Arms**\n(Tools)\n\nfs_tool\nbash_tool\nbrowser_tool\n(CDP)"]
+    Brain --> Memory --> Arms
 ```
 
 | Component | Role | Implementation |

@@ -97,17 +97,12 @@ o4-mini 在 Codeforces 上击败 o3（2719 vs 2706），成本低约 50%。竞�
 
 不只是模型——完整代理平台：
 
-```
-┌─────────────────────────────────────────────┐
-│  CODEX APP（Web + 桌面）                     │
-│  指挥中心，并行代理                           │
-├─────────────────────────────────────────────┤
-│  CODEX CLI（终端）                           │
-│  开源 Rust，本地运行                          │
-├─────────────────────────────────────────────┤
-│  CODEX MODELS（API）                         │
-│  codex-1 → GPT-5-Codex → 5.2 → 5.3         │
-└─────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    A["CODEX APP（Web + 桌面）\n指挥中心，并行代理"]
+    B["CODEX CLI（终端）\n开源 Rust，本地运行"]
+    C["CODEX MODELS（API）\ncodex-1 → GPT-5-Codex → 5.2 → 5.3"]
+    A --> B --> C
 ```
 
 核心设计：codex-1 = o3 在真实编程任务上通过 RL 微调。沙箱化（无网络）。AGENTS.md 做仓库级配置。内置 git worktree 并行。Automations（定时触发 issue 分类、CI 监控）。

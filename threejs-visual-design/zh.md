@@ -236,41 +236,15 @@ scene.fog = new THREE.Fog(0x000000, 10, 100);    // 線性霧（近, 遠）
 
 從「預設灰」到「獲獎級」：
 
-```
-Layer 0：預設 Three.js
-├── 平光、無陰影、錯誤色彩空間
-├── 看起來像 2005 年 Flash 遊戲
-│
-Layer 1：基礎（5 分鐘工作量）
-├── + ACESFilmic tone mapping
-├── + sRGB 輸出色彩空間
-├── + 抗鋸齒
-├── 已經好 3 倍了
-│
-Layer 2：光照（15 分鐘）
-├── + HDRI 環境貼圖
-├── + 陰影（PCFSoft + bias 調整）
-├── + 正確的材質 roughness/metalness
-├── 現在看起來「真實」了
-│
-Layer 3：後處理（30 分鐘）
-├── + Bloom（選擇性、閾值調整）
-├── + SSAO（微妙的環境光遮蔽）
-├── + 暗角（Vignette）
-├── 看起來「有電影感」了
-│
-Layer 4：打磨（數小時）
-├── + 調色 / LUT
-├── + 景深
-├── + 自定義 shader（glow、trails、dissolve）
-├── + 體積光效果
-├── 獲獎水準
-│
-Layer 5：WebGPU（前沿）
-├── + Compute shader 粒子（10 萬+）
-├── + TSL 自定義材質
-├── + 即時光線追蹤提示
-├── 次世代瀏覽器 3D
+```mermaid
+flowchart TD
+    L0["<b>Layer 0：預設 Three.js</b><br/>平光、無陰影、錯誤色彩空間<br/>看起來像 2005 年 Flash 遊戲"]
+    L1["<b>Layer 1：基礎（5 分鐘工作量）</b><br/>+ ACESFilmic tone mapping<br/>+ sRGB 輸出色彩空間<br/>+ 抗鋸齒<br/><i>已經好 3 倍了</i>"]
+    L2["<b>Layer 2：光照（15 分鐘）</b><br/>+ HDRI 環境貼圖<br/>+ 陰影（PCFSoft + bias 調整）<br/>+ 正確的材質 roughness/metalness<br/><i>現在看起來「真實」了</i>"]
+    L3["<b>Layer 3：後處理（30 分鐘）</b><br/>+ Bloom（選擇性、閾值調整）<br/>+ SSAO（微妙的環境光遮蔽）<br/>+ 暗角（Vignette）<br/><i>看起來「有電影感」了</i>"]
+    L4["<b>Layer 4：打磨（數小時）</b><br/>+ 調色 / LUT<br/>+ 景深<br/>+ 自定義 shader（glow、trails、dissolve）<br/>+ 體積光效果<br/><i>獲獎水準</i>"]
+    L5["<b>Layer 5：WebGPU（前沿）</b><br/>+ Compute shader 粒子（10 萬+）<br/>+ TSL 自定義材質<br/>+ 即時光線追蹤提示<br/><i>次世代瀏覽器 3D</i>"]
+    L0 --> L1 --> L2 --> L3 --> L4 --> L5
 ```
 
 ## Tradeoffs — 取捨

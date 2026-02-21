@@ -319,28 +319,25 @@ Merchant → Complete Checkout (via Stripe) → Confirmation
 
 ### The Agentic Commerce Stack
 
+```mermaid
+flowchart TD
+    A["👤 User: Find me flights to Tokyo under $800, book the best one"] --> B["1. MCP — query calendar, check budget"]
+    B --> C["2. A2A — delegate to Flight Search Agent"]
+    C --> D["3. MCP — Flight Agent calls airline APIs"]
+    D --> E["4. A2A — artifacts return options"]
+    E --> F["5. Personal Agent selects best option"]
+    F --> G{"Payment routing"}
+    G -->|"crypto"| H["x402 on-chain settlement"]
+    G -->|"fiat"| I["AP2 → Visa/Mastercard"]
+    H --> J["9. Confirmation flows back via A2A ✅"]
+    I --> J
+
+    style A fill:#e3f2fd
+    style G fill:#fff3e0
+    style J fill:#e8f5e9
 ```
-User: "Find me flights to Tokyo under $800, book the best one"
-    │
-    ▼
-┌─────────────────────────────────────────────────────┐
-│  Personal Agent (orchestrator)                       │
-│                                                      │
-│  1. Uses MCP to query calendar, check budget         │
-│  2. Uses A2A to delegate to Flight Search Agent      │
-│  3. Flight Agent uses MCP to call airline APIs       │
-│  4. Flight Agent returns options via A2A artifacts   │
-│  5. Personal Agent selects best option               │
-│  6. Uses AP2 mandate to authorize payment            │
-│  7. Credentials Provider tokenizes payment method    │
-│  8. x402 settles the transaction on-chain            │
-│     OR AP2 routes through Visa/Mastercard            │
-│  9. Confirmation flows back via A2A                  │
-│                                                      │
-│  Every step has: cryptographic proof, audit trail,   │
-│  spending limits, human can be asked at any point    │
-└─────────────────────────────────────────────────────┘
-```
+
+> Every step has: cryptographic proof · audit trail · spending limits · human can be asked at any point
 
 ### Protocol Interaction Matrix
 

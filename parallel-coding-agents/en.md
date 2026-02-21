@@ -38,28 +38,19 @@ The progression is intentional — don't skip steps:
 
 Every platform — Cloudflare, Warp, E2B, Daytona — converges on the same layered architecture:
 
-```
-┌─────────────────────────────────────────────┐
-│  TRIGGER                                     │
-│  Slack / Linear / GitHub / Webhook / Cron    │
-└──────────────────┬──────────────────────────┘
-                   │
-┌──────────────────▼──────────────────────────┐
-│  ORCHESTRATE                                 │
-│  Task queue → scheduling → state → secrets   │
-│  (Cloudflare Agents SDK / Warp / custom)     │
-└──────────────────┬──────────────────────────┘
-                   │ spawns N
-┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐
-│ Sandbox │ │ Sandbox │ │ Sandbox │ │ Sandbox │
-│ Agent 1 │ │ Agent 2 │ │ Agent 3 │ │ Agent 4 │
-│ git+npm │ │ git+rsc │ │ git+py  │ │ git+go  │
-└─────────┘ └─────────┘ └─────────┘ └─────────┘
-                   │
-┌──────────────────▼──────────────────────────┐
-│  OBSERVE                                     │
-│  Session transcripts → dashboard → audit log │
-└─────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    Trigger["TRIGGER\nSlack / Linear / GitHub / Webhook / Cron"]
+    Orchestrate["ORCHESTRATE\nTask queue → scheduling → state → secrets\n(Cloudflare Agents SDK / Warp / custom)"]
+    S1["Sandbox\nAgent 1\ngit+npm"]
+    S2["Sandbox\nAgent 2\ngit+rsc"]
+    S3["Sandbox\nAgent 3\ngit+py"]
+    S4["Sandbox\nAgent 4\ngit+go"]
+    Observe["OBSERVE\nSession transcripts → dashboard → audit log"]
+
+    Trigger --> Orchestrate
+    Orchestrate -- "spawns N" --> S1 & S2 & S3 & S4
+    S1 & S2 & S3 & S4 --> Observe
 ```
 
 **Rule: never run agent logic in the orchestrator.** The orchestrator routes, authenticates, and coordinates. Sandboxes execute. This separation is non-negotiable.
@@ -212,20 +203,35 @@ The Rivet Sandbox Agent SDK is the convergence signal — one API that runs Clau
 
 ## Decision Framework
 
-```
-Do you need custom orchestration?
-├── Yes → Do you want global edge?
-│         ├── Yes → Cloudflare (Workers + Agents SDK + Containers)
-│         └── No  → Build on E2B/Daytona + your own orchestrator
-└── No  → Do you want turnkey?
-          ├── Yes → Warp Ambient Agents (beta) or GitHub Codespaces
-          └── No  → What's your priority?
-                    ├── Fastest cold start    → Daytona (27ms)
-                    ├── Best SDK experience   → E2B (one-liner API)
-                    ├── GPU compute           → Modal (H100)
-                    ├── Persistent workspace  → Sprites (100GB NVMe)
-                    ├── Cheapest at scale     → Northflank ($0.017/hr)
-                    └── Enterprise self-host  → Coder / Northflank BYOC
+```mermaid
+flowchart TD
+    Q1{"Need custom\norchestration?"}
+    Q2{"Want global\nedge?"}
+    Q3{"Want turnkey?"}
+    Q4{"What's your\npriority?"}
+
+    CF["Cloudflare\n(Workers + Agents SDK\n+ Containers)"]
+    E2B["Build on E2B/Daytona\n+ your own orchestrator"]
+    Warp["Warp Ambient Agents (beta)\nor GitHub Codespaces"]
+    Daytona["Daytona (27ms)"]
+    E2BSDK["E2B (one-liner API)"]
+    Modal["Modal (H100)"]
+    Sprites["Sprites (100GB NVMe)"]
+    NF["Northflank ($0.017/hr)"]
+    Coder["Coder / Northflank BYOC"]
+
+    Q1 -- Yes --> Q2
+    Q1 -- No --> Q3
+    Q2 -- Yes --> CF
+    Q2 -- No --> E2B
+    Q3 -- Yes --> Warp
+    Q3 -- No --> Q4
+    Q4 -- "Fastest cold start" --> Daytona
+    Q4 -- "Best SDK experience" --> E2BSDK
+    Q4 -- "GPU compute" --> Modal
+    Q4 -- "Persistent workspace" --> Sprites
+    Q4 -- "Cheapest at scale" --> NF
+    Q4 -- "Enterprise self-host" --> Coder
 ```
 
 ## Steal: Patterns to Reuse

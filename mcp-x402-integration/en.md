@@ -77,44 +77,27 @@ Client                    Server                   Facilitator        Blockchain
 
 ### Architecture
 
-```
-┌──────────────────────────────────────────────────┐
-│                  AI Agent (Claude/ChatGPT)        │
-│                                                   │
-│   "Get weather for Tokyo"                         │
-│          │                                        │
-│          ▼                                        │
-│   ┌─────────────┐    ┌────────────────────┐      │
-│   │  MCP Client  │───>│   x402 Interceptor │      │
-│   └─────────────┘    │   (@x402/axios or   │      │
-│                       │    @x402/fetch)     │      │
-│                       └────────┬───────────┘      │
-│                                │                   │
-│                       ┌────────▼───────────┐      │
-│                       │   Crypto Wallet     │      │
-│                       │   (EVM or Solana)   │      │
-│                       └────────────────────┘      │
-└──────────────────────┬────────────────────────────┘
-                       │
-                       ▼
-┌──────────────────────────────────────────────────┐
-│                  MCP Server                       │
-│                                                   │
-│   tool("free_tool")  ──> no payment needed        │
-│   paidTool("weather") ──> $0.001 per call         │
-│          │                                        │
-│          ▼                                        │
-│   ┌─────────────────────┐                        │
-│   │  x402 Middleware     │                        │
-│   │  (paymentMiddleware) │                        │
-│   └──────────┬──────────┘                        │
-│              │                                    │
-│              ▼                                    │
-│   ┌─────────────────────┐                        │
-│   │  Resource Server     │                        │
-│   │  (actual API logic)  │                        │
-│   └─────────────────────┘                        │
-└──────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Agent["AI Agent (Claude/ChatGPT)"]
+        Request["'Get weather for Tokyo'"]
+        MCP["MCP Client"]
+        Interceptor["x402 Interceptor\n(@x402/axios or @x402/fetch)"]
+        Wallet["Crypto Wallet\n(EVM or Solana)"]
+        Request --> MCP
+        MCP --> Interceptor
+        Interceptor --> Wallet
+    end
+
+    subgraph Server["MCP Server"]
+        Tools["tool('free_tool') → no payment needed\npaidTool('weather') → $0.001 per call"]
+        Middleware["x402 Middleware\n(paymentMiddleware)"]
+        Resource["Resource Server\n(actual API logic)"]
+        Tools --> Middleware
+        Middleware --> Resource
+    end
+
+    Agent --> Server
 ```
 
 ### Three Integration Patterns
@@ -229,36 +212,18 @@ Agents need wallets to pay. Coinbase built the first wallet infrastructure speci
 
 ### Architecture
 
-```
-┌─────────────────────────────────┐
-│          AI Agent (LLM)          │
-│    (never sees private key)      │
-│              │                   │
-│    ┌─────────▼──────────┐       │
-│    │   Local Session Key │       │
-│    │   + Spending Limits │       │
-│    └─────────┬──────────┘       │
-└──────────────┼──────────────────┘
-               │
-               ▼
-┌─────────────────────────────────┐
-│    Trusted Execution Environment │
-│            (TEE)                 │
-│                                  │
-│    ┌──────────────────────┐     │
-│    │   Private Key Storage │     │
-│    │   (never exported to  │     │
-│    │    agent/LLM context) │     │
-│    └──────────────────────┘     │
-│                                  │
-│    ┌──────────────────────┐     │
-│    │   Guardrails          │     │
-│    │   • Session caps      │     │
-│    │   • Per-tx limits     │     │
-│    │   • KYT screening     │     │
-│    │   • Policy checks     │     │
-│    └──────────────────────┘     │
-└─────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Agent["AI Agent (LLM)\n(never sees private key)"]
+        SessionKey["Local Session Key\n+ Spending Limits"]
+    end
+
+    subgraph TEE["Trusted Execution Environment (TEE)"]
+        PrivateKey["Private Key Storage\n(never exported to\nagent/LLM context)"]
+        Guardrails["Guardrails\n• Session caps\n• Per-tx limits\n• KYT screening\n• Policy checks"]
+    end
+
+    Agent --> TEE
 ```
 
 ### Security Model

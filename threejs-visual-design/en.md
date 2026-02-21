@@ -236,41 +236,15 @@ For cinematic color:
 
 From "default gray" to "award-winning":
 
-```
-Layer 0: Default Three.js
-├── Flat lighting, no shadows, wrong color space
-├── Looks like a 2005 Flash game
-│
-Layer 1: Foundation (5 minutes of work)
-├── + ACESFilmic tone mapping
-├── + sRGB output color space
-├── + Antialias
-├── Already 3x better
-│
-Layer 2: Lighting (15 minutes)
-├── + HDRI environment map
-├── + Shadows (PCFSoft + bias tuning)
-├── + Proper material roughness/metalness
-├── Looks "real" now
-│
-Layer 3: Post-Processing (30 minutes)
-├── + Bloom (selective, threshold-tuned)
-├── + SSAO (subtle ambient occlusion)
-├── + Vignette
-├── Looks "cinematic"
-│
-Layer 4: Polish (hours)
-├── + Color grading / LUT
-├── + Depth of field
-├── + Custom shaders (glow, trails, dissolve)
-├── + Volumetric effects
-├── Award-worthy
-│
-Layer 5: WebGPU (cutting edge)
-├── + Compute shader particles (100K+)
-├── + TSL custom materials
-├── + Real-time ray tracing hints
-├── Next-gen browser 3D
+```mermaid
+flowchart TD
+    L0["<b>Layer 0: Default Three.js</b><br/>Flat lighting, no shadows, wrong color space<br/>Looks like a 2005 Flash game"]
+    L1["<b>Layer 1: Foundation (5 minutes of work)</b><br/>+ ACESFilmic tone mapping<br/>+ sRGB output color space<br/>+ Antialias<br/><i>Already 3x better</i>"]
+    L2["<b>Layer 2: Lighting (15 minutes)</b><br/>+ HDRI environment map<br/>+ Shadows (PCFSoft + bias tuning)<br/>+ Proper material roughness/metalness<br/><i>Looks 'real' now</i>"]
+    L3["<b>Layer 3: Post-Processing (30 minutes)</b><br/>+ Bloom (selective, threshold-tuned)<br/>+ SSAO (subtle ambient occlusion)<br/>+ Vignette<br/><i>Looks 'cinematic'</i>"]
+    L4["<b>Layer 4: Polish (hours)</b><br/>+ Color grading / LUT<br/>+ Depth of field<br/>+ Custom shaders (glow, trails, dissolve)<br/>+ Volumetric effects<br/><i>Award-worthy</i>"]
+    L5["<b>Layer 5: WebGPU (cutting edge)</b><br/>+ Compute shader particles (100K+)<br/>+ TSL custom materials<br/>+ Real-time ray tracing hints<br/><i>Next-gen browser 3D</i>"]
+    L0 --> L1 --> L2 --> L3 --> L4 --> L5
 ```
 
 ## Tradeoffs
